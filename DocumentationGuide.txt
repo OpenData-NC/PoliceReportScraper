@@ -1,0 +1,14 @@
+By Austin Schneider
+
+I'll be using Sphinx to handle the documentation for this project. 
+http://sphinx-doc.org/index.html
+It can export as html and text file, so any changes I make will be reflected in text, which can be tracked in
+version control on Github, and a stylized version will be available online online at a URL to be determined. 
+The online html version will be the "official" documentation (unless preferences change).
+
+If you want to make changes to the documentation, simply edit whatever text file will be produced in the future (it will
+be on Github and it will be version controlled) and I will see that a change has been made in version control and edit
+the master version accordingly.
+
+I may also use Dr. Explain for screenshots of the user interface that need to be explained. That way we can get
+good looking images like the one on this page http://www.drexplain.com/software-documentation-tool/application-windows-capturing-annotation.php
