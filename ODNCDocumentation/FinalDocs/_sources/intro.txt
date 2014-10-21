@@ -1,0 +1,12 @@
+.. _intro:
+
+================================
+ODNC - Developers' Documentation
+================================
+
+Intro
+-------------------------------------------------------------
+
+
+Welcome to the developers' documentation for the Open Data NC project! This project was built using Python 2.7.8. 
+The web framework used is Django 1.7, and this documentation is built using Sphinx 1.2.3.

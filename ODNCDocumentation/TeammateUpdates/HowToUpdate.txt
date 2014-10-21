@@ -1,0 +1,5 @@
+By Austin Schneider
+If you want to update Sphinx, put a text file in this folder. If you want to figure out how to structure those files to 
+make them look good (it doesn't take long), you can. But you only have to give me a .txt file and I can update the Sphinx
+documentation. Just put it in this folder with any notes on where you want to link to other pages or where you want to put
+snippets of code, etc.
