@@ -1,12 +1,15 @@
 from django.db import models
 
-# Create your models here.
-class Arrest(models.Model):
+#keep the _test for now, we don't want to override the tables 
+#already in the db
+class Arrest_(models.Model):
 	agency = models.CharField(max_length=150)
 	name = models.CharField(max_length=250)
 	age = models.IntegerField(default=0) 
 	race = models.CharField(max_length=3)
 
+	#this uses django's choice feature.  if it causes problems, we can revert
+	# back to a plain charfield
 	MALE='M'
 	FEMALE='F'
 	UNSPEC=''
@@ -34,7 +37,7 @@ class Arrest(models.Model):
 		return name, charge, pdf  
 
 
-class Incident(models.Model):
+class Incident_test(models.Model):
 	agency = models.CharField(max_length=150)
 	name = models.CharField(max_length=250)
 	age = models.IntegerField(default=0) 
