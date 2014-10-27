@@ -2,7 +2,7 @@ from django.db import models
 
 #keep the _test for now, we don't want to override the tables 
 #already in the db
-class Arrest_(models.Model):
+class Arrest_test(models.Model):
 	agency = models.CharField(max_length=150)
 	name = models.CharField(max_length=250)
 	age = models.IntegerField(default=0) 
@@ -13,8 +13,8 @@ class Arrest_(models.Model):
 	MALE='M'
 	FEMALE='F'
 	UNSPEC=''
-	SEX_CHOICES = ( (MALE,"Male"), (FEMALE,"Female"), (UNSPEC,"Unspecified" ) 
-	sex = models.CharField(max_length=2, choices=SEX_CHOICES, )
+	SEX_CHOICES = ((MALE,"Male"), (FEMALE,"Female"), (UNSPEC,"Unspecified" )) 
+	sex = models.CharField(max_length=2, choices=SEX_CHOICES, default=UNSPEC)
 
 	date_occurred = models.DateField()
 	time_occurred = models.TimeField()
@@ -45,9 +45,9 @@ class Incident_test(models.Model):
 
 	MALE='M'
 	FEMALE='F'
-	UNSPECIFIED=''
-	SEX_CHOICES = ( (MALE,"Male"), (FEMALE,"Female"), (UNSPECIFIED,"Unspecified" ) 
-	sex = models.CharField(max_length=2, choices=SEX_CHOICES, )
+	UNSPEC=''
+	SEX_CHOICES = ( (MALE,"Male"), (FEMALE,"Female"), (UNSPEC,"Unspecified" )) 
+	sex = models.CharField(max_length=2, choices=SEX_CHOICES, default=UNSPEC)
 
 	on_date = models.DateField()
 	from_date = models.DateField()

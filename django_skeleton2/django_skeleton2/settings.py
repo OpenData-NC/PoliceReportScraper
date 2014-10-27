@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app_skeleton'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,10 +60,11 @@ WSGI_APPLICATION = 'django_skeleton.wsgi.application'
 DATABASES = {
 	'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-                'read_default_file': './db.conf',
-        },
-
+	'NAME': 'crime_test',
+        'USER': 'bhwarren',
+        'PASSWORD': 'nerRaWhB',
+        'HOST': '130.211.116.24',
+	}
 }
 
 # Internationalization
