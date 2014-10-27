@@ -63,7 +63,7 @@ DATABASES = {
 	'NAME': 'crime_test',
         'USER': 'bhwarren',
         'PASSWORD': 'nerRaWhB',
-        'HOST': '130.211.116.24',
+        'HOST': '/var/run/mysqld',
 	}
 }
 
