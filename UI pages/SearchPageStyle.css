@@ -20,12 +20,9 @@ h2{
 	padding-bottom:5px;
 }
 
-#searchsection input{
+#searchbar{
 	width:290px;
 	height:25px;
-}
-#searchsection button{
-	height:30px;
 }
 
 /*

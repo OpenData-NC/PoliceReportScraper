@@ -4,19 +4,21 @@
 		<meta charset="utf-8">
 		<title>ODNC Crime Search</title>
 		<link href="SearchPageStyle.css" rel="stylesheet">
-		<script src="/jquery-2.1.1/jquery.min.js"></script>
+		<script src="jquery-2.1.1.min.js"></script>
 		<script src="FilterHandler.js"></script>
 	</head>
 	<body>
 		<img src="opennc_logo.png"/>
 		<h2>Accident/ Arrest Search</h2>
-		<div id="searchsection">
-			<input type="text" />
-			<button>Search</button>
-		</div>
-		<div id="incomingfilters"></div>
-		<div id="buttondiv">
-		<button id="addFilter">+</button>
-		</div>
+		<form method="post">
+			<div id="searchsection">
+				<input id='searchbar' type="text" />
+				<input id='searchbutton' type='submit' value = "Search">
+			</div>
+			<div id="incomingfilters"></div>
+			<div id="buttondiv">
+				<button id="addFilter">+</button>
+			</div>
+		</form>
 	</body>
 </html>
