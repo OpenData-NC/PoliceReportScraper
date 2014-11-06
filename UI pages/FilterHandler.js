@@ -3,62 +3,95 @@ $(document).ready(function() {
 	//this will build the options in the select
 	var arrestincident ={
 		option: "<option value='arrestincident'>Arrest/Incident</option>",
-		data: "<input type='radio' value = arrest'>Arrest   <input type='radio' value = 'incident'>Incident<br>"
+		data: "<input type='radio' name='arrestincident' value = 'arrest'>Arrest   <input type='radio' name='arrestincident' value = 'incident'>Incident <br>"
 	}
 	var officerinvolved = {
 		option: "<option value='officerinvolved'>Officer Involved</option>",
-		data: "<input type='text' placeholder='Name of Officer'><br>"
+		data: "<input type='text' name='officerinvolved' placeholder='Name of Officer'> <br>"
 	}
 	var date={
 		option: "<option value='date'>Date</option>",
-		data: "<input type='date' name='from'>  -  <input type='date' name='to'><br>"
+		data: "<input type='date' name='from'>  -  <input type='date' name='to'> <br>"
 	}
 	var county={
 		option:"<option value='county'>County</option>",
-		data:"<Select name=county>"+
+		data:"<Select name='county'>"+
 					"<option value ='orange'>Orange</option>"+
 					"<option value= 'wake'>Wake</option>"+
 				"</select><br>"
 	}
 	var sex={
 		option:"<option value='sex'>Sex</option>",
-		data: "<input type='radio' value = 'male'>Male   <input type='radio' value = 'female'>Female<br>"
+		data: "<input type='radio' name='sex' value = 'male'>Male   <input type='radio' name='sex' value = 'female'>Female<br>"
 	}
 	var offenseCode={
-		option: "<option value='offenseCode'>Offense Code</option>"
+		option: "<option value='offenseCode'>Offense Code</option>",
+		data: "<input type='text' name='offenseCode'> <br>"
 	}
 	var agency={
-		option: "<option value='agency'>Agency</option>"
+		option: "<option value='agency'>Agency</option>",
+		data: "<Select name='agency'>"+
+					"<option value ='raleigh'>Raleigh</option>"+
+					"<option value= 'chapelhill'>Chapel Hill</option>"+
+					"<option value='durham'>Durham</option>"+
+					"<option value='greensboro'>Greensboro</option>"+
+				"</select><br>"
 	}
 	var name={
-		option: "<option value='name'>Name</option>"
+		option: "<option value='name'>Name</option>",
+		data: "<input type='text' name='name'> <br>"
 	}
 	var race={
-		option: "<option value='race'>Race</option>"
+		option: "<option value='race'>Race</option>",
+		data: "<Select name='race'>"+
+					"<option value ='white'>White</option>"+
+					"<option value= 'black'>Black</option>"+
+					"<option value='asian'>Asian</option>"+
+					"<option value='other'>other</option>"+
+				"</select><br>"
 	}
 	var address={
-		option: "<option value='address'>Address</option>"
+		option: "<option value='address'>Address</option>",
+		data: "<input type='text' name='address'> <br>"
 	}
 	var charge={			
-		option: "<option value='charge'>Charge</option>"
+		option: "<option value='charge'>Charge</option>",
+		data:"<input type='text' name='charge'> <br>"
 	}
 	var streetaddress={
-		option: "<option value='streetaddress'>Street Address</option>"
+		option: "<option value='streetaddress'>Street Address</option>",
+		data: "<input type='text' name='streetaddress'> <br>"
 	}
 	var city={
-		option: "<option value='city'>City</option>"
+		option: "<option value='city'>City</option>",
+		data: "<input type='text' name='city'> <br>"
 	}
 	var state={
-		option: "<option value='state'>State</option>"
+		option: "<option value='state'>State</option>",
+		data: "<Select name='state'>"+
+					"<option value ='AB'>Alabama</option>"+
+					"<option value= 'AL'>Alaska</option>"+
+					"<option value='AZ'>Arizona</option>"+
+					"<option value='AR'>Arkansas</option>"+
+					"<option value='CA'>California</option>"+
+					"<option value='CO'>Colorado</option>"+
+					"<option value='CT'>Connecticut</option>"+
+					"<option value='DE'>Delaware</option>"+
+					"<option value='GA'>Georgia</option>"+
+					"<option value='HI'>Hawaii</option>"+
+				"</select><br>"
 	}
 	var zip={
-		option: "<option value='zip'>Zip</option>"
+		option: "<option value='zip'>Zip</option>",
+		data:"<input type='text' name='zip'> <br>"
 	}
 	var latitude={
-		option: "<option value='latitude'>Latitude</option>"
+		option: "<option value='latitude'>Latitude</option>",
+		data:"<input type='text' name='latitude'> <br>"
 	}
 	var longitude={
-		option: "<option value='longitude'>Longitude</option>"
+		option: "<option value='longitude'>Longitude</option>",
+		data:"<input type='text' name='longitude'> <br>"
 	}
 
 	//this variable helps handle whether filter is active or not
@@ -77,9 +110,9 @@ $(document).ready(function() {
 	$("#addFilter").click(function() {
 		$("#incomingfilters").append(function() {
 
-			var filterToAdd = "<select class='filterselector'><option value='not a choice'>Select a Filter </option>";
+			var filterToAdd = "<select id='filterselector'><option value='not a choice'>Select a Filter </option>";
 
-			for ( j = 0; j < filterArray.length - 1; j++) {
+			for ( j = 0; j < filterArray.length; j++) {
 				//dynamically adds all of the filters into the select
 				filterToAdd += filterArray[j];
 			}
@@ -100,7 +133,7 @@ $(document).ready(function() {
 
 	//whenever a selection is made, this is the function that will catch that change
 	$("#incomingfilters").on('change', function() {
-		$("#incomingfilters > select").each(function(index){
+		$("#incomingfilters > #filterselector").each(function(index){
 			
 			//is any of the selections have changed this will catch that change
 			if (this.value != selectionsMade[index]){
@@ -109,7 +142,7 @@ $(document).ready(function() {
 				selectionsMade[index]=this.value;
 
 				//lock in their choice
-				$("#incomingfilters > select").prop('disabled', true);
+				$("#incomingfilters > #filterselector").prop('disabled', true);
 
 				switch(this.value){
 					case "arrestincident":
@@ -140,47 +173,96 @@ $(document).ready(function() {
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "county":
-						$("#incomingfilters").append("<br>");
-						break;
 					case "sex":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(sex.data);
+						var index = filterArray.indexOf(sex.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "offenseCode":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(offenseCode.data);
+						var index = filterArray.indexOf(offenseCode.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "agency":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(agency.data);
+						var index = filterArray.indexOf(agency.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "name":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(name.data);
+						var index = filterArray.indexOf(name.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "race":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(race.data);
+						var index = filterArray.indexOf(race.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "address":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(address.data);
+						var index = filterArray.indexOf(address.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "charge":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(charge.data);
+						var index = filterArray.indexOf(charge.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "streetaddress":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(streetaddress.data);
+						var index = filterArray.indexOf(streetaddress.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "city":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(city.data);
+						var index = filterArray.indexOf(city.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "state":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(state.data);
+						var index = filterArray.indexOf(state.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "zip":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(zip.data);
+						var index = filterArray.indexOf(zip.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "latitude":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(latitude.data);
+						var index = filterArray.indexOf(latitude.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 					case "longitude":
-						$("#incomingfilters").append("<br>");
+						$("#incomingfilters").append(longitude.data);
+						var index = filterArray.indexOf(longitude.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
 						break;
 				}
 			}
@@ -196,6 +278,9 @@ $(document).ready(function() {
 		}
 		else{
 			//the filter is disabled
+			$("#addFilter").prop("disabled", true);
+		}
+		if(filterArray.length==0){
 			$("#addFilter").prop("disabled", true);
 		}
 	});
