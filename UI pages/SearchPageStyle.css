@@ -1,0 +1,50 @@
+html{
+	font-family:Helvetica;
+}
+
+img {
+	width: 500px;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+}
+
+h2{
+	text-align:center;
+}
+
+#searchsection{
+	text-align:center;
+	padding-left:5%;
+	padding-bottom:5px;
+}
+
+#searchsection input{
+	width:290px;
+	height:25px;
+}
+#searchsection button{
+	height:30px;
+}
+
+/*
+ * This CSS needs to be fixed but im honestly not sure how to do it.
+ */
+.filterselector{
+	margin-left:39.6%;
+}
+
+#addFilter{
+	height:30px;
+	width:30px;
+
+}
+#buttondiv{
+	width:350px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 5px;
+	padding-left: 5%;
+}
