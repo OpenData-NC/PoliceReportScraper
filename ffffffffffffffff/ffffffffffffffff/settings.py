@@ -1,4 +1,4 @@
-# Django settings for odnc_police project.
+# Django settings for ffffffffffffffff project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -10,13 +10,14 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crime_test',
-        'USER': 'bhwarren',
-        'PASSWORD': 'nerRaWhB',
-        'HOST': '/var/run/mysqld/mysqld.sock',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -81,7 +82,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '9+gb)l!y71yrd!j3(i@hprj4o-e&amp;w2=-vehxwowd4r=hqsr-nt'
+SECRET_KEY = '^%4=-r2^q4%tmmqr2ofzc75hj9j_r^ww7^4z_wpqf3vl(1f_g_'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -94,16 +95,16 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'odnc_police.urls'
+ROOT_URLCONF = 'ffffffffffffffff.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'odnc_police.wsgi.application'
+WSGI_APPLICATION = 'ffffffffffffffff.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -122,7 +123,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'police_searcher',
 )
 
 # A sample logging configuration. The only tangible logging
