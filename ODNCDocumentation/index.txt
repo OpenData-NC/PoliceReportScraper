@@ -1,0 +1,27 @@
+.. odnc documentation master file, created by
+   sphinx-quickstart on Mon Oct 20 11:06:34 2014.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to odnc's documentation!
+================================
+
+Contents:
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   intro
+   scraper
+   
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
