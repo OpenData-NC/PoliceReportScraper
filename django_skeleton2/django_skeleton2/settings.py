@@ -1,5 +1,5 @@
 """
-Django settings for django_skeleton project.
+Django settings for django_skeleton2 project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -49,9 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'django_skeleton.urls'
+ROOT_URLCONF = 'django_skeleton2.urls'
 
-WSGI_APPLICATION = 'django_skeleton.wsgi.application'
+WSGI_APPLICATION = 'django_skeleton2.wsgi.application'
 
 
 # Database
@@ -63,7 +63,7 @@ DATABASES = {
 	'NAME': 'crime_test',
         'USER': 'bhwarren',
         'PASSWORD': 'nerRaWhB',
-        'HOST': '/var/run/mysqld',
+        'HOST': '/var/run/mysqld/mysqld.sock',
 	}
 }
 
