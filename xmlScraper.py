@@ -1,4 +1,6 @@
 import os #used to work on an entire directory of xml files
+import datetime
+from odnc_police.models import * 
 
 currentOCA = ""
 
@@ -165,12 +167,15 @@ def processLists(dlist, flist, sectionsToGrab, verboseOpt):
     nullfields = [item for item in kvpsMaster if item[1] == "NULL"]
     kvpsMaster = [item for item in kvpsMaster if item[1] != "NULL"]
     kvpsMaster.extend(nullfields)
-            
+
+    pdfObj = {}
+    for pair in kvpsMaster:
+        pdfObj[pair[0]] = pair[1]
 
     if (verboseOpt):
-        return kvpsMaster, sdlist, sflist
+        return pdfObj, sdlist, sflist
     else:
-        return kvpsMaster
+        return pdfObj
 
 
 
@@ -190,7 +195,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             for y in range(len(dlistNoChecks)):
                 #print dlistNoChecks[y][2] + ' @ ' + str(dlistNoChecks[y][0]) + ', ' + str(dlistNoChecks[y][1])
                 if ((abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 10)
-                    and abs((flistNoChecks[0][0]+20) - dlistNoChecks[y][0]) < 10):
+                and abs((flistNoChecks[0][0]+20) - dlistNoChecks[y][0]) < 10):
                     #print "Match Found"
                     if (flistNoChecks[0][2] == 'ORI'):
                         oriIndex = len(kvps)
@@ -243,11 +248,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         while (len(flistNoChecks) > 0):
             matchFound = False
             for y in range(len(dlistNoChecks)):
-                if (len(flistNoChecks) == 7 and currentOCA == "1408251"):
-                    print str(y) + " -------- " + str(len(dlistNoChecks))
-                    print flistNoChecks[0][2] + ' @ ' + str(flistNoChecks[0][0]) + ', ' + str(flistNoChecks[0][1]) + ' compared to '
-                    print dlistNoChecks[y][2] + ' @ ' + str(dlistNoChecks[y][0]) + ', ' + str(dlistNoChecks[y][1])
-
                 if (abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 12
                 and abs((flistNoChecks[0][0]+22) - dlistNoChecks[y][0]) < 10):
                     matchFound = True
@@ -630,7 +630,7 @@ def getLineIndexFromFile(filepath):
     dlist, flist = createLineIndex(LOL)
     return dlist, flist
 
-def getKVPMasterList(dlist, flist, sectionNameList, verbose):
+def getSinglePDFObj(dlist, flist, sectionNameList, verbose):
     return processLists(dlist, flist, sectionNameList, verbose)
 
 #analagous usage but directoryPath is path to directory folder rather than file
@@ -640,9 +640,9 @@ def doItAllMultipleTimes(directoryPath):
     for filename in os.listdir(directoryPath):
         print "operating on file " + filename + "..."
         dlist, flist = getLineIndexFromFile(directoryPath+filename)
-        kvps = getKVPMasterList(dlist, flist, snl, False)
-        pdfObjects.append((kvps[0][1], kvps)) 
-    return dict(pdfObjects)
+        pdfObj = getSinglePDFObj(dlist, flist, snl, False)
+        pdfObjects.append(pdfObj)
+    return pdfObjects
 
 
 #snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
