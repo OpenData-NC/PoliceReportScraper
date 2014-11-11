@@ -1,0 +1,14 @@
+html{
+        font-family:Helvetica;
+}
+
+img {
+        width: 200px;
+        height:auto;
+        margin-right:auto;
+        display:block;
+}
+
+a {
+	white-space:pre;
+}

@@ -1,0 +1,16 @@
+<html lang="en">
+        <head>
+                {% load staticfiles %}
+                <meta charset="utf-8">
+                <title>ODNC Crime Search</title>
+                <link href="{% static 'ResultPageStyle.css' %}" rel="stylesheet">
+                <script src="{% static 'jquery-2.1.1.min.js' %}"></script>
+        </head>
+        <body>
+                <img src="{% static "opennc_logo.png" %}"/>
+                <h2>Results</h2>
+		{% for i in outputList %}
+                <a>{{i|linebreaksbr}}</a><br><br><br>
+                {%endfor%}
+        </body>
+</html>

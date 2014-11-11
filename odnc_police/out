@@ -1,0 +1,110 @@
+Python 2.7.3 (default, Mar 13 2014, 11:03:55) 
+[GCC 4.7.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: No module named xmlScraper_current
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: No module named models
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'doItAllMultipleTimes' is not defined
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'raw_scrape' is not defined
+  File "<console>", line 1
+    agency_var = this_record_dict['Agency Name']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    name_var = "Name of accused"# this_record_dict['Name']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    age_var = 1 #this_record_dict['Age']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    race_var = "Wh" #this_record_dict['Race']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    sex_var = "M" #gthis_record_dict['Sex']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    date_var = datetime.date(2012,11,06) # this_record_dict['Agency Name']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    time_var = datetime.time(1,10) # this_record_dict['Agency Name']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    perp_addr_var = "accused's address" #gthis_record_dict['Current Address']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    charge_var = "their charge" #gthis_record_dict['Charge #1']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    offense_code_var = "cde" #gthis_record_dict['DCI Code']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    rep_officer_var = "arresting officer" #gthis_record_dict['Arresting Officer']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    pdf_var = "/path/to/pdf"
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    crime_addr_var = "where crime happened" #gthis_record_dict['Place of Arrest']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    city_var = "city name" #this_record_dict['Agency Name']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    county_var = "county name" #this_record_dict['Agency Name']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    state_var = "NC"
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    zip_var = 28982 #gthis_record_dict['Agency Name']
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    lat_var = 38.2
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    lon_var = 38.9
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    a = Arrest_test(agency=agency_var, name=name_var, age=age_var, race=race_var, sex=sex_var, date=date_var, time=time_var, address=perp_addr_var, charge=charge_var, offense_code=offense_code_var, reporting_officer=rep_officer_var, pdf=pdf_var, street_address=crime_addr_var, city=city_var, county=county_var, state=state_var, zip=zip_var, lat=lat_var, lon=lon_var)
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    a.save()
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    record_dicts.append(this_record_dict)
+   ^
+IndentationError: unexpected indent
+  File "<console>", line 1
+    break
+   ^
+IndentationError: unexpected indent
+
+>>> >>> >>> >>> >>> >>> >>> >>> ... ... ... ... ... >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> 
