@@ -3,26 +3,26 @@ $(document).ready(function() {
 	//this will build the options in the select
 	var arrestincident ={
 		option: "<option value='arrestincident'>Arrest/Incident</option>",
-		data: "<input type='radio' name='arrestincident' value = 'arrest'>Arrest   <input type='radio' name='arrestincident' value = 'incident'>Incident <br>"
+		data: "<div class='createdfilter' id='arrestincidenttodelete'><input type='radio' name='arrestincident' value = 'arrest'>Arrest   <input type='radio' name='arrestincident' value = 'incident'>Incident <button type=button id='deletearrestincident'>-</button><br></div>"
 	}
 	var officerinvolved = {
 		option: "<option value='officerinvolved'>Officer Involved</option>",
-		data: "<input type='text' name='officerinvolved' placeholder='Name of Officer'> <br>"
+		data: "<div class='createdfilter' id='officerinvolvedtodelete'><input type='text' name='officerinvolved' placeholder='Name of Officer'> <button type=button id='deleteofficerinvolved'>-</button><br></div>"
 	}
 	var date={
 		option: "<option value='date'>Date</option>",
-		data: "<input type='date' name='from'>  -  <input type='date' name='to'> <br>"
+		data: "<div class='createdfilter' id='datetodelete'><input type='date' name='from'>  -  <input type='date' name='to'><button type=button id='deletedate'>-</button> <br></div>"
 	}
 	var county={
 		option:"<option value='county'>County</option>",
-		data:"<Select name='county'>"+
+		data:"<div class='createdfilter' id='countytodelete'><Select name='county'>"+
 					"<option value ='orange'>Orange</option>"+
 					"<option value= 'wake'>Wake</option>"+
-				"</select><br>"
+				"</select><button type=button id='deletecounty'>-</button><br></div>"
 	}
 	var sex={
 		option:"<option value='sex'>Sex</option>",
-		data: "<input type='radio' name='sex' value = 'male'>Male   <input type='radio' name='sex' value = 'female'>Female<br>"
+		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'male'>Male   <input type='radio' name='sex' value = 'female'>Female<button type=button id='deletesex'>-</butotn><br></div>"
 	}
 	var offenseCode={
 		option: "<option value='offenseCode'>Offense Code</option>",
@@ -110,14 +110,14 @@ $(document).ready(function() {
 	$("#addFilter").click(function() {
 		$("#incomingfilters").append(function() {
 
-			var filterToAdd = "<select id='filterselector'><option value='not a choice'>Select a Filter </option>";
+			var filterToAdd = "<div id='selectordiv'><select id='filterselector'><option value='not a choice'>Select a Filter </option>";
 
 			for ( j = 0; j < filterArray.length; j++) {
 				//dynamically adds all of the filters into the select
 				filterToAdd += filterArray[j];
 			}
 
-			filterToAdd += "</select>";
+			filterToAdd += "</select></div>";
 			return filterToAdd;
 		});
 
@@ -133,7 +133,7 @@ $(document).ready(function() {
 
 	//whenever a selection is made, this is the function that will catch that change
 	$("#incomingfilters").on('change', function() {
-		$("#incomingfilters > #filterselector").each(function(index){
+		$("#incomingfilters #selectordiv > #filterselector").each(function(index){
 			
 			//is any of the selections have changed this will catch that change
 			if (this.value != selectionsMade[index]){
@@ -142,7 +142,7 @@ $(document).ready(function() {
 				selectionsMade[index]=this.value;
 
 				//lock in their choice
-				$("#incomingfilters > #filterselector").prop('disabled', true);
+				$("#incomingfilters #selectordiv> #filterselector").prop('disabled', true);
 
 				switch(this.value){
 					case "arrestincident":
@@ -284,4 +284,56 @@ $(document).ready(function() {
 			$("#addFilter").prop("disabled", true);
 		}
 	});
+
+	$("#incomingfilters").on("click", "#deletearrestincident ", function(){
+		$("#filterselector").each(function(){
+			if(this.value=="arrestincident"){
+				$(this).remove();
+			}
+		});
+		$("#arrestincidenttodelete").remove();
+		filterArray.push(arrestincident.option);
+	});
+
+	$("#incomingfilters").on("click", "#deleteofficerinvolved", function(){
+		$("#filterselector").each(function(){
+			if(this.value=="officerinvolved"){
+				$(this).remove()
+			}
+		});
+		$("#officerinvolvedtodelete").remove();
+		filterArray.push(officerinvolved.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletedate", function(){
+		$("#filterselector").each(function(){
+			if(this.value=="date"){
+				$(this).remove();
+			}
+		});
+		$("#datetodelete").remove();
+		filterArray.push(date.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletecounty", function(){
+		$("#filterselector").each(function(){
+			if(this.value=="county"){
+				$(this).remove();
+			}
+		});
+		$("#countytodelete").remove();
+		filterArray.push(county.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletesex", function(){
+		$("#filterselector").each(function(){
+			if(this.value=="sex"){
+				$(this).remove();
+			}
+		});
+		$("#sextodelete").remove();
+		filterArray.push(sex.option);
+	});
+
+
 });

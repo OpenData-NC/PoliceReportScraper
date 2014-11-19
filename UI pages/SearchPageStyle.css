@@ -28,8 +28,12 @@ h2{
 /*
  * This CSS needs to be fixed but im honestly not sure how to do it.
  */
-#filterselector{
-	margin-left:39.6%;
+#selectordiv{
+	width: 320px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 5px;
 }
 
 #addFilter{
@@ -44,4 +48,11 @@ h2{
 	margin-right: auto;
 	padding-top: 5px;
 	padding-left: 5%;
+}
+.createdfilter{
+	width: 320px;
+	display:block;
+	margin-right: auto;
+	margin-left: auto;
+	padding-bottom: 10px;
 }
