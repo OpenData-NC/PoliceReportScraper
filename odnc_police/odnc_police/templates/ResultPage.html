@@ -1,0 +1,26 @@
+<html lang="en">
+        <head>
+                {% load staticfiles %}
+                <meta charset="utf-8">
+                <title>ODNC Crime Search</title>
+                <link href="{% static 'ResultPageStyle.css' %}" rel="stylesheet">
+                <script src="{% static 'jquery-2.1.1.min.js' %}"></script>
+                <script src="{% static 'FilterHandler.js' %}"></script>
+        </head>
+        <body>
+                <img src="{% static "opennc_logo.png" %}"/>
+                <h2>Results</h2>
+                <div id = 'filterArea'>
+                        <div id='incomingfilters'></div>
+                        <div id='buttondiv'>
+                                <button type=button id="addFilter">+</button>
+                                <input id='updatesearch' type='submit'>
+                        </div>
+                </div>
+                <div id='resultarea'>
+		      {% for i in outputList %}
+                        <a>{{i|linebreaksbr}}</a><br><br><br>
+                        {%endfor%}
+                </div>
+        </body>
+</html>

@@ -1,0 +1,90 @@
+  GNU nano 2.0.6            File: SearchPage.html
+
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="utf-8">
+                <title>ODNC Crime Search</title>
+                <link href="SearchPageStyle.css" rel="stylesheet">
+                <script src="jquery-2.1.1.min.js"></script>
+                <script src="FilterHandler.js"></script>
+        </head>
+        <body>
+                <img src="opennc_logo.png"/>
+                <h2>Accident/ Arrest Search</h2>
+                <form>
+                        <div id="searchsection">
+                                <input id='searchbar' name='searchbar' type="te$
+                                <input id='searchbutton' type='submit'>
+                        </div>
+                        <div id="incomingfilters"></div>
+                        <div id="buttondiv">
+                                <button id="addFilter">+</button>
+                              [ Unknown Command ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
+  GNU nano 2.0.6                   File: SearchPage.html
+
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="utf-8">
+                <title>ODNC Crime Search</title>
+                <link href="SearchPageStyle.css" rel="stylesheet">
+                <script src="jquery-2.1.1.min.js"></script>
+                <script src="FilterHandler.js"></script>
+        </head>
+        <body>
+                <img src="opennc_logo.png"/>
+                <h2>Accident/ Arrest Search</h2>
+                <form>
+                        <div id="searchsection">
+                                <input id='searchbar' name='searchbar' type="text" />
+                                <input id='searchbutton' type='submit'>
+                        </div>
+
+        //this will build the options in the select
+        var arrestincident ={
+                option: "<option value='arrestincident'>Arrest/Incident</option>",
+                data: "<div class='createdfilter' id='arrestincidenttodelete'><input type='radio' na$
+        }
+        var officerinvolved = {
+                option: "<option value='officerinvolved'>Officer Involved</option>",
+                data: "<div class='createdfilter' id='officerinvolvedtodelete'><input type='text' na$
+        }
+        var date={
+                option: "<option value='date'>Date</option>",
+                data: "<input type='date' name='from'>  -  <input type='date' name='to'> <br>"
+        }
+        var county={
+                option:"<option value='county'>County</option>",
+                data:"<Select name='county'>"+
+                                        "<option value ='orange'>Orange</option>"+
+                                        "<option value= 'wake'>Wake</option>"+
+                                "</select><br>"
+        }
+        var sex={
+                option:"<option value='sex'>Sex</option>",
+                data: "<input type='radio' name='sex' value = 'male'>Male   <input type='radio' name$
+        }
+        var offenseCode={
+                option: "<option value='offenseCode'>Offense Code</option>",
+                data: "<input type='text' name='offenseCode'> <br>"
+        }
+        var agency={
+                option: "<option value='agency'>Agency</option>",
+                data: "<Select name='agency'>"+
+                                        "<option value ='raleigh'>Raleigh</option>"+
+                                        "<option value= 'chapelhill'>Chapel Hill</option>"+
+                                        "<option value='durham'>Durham</option>"+
+                                        "<option value='greensboro'>Greensboro</option>"+
+                                "</select><br>"
+        }
+        var name={
+                option: "<option value='name'>Name</option>",
+                data: "<input type='text' name='name'> <br>"
+        }
+        var race={
+                                         [ Read 297 lines ]
+^G Get Help     ^O WriteOut     ^R Read File    ^Y Prev Page    ^K Cut Text     ^C Cur Pos
+^X Exit         ^J Justify      ^W Where Is     ^V Next Page    ^U UnCut Text   ^T To Spell

@@ -1,0 +1,56 @@
+,from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import Context, loader
+from models import Arrest_test
+import datetime
+import os
+
+def djangotest(request):
+    now = datetime.datetime.now()
+    html = "<html><body>It is now %s.</body></html>" % now
+    return HttpResponse(html)
+
+def modeltest(request):
+
+    def filterByName(QuerySet, stringFilter):	
+        return QuerySet.filter(name__contains=stringFilter)
+    def filterByAgency(QuerySet, stringFilter):
+        return QuerySet.filter(agency__contains=stringFilter)
+    def filterByRace(QuerySet, stringFilter):
+        return QuerySet.filter(race__contains=stringFilter)
+    def filterByAddress(QuerySet, stringFilter):
+        return QuerySet.filter(address__contains=stringFilter)
+    def filterByCharge(QuerySet, stringFilter):
+        return QuerySet.filter(charge__contains=stringFilter)
+    def filterByOffenseCode(QuerySet, stringFilter):
+        return QuerySet.filter(offense_code__contains=stringFilter)
+    def filterByReportingOfficer(QuerySet, stringFilter):
+        return QuerySet.filter(reporting_officer__contains=stringFilter)
+    def filterByPdf(QuerySet, stringFilter):
+        return QuerySet.filter(pdf__contains=stringFilter)
+    def filterByStreetAddress(QuerySet, stringFilter):
+        return QuerySet.filter(street_address__contains=stringFilter)
+    def filterByCity(QuerySet, stringFilter):
+        return QuerySet.filter(city__contains=stringFilter)
+    def filterByCounty(QuerySet, stringFilter):
+        return QuerySet.filter(county__contains=stringFilter)
+    def filterByState(QuerySet, stringFilter):
+        return QuerySet.filter(state__contains=stringFilter)
+#Untested
+    def filterByAge(QuerySet, intFilter):
+        return QuerySet.filter(age=intFilter)
+    def filterByZip(QuerySet, intFilter):
+        return QuerySet.filter(zip=intFilter)
+
+    def filterByDateOccurred(QuerySet, lowerBound, upperBound):
+        return QuerySet.filter(date_occurred__range=[lowerBound, upperBound])
+
+    def filterByTimeOccurred(QuerySet, lowerBound, upperBound):
+        return QuerySet.filter(time_occurred__range=[lowerBound, upperBound])
+
+#for some reason datetime has trouble creating dates when day paramter >= 08
+    firstDate = datetime.date(2012,11,06)
+    secondDate = datetime.date(2016,10,07)
+    out = filterByDateOccurred(Arrest_test.objects.all(), firstDate, secondDate)[0]   
+ 
+    firstTime = datetime.time(1,1,1)

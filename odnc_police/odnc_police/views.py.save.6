@@ -128,8 +128,13 @@ def result(request):
     def filterByZip(QuerySet, intFilter):
         return QuerySet.filter(zip=intFilter)
 
+   # def filterSearchBar(QuerySet, stringFilter):
+    #    stringFilter.replace("+"," ")
+        
     outputList = []
     for i in entry_dict.keys():
+        #if i == 'searchbar':
+        #    QuerySet = filterSearchBar(QuerySet, entry_dict[i])
         if i == 'name':
             QuerySet = filterByName(QuerySet, entry_dict[i])
         if i == 'agency':
