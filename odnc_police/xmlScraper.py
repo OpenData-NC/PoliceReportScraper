@@ -647,9 +647,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                     if (abs(x[1] - 278) < moe):
                         dataTracker[0] = 'Order for Arrest'
                     elif (abs(x[1] - 375) < moe):
-                        dataTracker = 'Citation'
+                        dataTracker[0] = 'Citation'
                     elif (abs(x[1] - 446) < moe):
-                        dataTracker = 'Warrant'
+                        dataTracker[0] = 'Warrant'
                     else:
                         print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
                 else:
@@ -676,9 +676,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                     print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
         kvps.append(["Arrest Type", dataTracker[0]])
-        kvps.append(["Charge 1 Type"], dataTracker[1])
-        kvps.append(["Charge 2 Type"], dataTracker[2])
-        kvps.append(["Charge 3 Type"], dataTracker[3])
+        kvps.append(["Charge 1 Type", dataTracker[1]])
+        kvps.append(["Charge 2 Type", dataTracker[2]])
+        kvps.append(["Charge 3 Type", dataTracker[3]])
         flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant',
                                                               'Fel', 'Misd', 'Fel', 'Misd', 'Fel', 'Misd'])
                             
@@ -777,9 +777,9 @@ def getSinglePDFObj(dlist, flist, sectionNameList, extraLines, verbose):
     return processLists(dlist, flist, sectionNameList, extraLines, verbose)
 
 #analagous usage but directoryPath is path to directory folder rather than file
-def doItAllMultipleTimes(directoryPath):
+def createPDFList(directoryPath):
     pdfObjects = []
-    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
+    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
     for filename in os.listdir(directoryPath):
         print "operating on file " + filename + "..."
         dlist, flist, extras = getLineIndexFromFile(directoryPath+filename)
@@ -787,7 +787,7 @@ def doItAllMultipleTimes(directoryPath):
         pdfObjects.append(pdfObj)
     return pdfObjects
 
-def dick(directoryPath):
+def createPDFDict(directoryPath):
     pdfObjectsDictionary = {}
     snl = ["AGENCY_INFO", "ARRESTEE_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
     for filename in os.listdir(directoryPath):
