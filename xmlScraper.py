@@ -1,15 +1,27 @@
 import os #used to work on an entire directory of xml files
 import datetime
-from odnc_police.models import * 
 
 currentOCA = ""
 
 #opens a file and reads its lines into a list, one item per line.
 def getFileLinesList(filepath):
     theFile = open(filepath)
-    listOfLines = theFile.readlines()
+    fileLines = theFile.readlines()
     theFile.close()
-    return listOfLines
+    listOfLines, extraLines = [], []
+
+    #keep only lines of text, and separate the first page from any additional pages.
+    for line in fileLines:
+        if ('<text' in line):
+            listOfLines.append(line)
+        elif ('</page>' in line):
+            startIndex = fileLines.index(line)+1
+            temp = fileLines[startIndex:]
+            for lineitem in temp:
+                if ('<text' in lineitem):
+                    extraLines.append(lineitem)
+            break
+    return listOfLines, extraLines
 
 def qsort(lineItemList, sortParameter):
     """Modified Quicksort using list comprehensions"""
@@ -62,13 +74,19 @@ def getTextBetweenDelimiters(line, firstDelimiter, secondDelimiter):
 #parses the text of each line, saving info in either a field list or a data list.
 #The relevant information from each line is the numbers assigned to top and left,
 #as well as the actual text data represented in the line.
-#Finally, the two lists are sorted with respect to the top coordinates.
 def createLineIndex(listOfLines):
+    global extraLines
     lineDataItemList = [] #to store text data and top/left coords in better structure
     lineFieldItemList = []
     
     for line in listOfLines:
-        
+        if ('</page>' in line):
+            startIndex = listOfLines.index(line)+1
+            temp = listOfLines[startIndex:]
+            for lineitem in temp:
+                if ('<text' in lineitem):
+                    extraLines.append(lineitem)
+            break
         if ('<text' in line):
 
             #extracts the digits of the left coordinate as a string
@@ -106,7 +124,7 @@ def grabRelevantDataAndFields(dlist, flist, start, end):
     tempDlist, tempFlist, savedIndices = [], [], []
 
     for x in range(len(dlist)):
-        if (dlist[x][0] > start and dlist[x][0] < end): #350, 502
+        if (dlist[x][0] > start and dlist[x][0] < end):
             tempDlist.append(dlist[x])
             savedIndices.append(x)
     savedIndices.reverse()
@@ -114,7 +132,7 @@ def grabRelevantDataAndFields(dlist, flist, start, end):
         dlist.pop(x)
     savedIndices = []
     for y in range(len(flist)):
-        if (flist[y][0] > start and flist[y][0] < end): #350, 502
+        if (flist[y][0] > start and flist[y][0] < end):
             tempFlist.append(flist[y])
             savedIndices.append(y)
     savedIndices.reverse()
@@ -123,11 +141,50 @@ def grabRelevantDataAndFields(dlist, flist, start, end):
 
     return dlist, flist, tempDlist, tempFlist
 
+
+def markAppropriateFieldsNull(flist, section):
+    #this function is only called when ALL fields in a certain section have no data. In other cases empty fields
+    #are marked as NULL after all the data in the section has been matched, in pairFieldandData
+    kvps = []
+
+    if (section == "AGENCY_INFO"): #makes no sense and should never happen (no arresting agency info?)
+        print "Something Nonsensical Happened"
+    elif (section == "ARRESTEE_INFO"): #also makes no sense (no information on who was arrested?)
+        print "Something Nonsensical Happened"
+    elif (section == "ARREST_INFO"): #definitely makes no sense (no crime data?)
+        print "Something Nonsensical Happened"
+        #--> the first three sections must have some data in every case
+    elif (section == "VEH_INFO"):
+        flist = removeMultipleFromFieldList(flist, ['Vehicle', 'Left at Scene', 'Secured', 'Unsecure', 'Date/Time', '1.', 
+                                                    '2.', '3.', 'Released to other at owners request', 'Name of Other',
+                                                    'Impounded', 'Place of storage', 'Inventory on File?'])
+        kvps.append(['Vehicle Status', 'NULL'])
+        kvps.append(['Vehicle Status Datetime', 'NULL'])
+        for item in flist:
+            kvps.append([item[2], 'NULL'])
+   # elif (section == "BOND"):
+         
+   # elif (section == "DRUGS"):
+        
+    elif (section == "COMP"):
+        flist = removeMultipleFromFieldList(flist, ['Complainant', 'Victim', 'Name:', 'Address', 'Phone:'])
+        kvps.append(['Comp', 'NULL'])
+        kvps.append(['Comp Name', 'NULL'])
+        kvps.append(['Comp Address', 'NULL'])
+        kvps.append(['Comp Phone', 'NULL'])
+    elif (section == "NARRATIVE"):
+        #don't think this is possible either but just in case
+        kvps.append(['Narrative', 'NULL'])
+    elif (section == "STATUS"): #also definitely not possible (no arresting officer info?)
+        print "Something Nonsensical Happened"
+
+    return kvps
+
     
 
-def processLists(dlist, flist, sectionsToGrab, verboseOpt):
-    """Separates list items into chunks that are representative of sections of the pdf.
-    sectionNameCoordList is a list of two item lists of the form [yCoordofSectionBreak, "name of section"]"""
+def processLists(dlist, flist, sectionsToGrab, extraLines, verboseOpt):
+    """Separates list items into chunks that are representative of sections of the pdf,
+    and digests the report into a master list of key-value pairs, stored as a dictionary."""
     kvpsMaster = []
 
     sdlist = qsort(dlist, 0)
@@ -159,11 +216,19 @@ def processLists(dlist, flist, sectionsToGrab, verboseOpt):
                 
         #we now have tempDlist and tempFlist containing all the data and fields within a certain
         #section of the pdf. they are passed to another function to try to pair appropriate values.
+        #if no data was found in a certain section, all appropriate fields are marked NULL
 
         if (expectedMatch):
-            listOfMatchedValues = pairFieldandData(tempDlist, tempFlist, section)
-            kvpsMaster.extend(listOfMatchedValues)
+            if (len(tempDlist) == 0):
+                listOfMatchedValues = markAppropriateFieldsNull(tempFlist, section)
+                kvpsMaster.extend(listOfMatchedValues)
+            else:
+                listOfMatchedValues = pairFieldandData(tempDlist, tempFlist, section)
+                kvpsMaster.extend(listOfMatchedValues)
 
+    #TODO - do something with extra lines?
+
+    #put all null fields on the bottom
     nullfields = [item for item in kvpsMaster if item[1] == "NULL"]
     kvpsMaster = [item for item in kvpsMaster if item[1] != "NULL"]
     kvpsMaster.extend(nullfields)
@@ -185,7 +250,19 @@ def processLists(dlist, flist, sectionsToGrab, verboseOpt):
 def pairFieldandData(dlistChunk, flistChunk, state):
 
     global currentOCA
-    dlistNoChecks, flistNoChecks, kvps = stripCheckmarkData(dlistChunk, flistChunk, state)
+
+    savedIndices = []
+    checkmarkData = []
+    for x in range(len(dlistChunk)):
+        if (dlistChunk[x][2] == 'X'):
+            savedIndices.append(x)
+    savedIndices.reverse()
+    for x in savedIndices:
+        checkmarkData.append(dlistChunk.pop(x))
+    checkmarkData.reverse()
+
+    dlistNoChecks = dlistChunk #purely to save time refactoring; can be changed later
+    flistNoChecks, kvps = pairCheckmarkData(checkmarkData, flistChunk, state)
 
     unmatchedData = []
     
@@ -235,15 +312,17 @@ def pairFieldandData(dlistChunk, flistChunk, state):
 
         #occupation is often a problem spot that doesn't get matched so we match it specifically before going general
         flistNoChecks = removeFromFieldList(flistNoChecks, 'Occupation')
+        occ = 'NULL'
         for x in range(len(dlistNoChecks)):
             if (dlistNoChecks[x][0] < 180 or dlistNoChecks[x][0] > 210):
                 continue
             elif (dlistNoChecks[x][1] < 500 or dlistNoChecks[x][1] > 720):
                 continue
             else:
-                kvps.append(["Occupation", dlistNoChecks[x][2]])
+                occ = dlistNoChecks[x][2]
                 dlistNoChecks.pop(x)
                 break
+        kvps.append(["Occupation", occ])
 
         while (len(flistNoChecks) > 0):
             matchFound = False
@@ -371,7 +450,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             kvps.append(["Charge3", "NULL"])
 
         if (len(unmatchedData) > 0):
-            print "\n*****************************************\nSOME DATA WENT UNMATCHED FROM"
+            print "\n*****************************************\nSOME DATA WENT UNMATCHED FROM CHARGES IN"
             print currentOCA + ".xml"
             print "*****************************************"
             for u in unmatchedData:
@@ -379,14 +458,69 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             print "*****************************************\n"
             
 
-##    elif (state == "VEH_INFO"):
-##
+    elif (state == "VEH_INFO"):
+            
+        vinIndex = -1
+
+        while (len(flistNoChecks) > 0):
+            matchFound = False
+            for y in range(len(dlistNoChecks)):
+                if (abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 12
+                and abs((flistNoChecks[0][0]+22) - dlistNoChecks[y][0]) < 10):
+                    matchFound = True
+                    if (flistNoChecks[0][2] == 'Plate #/State' and len(dlistNoChecks[y][2]) > 20):
+                        vinIndex = len(kvps)
+                        flistNoChecks = removeFromFieldList(flistNoChecks, 'VIN')
+                    kvps.append([flistNoChecks[0][2], dlistNoChecks[y][2]])
+                    flistNoChecks.pop(0)
+                    dlistNoChecks.pop(y)
+                    break
+            if (matchFound == False):
+                kvps.append([flistNoChecks[0][2], 'NULL'])
+                flistNoChecks.pop(0)
+
+        for leftovers in dlistNoChecks:
+            if ((leftovers[2].find('/') + leftovers[2].find(':')) > 0):
+                kvps.append(["Vehicle Status Datetime", leftovers[2]])
+                dlistNoChecks.remove(leftovers)
+
+        if (vinIndex != -1):
+            temp = kvps[vinIndex][1]
+            kvps[vinIndex][1] = temp[:18]
+            kvps.append(["VIN", temp[19:]])
+
+        unmatchedData = dlistNoChecks
+
+##        if (len(unmatchedData) > 0):
+##            print "\n*****************************************\nSOME DATA WENT UNMATCHED FROM VEH INFO IN"
+##            print currentOCA + ".xml"
+##            print "*****************************************"
+##            for u in unmatchedData:
+##                print u
+##            print "*****************************************\n"
+
+        
+
 ##    elif (state == "BOND"):
 ##
 ##    elif (state == "DRUGS"):
 ##
-##    elif (state == "COMP"):
-##
+    elif (state == "COMP"):
+        defaults = ['NULL', 'NULL', 'NULL']
+        
+        if (len(dlistNoChecks) > 0): #very often there is no non-checkmark data in the COMP section
+            for d in dlistNoChecks:
+                if (d[1] < 400):
+                    defaults[0] = d[2]
+                elif (d[1] > 730):
+                    defaults[2] = d[2]
+                else:
+                    defaults[1] = d[1]
+        
+        kvps.append(['Comp Name', defaults[0]])
+        kvps.append(['Comp Address', defaults[1]])
+        kvps.append(['Comp Phone', defaults[2]])
+        
     elif (state == "NARRATIVE"):
         narr = ""
         for line in dlistNoChecks:
@@ -400,7 +534,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             dlistNoChecks.pop()
         else:
             kvps.append(["Arrestee Signature", "NULL"])
-        removeFromFieldList(flistNoChecks, "Arrestee Signature")
+        flistNoChecks = removeFromFieldList(flistNoChecks, "Arrestee Signature")
 
         dataChecklist = [False, False, False, False]
         fieldVals = ["Arresting Officer Signature/ID #", "Date Submitted", "Time Submitted", "Supervisor Signature"]
@@ -411,7 +545,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 kvps.append([fieldVals[0], d[2]])
             elif (d[1] > 570): #Supervisor Sig
                 dataChecklist[3] = True
-                kvps.append([fieldVals[2], d[2]])
+                kvps.append([fieldVals[3], d[2]])
             else: #Date/Time Submitted
                 dataChecklist[1] = True
                 dataChecklist[2] = True
@@ -437,187 +571,196 @@ def removeMultipleFromFieldList(flist, fieldsToRemove):
         flist = removeFromFieldList(flist, field)
     return flist
 
-def stripCheckmarkData(dlistChunk, flistChunk, state):
+def pairCheckmarkData(chkData, flistChunk, state):
     moe = 0 #margin of error; number of pixels by which something can be off its hardcoded position
     kvps = [] #key-value pairs
-    savedIndices = [] #to save indices of data that's been matched to pop that data item at the end;
-                        #can't do it when the match happens or the loop gets messed up and items may be skipped
+    dataTracker = [] #used to store the default and final values of checkmark kvps
+    error = "***** A checkmark exists but could not be properly matched @ "
+    
+    global currentOCA
     
     if (state == "AGENCY_INFO"):
         moe = 6
-        for x in range(len(dlistChunk)):
-            if (dlistChunk[x][2] == 'X'):
-                if (abs(dlistChunk[x][1] - 79) < moe):
-                    if (abs(dlistChunk[x][0] - 106) < moe):
-                        kvps.append(["Prints Taken", True])
-                        flistChunk = removeFromFieldList(flistChunk, 'Prints')
-                        savedIndices.append(x)
-                    elif (abs(dlistChunk[x][0] - 118) < moe):
-                        kvps.append(["Photos Taken", True])
-                        flistChunk = removeFromFieldList(flistChunk, 'Photos')
-                        savedIndices.append(x)
+        dataTracker = [False, False]
+        for x in chkData:
+            if (abs(x[1] - 79) < moe):
+                if (abs(x[0] - 106) < moe):
+                    dataTracker[0] = True
+                elif (abs(x[0] - 118) < moe):
+                    dataTracker[1] = True
                 else: #something went wrong; there are checks but not in the right place
-                    kvps.append(["ChkMkError", False])
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            else: #same here... etc.
+                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
-        savedIndices.reverse()
-        for x in savedIndices:
-            dlistChunk.pop(x)
-        flistChunk = removeFromFieldList(flistChunk, 'Taken')
+        kvps.append(["Prints Taken", dataTracker[0]])
+        kvps.append(["Photos Taken", dataTracker[1]])
+        flistChunk = removeMultipleFromFieldList(flistChunk, ['Prints', 'Photos', 'Taken'])
                   
     elif (state == "ARRESTEE_INFO"):
         moe = 6
-        
-        for x in range(len(dlistChunk)):
-            if (dlistChunk[x][2] == 'X'):
-                if (dlistChunk[x][0] < 210):
-                    if (abs(dlistChunk[x][1] - 735) < moe):
-                        if (abs(dlistChunk[x][0] - 184) < moe):
-                            kvps.append(["Residency Status", "Resident"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['Resident', 'Non-Resident', 'Unknown'])
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][0] - 198) < moe):
-                            kvps.append(["Residency Status", "Non-Resident"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['Resident', 'Non-Resident', 'Unknown'])
-                            savedIndices.append(x)
-                    elif (abs(dlistChunk[x][1] - 815) < moe):
-                        if (abs(dlistChunk[x][0] - 184) < moe):
-                            kvps.append(["Residency Status", "Unknown"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['Resident', 'Non-Resident', 'Unknown'])
-                            savedIndices.append(x)
-                    else: #something went wrong; there are checks but not in the right place
-                        kvps.append(["ChkMkError", False])
+        dataTracker = ['NULL', 'NULL']
+        for x in chkData:
+            if (abs(x[0] - 184) < moe):
+                if (abs(x[1] - 735) < moe):
+                    dataTracker[0] = 'Resident'
+                elif (abs(x[1] - 815) < moe):
+                    dataTracker[0] = 'Unknown'
                 else:
-                    if (abs(dlistChunk[x][0] - 262) < moe):
-                        if (abs(dlistChunk[x][1] - 775) < moe):
-                            kvps.append(["Consumed Drug/Alcohol", "Yes"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['Yes', 'No', 'Unk', 'Consumed Drug/Alcohol'])
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][1] - 815) < moe):
-                            kvps.append(["Consumed Drug/Alcohol", "No"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['Yes', 'No', 'Unk', 'Consumed Drug/Alcohol'])
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][1] - 851) < moe):
-                            kvps.append(["Consumed Drug/Alcohol", "Unknown"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['Yes', 'No', 'Unk', 'Consumed Drug/Alcohol'])
-                            savedIndices.append(x)
-                            
-        savedIndices.reverse()
-        for x in savedIndices:
-            dlistChunk.pop(x)
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            elif (abs(x[0] - 196) < moe):
+                if (abs(x[1] - 735) < moe):
+                    dataTracker[0] = 'Non-Resident'
+                else:
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA         
+            elif (abs(x[0] - 262) < moe):
+                if (abs(x[1] - 775) < moe):
+                    dataTracker[1] = 'Yes'
+                elif (abs(x[1] - 815) < moe):
+                    dataTracker[1] = 'No'
+                elif (abs(x[1] - 851) < moe):
+                    dataTracker[1] = 'Unknown'
+                else:
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            else:
+                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+
+        kvps.append(["Residency Status", dataTracker[0]])
+        kvps.append(["Consumed Drug/Alcohol", dataTracker[1]])
+        flistChunk = removeMultipleFromFieldList(flistChunk, ['Resident', 'Non-Resident', 'Unknown',
+                                                              'Yes', 'No', 'Unk', 'Consumed Drug/Alcohol'])
 
     elif (state == "ARREST_INFO"):
-        chargeInfo = [False, False, False] #used to keep track of which charge numbers (1-3) have charges and which are null
+        dataTracker = ['NULL', 'NULL', 'NULL', 'NULL']
         
-        for x in range(len(dlistChunk)):
-            if (dlistChunk[x][2] == 'X'):
-                if (dlistChunk[x][0] < 380):
-                    moe = 6
-                    if (abs(dlistChunk[x][0] - 355) < moe):
-                        if (abs(dlistChunk[x][1] - 278) < moe):
-                            kvps.append(["Method of Arrest", "On-View"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant'])
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][1] - 356) < moe):
-                            kvps.append(["Method of Arrest", "Criminal Summons"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant'])
-                            savedIndices.append(x)
-                    elif (abs(dlistChunk[x][0] - 370) < moe):
-                        if (abs(dlistChunk[x][1] - 278) < moe):
-                            kvps.append(["Method of Arrest", "Order for Arrest"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant'])
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][1] - 375) < moe):
-                            kvps.append(["Method of Arrest", "Citation"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant'])
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][1] - 446) < moe):
-                            kvps.append(["Method of Arrest", "Warrant"])
-                            flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant'])
-                            savedIndices.append(x)
+        for x in chkData:
+            if (x[0] < 380):
+                moe = 6
+                if (abs(x[0] - 355) < moe):
+                    if (abs(x[1] - 278) < moe):
+                        dataTracker[0] = 'On-View'
+                    elif (abs(x[1] - 356) < moe):
+                        dataTracker[0] = 'Criminal Summons'
+                    else:
+                        print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                elif (abs(x[0] - 370) < moe):
+                    if (abs(x[1] - 278) < moe):
+                        dataTracker[0] = 'Order for Arrest'
+                    elif (abs(x[1] - 375) < moe):
+                        dataTracker = 'Citation'
+                    elif (abs(x[1] - 446) < moe):
+                        dataTracker = 'Warrant'
+                    else:
+                        print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
                 else:
-                    moe = 6
-                    if (abs(dlistChunk[x][1] - 328) < moe):
-                        moe = 4
-                        if (abs(dlistChunk[x][0] - 395) < moe):
-                            kvps.append(["Charge 1 Type", "Felony"])
-                            chargeInfo[0] = True
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][0] - 406) < moe):
-                            kvps.append(["Charge 1 Type", "Misdemeanor"])
-                            chargeInfo[0] = True
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][0] - 433) < moe):
-                            kvps.append(["Charge 2 Type", "Felony"])
-                            chargeInfo[1] = True
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][0] - 447) < moe):
-                            kvps.append(["Charge 2 Type", "Misdemeanor"])
-                            chargeInfo[1] = True
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][0] - 473) < moe):
-                            kvps.append(["Charge 3 Type", "Felony"])
-                            chargeInfo[2] = True
-                            savedIndices.append(x)
-                        elif (abs(dlistChunk[x][0] - 486) < moe):
-                            kvps.append(["Charge 3 Type", "Misdemeanor"])
-                            chargeInfo[2] = True
-                            savedIndices.append(x)
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            else:
+                moe = 6
+                if (abs(x[1] - 328) < moe):
+                    moe = 4
+                    if (abs(x[0] - 395) < moe):
+                        dataTracker[1] = 'Felony'
+                    elif (abs(x[0] - 406) < moe):
+                        dataTracker[1] = 'Misdemeanor'
+                    elif (abs(x[0] - 433) < moe):
+                        dataTracker[2] = 'Felony'
+                    elif (abs(x[0] - 447) < moe):
+                        dataTracker[2] = 'Misdemeanor'
+                    elif (abs(x[0] - 473) < moe):
+                        dataTracker[3] = 'Felony'
+                    elif (abs(x[0] - 486) < moe):
+                        dataTracker[3] = 'Misdemeanor'
+                    else:
+                        print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                else:
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
-        for x in range(len(chargeInfo)):
-            if (chargeInfo[x] == False):
-                kvps.append(["Charge " + str(x+1) + " Type", "NULL"])
-
-        flistChunk = removeMultipleFromFieldList(flistChunk, ['Fel', 'Misd', 'Fel', 'Misd', 'Fel', 'Misd'])
-
-        savedIndices.reverse()
-        for x in savedIndices:
-            dlistChunk.pop(x)
+        kvps.append(["Arrest Type", dataTracker[0]])
+        kvps.append(["Charge 1 Type"], dataTracker[1])
+        kvps.append(["Charge 2 Type"], dataTracker[2])
+        kvps.append(["Charge 3 Type"], dataTracker[3])
+        flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant',
+                                                              'Fel', 'Misd', 'Fel', 'Misd', 'Fel', 'Misd'])
                             
-##    elif (state == "VEH_INFO"):
-##
+    elif (state == "VEH_INFO"):
+        moe = 6
+        dataTracker = 'NULL'
+        for x in chkData:
+            if (x[0] < 550):
+                if (abs(x[1] - 263) < moe):
+                    dataTracker = "Left at Scene - Secured"
+                elif (abs(x[1] - 342) < moe):
+                    dataTracker = "Left at Scene - Unsecured"
+            elif (x[0] > 565):
+                dataTracker = "Impounded or Placed in Storage"
+            else:
+                dataTracker = "Released to Other at owner's request"
+
+        if (len(chkData) > 0):
+            kvps.append(["Vehicle Status", dataTracker])
+        else:
+            kvps.append(["Vehicle Status", "No Vehicle Involved"])
+        flistChunk = removeMultipleFromFieldList(flistChunk, ['Vehicle', 'Left at Scene', 'Secured', 'Unsecure', 'Date/Time',
+                                                              '1.', '2.', '3.', 'Released to other at owners request', 'Name of Other',
+                                                              'Impounded', 'Place of storage', 'Inventory on File?'])
+                            
 ##    elif (state == "BOND"):
 ##
 ##    elif (state == "DRUGS"):
 ##
-##    elif (state == "COMP"):
-##
+    elif (state == "COMP"):
+        dataTracker = 'NULL'
+        #only one check possible out of only two possible boxes
+        for x in chkData:
+            moe = 10
+            if (abs(x[0] - 895) < moe):
+                moe = 6
+                if (abs(x[1] - 172) < moe):
+                    dataTracker = "Complainant"
+                elif (abs(x[1] - 244) < moe):
+                    dataTracker = "Victim"
+                else:
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            else:
+                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                
+        kvps.append(["Comp", dataTracker])
+        flistChunk = removeMultipleFromFieldList(flistChunk, ['Complainant', 'Victim'])
+
 ##    elif (state == "NARRATIVE"):
 ##      there are no check boxes in the narrative so this check is not needed
     elif (state == "STATUS"):
         moe = 7
-        for x in range(len(dlistChunk)):
-            if (dlistChunk[x][2] == 'X'):
-                if (dlistChunk[x][0] < 1095):
-                    if (abs(dlistChunk[x][1] - 220) < moe):
-                        kvps.append(["Case Disposition", "Cleared By Arrest/No Supplement Needed"])
-                        flistChunk = removeMultipleFromFieldList(flistChunk, ['Case Disposition:', 'Cleared By Arrest / No Supplement Needed', 'Arrest / No Investigation'])
-                        savedIndices.append(x)
-                    elif (abs(dlistChunk[x][1] - 75) < moe):
-                        kvps.append(["Case Status", "Further Investigation"])
-                        flistChunk = removeMultipleFromFieldList(flistChunk, ['Case Status:', 'Further Inv.', 'Inactive', 'Closed'])
-                        savedIndices.append(x)
+        dataTracker = ["NULL", "NULL"]
+        for x in chkData:
+            if (abs(x[0] - 1087) < moe):
+                if (abs(x[1] - 75) < moe):
+                    dataTracker[0] = "Further Investigation"
+                elif (abs(x[1] - 220) < moe):
+                    dataTracker[1] = "Cleared By Arrest/No Supplement Needed"
                 else:
-                    if (abs(dlistChunk[x][1] - 220) < moe):
-                        kvps.append(["Case Disposition", "Arrest/No Investigation"])
-                        flistChunk = removeMultipleFromFieldList(flistChunk, ['Case Disposition:', 'Cleared By Arrest / No Supplement Needed', 'Arrest / No Investigation'])
-                        savedIndices.append(x)
-                    elif (abs(dlistChunk[x][1] - 75) < moe):
-                        kvps.append(["Case Status", "Inactive"])
-                        flistChunk = removeMultipleFromFieldList(flistChunk, ['Case Status:', 'Further Inv.', 'Inactive', 'Closed'])
-                        savedIndices.append(x)
-                    elif (abs(dlistChunk[x][1] - 144) < moe):
-                        kvps.append(["Case Status", "Closed"])
-                        flistChunk = removeMultipleFromFieldList(flistChunk, ['Case Status:', 'Further Inv.', 'Inactive', 'Closed'])
-                        savedIndices.append(x)
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            elif (abs(x[0] - 1101) < moe):
+                if (abs(x[1] - 75) < moe):
+                    dataTracker[0] = "Inactive"
+                elif (abs(x[1] - 144) < moe):
+                    dataTracker[0] = "Closed"
+                elif (abs(x[1] - 220) < moe):
+                    dataTracker[1] = "Arrest/No Investigation"
+                else:
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            else:
+                print error + str(x[0]) + ", " + str(x[1]) + " *****  " + currentOCA
 
-        savedIndices.reverse()
-        for x in savedIndices:
-            dlistChunk.pop(x)
+        kvps.append(["Case Status", dataTracker[0]])
+        kvps.append(["Case Disposition", dataTracker[1]])
+        flistChunk = removeMultipleFromFieldList(flistChunk, ['Case Status:', 'Further Inv.', 'Inactive', 'Closed',
+                                                              'Case Disposition:', 'Cleared By Arrest / No Supplement Needed',
+                                                              'Arrest / No Investigation'])
 
-    #end if-else ladder of section 'state machine'
-    
+    #end of checkmark data if-else ladder of section state machine
 
-    return dlistChunk, flistChunk, kvps
+    return flistChunk, kvps
 
 
 #The next two functions are convenience functions I wrote so I wouldn't have
@@ -626,12 +769,12 @@ def stripCheckmarkData(dlistChunk, flistChunk, state):
 #
 #'filepath' is path to xml file
 def getLineIndexFromFile(filepath):
-    LOL = getFileLinesList(filepath)
+    LOL, extras = getFileLinesList(filepath)
     dlist, flist = createLineIndex(LOL)
-    return dlist, flist
+    return dlist, flist, extras
 
-def getSinglePDFObj(dlist, flist, sectionNameList, verbose):
-    return processLists(dlist, flist, sectionNameList, verbose)
+def getSinglePDFObj(dlist, flist, sectionNameList, extraLines, verbose):
+    return processLists(dlist, flist, sectionNameList, extraLines, verbose)
 
 #analagous usage but directoryPath is path to directory folder rather than file
 def doItAllMultipleTimes(directoryPath):
@@ -639,10 +782,20 @@ def doItAllMultipleTimes(directoryPath):
     snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
     for filename in os.listdir(directoryPath):
         print "operating on file " + filename + "..."
-        dlist, flist = getLineIndexFromFile(directoryPath+filename)
-        pdfObj = getSinglePDFObj(dlist, flist, snl, False)
+        dlist, flist, extras = getLineIndexFromFile(directoryPath+filename)
+        pdfObj = getSinglePDFObj(dlist, flist, snl, extras, False)
         pdfObjects.append(pdfObj)
     return pdfObjects
+
+def dick(directoryPath):
+    pdfObjectsDictionary = {}
+    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
+    for filename in os.listdir(directoryPath):
+        dlist, flist, extras = getLineIndexFromFile(directoryPath+filename)
+        pdfObj = getSinglePDFObj(dlist, flist, snl, extras, False)
+        pdfObjectsDictionary[pdfObj['OCA']] = pdfObj
+        print "operating on file " + filename + "...  keys: " + str(len(pdfObj))
+    return pdfObjectsDictionary
 
 
 #snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
