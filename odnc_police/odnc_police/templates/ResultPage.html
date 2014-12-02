@@ -14,13 +14,14 @@
                         <input type='hidden' id="urltext" name='url'>
                         <script> 
                                 var element=document.getElementById("urltext");
+                                console.log(typeof element);
                                 element.value=window.location.href;
                         </script>
                         <div id = 'filterArea'>
                                 <h3>update filters:</h3>
                                 <div id='incomingfilters'></div>
                                 <div id='buttondiv'>
-                                        <button type=button id="addFilter">+</button>
+                                        <button type=button id="addFilter">add filter</button>
                                         <input id='updatesearch' type='submit'>
                                 </div>
                         </div>
