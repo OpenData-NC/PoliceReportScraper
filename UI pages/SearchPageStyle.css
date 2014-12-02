@@ -1,58 +1,58 @@
 html{
-	font-family:Helvetica;
+        font-family:Helvetica;
 }
 
 img {
-	width: 500px;
-	height:auto;
-	margin-left:auto;
-	margin-right:auto;
-	display:block;
+        width: 500px;
+        height:auto;
+        margin-left:auto;
+        margin-right:auto;
+        display:block;
 }
 
 h2{
-	text-align:center;
+        text-align:center;
 }
 
 #searchsection{
-	text-align:center;
-	padding-left:5%;
-	padding-bottom:5px;
+        text-align:center;
+        padding-left:5%;
+        padding-bottom:5px;
 }
 
 #searchbar{
-	width:290px;
-	height:25px;
+        width:290px;
+        height:25px;
 }
 
 /*
  * This CSS needs to be fixed but im honestly not sure how to do it.
  */
 #selectordiv{
-	width: 320px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	padding-bottom: 5px;
+        width: 320px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 5px;
 }
 
 #addFilter{
-	height:30px;
-	width:30px;
+        height:30px;
+        width:30px;
 
 }
 #buttondiv{
-	width:350px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 5px;
-	padding-left: 5%;
+        width:350px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px;
+        padding-left: 5%;
 }
 .createdfilter{
-	width: 320px;
-	display:block;
-	margin-right: auto;
-	margin-left: auto;
-	padding-bottom: 10px;
+        width: 320px;
+        display:block;
+        margin-right: auto;
+        margin-left: auto;
+        padding-bottom: 10px;
 }
