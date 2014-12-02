@@ -28,7 +28,7 @@ $(document).ready(function() {
 		option: "<option value='agency'>Agency</option>",
 		data: "<Select name='agency'>"+
 					"<option value ='raleigh'>Raleigh</option>"+
-					"<option value= 'chapelhill'>Chapel Hill</option>"+
+					"<option value= 'chapel hill'>Chapel Hill</option>"+
 					"<option value='durham'>Durham</option>"+
 					"<option value='greensboro'>Greensboro</option>"+
 				"</select><br>"
@@ -54,21 +54,6 @@ $(document).ready(function() {
 		option: "<option value='city'>City</option>",
 		data: "<input type='text' name='city'> <br>"
 	}
-	var state={
-		option: "<option value='state'>State</option>",
-		data: "<Select name='state'>"+
-					"<option value ='AB'>Alabama</option>"+
-					"<option value= 'AL'>Alaska</option>"+
-					"<option value='AZ'>Arizona</option>"+
-					"<option value='AR'>Arkansas</option>"+
-					"<option value='CA'>California</option>"+
-					"<option value='CO'>Colorado</option>"+
-					"<option value='CT'>Connecticut</option>"+
-					"<option value='DE'>Delaware</option>"+
-					"<option value='GA'>Georgia</option>"+
-					"<option value='HI'>Hawaii</option>"+
-				"</select><br>"
-	}
 
 	//this variable helps handle whether filter is active or not
 	var doNotAddFilter=true;
@@ -76,7 +61,7 @@ $(document).ready(function() {
 	//this array constructs the available selections
 	var filterArray = [arrestincident.option, officerinvolved.option, date.option,
 	 county.option, sex.option, agency.option, name.option, 
-	 race.option, charge.option, city.option, state.option];
+	 race.option, charge.option, city.option];
 	
 	//this array tracks all the selections that have been made
 	var selectionsMade = [];
@@ -186,13 +171,6 @@ $(document).ready(function() {
 					case "city":
 						$("#incomingfilters").append(city.data);
 						var index = filterArray.indexOf(city.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "state":
-						$("#incomingfilters").append(state.data);
-						var index = filterArray.indexOf(state.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}

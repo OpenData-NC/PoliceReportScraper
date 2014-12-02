@@ -11,6 +11,8 @@
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Results</h2>
                 <form action = "ResultPage.html" method="GET">
+                        <input type='hidden' id='txturl' name='url' value=''>
+                        <script>$("#txturl").value=window.location.href;</script>
                         <div id = 'filterArea'>
                                 <div id='incomingfilters'></div>
                                 <div id='buttondiv'>
