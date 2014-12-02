@@ -11,16 +11,17 @@
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Results</h2>
                 <form action = "ResultPage.html" method="GET">
-                        <input type='hidden' id="urltext" name='url'>
+                        <input type='hidden' id="urltext" name=''>
                         <script> 
                                 var element=document.getElementById("urltext");
                                 var string=window.location.href;
                                 var result = string.split("?");
                                 string = result[1];
-                                result = string.split("&");
-                                for(i=0; i<result.length;i++){
-                                        console.log(result[i]);
-                                }
+                                element.value=string;
+                                // result = string.split("&");
+                                // for(i=0; i<result.length;i++){
+                                //         console.log(result[i]);
+                                // }
 
                         </script>
                         <div id = 'filterArea'>
