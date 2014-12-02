@@ -10,13 +10,15 @@
         <body>
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Results</h2>
-                <div id = 'filterArea'>
-                        <div id='incomingfilters'></div>
-                        <div id='buttondiv'>
-                                <button type=button id="addFilter">+</button>
-                                <input id='updatesearch' type='submit'>
+                <form action = "ResultPage.html" method="GET">
+                        <div id = 'filterArea'>
+                                <div id='incomingfilters'></div>
+                                <div id='buttondiv'>
+                                        <button type=button id="addFilter">+</button>
+                                        <input id='updatesearch' type='submit'>
+                                </div>
                         </div>
-                </div>
+                </form>
                 <div id='resultarea'>
 		      {% for i in outputList %}
                         <a>{{i|linebreaksbr}}</a><br><br><br>

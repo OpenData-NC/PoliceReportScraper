@@ -10,7 +10,7 @@ $(document).ready(function() {
 		data: "<div class='createdfilter' id='officerinvolvedtodelete'><input type='text' name='officerinvolved' placeholder='Name of Officer'> <button type=button id='deleteofficerinvolved'>-</button><br></div>"
 	}
 	var date={
-		option: "<option value='date'>Date</option>",
+		option: "<option value='date'>Date of Arrest/Incident</option>",
 		data: "<div class='createdfilter' id='datetodelete'><input type='date' name='from'>  -  <input type='date' name='to'><button type=button id='deletedate'>-</button> <br></div>"
 	}
 	var county={
@@ -24,10 +24,6 @@ $(document).ready(function() {
 		option:"<option value='sex'>Sex</option>",
 		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'male'>Male   <input type='radio' name='sex' value = 'female'>Female<button type=button id='deletesex'>-</butotn><br></div>"
 	}
-	var offenseCode={
-		option: "<option value='offenseCode'>Offense Code</option>",
-		data: "<input type='text' name='offenseCode'> <br>"
-	}
 	var agency={
 		option: "<option value='agency'>Agency</option>",
 		data: "<Select name='agency'>"+
@@ -38,7 +34,7 @@ $(document).ready(function() {
 				"</select><br>"
 	}
 	var name={
-		option: "<option value='name'>Name</option>",
+		option: "<option value='name'>Name of person involved</option>",
 		data: "<input type='text' name='name'> <br>"
 	}
 	var race={
@@ -50,17 +46,9 @@ $(document).ready(function() {
 					"<option value='other'>other</option>"+
 				"</select><br>"
 	}
-	var address={
-		option: "<option value='address'>Address</option>",
-		data: "<input type='text' name='address'> <br>"
-	}
 	var charge={			
 		option: "<option value='charge'>Charge</option>",
 		data:"<input type='text' name='charge'> <br>"
-	}
-	var streetaddress={
-		option: "<option value='streetaddress'>Street Address</option>",
-		data: "<input type='text' name='streetaddress'> <br>"
 	}
 	var city={
 		option: "<option value='city'>City</option>",
@@ -81,27 +69,14 @@ $(document).ready(function() {
 					"<option value='HI'>Hawaii</option>"+
 				"</select><br>"
 	}
-	var zip={
-		option: "<option value='zip'>Zip</option>",
-		data:"<input type='text' name='zip'> <br>"
-	}
-	var latitude={
-		option: "<option value='latitude'>Latitude</option>",
-		data:"<input type='text' name='latitude'> <br>"
-	}
-	var longitude={
-		option: "<option value='longitude'>Longitude</option>",
-		data:"<input type='text' name='longitude'> <br>"
-	}
 
 	//this variable helps handle whether filter is active or not
 	var doNotAddFilter=true;
 
 	//this array constructs the available selections
 	var filterArray = [arrestincident.option, officerinvolved.option, date.option,
-	 county.option, sex.option, offenseCode.option, agency.option, name.option, 
-	 race.option, address.option, charge.option, streetaddress.option,
-	 city.option, state.option, zip.option, latitude.option, longitude.option];
+	 county.option, sex.option, agency.option, name.option, 
+	 race.option, charge.option, city.option, state.option];
 	
 	//this array tracks all the selections that have been made
 	var selectionsMade = [];
@@ -135,7 +110,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on('change', function() {
 		$("#incomingfilters #selectordiv > #filterselector").each(function(index){
 			
-			//is any of the selections have changed this will catch that change
+			//if any of the selections have changed this will catch that change
 			if (this.value != selectionsMade[index]){
 
 				//change the value in the selections made array
@@ -180,13 +155,6 @@ $(document).ready(function() {
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "offenseCode":
-						$("#incomingfilters").append(offenseCode.data);
-						var index = filterArray.indexOf(offenseCode.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
 					case "agency":
 						$("#incomingfilters").append(agency.data);
 						var index = filterArray.indexOf(agency.option);
@@ -208,23 +176,9 @@ $(document).ready(function() {
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "address":
-						$("#incomingfilters").append(address.data);
-						var index = filterArray.indexOf(address.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
 					case "charge":
 						$("#incomingfilters").append(charge.data);
 						var index = filterArray.indexOf(charge.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "streetaddress":
-						$("#incomingfilters").append(streetaddress.data);
-						var index = filterArray.indexOf(streetaddress.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -239,27 +193,6 @@ $(document).ready(function() {
 					case "state":
 						$("#incomingfilters").append(state.data);
 						var index = filterArray.indexOf(state.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "zip":
-						$("#incomingfilters").append(zip.data);
-						var index = filterArray.indexOf(zip.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "latitude":
-						$("#incomingfilters").append(latitude.data);
-						var index = filterArray.indexOf(latitude.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "longitude":
-						$("#incomingfilters").append(longitude.data);
-						var index = filterArray.indexOf(longitude.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -286,8 +219,8 @@ $(document).ready(function() {
 	});
 
 	$("#incomingfilters").on("click", "#deletearrestincident ", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="arrestincident"){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='arrestincident'){
 				$(this).remove();
 			}
 		});
@@ -296,9 +229,9 @@ $(document).ready(function() {
 	});
 
 	$("#incomingfilters").on("click", "#deleteofficerinvolved", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="officerinvolved"){
-				$(this).remove()
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='officerinvolved'){
+				$(this).remove();
 			}
 		});
 		$("#officerinvolvedtodelete").remove();
@@ -311,6 +244,7 @@ $(document).ready(function() {
 				$(this).remove();
 			}
 		});
+		$("#incomingfilters > div").each(function(){})
 		$("#datetodelete").remove();
 		filterArray.push(date.option);
 	});
@@ -326,14 +260,12 @@ $(document).ready(function() {
 	});
 
 	$("#incomingfilters").on("click", "#deletesex", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="sex"){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='sex'){
 				$(this).remove();
 			}
 		});
 		$("#sextodelete").remove();
 		filterArray.push(sex.option);
 	});
-
-
 });
