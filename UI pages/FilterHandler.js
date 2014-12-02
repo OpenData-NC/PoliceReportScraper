@@ -185,7 +185,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletearrestincident ", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='arrestincident'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#arrestincidenttodelete").remove();
@@ -195,7 +195,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deleteofficerinvolved", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='officerinvolved'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#officerinvolvedtodelete").remove();
@@ -205,7 +205,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletedate", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=="date"){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#datetodelete").remove();
@@ -215,7 +215,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletesex", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='sex'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#sextodelete").remove();
@@ -225,7 +225,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deleteagency", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='agency'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#agencytodelete").remove();
@@ -235,7 +235,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletename", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='name'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#nametodelete").remove();
@@ -245,7 +245,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deleterace", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='race'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#racetodelete").remove();
@@ -255,7 +255,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletecharge", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='charge'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#chargetodelete").remove();
@@ -265,7 +265,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletecity", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='city'){
-				$this.parent().remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#citytodelete").remove();
