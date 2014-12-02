@@ -11,7 +11,15 @@
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Results</h2>
                 <form action = "ResultPage.html" method="GET">
-                        <input type='hidden' id="urltext" name=''>
+                        <div id = 'filterArea'>
+                                <h3>update filters:</h3>
+                                <div id='incomingfilters'></div>
+                                <div id='buttondiv'>
+                                        <button type=button id="addFilter">add filter</button>
+                                        <input id='updatesearch' type='submit'>
+                                </div>
+                        </div>
+                        <input type='hidden' id="urltext" name='past'>
                         <script> 
                                 var element=document.getElementById("urltext");
                                 var string=window.location.href;
@@ -24,14 +32,6 @@
                                 // }
 
                         </script>
-                        <div id = 'filterArea'>
-                                <h3>update filters:</h3>
-                                <div id='incomingfilters'></div>
-                                <div id='buttondiv'>
-                                        <button type=button id="addFilter">add filter</button>
-                                        <input id='updatesearch' type='submit'>
-                                </div>
-                        </div>
                 </form>
                 <div id='resultarea'>
 		      {% for i in outputList %}
