@@ -21,6 +21,7 @@ h2{
 	width:70%;
 	margin-left:auto;
 	margin-right: auto;
+	position: absolute;
 }
 #filterarea{
 	width:30%;
