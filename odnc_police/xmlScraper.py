@@ -174,8 +174,14 @@ def markAppropriateFieldsNull(flist, section):
         kvps.append(["Assisting Officer Name/ID", 'NULL'])
         kvps.append(["Released By (Name/Dept/ID)", 'NULL'])
         kvps.append(["Datetime Released", 'NULL']) 
-   # elif (section == "DRUGS"):
-        
+    elif (section == "DRUGS"):
+        txt = ["Drug1", "Drug2"]
+        for t in txt:
+            kvps.append([(t + " Suspected Type"), 'NULL'])
+            kvps.append([(t + " DCI"), 'NULL'])
+            kvps.append([(t + " Status"), 'NULL'])
+            kvps.append([(t + " Quantity"), 'NULL'])
+            kvps.append([(t + " Activities"), 'NULL'])
     elif (section == "COMP"):
         flist = removeMultipleFromFieldList(flist, ['Complainant', 'Victim', 'Name:', 'Address', 'Phone:'])
         kvps.append(['Comp', 'NULL'])
@@ -626,8 +632,82 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         kvps.append(["Datetime Released", dataTracker[9]])                  
 
         
-##    elif (state == "DRUGS"):
-##
+    elif (state == "DRUGS"):
+        statuses = {'L': 'Lost', 'S':  'Stolen', 'R': 'Recovered', 'D': 'Damaged', 'Z': 'Seized',
+                    'B': 'Burned', 'C': 'Counterfeit / Forged', 'F': 'Found'}
+        count = 0
+        yIncrement = 0
+
+        #746, 763
+
+        dlistNoChecks.reverse()
+        while (len(dlistNoChecks) > 0 and count < 2):
+            count = count + 1
+            drugDataChunk = []
+            lastIndex = len(dlistNoChecks) - 1
+            while (dlistNoChecks[lastIndex][0] < (750 + yIncrement)):
+                drugDataChunk.append(dlistNoChecks.pop())
+                lastIndex = lastIndex - 1
+                if (lastIndex == -1):
+                    break
+            yIncrement = yIncrement + 17
+            dataTracker = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL']
+            drugDataChunk = qsort(drugDataChunk, 1)
+            for d in drugDataChunk:
+                if (d[1] < 100):
+                    dataTracker[1] = d[2]
+                elif (d[1] < 140):
+                    dataTracker[2] = statuses[d[2]]
+                elif (d[1] < 225):
+                    dataTracker[3] = d[2]
+                elif (d[1] < 300):
+                    dataTracker[3] = dataTracker[3] + ' ' + d[2]
+                elif (d[1] < 600):
+                    dataTracker[0] = d[2]
+                else:
+                    if (d[1] < 651):
+                        dataTracker[4] = 'Possession'
+                    elif (d[1] < 690):
+                        if (dataTracker[4] == 'NULL'):
+                            dataTracker[4] = 'Buying'
+                        else:
+                            dataTracker[4] = dataTracker[4] + ", Buying"
+                    elif (d[1] < 721):
+                        if (dataTracker[4] == 'NULL'):
+                            dataTracker[4] = 'Selling'
+                        else:
+                            dataTracker[4] = dataTracker[4] + ", Selling"
+                    elif (d[1] < 762):
+                        if (dataTracker[4] == 'NULL'):
+                            dataTracker[4] = 'Manufacturing'
+                        else:
+                            dataTracker[4] = dataTracker[4] + ", Manufacturing"
+                    elif (d[1] < 812):
+                        if (dataTracker[4] == 'NULL'):
+                            dataTracker[4] = 'Importing'
+                        else:
+                            dataTracker[4] = dataTracker[4] + ", Importing"
+                    else:
+                        if (dataTracker[4] == 'NULL'):
+                            dataTracker[4] = 'Operating'
+                        else:
+                            dataTracker[4] = dataTracker[4] + ", Operating"
+            kvps.append([("Drug"+str(count)+" Suspected Type"), dataTracker[0]])
+            kvps.append([("Drug"+str(count)+" DCI"), dataTracker[1]])
+            kvps.append([("Drug"+str(count)+" Status"), dataTracker[2]])
+            kvps.append([("Drug"+str(count)+" Quantity"), dataTracker[3]])
+            kvps.append([("Drug"+str(count)+" Activities"), dataTracker[4]])
+
+        if (count == 1):
+            count = 2
+            dataTracker = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL']
+            kvps.append([("Drug"+str(count)+" Suspected Type"), dataTracker[0]])
+            kvps.append([("Drug"+str(count)+" DCI"), dataTracker[1]])
+            kvps.append([("Drug"+str(count)+" Status"), dataTracker[2]])
+            kvps.append([("Drug"+str(count)+" Quantity"), dataTracker[3]])
+            kvps.append([("Drug"+str(count)+" Activities"), dataTracker[4]])
+            
+
     elif (state == "COMP"):
         defaults = ['NULL', 'NULL', 'NULL']
         
@@ -856,8 +936,8 @@ def pairCheckmarkData(chkData, flistChunk, state):
         flistChunk = removeMultipleFromFieldList(flistChunk, ['Type Bond', 'Written Promise', 'Unsecured', 'Secured', 'No Bond', 'Other'])
 
 ##    elif (state == "DRUGS"):
-##
-            
+##        There are not checkboxes in the drugs section so this check is not needed
+        
     elif (state == "COMP"):
         dataTracker = 'NULL'
         #only one check possible out of only two possible boxes
@@ -879,6 +959,7 @@ def pairCheckmarkData(chkData, flistChunk, state):
 
 ##    elif (state == "NARRATIVE"):
 ##      there are no check boxes in the narrative so this check is not needed
+        
     elif (state == "STATUS"):
         moe = 7
         dataTracker = ["NULL", "NULL"]
@@ -1080,32 +1161,52 @@ def sortByKey(key):
         return 82
     elif (key == 'Datetime Released'):
         return 83
-    elif (key == 'Comp'):
+    elif (key == 'Drug1 Suspected Type'):
         return 84
-    elif (key == 'Comp Name'):
+    elif (key == 'Drug1 DCI'):
         return 85
-    elif (key == 'Comp Address'):
+    elif (key == 'Drug1 Status'):
         return 86
-    elif (key == 'Comp Phone'):
+    elif (key == 'Drug1 Quantity'):
         return 87
-    elif (key == 'Narrative'):
+    elif (key == 'Drug1 Activities'):
         return 88
-    elif (key == 'Arresting Officer Signature/ID #'):
+    elif (key == 'Drug2 Suspected Type'):
         return 89
-    elif (key == 'Date Submitted'):
+    elif (key == 'Drug2 DCI'):
         return 90
-    elif (key == 'Time Submitted'):
+    elif (key == 'Drug2 Status'):
         return 91
-    elif (key == 'Supervisor Signature'):
+    elif (key == 'Drug2 Quantity'):
         return 92
-    elif (key == 'Case Status'):
+    elif (key == 'Drug2 Activities'):
         return 93
-    elif (key == 'Case Disposition'):
+    elif (key == 'Comp'):
         return 94
-    elif (key == 'Arrestee Signature'):
+    elif (key == 'Comp Name'):
         return 95
-    else:
+    elif (key == 'Comp Address'):
         return 96
+    elif (key == 'Comp Phone'):
+        return 97
+    elif (key == 'Narrative'):
+        return 98
+    elif (key == 'Arresting Officer Signature/ID #'):
+        return 99
+    elif (key == 'Date Submitted'):
+        return 100
+    elif (key == 'Time Submitted'):
+        return 101
+    elif (key == 'Supervisor Signature'):
+        return 102
+    elif (key == 'Case Status'):
+        return 103
+    elif (key == 'Case Disposition'):
+        return 104
+    elif (key == 'Arrestee Signature'):
+        return 105
+    else:
+        return 106
     
 #The next two functions are convenience functions I wrote so I wouldn't have
 #to repetitively enter parameters when calling the functions in IDLE.
