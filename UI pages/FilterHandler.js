@@ -128,10 +128,6 @@ $(document).ready(function() {
 						break;
 					case "agency":
 						$("#incomingfilters").append(agency.data);
-						var index = filterArray.indexOf(agency.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
 						break;
 					case "name":
 						$("#incomingfilters").append(name.data);
