@@ -65,6 +65,10 @@ $(document).ready(function() {
 		option: "<option value='city'>City</option>",
 		data: "<div class='createdfilter' id='citytodelete'><input type='text' name='city'><button type=button id='deletecity'>-</button><br></div>"
 	}
+	var age={
+		option:"<option value='age'>Age</option>",
+		data:"<div class='createdfilter' id='agetodelete'><input type='text' name='age'><button type=button id='deleteage'>-</button><br></div>"
+	}
 
 	//this variable helps handle whether filter is active or not
 	var doNotAddFilter=true;
@@ -72,7 +76,7 @@ $(document).ready(function() {
 	//this array constructs the available selections
 	var filterArray = [arrestincident.option, officerinvolved.option, date.option,
 	 sex.option, agency.option, agency2.option, agency3.option, name.option, 
-	 race.option, charge.option, city.option];
+	 race.option, charge.option, city.option, age.option];
 	
 	//this array tracks all the selections that have been made
 	var selectionsMade = [];
@@ -189,6 +193,13 @@ $(document).ready(function() {
 					case "city":
 						$("#incomingfilters").append(city.data);
 						var index = filterArray.indexOf(city.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
+						break;
+					case "age":
+						$("#incomingfilters").append(age.data);
+						var index = filterArray.indexOf(age.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -321,4 +332,15 @@ $(document).ready(function() {
 		$("#citytodelete").remove();
 		filterArray.push(city.option);
 	});
+
+	$("#incomingfilters").on("click", "#deleteage", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='age'){
+				$(this).parent().remove();
+			}
+		});
+		$("#agetodelete").remove();
+		filterArray.push(age.option);
+	});
+
 });
