@@ -162,8 +162,18 @@ def markAppropriateFieldsNull(flist, section):
         kvps.append(['Vehicle Status Datetime', 'NULL'])
         for item in flist:
             kvps.append([item[2], 'NULL'])
-   # elif (section == "BOND"):
-         
+    elif (section == "BOND"):
+        kvps.append(["Datetime Confined", 'NULL'])
+        kvps.append(["Place Confined", 'NULL'])
+        kvps.append(["Committing Magistrate", 'NULL'])
+        kvps.append(["Bond Amount", 'NULL'])
+        kvps.append(["Type Bond", 'NULL'])
+        kvps.append(["Trial Date", 'NULL'])
+        kvps.append(["Court of Trial", 'NULL'])
+        kvps.append(["City of Court", 'NULL'])
+        kvps.append(["Assisting Officer Name/ID", 'NULL'])
+        kvps.append(["Released By (Name/Dept/ID)", 'NULL'])
+        kvps.append(["Datetime Released", 'NULL']) 
    # elif (section == "DRUGS"):
         
     elif (section == "COMP"):
@@ -228,10 +238,10 @@ def processLists(dlist, flist, sectionsToGrab, extraLines, verboseOpt):
 
     #TODO - do something with extra lines?
 
-    #put all null fields on the bottom
-    nullfields = [item for item in kvpsMaster if item[1] == "NULL"]
-    kvpsMaster = [item for item in kvpsMaster if item[1] != "NULL"]
-    kvpsMaster.extend(nullfields)
+##    #put all null fields on the bottom
+##    nullfields = [item for item in kvpsMaster if item[1] == "NULL"]
+##    kvpsMaster = [item for item in kvpsMaster if item[1] != "NULL"]
+##    kvpsMaster.extend(nullfields)
 
     pdfObj = {}
     for pair in kvpsMaster:
@@ -431,10 +441,13 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                     else:
                         break
                 if (len(charge1) > 0):
+                    charge1 = charge1[:-1] #remove trailing space
                     dataTracker[0] = charge1
                 if (len(charge2) > 0):
+                    charge2 = charge2[:-1]
                     dataTracker[1] = charge2
                 if (len(charge3) > 0):
+                    charge3 = charge3[:-1]
                     dataTracker[2] = charge3
                 kvps.append(["Charge 1", dataTracker[0]])
                 kvps.append(["Charge 2", dataTracker[1]])
@@ -566,8 +579,53 @@ def pairFieldandData(dlistChunk, flistChunk, state):
 
         
 
-##    elif (state == "BOND"):
-##
+    elif (state == "BOND"):
+        dataTracker = []
+        assistedBy, releasedBy = '', ''
+        for x in range(10):
+            dataTracker.append('NULL')
+        for d in dlistNoChecks:
+            if (d[0] < 615):
+                if (d[1] < 270):
+                    dataTracker[0] = d[2]
+                elif (d[1] > 620):
+                    dataTracker[2] = d[2]
+                else:
+                    dataTracker[1] = d[2]
+            elif (d[0] > 666):
+                if (d[1] < 410):
+                    assistedBy = assistedBy + d[2] + ' / '
+                elif (d[1] > 700):
+                    dataTracker[9] = d[2]
+                else:
+                    releasedBy = releasedBy + d[2] + ' / '
+            else:
+                if (d[1] < 400):
+                    dataTracker[3] = d[2]
+                elif (d[1] > 400 and d[1] < 555):
+                    dataTracker[4] = d[2]
+                elif (d[1] > 555 and d[1] < 700):
+                    dataTracker[5] = d[2]
+                else:
+                    dataTracker[6] = d[2]
+        if (len(assistedBy) > 0):
+            assistedBy = assistedBy[:-3] #remove trailing separator
+            dataTracker[7] = assistedBy
+        if (len(releasedBy) > 0):
+            releasedBy = releasedBy[:-3]
+            dataTracker[8] = releasedBy
+        kvps.append(["Datetime Confined", dataTracker[0]])
+        kvps.append(["Place Confined", dataTracker[1]])
+        kvps.append(["Committing Magistrate", dataTracker[2]])
+        kvps.append(["Bond Amount", dataTracker[3]])
+        kvps.append(["Trial Date", dataTracker[4]])
+        kvps.append(["Court of Trial", dataTracker[5]])
+        kvps.append(["City of Court", dataTracker[6]])
+        kvps.append(["Assisting Officer Name/ID", dataTracker[7]])
+        kvps.append(["Released By (Name/Dept/ID)", dataTracker[8]])
+        kvps.append(["Datetime Released", dataTracker[9]])                  
+
+        
 ##    elif (state == "DRUGS"):
 ##
     elif (state == "COMP"):
@@ -620,6 +678,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         for x in range(4):
             if (dataChecklist[x] == False):
                 kvps.append([fieldVals[x], "NULL"])
+
+    #end of text data if-else ladder of section state machine
                 
     return kvps
 
@@ -769,10 +829,35 @@ def pairCheckmarkData(chkData, flistChunk, state):
                                                               '1.', '2.', '3.', 'Released to other at owners request', 'Name of Other',
                                                               'Impounded', 'Place of storage', 'Inventory on File?'])
                             
-##    elif (state == "BOND"):
-##
+    elif (state == "BOND"):
+        moe = 6
+        dataTracker = 'Not Indicated'
+        for x in chkData:
+            if (abs(x[0] - 627) < moe):
+                if (abs(x[1] - 86) < moe):
+                    dataTracker = "Written Promise"
+                elif (abs(x[1] - 177) < moe):
+                    dataTracker = "Unsecured"
+                else:
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            elif (abs(x[0] - 642) < moe):
+                if (abs(x[1] - 86) < moe):
+                    dataTracker = "Secured"
+                elif (abs(x[1] - 146) < moe):
+                    dataTracker = "No Bond"
+                elif (abs(x[1] - 212) < moe):
+                    dataTracker = "Other"
+                else:
+                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+            else:
+                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+
+        kvps.append(["Type Bond", dataTracker])
+        flistChunk = removeMultipleFromFieldList(flistChunk, ['Type Bond', 'Written Promise', 'Unsecured', 'Secured', 'No Bond', 'Other'])
+
 ##    elif (state == "DRUGS"):
 ##
+            
     elif (state == "COMP"):
         dataTracker = 'NULL'
         #only one check possible out of only two possible boxes
@@ -827,6 +912,7 @@ def pairCheckmarkData(chkData, flistChunk, state):
 
     return flistChunk, kvps
 
+#used to custom sort the print output of one pdf object dictionary
 def sortByKey(key):
     if (key == 'OCA'):
         return 1
@@ -972,32 +1058,54 @@ def sortByKey(key):
         return 71
     elif (key == 'Vehicle Status Datetime'):
         return 72
-    elif (key == 'Comp'):
+    elif (key == 'Datetime Confined'):
         return 73
-    elif (key == 'Comp Name'):
+    elif (key == 'Place Confined'):
         return 74
-    elif (key == 'Comp Address'):
+    elif (key == 'Committing Magistrate'):
         return 75
-    elif (key == 'Comp Phone'):
+    elif (key == 'Type Bond'):
         return 76
-    elif (key == 'Narrative'):
+    elif (key == 'Bond Amount'):
         return 77
-    elif (key == 'Arresting Officer Signature/ID #'):
+    elif (key == 'Trial Date'):
         return 78
-    elif (key == 'Date Submitted'):
+    elif (key == 'Court of Trial'):
         return 79
-    elif (key == 'Time Submitted'):
+    elif (key == 'City of Court'):
         return 80
-    elif (key == 'Supervisor Signature'):
+    elif (key == 'Assisting Officer Name/ID'):
         return 81
-    elif (key == 'Case Status'):
+    elif (key == 'Released By (Name/Dept/ID)'):
         return 82
-    elif (key == 'Case Disposition'):
+    elif (key == 'Datetime Released'):
         return 83
-    elif (key == 'Arrestee Signature'):
+    elif (key == 'Comp'):
         return 84
-    else:
+    elif (key == 'Comp Name'):
         return 85
+    elif (key == 'Comp Address'):
+        return 86
+    elif (key == 'Comp Phone'):
+        return 87
+    elif (key == 'Narrative'):
+        return 88
+    elif (key == 'Arresting Officer Signature/ID #'):
+        return 89
+    elif (key == 'Date Submitted'):
+        return 90
+    elif (key == 'Time Submitted'):
+        return 91
+    elif (key == 'Supervisor Signature'):
+        return 92
+    elif (key == 'Case Status'):
+        return 93
+    elif (key == 'Case Disposition'):
+        return 94
+    elif (key == 'Arrestee Signature'):
+        return 95
+    else:
+        return 96
     
 #The next two functions are convenience functions I wrote so I wouldn't have
 #to repetitively enter parameters when calling the functions in IDLE.
