@@ -15,7 +15,7 @@ $(document).ready(function() {
 	}
 	var sex={
 		option:"<option value='sex'>Sex</option>",
-		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'male'>Male   <input type='radio' name='sex' value = 'female'>Female<button type=button id='deletesex'>-</butotn><br></div>"
+		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'M'>Male   <input type='radio' name='sex' value = 'F'>Female<button type=button id='deletesex'>-</butotn><br></div>"
 	}
 	var agency={
 		option: "<option value='agency'>Agency</option>",
@@ -185,7 +185,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletearrestincident ", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='arrestincident'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#arrestincidenttodelete").remove();
@@ -195,7 +195,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deleteofficerinvolved", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='officerinvolved'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#officerinvolvedtodelete").remove();
@@ -205,7 +205,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletedate", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=="date"){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#datetodelete").remove();
@@ -215,7 +215,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletesex", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='sex'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#sextodelete").remove();
@@ -225,7 +225,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deleteagency", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='agency'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#agencytodelete").remove();
@@ -235,7 +235,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletename", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='name'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#nametodelete").remove();
@@ -245,7 +245,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deleterace", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='race'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#racetodelete").remove();
@@ -255,7 +255,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletecharge", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='charge'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#chargetodelete").remove();
@@ -265,7 +265,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on("click", "#deletecity", function(){
 		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=='city'){
-				$(this).remove();
+				$this.parent().remove();
 			}
 		});
 		$("#citytodelete").remove();
