@@ -16,3 +16,11 @@ a {
 h2{
 	text-align: center;
 }
+
+#resultarea{
+	width:90%;
+	text-align: center;
+}
+#filterarea{
+	width:10%;
+}
