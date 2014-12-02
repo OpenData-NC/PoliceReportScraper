@@ -19,17 +19,16 @@
                                         <input id='updatesearch' type='submit'>
                                 </div>
                         </div>
-                        <input type='hidden' id="urltext" name='past'>
                         <script> 
-                                var element=document.getElementById("urltext");
                                 var string=window.location.href;
                                 var result = string.split("?");
                                 string = result[1];
-                                element.value=string;
-                                // result = string.split("&");
-                                // for(i=0; i<result.length;i++){
-                                //         console.log(result[i]);
-                                // }
+                                result = string.split("&");
+                                for(i=0; i<result.length;i++){
+                                        var toSplit= result[i];
+                                        var leftRight=toSplit.split("=");
+                                        $("form").append("<input type='hidden' name='"+leftRight[0]+"' value='"+leftRight[1]"'");
+                                }
 
                         </script>
                 </form>
