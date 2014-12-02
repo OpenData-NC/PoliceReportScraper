@@ -11,11 +11,10 @@
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Results</h2>
                 <form action = "ResultPage.html" method="GET">
-                        <input type='hidden' id='txturl' name='url' value=''>
-                        <script>
-                                $("#txturl").value=window.location.href;
-                                alert($("#txturl").value;
-                        </script>
+                        <input type='hidden' id="urltext" name='url'>
+                        <script> 
+                                var element=document.getElementById("urltext");
+                                element.value=window.location.href;
                         <div id = 'filterArea'>
                                 <div id='incomingfilters'></div>
                                 <div id='buttondiv'>
