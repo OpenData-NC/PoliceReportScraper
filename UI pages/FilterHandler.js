@@ -10,88 +10,64 @@ $(document).ready(function() {
 		data: "<div class='createdfilter' id='officerinvolvedtodelete'><input type='text' name='officerinvolved' placeholder='Name of Officer'> <button type=button id='deleteofficerinvolved'>-</button><br></div>"
 	}
 	var date={
-		option: "<option value='date'>Date</option>",
+		option: "<option value='date'>Date of Arrest/Incident</option>",
 		data: "<div class='createdfilter' id='datetodelete'><input type='date' name='from'>  -  <input type='date' name='to'><button type=button id='deletedate'>-</button> <br></div>"
-	}
-	var county={
-		option:"<option value='county'>County</option>",
-		data:"<div class='createdfilter' id='countytodelete'><Select name='county'>"+
-					"<option value ='orange'>Orange</option>"+
-					"<option value= 'wake'>Wake</option>"+
-				"</select><button type=button id='deletecounty'>-</button><br></div>"
 	}
 	var sex={
 		option:"<option value='sex'>Sex</option>",
-		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'male'>Male   <input type='radio' name='sex' value = 'female'>Female<button type=button id='deletesex'>-</butotn><br></div>"
-	}
-	var offenseCode={
-		option: "<option value='offenseCode'>Offense Code</option>",
-		data: "<input type='text' name='offenseCode'> <br>"
+		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'M'>Male   <input type='radio' name='sex' value = 'F'>Female<button type=button id='deletesex'>-</butotn><br></div>"
 	}
 	var agency={
 		option: "<option value='agency'>Agency</option>",
-		data: "<Select name='agency'>"+
+		data: "<div class='createdfilter' id='agencytodelete'><Select name='agency'>"+
 					"<option value ='raleigh'>Raleigh</option>"+
-					"<option value= 'chapelhill'>Chapel Hill</option>"+
+					"<option value= 'chapel hill'>Chapel Hill</option>"+
 					"<option value='durham'>Durham</option>"+
 					"<option value='greensboro'>Greensboro</option>"+
-				"</select><br>"
+				"</select><button type=button id='deleteagency'>-</button><br></div>"
+	}
+	var agency2={
+		option: "<option value='agency2'>Agency #2</option>",
+		data: "<div class='createdfilter' id='agency2todelete'><Select name='agency2'>"+
+					"<option value ='raleigh'>Raleigh</option>"+
+					"<option value= 'chapel hill'>Chapel Hill</option>"+
+					"<option value='durham'>Durham</option>"+
+					"<option value='greensboro'>Greensboro</option>"+
+				"</select><button type=button id='deleteagency2'>-</button><br></div>"
+	}
+	var agency3={
+		option: "<option value='agency3'>Agency #3</option>",
+		data: "<div class='createdfilter' id='agency3todelete'><Select name='agency3'>"+
+					"<option value ='raleigh'>Raleigh</option>"+
+					"<option value= 'chapel hill'>Chapel Hill</option>"+
+					"<option value='durham'>Durham</option>"+
+					"<option value='greensboro'>Greensboro</option>"+
+				"</select><button type=button id='deleteagency3'>-</button><br></div>"
 	}
 	var name={
-		option: "<option value='name'>Name</option>",
-		data: "<input type='text' name='name'> <br>"
+		option: "<option value='name'>Name of person involved</option>",
+		data: "<div class='createdfilter' id='nametodelete'><input type='text' name='name'><button type=button id='deletename'>-</button><br></div>"
 	}
 	var race={
 		option: "<option value='race'>Race</option>",
-		data: "<Select name='race'>"+
+		data: "<div class='createdfilter' id='racetodelete'><Select name='race'>"+
 					"<option value ='white'>White</option>"+
 					"<option value= 'black'>Black</option>"+
 					"<option value='asian'>Asian</option>"+
 					"<option value='other'>other</option>"+
-				"</select><br>"
-	}
-	var address={
-		option: "<option value='address'>Address</option>",
-		data: "<input type='text' name='address'> <br>"
+				"</select><button type=button id='deleterace'>-</button><br></div>"
 	}
 	var charge={			
 		option: "<option value='charge'>Charge</option>",
-		data:"<input type='text' name='charge'> <br>"
-	}
-	var streetaddress={
-		option: "<option value='streetaddress'>Street Address</option>",
-		data: "<input type='text' name='streetaddress'> <br>"
+		data:"<div class='createdfilter' id='chargetodelete'><input type='text' name='charge'><button type=button id='deletecharge'>-</button><br></div>"
 	}
 	var city={
 		option: "<option value='city'>City</option>",
-		data: "<input type='text' name='city'> <br>"
+		data: "<div class='createdfilter' id='citytodelete'><input type='text' name='city'><button type=button id='deletecity'>-</button><br></div>"
 	}
-	var state={
-		option: "<option value='state'>State</option>",
-		data: "<Select name='state'>"+
-					"<option value ='AB'>Alabama</option>"+
-					"<option value= 'AL'>Alaska</option>"+
-					"<option value='AZ'>Arizona</option>"+
-					"<option value='AR'>Arkansas</option>"+
-					"<option value='CA'>California</option>"+
-					"<option value='CO'>Colorado</option>"+
-					"<option value='CT'>Connecticut</option>"+
-					"<option value='DE'>Delaware</option>"+
-					"<option value='GA'>Georgia</option>"+
-					"<option value='HI'>Hawaii</option>"+
-				"</select><br>"
-	}
-	var zip={
-		option: "<option value='zip'>Zip</option>",
-		data:"<input type='text' name='zip'> <br>"
-	}
-	var latitude={
-		option: "<option value='latitude'>Latitude</option>",
-		data:"<input type='text' name='latitude'> <br>"
-	}
-	var longitude={
-		option: "<option value='longitude'>Longitude</option>",
-		data:"<input type='text' name='longitude'> <br>"
+	var age={
+		option:"<option value='age'>Age</option>",
+		data:"<div class='createdfilter' id='agetodelete'><input type='text' name='age'><button type=button id='deleteage'>-</button><br></div>"
 	}
 
 	//this variable helps handle whether filter is active or not
@@ -99,9 +75,8 @@ $(document).ready(function() {
 
 	//this array constructs the available selections
 	var filterArray = [arrestincident.option, officerinvolved.option, date.option,
-	 county.option, sex.option, offenseCode.option, agency.option, name.option, 
-	 race.option, address.option, charge.option, streetaddress.option,
-	 city.option, state.option, zip.option, latitude.option, longitude.option];
+	 sex.option, agency.option, agency2.option, agency3.option, name.option, 
+	 race.option, charge.option, city.option, age.option];
 	
 	//this array tracks all the selections that have been made
 	var selectionsMade = [];
@@ -135,7 +110,7 @@ $(document).ready(function() {
 	$("#incomingfilters").on('change', function() {
 		$("#incomingfilters #selectordiv > #filterselector").each(function(index){
 			
-			//is any of the selections have changed this will catch that change
+			//if any of the selections have changed this will catch that change
 			if (this.value != selectionsMade[index]){
 
 				//change the value in the selections made array
@@ -166,13 +141,6 @@ $(document).ready(function() {
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "county":
-						$("#incomingfilters").append(county.data);
-						var index = filterArray.indexOf(county.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
 					case "sex":
 						$("#incomingfilters").append(sex.data);
 						var index = filterArray.indexOf(sex.option);
@@ -180,16 +148,23 @@ $(document).ready(function() {
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "offenseCode":
-						$("#incomingfilters").append(offenseCode.data);
-						var index = filterArray.indexOf(offenseCode.option);
+					case "agency":
+						$("#incomingfilters").append(agency.data);
+						var index = filterArray.indexOf(agency.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "agency":
-						$("#incomingfilters").append(agency.data);
-						var index = filterArray.indexOf(agency.option);
+					case "agency2":
+						$("#incomingfilters").append(agency2.data);
+						var index = filterArray.indexOf(agency2.option);
+						if (index > -1){
+							filterArray.splice(index, 1);
+						}
+						break;
+					case "agency3":
+						$("#incomingfilters").append(agency3.data);
+						var index = filterArray.indexOf(agency3.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -208,23 +183,9 @@ $(document).ready(function() {
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "address":
-						$("#incomingfilters").append(address.data);
-						var index = filterArray.indexOf(address.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
 					case "charge":
 						$("#incomingfilters").append(charge.data);
 						var index = filterArray.indexOf(charge.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "streetaddress":
-						$("#incomingfilters").append(streetaddress.data);
-						var index = filterArray.indexOf(streetaddress.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -236,30 +197,9 @@ $(document).ready(function() {
 							filterArray.splice(index, 1);
 						}
 						break;
-					case "state":
-						$("#incomingfilters").append(state.data);
-						var index = filterArray.indexOf(state.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "zip":
-						$("#incomingfilters").append(zip.data);
-						var index = filterArray.indexOf(zip.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "latitude":
-						$("#incomingfilters").append(latitude.data);
-						var index = filterArray.indexOf(latitude.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "longitude":
-						$("#incomingfilters").append(longitude.data);
-						var index = filterArray.indexOf(longitude.option);
+					case "age":
+						$("#incomingfilters").append(age.data);
+						var index = filterArray.indexOf(age.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -286,9 +226,9 @@ $(document).ready(function() {
 	});
 
 	$("#incomingfilters").on("click", "#deletearrestincident ", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="arrestincident"){
-				$(this).remove();
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='arrestincident'){
+				$(this).parent().remove();
 			}
 		});
 		$("#arrestincidenttodelete").remove();
@@ -296,9 +236,9 @@ $(document).ready(function() {
 	});
 
 	$("#incomingfilters").on("click", "#deleteofficerinvolved", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="officerinvolved"){
-				$(this).remove()
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='officerinvolved'){
+				$(this).parent().remove();
 			}
 		});
 		$("#officerinvolvedtodelete").remove();
@@ -306,34 +246,101 @@ $(document).ready(function() {
 	});
 
 	$("#incomingfilters").on("click", "#deletedate", function(){
-		$("#filterselector").each(function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=="date"){
-				$(this).remove();
+				$(this).parent().remove();
 			}
 		});
 		$("#datetodelete").remove();
 		filterArray.push(date.option);
 	});
 
-	$("#incomingfilters").on("click", "#deletecounty", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="county"){
-				$(this).remove();
-			}
-		});
-		$("#countytodelete").remove();
-		filterArray.push(county.option);
-	});
-
 	$("#incomingfilters").on("click", "#deletesex", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="sex"){
-				$(this).remove();
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='sex'){
+				$(this).parent().remove();
 			}
 		});
 		$("#sextodelete").remove();
 		filterArray.push(sex.option);
 	});
 
+	$("#incomingfilters").on("click", "#deleteagency", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='agency'){
+				$(this).parent().remove();
+			}
+		});
+		$("#agencytodelete").remove();
+		filterArray.push(agency.option);
+	});
+	$("#incomingfilters").on("click", "#deleteagency2", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='agency2'){
+				$(this).parent().remove();
+			}
+		});
+		$("#agency2todelete").remove();
+		filterArray.push(agency2.option);
+	});
+	$("#incomingfilters").on("click", "#deleteagency3", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='agency3'){
+				$(this).parent().remove();
+			}
+		});
+		$("#agency3todelete").remove();
+		filterArray.push(agency3.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletename", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='name'){
+				$(this).parent().remove();
+			}
+		});
+		$("#nametodelete").remove();
+		filterArray.push(name.option);
+	});
+
+	$("#incomingfilters").on("click", "#deleterace", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='race'){
+				$(this).parent().remove();
+			}
+		});
+		$("#racetodelete").remove();
+		filterArray.push(race.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletecharge", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='charge'){
+				$(this).parent().remove();
+			}
+		});
+		$("#chargetodelete").remove();
+		filterArray.push(charge.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletecity", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='city'){
+				$(this).parent().remove();
+			}
+		});
+		$("#citytodelete").remove();
+		filterArray.push(city.option);
+	});
+
+	$("#incomingfilters").on("click", "#deleteage", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='age'){
+				$(this).parent().remove();
+			}
+		});
+		$("#agetodelete").remove();
+		filterArray.push(age.option);
+	});
 
 });
