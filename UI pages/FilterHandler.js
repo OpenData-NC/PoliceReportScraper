@@ -13,46 +13,39 @@ $(document).ready(function() {
 		option: "<option value='date'>Date of Arrest/Incident</option>",
 		data: "<div class='createdfilter' id='datetodelete'><input type='date' name='from'>  -  <input type='date' name='to'><button type=button id='deletedate'>-</button> <br></div>"
 	}
-	var county={
-		option:"<option value='county'>County</option>",
-		data:"<div class='createdfilter' id='countytodelete'><Select name='county'>"+
-					"<option value ='orange'>Orange</option>"+
-					"<option value= 'wake'>Wake</option>"+
-				"</select><button type=button id='deletecounty'>-</button><br></div>"
-	}
 	var sex={
 		option:"<option value='sex'>Sex</option>",
 		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'male'>Male   <input type='radio' name='sex' value = 'female'>Female<button type=button id='deletesex'>-</butotn><br></div>"
 	}
 	var agency={
 		option: "<option value='agency'>Agency</option>",
-		data: "<Select name='agency'>"+
+		data: "<div class='createdfilter' id='agencytodelete'><Select name='agency'>"+
 					"<option value ='raleigh'>Raleigh</option>"+
 					"<option value= 'chapel hill'>Chapel Hill</option>"+
 					"<option value='durham'>Durham</option>"+
 					"<option value='greensboro'>Greensboro</option>"+
-				"</select><br>"
+				"</select><button type=button id='deleteagency'>-</button><br></div>"
 	}
 	var name={
 		option: "<option value='name'>Name of person involved</option>",
-		data: "<input type='text' name='name'> <br>"
+		data: "<div class='createdfilter' id='nametodelete'><input type='text' name='name'><button type=button id='deletename'>-</button><br></div>"
 	}
 	var race={
 		option: "<option value='race'>Race</option>",
-		data: "<Select name='race'>"+
+		data: "<div class='createdfilter' id='racetodelete'><Select name='race'>"+
 					"<option value ='white'>White</option>"+
 					"<option value= 'black'>Black</option>"+
 					"<option value='asian'>Asian</option>"+
 					"<option value='other'>other</option>"+
-				"</select><br>"
+				"</select><button type=button id='deleterace'>-</button><br></div>"
 	}
 	var charge={			
 		option: "<option value='charge'>Charge</option>",
-		data:"<input type='text' name='charge'> <br>"
+		data:"<div class='createdfilter' id='chargetodelete'><input type='text' name='charge'><button type=button id='deletecharge'>-</button><br></div>"
 	}
 	var city={
 		option: "<option value='city'>City</option>",
-		data: "<input type='text' name='city'> <br>"
+		data: "<div class='createdfilter' id='citytodelete'><input type='text' name='city'><button type=button id='deletecity'>-</button><br></div>"
 	}
 
 	//this variable helps handle whether filter is active or not
@@ -60,7 +53,7 @@ $(document).ready(function() {
 
 	//this array constructs the available selections
 	var filterArray = [arrestincident.option, officerinvolved.option, date.option,
-	 county.option, sex.option, agency.option, name.option, 
+	 sex.option, agency.option, name.option, 
 	 race.option, charge.option, city.option];
 	
 	//this array tracks all the selections that have been made
@@ -122,13 +115,6 @@ $(document).ready(function() {
 					case "date":
 						$("#incomingfilters").append(date.data);
 						var index = filterArray.indexOf(date.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "county":
-						$("#incomingfilters").append(county.data);
-						var index = filterArray.indexOf(county.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -217,24 +203,13 @@ $(document).ready(function() {
 	});
 
 	$("#incomingfilters").on("click", "#deletedate", function(){
-		$("#filterselector").each(function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
 			if(this.value=="date"){
 				$(this).remove();
 			}
 		});
-		$("#incomingfilters > div").each(function(){})
 		$("#datetodelete").remove();
 		filterArray.push(date.option);
-	});
-
-	$("#incomingfilters").on("click", "#deletecounty", function(){
-		$("#filterselector").each(function(){
-			if(this.value=="county"){
-				$(this).remove();
-			}
-		});
-		$("#countytodelete").remove();
-		filterArray.push(county.option);
 	});
 
 	$("#incomingfilters").on("click", "#deletesex", function(){
@@ -245,5 +220,55 @@ $(document).ready(function() {
 		});
 		$("#sextodelete").remove();
 		filterArray.push(sex.option);
+	});
+
+	$("#incomingfilters").on("click", "#deleteagency", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='agency'){
+				$(this).remove();
+			}
+		});
+		$("#agencytodelete").remove();
+		filterArray.push(agency.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletename", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='name'){
+				$(this).remove();
+			}
+		});
+		$("#nametodelete").remove();
+		filterArray.push(name.option);
+	});
+
+	$("#incomingfilters").on("click", "#deleterace", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='race'){
+				$(this).remove();
+			}
+		});
+		$("#racetodelete").remove();
+		filterArray.push(race.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletecharge", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='charge'){
+				$(this).remove();
+			}
+		});
+		$("#chargetodelete").remove();
+		filterArray.push(charge.option);
+	});
+
+	$("#incomingfilters").on("click", "#deletecity", function(){
+		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
+			if(this.value=='city'){
+				$(this).remove();
+			}
+		});
+		$("#citytodelete").remove();
+		filterArray.push(city.option);
 	});
 });
