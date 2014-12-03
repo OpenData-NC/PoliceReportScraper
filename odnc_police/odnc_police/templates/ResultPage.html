@@ -10,7 +10,7 @@
         <body>
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Results</h2>
-                <form action = "ResultPage.html" method="GET">
+                <form action = "ResultPage.html" method="GET" id='formsection'>
                         <div id = 'filterArea'>
                                 <h3>update filters:</h3>
                                 <div id='incomingfilters'></div>
@@ -27,7 +27,7 @@
                                 for(i=0; i<result.length;i++){
                                         var toSplit= result[i];
                                         var leftRight=toSplit.split("=");
-                                        $("form").append("<input type='hidden' name='"+leftRight[0]+"' value='"+leftRight[1]+"'");
+                                        $("#formsection").append("<input type='hidden' name='"+leftRight[0]+"' value='"+leftRight[1]+"'");
                                         console.log(leftRight[0]);
                                         console.log(leftRight[1]);
                                 }
