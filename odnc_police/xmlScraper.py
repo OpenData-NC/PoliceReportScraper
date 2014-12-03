@@ -285,11 +285,13 @@ def pairFieldandData(dlistChunk, flistChunk, state):
     if (state == "AGENCY_INFO"):
         while (len(flistNoChecks) > 0):
             #print flistNoChecks[0][2] + ' @ ' + str(flistNoChecks[0][0]) + ', ' + str(flistNoChecks[0][1]) + ' compared to '
+            matchFound = False
             for y in range(len(dlistNoChecks)):
                 #print dlistNoChecks[y][2] + ' @ ' + str(dlistNoChecks[y][0]) + ', ' + str(dlistNoChecks[y][1])
                 if ((abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 10)
                 and abs((flistNoChecks[0][0]+20) - dlistNoChecks[y][0]) < 10):
                     #print "Match Found"
+                    matchFound = True
                     if (flistNoChecks[0][2] == 'ORI'):
                         oriIndex = len(kvps)
                         flistNoChecks = removeFromFieldList(flistNoChecks, 'Date/Time Arrested')
@@ -300,10 +302,12 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                     flistNoChecks.pop(0)
                     dlistNoChecks.pop(y)
                     break
-                if (y == len(dlistNoChecks)-1):
-                    #print "No Match Found"
-                    kvps.append([flistNoChecks[0][2], 'NULL'])
-                    flistNoChecks.pop(0)
+            if (matchFound == False):
+                #print "No Match Found"
+                kvps.append([flistNoChecks[0][2], 'NULL'])
+                flistNoChecks.pop(0)
+            if (kvps[len(kvps)-1][0] == 'Fingerprint Card Check Digit # (CKN)'):
+                kvps[len(kvps)-1][0] = 'Fingerprint Card Number (CKN)' #to avoid # in key names
             #print "--------------------------------------------"
 
         #fix a one-off technicality instance of weirdness in the forms we're dealing with
@@ -330,25 +334,27 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         flistNoChecks.pop() #easier to remove nearest relative name, phone and address this way
         flistNoChecks.pop() #they are always the last three on the list
         flistNoChecks.pop() #as for the line below, easier to remove both phone and add arrestee phone field back in later
-        flistNoChecks = removeMultipleFromFieldList(flistNoChecks, ['Occupation', 'Phone', 'Phone', 'Address'])
+        flistNoChecks = removeMultipleFromFieldList(flistNoChecks, ['Occupation', 'Employer\'s Name', 'Phone', 'Phone', 'Address'])
         
-        dataTracker = [('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1)]
+        dataTracker = [('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1)]
         for x in range(len(dlistNoChecks)):
             newX = len(dlistNoChecks)-(x+1) #start from the back
-            if (dlistNoChecks[newX][0] > 315):
-                if (dlistNoChecks[newX][1] < 420):
+            if (dlistNoChecks[newX][0] > 315): #nearest relative
+                if (dlistNoChecks[newX][1] < 420): #name
                     dataTracker[0] = (dlistNoChecks[newX][2], newX)
-                elif (dlistNoChecks[newX][1] > 720):
+                elif (dlistNoChecks[newX][1] > 720): #phone
                     dataTracker[2] = (dlistNoChecks[newX][2], newX)
-                else:
+                else: #address
                     dataTrackers[1] = (dlistNoChecks[newX][2], newX)
             elif (dlistNoChecks[newX][0] > 242 or dlistNoChecks[newX][0] < 180):
                 continue
             else:
-                if (dlistNoChecks[newX][0] > 210):
-                    if (dlistNoChecks[newX][1] > 422 and dlistNoChecks[newX][1] < 742):
+                if (dlistNoChecks[newX][0] > 210): #employer
+                    if (dlistNoChecks[newX][1] < 420): #name
                         dataTracker[4] = (dlistNoChecks[newX][2], newX)
-                    elif (dlistNoChecks[newX][1] > 742):
+                    elif (dlistNoChecks[newX][1] > 742): #phone
+                        dataTracker[6] = (dlistNoChecks[newX][2], newX)
+                    else: #address
                         dataTracker[5] = (dlistNoChecks[newX][2], newX)
                 else:
                     if (dlistNoChecks[newX][1] > 500 and dlistNoChecks[newX][1] < 720):
@@ -358,8 +364,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         kvps.append(["Nearest Relative Name", dataTracker[0][0]])
         kvps.append(["Nearest Relative Address", dataTracker[1][0]])
         kvps.append(["Nearest Relative Phone", dataTracker[2][0]])
-        kvps.append(["Employer's Address", dataTracker[4][0]])
-        kvps.append(["Employer's Phone", dataTracker[5][0]])
+        kvps.append(["Employer Name", dataTracker[4][0]])
+        kvps.append(["Employer Address", dataTracker[5][0]])
+        kvps.append(["Employer Phone", dataTracker[6][0]])
         kvps.append(["Occupation", dataTracker[3][0]])
         dataTracker = sorted(dataTracker, key=lambda item: item[1])
         dataTracker.reverse()
@@ -386,6 +393,10 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             if (matchFound == False):
                 kvps.append([flistNoChecks[0][2], 'NULL'])
                 flistNoChecks.pop(0)
+            if (kvps[len(kvps)-1][0] == 'Social Security #'):
+                kvps[len(kvps)-1][0] = 'Social Security' #to avoid # in key names
+            elif (kvps[len(kvps)-1][0] == 'Misc. # and Type'):
+                kvps[len(kvps)-1][0] = 'Misc. Number and Type' #to avoid # in key names
  
         #these two are oddly formatted and probably won't have matched correctly
         stateofbirth = 'NULL'
@@ -455,9 +466,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 if (len(charge3) > 0):
                     charge3 = charge3[:-1]
                     dataTracker[2] = charge3
-                kvps.append(["Charge 1", dataTracker[0]])
-                kvps.append(["Charge 2", dataTracker[1]])
-                kvps.append(["Charge 3", dataTracker[2]])
+                kvps.append(["Charge1", dataTracker[0]])
+                kvps.append(["Charge2", dataTracker[1]])
+                kvps.append(["Charge3", dataTracker[2]])
             elif (flistNoChecks[x][1] > 370 and flistNoChecks[x][1] < 450): #counts column
                 for d in dlistNoChecks:
                     if (d[1] < 450):
@@ -470,9 +481,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                                 dataTracker[1] = d[2]
                     else:
                         break
-                kvps.append(["Charge 1 Counts", dataTracker[0]])
-                kvps.append(["Charge 2 Counts", dataTracker[1]])
-                kvps.append(["Charge 3 Counts", dataTracker[2]])
+                kvps.append(["Charge1 Counts", dataTracker[0]])
+                kvps.append(["Charge2 Counts", dataTracker[1]])
+                kvps.append(["Charge3 Counts", dataTracker[2]])
             elif (flistNoChecks[x][1] > 450 and flistNoChecks[x][1] < 530): #dci code column
                 for d in dlistNoChecks:
                     if (d[1] < 530):
@@ -485,9 +496,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                                 dataTracker[1] = d[2]
                     else:
                         break
-                kvps.append(["Charge 1 DCI Code", dataTracker[0]])
-                kvps.append(["Charge 2 DCI Code", dataTracker[1]])
-                kvps.append(["Charge 3 DCI Code", dataTracker[2]])
+                kvps.append(["Charge1 DCI Code", dataTracker[0]])
+                kvps.append(["Charge2 DCI Code", dataTracker[1]])
+                kvps.append(["Charge3 DCI Code", dataTracker[2]])
             elif (flistNoChecks[x][1] > 530 and flistNoChecks[x][1] < 715): #offense jurisdiction
                 for d in dlistNoChecks:
                     if (d[1] < 715):
@@ -500,9 +511,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                                 dataTracker[1] = d[2]
                     else:
                         break
-                kvps.append(["Charge 1 Offense Jurisdiction", dataTracker[0]])
-                kvps.append(["Charge 2 Offense Jurisdiction", dataTracker[1]])
-                kvps.append(["Charge 3 Offense Jurisdiction", dataTracker[2]])
+                kvps.append(["Charge1 Offense Jurisdiction", dataTracker[0]])
+                kvps.append(["Charge2 Offense Jurisdiction", dataTracker[1]])
+                kvps.append(["Charge3 Offense Jurisdiction", dataTracker[2]])
             elif (flistNoChecks[x][1] > 715 and flistNoChecks[x][1] < 810): #statute #
                 for d in dlistNoChecks:
                     if (d[1] < 810):
@@ -515,9 +526,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                                 dataTracker[1] = d[2]
                     else:
                         break
-                kvps.append(["Charge 1 Statute Number", dataTracker[0]])
-                kvps.append(["Charge 2 Statute Number", dataTracker[1]])
-                kvps.append(["Charge 3 Statute Number", dataTracker[2]])
+                kvps.append(["Charge1 Statute Number", dataTracker[0]])
+                kvps.append(["Charge2 Statute Number", dataTracker[1]])
+                kvps.append(["Charge3 Statute Number", dataTracker[2]])
             elif (flistNoChecks[x][1] > 810 and flistNoChecks[x][1] < 880): #warrant date
                 for d in dlistNoChecks:
                     if (d[1] < 880):
@@ -530,9 +541,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                                 dataTracker[1] = d[2]
                     else:
                         break
-                kvps.append(["Charge 1 Warrant Date", dataTracker[0]])
-                kvps.append(["Charge 2 Warrant Date", dataTracker[1]])
-                kvps.append(["Charge 3 Warrant Date", dataTracker[2]])
+                kvps.append(["Charge1 Warrant Date", dataTracker[0]])
+                kvps.append(["Charge2 Warrant Date", dataTracker[1]])
+                kvps.append(["Charge3 Warrant Date", dataTracker[2]])
             else:
                 print "*****The field " + f[2] + " in the charges section of " + currentOCA + " remains*****"
             x=x+3
@@ -562,6 +573,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             if (matchFound == False):
                 kvps.append([flistNoChecks[0][2], 'NULL'])
                 flistNoChecks.pop(0)
+            if (kvps[len(kvps)-1][0] == 'Plate #/State'):
+                kvps[len(kvps)-1][0] = 'Plate No./State' #to avoid # in key names
 
         for leftovers in dlistNoChecks:
             if ((leftovers[2].find('/') + leftovers[2].find(':')) > 0):
@@ -740,7 +753,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         flistNoChecks = removeFromFieldList(flistNoChecks, "Arrestee Signature")
 
         dataChecklist = [False, False, False, False]
-        fieldVals = ["Arresting Officer Signature/ID #", "Date Submitted", "Time Submitted", "Supervisor Signature"]
+        fieldVals = ["Arresting Officer Signature/ID", "Date Submitted", "Time Submitted", "Supervisor Signature"]
 
         for d in dlistNoChecks:
             if (d[1] < 370): #Arresting Officer Sig
@@ -881,9 +894,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                     print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
         kvps.append(["Arrest Type", dataTracker[0]])
-        kvps.append(["Charge 1 Type", dataTracker[1]])
-        kvps.append(["Charge 2 Type", dataTracker[2]])
-        kvps.append(["Charge 3 Type", dataTracker[3]])
+        kvps.append(["Charge1 Type", dataTracker[1]])
+        kvps.append(["Charge2 Type", dataTracker[2]])
+        kvps.append(["Charge3 Type", dataTracker[3]])
         flistChunk = removeMultipleFromFieldList(flistChunk, ['On-View', 'Criminal Summons', 'Order for Arrest', 'Citation', 'Warrant',
                                                               'Fel', 'Misd', 'Fel', 'Misd', 'Fel', 'Misd'])
                             
@@ -1009,7 +1022,7 @@ def sortByKey(key):
         return 6
     elif (key == 'Photos Taken'):
         return 7
-    elif (key == 'Fingerprint Card Check Digit # (CKN)'):
+    elif (key == 'Fingerprint Card Number (CKN)'):
         return 8
     elif (key == 'Arrest Tract'):
         return 9
@@ -1039,11 +1052,11 @@ def sortByKey(key):
         return 21
     elif (key == 'Residency Status'):
         return 22
-    elif (key == "Employer's Name"):
+    elif (key == "Employer Name"):
         return 23
-    elif (key == "Employer's Address"):
+    elif (key == "Employer Address"):
         return 24
-    elif (key == "Employer's Phone"):
+    elif (key == "Employer Phone"):
         return 25
     elif (key == 'Also Known As (Alias Names)'):
         return 26
@@ -1061,11 +1074,11 @@ def sortByKey(key):
         return 32
     elif (key == 'Scars, Marks, Tattoos'):
         return 33
-    elif (key == 'Social Security #'):
+    elif (key == 'Social Security'):
         return 34
     elif (key == 'OLN and State'):
         return 35
-    elif (key == 'Misc. # and Type'):
+    elif (key == 'Misc. Number and Type'):
         return 36
     elif (key == 'Nearest Relative Name'):
         return 37
@@ -1079,47 +1092,47 @@ def sortByKey(key):
         return 41
     elif (key == 'Place of Arrest'):
         return 42
-    elif (key == 'Charge 1'):
+    elif (key == 'Charge1'):
         return 43
-    elif (key == 'Charge 1 Type'):
+    elif (key == 'Charge1 Type'):
         return 44
-    elif (key == 'Charge 1 Counts'):
+    elif (key == 'Charge1 Counts'):
         return 45
-    elif (key == 'Charge 1 DCI Code'):
+    elif (key == 'Charge1 DCI Code'):
         return 46
-    elif (key == 'Charge 1 Offense Jurisdiction'):
+    elif (key == 'Charge1 Offense Jurisdiction'):
         return 47
-    elif (key == 'Charge 1 Statute Number'):
+    elif (key == 'Charge1 Statute Number'):
         return 48
-    elif (key == 'Charge 1 Warrant Date'):
+    elif (key == 'Charge1 Warrant Date'):
         return 49
-    elif (key == 'Charge 2'):
+    elif (key == 'Charge2'):
         return 50
-    elif (key == 'Charge 2 Type'):
+    elif (key == 'Charge2 Type'):
         return 51
-    elif (key == 'Charge 2 Counts'):
+    elif (key == 'Charge2 Counts'):
         return 52
-    elif (key == 'Charge 2 DCI Code'):
+    elif (key == 'Charge2 DCI Code'):
         return 53
-    elif (key == 'Charge 2 Offense Jurisdiction'):
+    elif (key == 'Charge2 Offense Jurisdiction'):
         return 54
-    elif (key == 'Charge 2 Statute Number'):
+    elif (key == 'Charge2 Statute Number'):
         return 55
-    elif (key == 'Charge 2 Warrant Date'):
+    elif (key == 'Charge2 Warrant Date'):
         return 56
-    elif (key == 'Charge 3'):
+    elif (key == 'Charge3'):
         return 57
-    elif (key == 'Charge 3 Type'):
+    elif (key == 'Charge3 Type'):
         return 58
-    elif (key == 'Charge 3 Counts'):
+    elif (key == 'Charge3 Counts'):
         return 59
-    elif (key == 'Charge 3 DCI Code'):
+    elif (key == 'Charge3 DCI Code'):
         return 60
-    elif (key == 'Charge 3 Offense Jurisdiction'):
+    elif (key == 'Charge3 Offense Jurisdiction'):
         return 61
-    elif (key == 'Charge 3 Statute Number'):
+    elif (key == 'Charge3 Statute Number'):
         return 62
-    elif (key == 'Charge 3 Warrant Date'):
+    elif (key == 'Charge3 Warrant Date'):
         return 63
     elif (key == 'VYR'):
         return 64
@@ -1131,7 +1144,7 @@ def sortByKey(key):
         return 67
     elif (key == 'Color'):
         return 68
-    elif (key == 'Plate #/State'):
+    elif (key == 'Plate No./State'):
         return 69
     elif (key == 'VIN'):
         return 70
@@ -1191,7 +1204,7 @@ def sortByKey(key):
         return 97
     elif (key == 'Narrative'):
         return 98
-    elif (key == 'Arresting Officer Signature/ID #'):
+    elif (key == 'Arresting Officer Signature/ID'):
         return 99
     elif (key == 'Date Submitted'):
         return 100
