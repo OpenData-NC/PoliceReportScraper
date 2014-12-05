@@ -39,8 +39,7 @@
                                 {{i|linebreaksbr}}<br><br><br>
                         {%endfor%}
                         {% for i in QuerySet %}
-                                {{i.OCA}}<br>
-                                {{i.name}}<br>
+                                {{i.Name}}     {{i.Charge1}}     <a href="DetailPage.html?"{{i.OCA}}><br>
                         {%endfor%}
                 </div>
         </body>
