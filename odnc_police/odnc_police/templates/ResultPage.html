@@ -33,13 +33,24 @@
                         </script>
                 </form>
                 <div id='resultarea'>
-<!--                         {% for i in outputList %}
-                                {{i|linebreaksbr}}<br><br><br>
-                        {%endfor%} -->
+                        <tables style="width:100%">
+                        <tr>
+                                <th>Name</th>
+                                <th>Charge</th>
+                                <th>Arrest Date</th>
+                                <th>Place of Arrest</th>
+                                <th>Additional Information</th>
+                        </tr>
                         {% for i in QuerySet %}
-                                {{i.Name}}              {{i.Age}}<br>
-                                {{i.Charge1}}<br>
-                                <a href="DetailPage.html?{{i.OCA}}">More Details</a><br><br>
+                        <tr>
+                                <td>{{i.Name}}</td>
+                                <td>{{i.Charge1}}</td>
+                                <td>{{Date_Arrested}}</td>
+                                <td>{{Place_of_Arrest}}</td>
+                                <td><a href="DetailPage.html?{{i.OCA}}">More Details</a></td>
+                        <td>
+                        {% empty %}
+                                No Results matched your search
                         {%endfor%}
                 </div>
         </body>
