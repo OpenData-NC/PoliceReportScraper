@@ -26,8 +26,9 @@
                 </table>
 
                 <table id='arrestinfo'>
-                {% if i.If_Armed_Type_of_Weapon != 'NULL' %}<tr><td>Name</td><td>{{i.If_Armed_Type_of_Weapon}}</td></tr>{%endif%}
-                {% if i.Arrest_Type != 'NULL' %}<tr><td>Name</td><td>{{i.Arrest_Type}}</td></tr>{%endif%}
+                {% if i.If_Armed_Type_of_Weapon != 'NULL' %}<tr><td>Type of Weapon (if armed)</td><td>{{i.If_Armed_Type_of_Weapon}}</td></tr>{%endif%}
+                {% if i.Arrest_Type != 'NULL' %}<tr><td>Arrest Type</td><td>{{i.Arrest_Type}}</td></tr>{%endif%}
+                {% if i.Place_of_Arrest != 'NULL' %}<tr><td>Place of Arrest</td><td>{{i.Place_of_Arrest}}</td></tr>{%endif%}
                 {% if i.Charge1 != 'NULL' %}
                         <tr><td>Charge</td><td>{{i.Charge1}}</td></tr>
                         <tr><td>Charge Type</td><td>{{i.Charge1_Type}}</td></tr>
