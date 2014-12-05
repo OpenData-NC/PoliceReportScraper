@@ -64,7 +64,6 @@ table {
 	font-size:12px;
 	text-shadow: 1px 1px 0px #fff;
 	background:#eaebec;
-	margin:20px;
 	border:#ccc 1px solid;
 
 	-moz-border-radius:3px;
@@ -76,7 +75,7 @@ table {
 	box-shadow: 0 1px 2px #d1d1d1;
 }
 table th {
-	padding:21px 25px 22px 25px;
+	padding:10px 15px 10px 15px;
 	border-top:1px solid #fafafa;
 	border-bottom:1px solid #e0e0e0;
 
@@ -108,7 +107,7 @@ table td:first-child {
 	border-left: 0;
 }
 table td {
-	padding:18px;
+	padding:10px;
 	border-top: 1px solid #ffffff;
 	border-bottom:1px solid #e0e0e0;
 	border-left: 1px solid #e0e0e0;
