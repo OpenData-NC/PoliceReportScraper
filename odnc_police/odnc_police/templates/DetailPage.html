@@ -23,7 +23,7 @@
                 {% if i.Occupation != 'NULL' %}<tr><td>Occupation</td><td>{{i.Occupation}}</td></tr>{%endif%}
                 {% if i.Residency_Status != 'NULL' %}<tr><td>Residency status</td><td>{{i.Residency_Status}}</td></tr>{%endif%}
                 {% if i.Employer_Name != 'NULL' %}<tr><td>Employer Name</td><td>{{i.Employer_Name}}</td></tr>{%endif%}
-                {% if i.pdf != 'NULL' %}<tr><td>Full PDF</td><td>{{i.pdf}}</td></tr>{%endif%}
+                <!--{% if i.pdf != 'NULL' %}<tr><td>Full PDF</td><td>{{i.pdf}}</td></tr>{%endif%}-->
                 </table>
 
                 <table id='arrestinfo'>
@@ -59,7 +59,18 @@
                         <tr><td>Warrant Date</td><td>{{i.Charge3_Warrant_Date}}</td></tr>
                 {%endif%}
                 {% if i.Drug1_Suspected_Type != 'NULL' %}
-
+                        <tr><td>Suspected Drug Type</td><td>{{i.Drug1.Suspected_Type}}</td></tr>
+                        <tr><td>Drug DCI</td><td>{{i.Drug1_DCI}}</td></tr>
+                        <tr><td>Drug Status</td><td>{{i.Drug1_Status}}</td></tr>
+                        <tr><td>Drug Quantity</td><td>{{i.Drug1_Quantity}}</td></tr>
+                        <tr><td>Drug Activities</td><td>{{i.Drug1_Activities}}</td></tr>
+                {% endif %}
+                {% if i.Drug2_Suspected_Type != 'NULL' %}
+                        <tr><td>Suspected Drug Type</td><td>{{i.Drug2.Suspected_Type}}</td></tr>
+                        <tr><td>Drug DCI</td><td>{{i.Drug2_DCI}}</td></tr>
+                        <tr><td>Drug Status</td><td>{{i.Drug2_Status}}</td></tr>
+                        <tr><td>Drug Quantity</td><td>{{i.Drug2_Quantity}}</td></tr>
+                        <tr><td>Drug Activities</td><td>{{i.Drug2_Activities}}</td></tr>
                 {% endif %}
                 </table>
                 {% endfor %}
