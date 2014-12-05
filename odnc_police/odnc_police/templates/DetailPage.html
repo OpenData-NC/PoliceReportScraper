@@ -9,7 +9,16 @@
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Detail</h2>
                 {% for i in QuerySet %}
-                        {{i.Name}}
+                        {{i.Name}}<br>
+                        {{i.Charge1}}<br>
+                        {{i.Charge1_type}}<br>
+                        {{i.Charge1_Counts}}<br>
+                        {% if i.Charge2 %}
+                                {{i.Charge2}}<br>
+                                {{i.Charge2_Type}}<br>
+                                {{i.Charge2_Counts}}<br>
+                        {% endif %}
+                        {{i.Date_Arrested}}<br><br>
                 {% endfor %}
         </body>
 </html>
