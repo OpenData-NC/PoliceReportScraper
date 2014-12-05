@@ -137,9 +137,11 @@ table tr:last-child td:last-child {
 
 #personalinfo{
 	width: 45%;
-	margin-left:auto;
+	margin-right:auto;
+	float: left;
 }
 #arrestinfo{
 	width:45%;
-	margin-right: auto; 
+	margin-left: auto;
+	float:right;
 }
