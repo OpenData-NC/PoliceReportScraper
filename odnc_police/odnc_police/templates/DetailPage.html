@@ -10,7 +10,7 @@
                 <h2>Details</h2>
                 <table>
                 {% for i in QuerySet %}
-                {% if i.Name !='null' %}<tr><td>Name</td><td>{{i.Name}}</td></tr>{%endif%}
+                {% if i.Name !='NULL' %}<tr><td>Name</td><td>{{i.Name}}</td></tr>{%endif%}
                 {% if i.DOB !='null' %}<tr><td>DOB</td><td>{{i.DOB}}</td></tr>{%endif%}
                 {% if i.Age !='null' %}<tr><td>Age</td><td>{{i.Age}}</td></tr>{%endif%}
                 {% if i.Race !='null' %}<tr><td>Race</td><td>{{i.Race}}</td></tr>{%endif%}
