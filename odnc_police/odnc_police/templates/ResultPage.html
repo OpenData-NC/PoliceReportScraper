@@ -35,11 +35,13 @@
                         </script>
                 </form>
                 <div id='resultarea'>
-                        {% for i in outputList %}
+<!--                         {% for i in outputList %}
                                 {{i|linebreaksbr}}<br><br><br>
-                        {%endfor%}
+                        {%endfor%} -->
                         {% for i in QuerySet %}
-                                {{i.Name}}     {{i.Charge1}}     <a href="DetailPage.html?"{{i.OCA}}><br>
+                                {{i.Name}}
+                                {{i.Charge1}}     
+                                <a href="DetailPage.html?"{{i.OCA}}><br>
                         {%endfor%}
                 </div>
         </body>
