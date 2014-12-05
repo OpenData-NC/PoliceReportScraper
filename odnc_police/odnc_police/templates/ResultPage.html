@@ -45,7 +45,7 @@
                                 {%endif%}
                                 {% for i in QuerySet %}
                                 <tr>
-                                        <td>{{i.Name|capfirst}}</td>
+                                        <td>{{i.Name|lower|capfirst}}</td>
                                         <td>{{i.Charge1}}</td>
                                         <td>{{i.Date_Arrested}}</td>
                                         <td>{{i.Place_of_Arrest}}</td>
