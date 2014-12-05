@@ -13,6 +13,10 @@ a {
 	white-space:pre;
 }
 
+h2{
+	text-align: center;
+}
+
 #resultarea{
 	width:40%;
 	border: 1px solid;
