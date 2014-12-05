@@ -50,3 +50,7 @@ h2{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+
+table, th, td {
+    border: 1px solid black;
+}
