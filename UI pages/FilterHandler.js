@@ -18,12 +18,32 @@ $(document).ready(function() {
 		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'M'>Male   <input type='radio' name='sex' value = 'F'>Female<button type=button id='deletesex'>-</butotn><br></div>"
 	}
 	var agency={
-		option: "<option value='agency'>Agency</option>",
+		option: "<option value='agency'>Arresting Agency</option>",
 		data: "<div class='createdfilter' id='agencytodelete'><Select multiple name='agency'>"+
-					"<option value ='raleigh'>Raleigh</option>"+
+					"<option value ='asheville'>Asheville</option>"+
+					"<option value ='buncombe'>Buncombe</option>"+
+					"<option value ='burke'>Burke</option>"+
 					"<option value= 'chapel hill'>Chapel Hill</option>"+
-					"<option value='durham'>Durham</option>"+
+					"<option value= 'concord'>Concord</option>"+
+					"<option value= 'fayetteville'>Fayetteville</option>"+
+					"<option value= 'forsyth'>Forsyth</option>"+
 					"<option value='greensboro'>Greensboro</option>"+
+					"<option value= 'hickory'>Hickory</option>"+
+					"<option value ='highpoint'>High-Point</option>"+
+					"<option value= 'kernersville'>Kernersville</option>"+
+					"<option value= 'lenoir'>Lenoir</option>"+
+					"<option value= 'lexington'>Lexington</option>"+
+					"<option value= 'lincoln'>Lincoln</option>"+
+					"<option value= 'new hanover'>New Hanover</option>"+
+					"<option value= 'rocky mount'>Rocky Mount</option>"+
+					"<option value= 'rowan'>Rowan</option>"+
+					"<option value= 'sanford'>Sanford</option>"+
+					"<option value= 'union'>Union</option>"+
+					"<option value= 'wake'>Wake</option>"+
+					"<option value= 'wake forest'>Wake Forest</option>"+
+					"<option value= 'wilmington'>Wilmington</option>"+
+					"<option value= 'wilson'>Wilson</option>"+
+					"<option value= 'winston salem'>Winston Salem</option>"+
 				"</select><button type=button id='deleteagency'>-</button><br></div>"
 	}
 	var name={
@@ -43,10 +63,6 @@ $(document).ready(function() {
 		option: "<option value='charge'>Charge</option>",
 		data:"<div class='createdfilter' id='chargetodelete'><input type='text' name='charge'><button type=button id='deletecharge'>-</button><br></div>"
 	}
-	var city={
-		option: "<option value='city'>City</option>",
-		data: "<div class='createdfilter' id='citytodelete'><input type='text' name='city'><button type=button id='deletecity'>-</button><br></div>"
-	}
 	var age={
 		option:"<option value='age'>Age</option>",
 		data:"<div class='createdfilter' id='agetodelete'><input type='text' name='age'><button type=button id='deleteage'>-</button><br></div>"
@@ -58,7 +74,7 @@ $(document).ready(function() {
 	//this array constructs the available selections
 	var filterArray = [arrestincident.option, officerinvolved.option, date.option,
 	 sex.option, agency.option, name.option, 
-	 race.option, charge.option, city.option, age.option];
+	 race.option, charge.option, age.option];
 	
 	//this array tracks all the selections that have been made
 	var selectionsMade = [];
@@ -154,13 +170,6 @@ $(document).ready(function() {
 					case "charge":
 						$("#incomingfilters").append(charge.data);
 						var index = filterArray.indexOf(charge.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "city":
-						$("#incomingfilters").append(city.data);
-						var index = filterArray.indexOf(city.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -271,16 +280,6 @@ $(document).ready(function() {
 		});
 		$("#chargetodelete").remove();
 		filterArray.push(charge.option);
-	});
-
-	$("#incomingfilters").on("click", "#deletecity", function(){
-		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
-			if(this.value=='city'){
-				$(this).parent().remove();
-			}
-		});
-		$("#citytodelete").remove();
-		filterArray.push(city.option);
 	});
 
 	$("#incomingfilters").on("click", "#deleteage", function(){
