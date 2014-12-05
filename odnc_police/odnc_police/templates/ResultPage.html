@@ -36,8 +36,11 @@
                 </form>
                 <div id='resultarea'>
                         {% for i in outputList %}
-                                {{i|linebreaksbr}}<br>                          
-                                {{i.OCA}}<br><br>
+                                {{i|linebreaksbr}}<br><br><br>
+                        {%endfor%}
+                        {% for i in QuerySet %}
+                                {{i.OCA}}<br>
+                                {{i.name}}<br>
                         {%endfor%}
                 </div>
         </body>
