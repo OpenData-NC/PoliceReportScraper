@@ -51,6 +51,6 @@ h2{
 	padding-bottom: 5px;
 }
 
-table{
-	width:50%;
+#result table{
+	border-collapse: collapse;
 }
