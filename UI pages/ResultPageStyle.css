@@ -18,12 +18,13 @@ h2{
 }
 
 #resultarea{
-	width:40%;
+	width:50%;
 	margin-left:auto;
 	margin-right: auto;
 }
 #filterarea{
 	position: fixed;
 	top:10%;
-	left:5%;
+	left:3%;
+	max-width: 40%
 }
