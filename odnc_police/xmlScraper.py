@@ -326,19 +326,27 @@ def pairFieldandData(dlistChunk, flistChunk, state):
        
     elif (state == "ARRESTEE_INFO"):
 
-        #remove these first because the field is split into two lines and oddly formatted (it is handled on its own afterwards)
-        flistNoChecks = removeFromFieldList(flistNoChecks, 'Country of')
-        flistNoChecks = removeFromFieldList(flistNoChecks, 'Citizenship')
-        kvps.append(["Country of Citizenship", "NULL"])
+        for x in flistNoChecks:
+            print str(flistNoChecks.index(x)) + ". " + x[2] + " @ " + str(x[0]) + ", " + str(x[1])
+        print "------------------------------"
+        for y in dlistNoChecks:
+            print str(dlistNoChecks.index(y)) + ". " + y[2] + " @ " + str(y[0]) + ", " + str(y[1])
 
-        #separate out occupation as this is often a problem spot, and find and create unique keys for
-        #nearest relative phone and address and employer's phone and address
+        print "\n=====================================================\n"
+
+        #separate out common problem spots before moving on to general matching:
+        #occupation, place of birth, country of citizenship, nearest relative and employer info.
+        #find and create unique keys for nearest relative phone and address and
+        #employer's phone and address, which are simply 'Phone' and 'Address' on the form.
         flistNoChecks.pop() #easier to remove nearest relative name, phone and address this way
         flistNoChecks.pop() #they are always the last three on the list
         flistNoChecks.pop() #as for the line below, easier to remove both phone and add arrestee phone field back in later
-        flistNoChecks = removeMultipleFromFieldList(flistNoChecks, ['Occupation', 'Employer\'s Name', 'Phone', 'Phone', 'Address'])
+        flistNoChecks = removeMultipleFromFieldList(flistNoChecks, ['Place of Birth', 'Country of', 'Citizenship', 'Occupation', 'Employer\'s Name', 'Phone', 'Phone', 'Address'])
         
-        dataTracker = [('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1), ('NULL', -1)]
+        dataTracker = []
+        for x in range(9): #nine possible problem spot fields, plus extras if place of birth is more than just a state
+            dataTracker.append(('NULL', -1)) #-1 will become index of match
+            
         for x in range(len(dlistNoChecks)):
             newX = len(dlistNoChecks)-(x+1) #start from the back
             if (dlistNoChecks[newX][0] > 315): #nearest relative
@@ -348,20 +356,26 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                     dataTracker[2] = (dlistNoChecks[newX][2], newX)
                 else: #address
                     dataTrackers[1] = (dlistNoChecks[newX][2], newX)
-            elif (dlistNoChecks[newX][0] > 242 or dlistNoChecks[newX][0] < 180):
+            elif (dlistNoChecks[newX][0] > 242):
                 continue
-            else:
-                if (dlistNoChecks[newX][0] > 210): #employer
-                    if (dlistNoChecks[newX][1] < 420): #name
-                        dataTracker[4] = (dlistNoChecks[newX][2], newX)
-                    elif (dlistNoChecks[newX][1] > 742): #phone
-                        dataTracker[6] = (dlistNoChecks[newX][2], newX)
-                    else: #address
-                        dataTracker[5] = (dlistNoChecks[newX][2], newX)
-                else:
-                    if (dlistNoChecks[newX][1] > 500 and dlistNoChecks[newX][1] < 720):
-                        dataTracker[3] = (dlistNoChecks[newX][2], newX)
-                        break
+            elif (dlistNoChecks[newX][0] > 210): #employer
+                if (dlistNoChecks[newX][1] < 420): #name
+                    dataTracker[4] = (dlistNoChecks[newX][2], newX)
+                elif (dlistNoChecks[newX][1] > 742): #phone
+                    dataTracker[6] = (dlistNoChecks[newX][2], newX)
+                else: #address
+                    dataTracker[5] = (dlistNoChecks[newX][2], newX)
+            elif (dlistNoChecks[newX][0] > 178):
+                if (dlistNoChecks[newX][1] > 500 and dlistNoChecks[newX][1] < 720):
+                    dataTracker[3] = (dlistNoChecks[newX][2], newX) #occupation
+            else: #topmost row of section
+                if (abs(dlistNoChecks[newX][1] - 765) < 6): #state of birth
+                    dataTracker[8] = (dlistNoChecks[newX][2], newX)
+                elif (dlistNoChecks[newX][1] > 788): #country of citizenship
+                    dataTracker[7] = (dlistNoChecks[newX][2], newX)
+                elif (dlistNoChecks[newX][1] > 650 and dlistNoChecks[newX][1] < 760):
+                    dataTracker.append((dlistNoChecks[newX][2], newX))
+                
             
         kvps.append(["Nearest Relative Name", dataTracker[0][0]])
         kvps.append(["Nearest Relative Address", dataTracker[1][0]])
@@ -370,17 +384,39 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         kvps.append(["Employer Address", dataTracker[5][0]])
         kvps.append(["Employer Phone", dataTracker[6][0]])
         kvps.append(["Occupation", dataTracker[3][0]])
+        kvps.append(["Country of Citizenship", dataTracker[7][0]])
+        if (len(dataTracker) > 9):
+            i = len(dataTracker)-1
+            placeofbirth = ""
+            while (i > 7):
+                placeofbirth = placeofbirth + dataTracker[i][0] + " "
+                i = i-1
+            placeofbirth = placeofbirth[:-1]
+            kvps.append(["Place of Birth", placeofbirth])
+        else:
+            kvps.append(["Place of Birth", dataTracker[8][0]])
+            
         dataTracker = sorted(dataTracker, key=lambda item: item[1])
         dataTracker.reverse()
-        for x in range(4):
+        for x in dataTracker:
+            print x
+        print "\n***************************************\n"
+
+        for x in range(len(dataTracker)):
             if (dataTracker[x][1] != -1):
-                dlistNoChecks.pop(x)
+                dlistNoChecks.pop(dataTracker[x][1])
 
         #insert arrestee phone field back in for matching purposes
         for x in range(len(flistNoChecks)):
             if (flistNoChecks[x][0] > 210):
                 flistNoChecks.insert(x, [179, 458, "Arrestee Phone"])
                 break
+
+        for x in flistNoChecks:
+            print str(flistNoChecks.index(x)) + ". " + x[2] + " @ " + str(x[0]) + ", " + str(x[1])
+        print "------------------------------"
+        for y in dlistNoChecks:
+            print str(dlistNoChecks.index(y)) + ". " + y[2] + " @ " + str(y[0]) + ", " + str(y[1])
 
         while (len(flistNoChecks) > 0):
             matchFound = False
@@ -399,27 +435,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 kvps[len(kvps)-1][0] = 'Social Security' #to avoid # in key names
             elif (kvps[len(kvps)-1][0] == 'Misc. # and Type'):
                 kvps[len(kvps)-1][0] = 'Misc. Number and Type' #to avoid # in key names
- 
-        #these two are oddly formatted and probably won't have matched correctly
-        stateofbirth = 'NULL'
-        citizenship = 'NULL'
-
-        
-        #so assuming they haven't... find them where they usually are:
-        for d in dlistNoChecks:
-            if (abs(d[0] - 158) < 6):
-                if (abs(d[1] - 765) < 10):
-                    stateofbirth = d[2]
-                elif (abs(d[1] - 790) < 10):
-                    citizenship = d[2]
-            else:
-                unmatchedData.append(d)
-
-        for x in kvps:
-            if (x[0] == 'Country of Citizenship'):
-                x[1] = citizenship
-            if (x[0] == 'Place of Birth' and x[1] == 'NULL'):
-                x[1] = stateofbirth
                 
                     
     elif (state == "ARREST_INFO"):
