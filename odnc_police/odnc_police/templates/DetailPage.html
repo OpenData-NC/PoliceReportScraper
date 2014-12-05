@@ -8,7 +8,7 @@
         <body>
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Details</h2>
-                <table>
+                <table id='personalinfo'>
                 {% for i in QuerySet %}
                 {% if i.Name != 'NULL' %}<tr><td>Name</td><td>{{i.Name}}</td></tr>{%endif%}
                 {% if i.DOB != 'NULL' %}<tr><td>DOB</td><td>{{i.DOB}}</td></tr>{%endif%}
@@ -24,15 +24,11 @@
                 {% if i.Employer_Name != 'NULL' %}<tr><td>Employer Name</td><td>{{i.Employer_Name}}</td></tr>{%endif%}
                 </table>
 
-                        {{i.Charge1}}<br>
-                        {{i.Charge1_Type}}<br>
-                        {{i.Charge1_Counts}}<br>
-                        {% if i.Charge2 != 'NULL' %}
-                                {{i.Charge2}}<br>
-                                {{i.Charge2_Type}}<br>
-                                {{i.Charge2_Counts}}<br>
-                        {% endif %}
-                        {{i.Date_Arrested}}<br><br> -->
+                <table id='arrestinfo'>
+                {% if i.Charge1 != 'NULL' %}<tr><td>Charge</td><td>{{i.Charge1}}</td></tr>{%endif%}
+                {% if i.Charge2 != 'NULL' %}<tr><td>Charge</td><td>{{i.Charge2}}</td></tr>{%endif%}
+                {% if i.Charge3 != 'NULL' %}<tr><td>Charge</td><td>{{i.Charge3}}</td></tr>{%endif%}
+                </table>
                 {% endfor %}
         </body>
 </html>
