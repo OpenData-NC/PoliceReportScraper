@@ -18,17 +18,20 @@ h2{
 }
 
 #resultarea{
-	width:50%;
+	width:40%;
 	margin-left:auto;
 	margin-right: auto;
 }
 #filterarea{
 	position: fixed;
-	top:10%;
+	top:15%;
 	left:2%;
 	max-width: 30%
 }
 .createdfilter{
 	padding-top: 5px;
 	padding-bottom: 5px;
+}
+#buttondiv{
+	padding-top: 5px;
 }
