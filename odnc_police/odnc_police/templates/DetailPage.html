@@ -8,7 +8,7 @@
         <body>
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Details</h2>
-                {% with QuerySet| first as i%}
+                {% for i in QuerySet %}
                         {{i.Name}}<br>
                         {{i.Charge1}}<br>
                         {{i.Charge1_Type}}<br>
@@ -19,6 +19,6 @@
                                 {{i.Charge2_Counts}}<br>
                         {% endif %}
                         {{i.Date_Arrested}}<br><br>
-                {% endwidth %}
+                {% endfor %}
         </body>
 </html>
