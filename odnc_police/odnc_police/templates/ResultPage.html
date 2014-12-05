@@ -34,6 +34,7 @@
                 </form>
                 <div id='resultarea'>
                         <table style="width:100%">
+                                {% if QuerySet %}
                                 <tr>
                                         <th>Name</th>
                                         <th>Charge</th>
@@ -45,8 +46,8 @@
                                 <tr>
                                         <td>{{i.Name}}</td>
                                         <td>{{i.Charge1}}</td>
-                                        <td>{{Date_Arrested}}</td>
-                                        <td>{{Place_of_Arrest}}</td>
+                                        <td>{{i.Date_Arrested}}</td>
+                                        <td>{{i.Place_of_Arrest}}</td>
                                         <td><a href="DetailPage.html?{{i.OCA}}">More Details</a></td>
                                 </tr>
                                 {% empty %}
