@@ -28,8 +28,6 @@
                                         var toSplit= result[i];
                                         var leftRight=toSplit.split("=");
                                         $("#incomingfilters").append("<input type='hidden' name='"+leftRight[0]+"' value='"+leftRight[1]+"'>");
-                                        console.log(leftRight[0]);
-                                        console.log(leftRight[1]);
                                 }
 
                         </script>
@@ -39,7 +37,7 @@
                                 {{i|linebreaksbr}}<br><br><br>
                         {%endfor%} -->
                         {% for i in QuerySet %}
-                                {{i.Name}}     {{i.Age}}<br>
+                                {{i.Name}}              {{i.Age}}<br>
                                 {{i.Charge1}}<br>
                                 <a href="DetailPage.html?{{i.OCA}}">More Details</a><br><br>
                         {%endfor%}
