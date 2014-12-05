@@ -35,9 +35,8 @@
                         </script>
                 </form>
                 <div id='resultarea'>
-		      {% for i in outputList %}
-                        <a>{{i|linebreaksbr}}</a><br><br><br>
-                        {{i.OCA}}
+                        {% for i in outputList %}
+                                {{i|linebreaksbr}}<br><br><br>
                         {%endfor%}
                 </div>
         </body>
