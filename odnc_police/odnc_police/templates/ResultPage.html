@@ -43,6 +43,9 @@
                                 {{i.Charge1}}     
                                 <a href="DetailPage.html?"{{i.OCA}}><br>
                         {%endfor%}
+                        {% for i in outputList %}
+                                {{i.Name}} <br>
+                        {%endfor%}
                 </div>
         </body>
 </html>
