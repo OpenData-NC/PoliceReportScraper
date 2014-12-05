@@ -28,7 +28,7 @@ h2{
  * This CSS needs to be fixed but im honestly not sure how to do it.
  */
 #selectordiv{
-        width: 355px;
+        width: 358px;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -36,7 +36,7 @@ h2{
 }
 
 #buttondiv{
-        width:365px;
+        width:300px;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -44,7 +44,7 @@ h2{
         padding-left: 5%;
 }
 .createdfilter{
-        width: 355px;
+        width: 358px;
         display:block;
         margin-right: auto;
         margin-left: auto;
