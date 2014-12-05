@@ -25,9 +25,33 @@
                 </table>
 
                 <table id='arrestinfo'>
-                {% if i.Charge1 != 'NULL' %}<tr><td>Charge</td><td>{{i.Charge1}}</td></tr>{%endif%}
-                {% if i.Charge2 != 'NULL' %}<tr><td>Charge</td><td>{{i.Charge2}}</td></tr>{%endif%}
-                {% if i.Charge3 != 'NULL' %}<tr><td>Charge</td><td>{{i.Charge3}}</td></tr>{%endif%}
+                {% if i.Charge1 != 'NULL' %}
+                        <tr><td>Charge</td><td>{{i.Charge1}}</td></tr>
+                        <tr><td>Charge Type</td><td>{{i.Charge1_Type}}</td></tr>
+                        <tr><td>Counts</td><td>{{i.Charge1_Counts}}</td></tr>
+                        <tr><td>DCI Code</td><td>{{i.Charge1_DCI_Code}}</td></tr>
+                        <tr><td>Offense Jusrisdiction</td><td>{{i.Charge1_Offense_Jurisdiction}}</td></tr>
+                        <tr><td>Statute Number</td><td>{{i.Charge1_Statute_Number}}</td></tr>
+                        <tr><td>Warrant Date</td><td>{{i.Charge1_Warrant_Date}}</td></tr>
+                {%endif%}
+                {% if i.Charge2 != 'NULL' %}
+                        <tr><td>Charge</td><td>{{i.Charge2}}</td></tr>
+                        <tr><td>Charge Type</td><td>{{i.Charge2_Type}}</td></tr>
+                        <tr><td>Counts</td><td>{{i.Charge2_Counts}}</td></tr>
+                        <tr><td>DCI Code</td><td>{{i.Charge2_DCI_Code}}</td></tr>
+                        <tr><td>Offense Jusrisdiction</td><td>{{i.Charge2_Offense_Jurisdiction}}</td></tr>
+                        <tr><td>Statute Number</td><td>{{i.Charge2_Statute_Number}}</td></tr>
+                        <tr><td>Warrant Date</td><td>{{i.Charge2_Warrant_Date}}</td></tr>
+                {%endif%}
+                {% if i.Charge3 != 'NULL' %}
+                         <tr><td>Charge</td><td>{{i.Charge3}}</td></tr>
+                        <tr><td>Charge Type</td><td>{{i.Charge3_Type}}</td></tr>
+                        <tr><td>Counts</td><td>{{i.Charge3_Counts}}</td></tr>
+                        <tr><td>DCI Code</td><td>{{i.Charge3_DCI_Code}}</td></tr>
+                        <tr><td>Offense Jusrisdiction</td><td>{{i.Charge3_Offense_Jurisdiction}}</td></tr>
+                        <tr><td>Statute Number</td><td>{{i.Charge3_Statute_Number}}</td></tr>
+                        <tr><td>Warrant Date</td><td>{{i.Charge3_Warrant_Date}}</td></tr>
+                {%endif%}
                 </table>
                 {% endfor %}
         </body>
