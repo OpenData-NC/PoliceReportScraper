@@ -19,7 +19,7 @@ $(document).ready(function() {
 	}
 	var agency={
 		option: "<option value='agency'>Arresting Agency</option>",
-		data: "<div class='createdfilter' id='agencytodelete'><Select multiple name='Agency_Name'>"+
+		data: "<div class='createdfilter' id='agencytodelete'><Select multiple name='agency'>"+
 					"<option value ='asheville'>Asheville</option>"+
 					"<option value ='buncombe'>Buncombe</option>"+
 					"<option value ='burke'>Burke</option>"+
