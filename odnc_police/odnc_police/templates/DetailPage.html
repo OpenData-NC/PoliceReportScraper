@@ -8,8 +8,7 @@
         <body>
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Details</h2>
-                {{QuerySet.Name}}<br><br>
-                {% for i in QuerySet %}
+                {% for i in QuerySet|first %}
                         {{i.Name}}<br>
                         {{i.Charge1}}<br>
                         {{i.Charge1_Type}}<br>
