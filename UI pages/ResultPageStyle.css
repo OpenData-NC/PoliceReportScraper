@@ -51,6 +51,7 @@ h2{
 	padding-bottom: 5px;
 }
 
-#result table{
+#resultarea table{
+	border: 1px solid black;
 	border-collapse: collapse;
 }
