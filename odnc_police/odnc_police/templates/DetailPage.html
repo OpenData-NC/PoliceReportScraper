@@ -9,7 +9,9 @@
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Details</h2>
                 {% for i in QuerySet %}
-                        <a>Name: {{i.Name}}     DOB:{i.DOB}}    Age:{{i.Age}}<a><br>
+                        Name: {{i.Name}}<br>
+                        DOB:{{i.DOB}}<br>
+                        Age:{{i.Age}}<br>
                         Race:{{i.Race}}<br>
                         Sex: {{i.Sex}}<br>
                         Place of Birth: {{i.Place_of_Birth}}<br>
@@ -18,8 +20,8 @@
                         Phone Number: {{i.Arrestee_Phone}}<br>
                         Occupation: {{i.Occupation}}<br>
                         Residency status: {{i.Residency_Status}}<br>
-                        Employer Name:{{i.Employer_Name}}<br>
-                        <br>
+                        Employer Name:{{i.Employer_Name}}<br><br>
+
                         {{i.Charge1}}<br>
                         {{i.Charge1_Type}}<br>
                         {{i.Charge1_Counts}}<br>
