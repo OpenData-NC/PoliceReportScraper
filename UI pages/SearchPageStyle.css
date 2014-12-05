@@ -29,17 +29,17 @@ h2{
  * This CSS needs to be fixed but im honestly not sure how to do it.
  */
 #selectordiv{
-        width: 325px;
+        width: 350px;
         display: block;
         margin-left: auto;
         margin-right: auto;
 }
 
-#addFilter{
+/*#addFilter{
         height:30px;
         width:30px;
 
-}
+}*/
 #buttondiv{
         width:350px;
         display: block;
