@@ -10,18 +10,18 @@
                 <h2>Details</h2>
                 <table>
                 {% for i in QuerySet %}
-                <tr><td>Name</td><td>{{i.Name}}</td></tr>
-                <tr><td>DOB</td><td>{{i.DOB}}</td></tr>
-                <tr><td>Age</td><td>{{i.Age}}</td></tr>
-                <tr><td>Race</td><td>{{i.Race}}</td></tr>
-                <tr><td>Sex</td><td>{{i.Sex}}</td></tr>
-                <tr><td>Place of Birth</td><td>{{i.Place_of_Birth}}</td></tr>
-                <tr><td>Country of Citizenship</td><td>{{i.Country_of_Citizenship}}</td></tr>
-                <tr><td>Address</td><td>{{i.Address}}</td></tr>
-                <tr><td>Phone Number</td><td>{{i.Arrestee_Phone}}</td></tr>
-                <tr><td>Occupation</td><td>{{i.Occupation}}</td></tr>
-                <tr><td>Residency status</td><td>{{i.Residency_Status}}</td></tr>
-                <tr><td>Employer Name</td><td>{{i.Employer_Name}}</td></tr>
+                {% if i.Name !='null' %}<tr><td>Name</td><td>{{i.Name}}</td></tr>{%endif%}
+                {% if i.DOB !='null' %}<tr><td>DOB</td><td>{{i.DOB}}</td></tr>{%endif%}
+                {% if i.Age !='null' %}<tr><td>Age</td><td>{{i.Age}}</td></tr>{%endif%}
+                {% if i.Race !='null' %}<tr><td>Race</td><td>{{i.Race}}</td></tr>{%endif%}
+                {% if i.Sex !='null' %}<tr><td>Sex</td><td>{{i.Sex}}</td></tr>{%endif%}
+                {% if i.Place_of_Birth !='null' %}<tr><td>Place of Birth</td><td>{{i.Place_of_Birth}}</td></tr>{%endif%}
+                {% if i.Country_of_Citizenship !='null' %}<tr><td>Country of Citizenship</td><td>{{i.Country_of_Citizenship}}</td></tr>{%endif%}
+                {% if i.Address !='null' %}<tr><td>Address</td><td>{{i.Address}}</td></tr>{%endif%}
+                {% if i.Arrestee_Phone !='null' %}<tr><td>Phone Number</td><td>{{i.Arrestee_Phone}}</td></tr>{%endif%}
+                {% if i.Occupation !='null' %}<tr><td>Occupation</td><td>{{i.Occupation}}</td></tr>{%endif%}
+                {% if i.Residency_Status !='null' %}<tr><td>Residency status</td><td>{{i.Residency_Status}}</td></tr>{%endif%}
+                {% if i.Employer_Name !='null' %}<tr><td>Employer Name</td><td>{{i.Employer_Name}}</td></tr>{%endif%}
                 </table>
 
                         {{i.Charge1}}<br>
