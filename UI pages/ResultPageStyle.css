@@ -25,6 +25,10 @@ h2{
 #filterarea{
 	position: fixed;
 	top:10%;
-	left:3%;
-	max-width: 20%
+	left:2%;
+	max-width: 30%
+}
+.createdfilter{
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
