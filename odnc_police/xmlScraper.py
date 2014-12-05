@@ -326,14 +326,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
        
     elif (state == "ARRESTEE_INFO"):
 
-        for x in flistNoChecks:
-            print str(flistNoChecks.index(x)) + ". " + x[2] + " @ " + str(x[0]) + ", " + str(x[1])
-        print "------------------------------"
-        for y in dlistNoChecks:
-            print str(dlistNoChecks.index(y)) + ". " + y[2] + " @ " + str(y[0]) + ", " + str(y[1])
-
-        print "\n=====================================================\n"
-
         #separate out common problem spots before moving on to general matching:
         #occupation, place of birth, country of citizenship, nearest relative and employer info.
         #find and create unique keys for nearest relative phone and address and
@@ -398,10 +390,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             
         dataTracker = sorted(dataTracker, key=lambda item: item[1])
         dataTracker.reverse()
-        for x in dataTracker:
-            print x
-        print "\n***************************************\n"
-
         for x in range(len(dataTracker)):
             if (dataTracker[x][1] != -1):
                 dlistNoChecks.pop(dataTracker[x][1])
