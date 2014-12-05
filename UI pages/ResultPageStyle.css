@@ -13,12 +13,10 @@ a {
 	white-space:pre;
 }
 
-h2{
-	text-align: center;
-}
-
 #resultarea{
 	width:40%;
+	border: 1px solid;
+	outline: thin;
 	margin-left:auto;
 	margin-right: auto;
 }
@@ -30,6 +28,9 @@ h2{
 	border: 1px solid;
 	outline: thin;
 }
+#incomingfilters{
+	padding-left: 2px;
+}
 .createdfilter{
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -39,4 +40,7 @@ h2{
 	padding-top: 5px;
 	padding-left: 2px;
 	padding-bottom:2px;
+}
+#filterarea a{
+	text-align: center;
 }
