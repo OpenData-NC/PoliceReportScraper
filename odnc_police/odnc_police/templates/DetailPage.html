@@ -8,8 +8,8 @@
         <body>
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Details</h2>
-                <table id='personalinfo'>
                 {% for i in QuerySet %}
+                <table id='personalinfo'>
                 {% if i.Name != 'NULL' %}<tr><td>Name</td><td>{{i.Name}}</td></tr>{%endif%}
                 {% if i.DOB != 'NULL' %}<tr><td>DOB</td><td>{{i.DOB}}</td></tr>{%endif%}
                 {% if i.Age != 'NULL' %}<tr><td>Age</td><td>{{i.Age}}</td></tr>{%endif%}
