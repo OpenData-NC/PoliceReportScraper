@@ -38,12 +38,13 @@
 <!--                         {% for i in outputList %}
                                 {{i|linebreaksbr}}<br><br><br>
                         {%endfor%} -->
-                        {% for i in QuerySet %}
+<!--                         {% for i in QuerySet %}
                                 {{i.Name}}
                                 {{i.Charge1}}
-                        {%endfor%}
+                        {%endfor%} -->
                         {% for i in outputList %}
                                 {{i}} <br>
+                                {i.OCA}
                         {%endfor%}
                 </div>
         </body>
