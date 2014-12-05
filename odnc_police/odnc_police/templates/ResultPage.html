@@ -33,25 +33,26 @@
                         </script>
                 </form>
                 <div id='resultarea'>
-                        <tables style="width:100%">
-                        <tr>
-                                <th>Name</th>
-                                <th>Charge</th>
-                                <th>Arrest Date</th>
-                                <th>Place of Arrest</th>
-                                <th>Additional Information</th>
-                        </tr>
-                        {% for i in QuerySet %}
-                        <tr>
-                                <td>{{i.Name}}</td>
-                                <td>{{i.Charge1}}</td>
-                                <td>{{Date_Arrested}}</td>
-                                <td>{{Place_of_Arrest}}</td>
-                                <td><a href="DetailPage.html?{{i.OCA}}">More Details</a></td>
-                        <td>
-                        {% empty %}
-                                No Results matched your search
-                        {%endfor%}
+                        <table style="width:100%">
+                                <tr>
+                                        <th>Name</th>
+                                        <th>Charge</th>
+                                        <th>Arrest Date</th>
+                                        <th>Place of Arrest</th>
+                                        <th>Additional Information</th>
+                                </tr>
+                                {% for i in QuerySet %}
+                                <tr>
+                                        <td>{{i.Name}}</td>
+                                        <td>{{i.Charge1}}</td>
+                                        <td>{{Date_Arrested}}</td>
+                                        <td>{{Place_of_Arrest}}</td>
+                                        <td><a href="DetailPage.html?{{i.OCA}}">More Details</a></td>
+                                </tr>
+                                {% empty %}
+                                        No Results matched your search
+                                {%endfor%}
+                        </table>
                 </div>
         </body>
 </html>
