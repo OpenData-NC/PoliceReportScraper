@@ -39,9 +39,8 @@
                                 {{i|linebreaksbr}}<br><br><br>
                         {%endfor%} -->
                         {% for i in QuerySet %}
-                                {{i.Name}}<br>
+                                {{i.Name}}     {{i.age}}<br>
                                 {{i.Charge1}}<br>
-                                {{i.Age}}<br>
                                 <a href="DetailPage.html?{{i.OCA}}">More Details</a><br><br>
                         {%endfor%}
                 </div>
