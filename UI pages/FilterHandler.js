@@ -26,24 +26,6 @@ $(document).ready(function() {
 					"<option value='greensboro'>Greensboro</option>"+
 				"</select><button type=button id='deleteagency'>-</button><br></div>"
 	}
-	var agency2={
-		option: "<option value='agency2'>Agency #2</option>",
-		data: "<div class='createdfilter' id='agency2todelete'><Select name='agency2'>"+
-					"<option value ='raleigh'>Raleigh</option>"+
-					"<option value= 'chapel hill'>Chapel Hill</option>"+
-					"<option value='durham'>Durham</option>"+
-					"<option value='greensboro'>Greensboro</option>"+
-				"</select><button type=button id='deleteagency2'>-</button><br></div>"
-	}
-	var agency3={
-		option: "<option value='agency3'>Agency #3</option>",
-		data: "<div class='createdfilter' id='agency3todelete'><Select name='agency3'>"+
-					"<option value ='raleigh'>Raleigh</option>"+
-					"<option value= 'chapel hill'>Chapel Hill</option>"+
-					"<option value='durham'>Durham</option>"+
-					"<option value='greensboro'>Greensboro</option>"+
-				"</select><button type=button id='deleteagency3'>-</button><br></div>"
-	}
 	var name={
 		option: "<option value='name'>Name of person involved</option>",
 		data: "<div class='createdfilter' id='nametodelete'><input type='text' name='name'><button type=button id='deletename'>-</button><br></div>"
@@ -75,7 +57,7 @@ $(document).ready(function() {
 
 	//this array constructs the available selections
 	var filterArray = [arrestincident.option, officerinvolved.option, date.option,
-	 sex.option, agency.option, agency2.option, agency3.option, name.option, 
+	 sex.option, agency.option, name.option, 
 	 race.option, charge.option, city.option, age.option];
 	
 	//this array tracks all the selections that have been made
@@ -151,20 +133,6 @@ $(document).ready(function() {
 					case "agency":
 						$("#incomingfilters").append(agency.data);
 						var index = filterArray.indexOf(agency.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "agency2":
-						$("#incomingfilters").append(agency2.data);
-						var index = filterArray.indexOf(agency2.option);
-						if (index > -1){
-							filterArray.splice(index, 1);
-						}
-						break;
-					case "agency3":
-						$("#incomingfilters").append(agency3.data);
-						var index = filterArray.indexOf(agency3.option);
 						if (index > -1){
 							filterArray.splice(index, 1);
 						}
@@ -273,24 +241,6 @@ $(document).ready(function() {
 		});
 		$("#agencytodelete").remove();
 		filterArray.push(agency.option);
-	});
-	$("#incomingfilters").on("click", "#deleteagency2", function(){
-		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
-			if(this.value=='agency2'){
-				$(this).parent().remove();
-			}
-		});
-		$("#agency2todelete").remove();
-		filterArray.push(agency2.option);
-	});
-	$("#incomingfilters").on("click", "#deleteagency3", function(){
-		$("#incomingfilters > #selectordiv > #filterselector").each(function(){
-			if(this.value=='agency3'){
-				$(this).parent().remove();
-			}
-		});
-		$("#agency3todelete").remove();
-		filterArray.push(agency3.option);
 	});
 
 	$("#incomingfilters").on("click", "#deletename", function(){

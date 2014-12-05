@@ -29,11 +29,10 @@ h2{
  * This CSS needs to be fixed but im honestly not sure how to do it.
  */
 #selectordiv{
-        width: 320px;
+        width: 325px;
         display: block;
         margin-left: auto;
         margin-right: auto;
-        padding-bottom: 5px;
 }
 
 #addFilter{
