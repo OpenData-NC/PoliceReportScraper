@@ -8,12 +8,13 @@
         <body>
                 <img src="{% static "opennc_logo.png" %}"/>
                 <h2>Details</h2>
+                <table>
                 {% for i in QuerySet %}
-                        Name: {{i.Name}}<br>
-                        DOB:{{i.DOB}}<br>
-                        Age:{{i.Age}}<br>
-                        Race:{{i.Race}}<br>
-                        Sex: {{i.Sex}}<br>
+                <tr><td>Name</td><td>{{i.Name}}</td></tr>
+                <tr><td>DOB</td><td>{{i.DOB}}</td></tr>
+                <tr><td>Age</td><td>{{i.Age}}</td></tr>
+                        <!-- Race:{{i.Race}}
+                        Sex: {{i.Sex}}
                         Place of Birth: {{i.Place_of_Birth}}<br>
                         Country of Citizenship: {{i.Country_of_Citizenship}}<br>
                         Address: {{i.Address}}<br>
@@ -30,7 +31,8 @@
                                 {{i.Charge2_Type}}<br>
                                 {{i.Charge2_Counts}}<br>
                         {% endif %}
-                        {{i.Date_Arrested}}<br><br>
+                        {{i.Date_Arrested}}<br><br> -->
                 {% endfor %}
+                </table>
         </body>
 </html>
