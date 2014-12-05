@@ -10,7 +10,7 @@ $(document).ready(function() {
 		data: "<div class='createdfilter' id='officerinvolvedtodelete'><input type='text' name='officerinvolved' placeholder='Name of Officer'> <button type=button id='deleteofficerinvolved'>-</button><br></div>"
 	}
 	var date={
-		option: "<option value='date'>Date of Arrest/Incident</option>",
+		option: "<option value='date'>Date Range of Arrest</option>",
 		data: "<div class='createdfilter' id='datetodelete'><input type='date' name='from'>  -  <input type='date' name='to'><button type=button id='deletedate'>-</button> <br></div>"
 	}
 	var sex={
