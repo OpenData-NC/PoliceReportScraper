@@ -26,7 +26,9 @@ h2{
 	position: fixed;
 	top:15%;
 	left:2%;
-	width: 30%
+	width: 25%;
+	border: 1px solid;
+	outline: thin;
 }
 .createdfilter{
 	padding-top: 5px;
