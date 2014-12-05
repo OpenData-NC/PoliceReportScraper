@@ -161,6 +161,8 @@ def markAppropriateFieldsNull(flist, section):
         kvps.append(['Vehicle Status', 'NULL'])
         kvps.append(['Vehicle Status Datetime', 'NULL'])
         for item in flist:
+            if (item[2] == 'Plate #/State'):
+                item[2] = 'Plate No./State'
             kvps.append([item[2], 'NULL'])
     elif (section == "BOND"):
         kvps.append(["Datetime Confined", 'NULL'])
@@ -1226,22 +1228,28 @@ def sortByKey(key):
 #Absolute file paths are more reliable.
 #
 #'filepath' is path to xml file
-def getLineIndexFromFile(filepath):
-    LOL, extras = getFileLinesList(filepath)
-    dlist, flist = createLineIndex(LOL)
-    return dlist, flist, extras
+##def getLineIndexFromFile(filepath):
+##    LOL, extras = getFileLinesList(filepath)
+##    dlist, flist = createLineIndex(LOL)
+##    return dlist, flist, extras
+##
+##def getSinglePDFObj(dlist, flist, sectionNameList, extraLines, verbose):
+##    return processLists(dlist, flist, sectionNameList, extraLines, verbose)
 
-def getSinglePDFObj(dlist, flist, sectionNameList, extraLines, verbose):
-    return processLists(dlist, flist, sectionNameList, extraLines, verbose)
+def getSinglePDFObj(filepath):
+    listOfLines, extras = getFileLinesList(filepath)
+    dlist, flist = createLineIndex(listOfLines)
+    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
+    pdfObj = processLists(dlist, flist, snl, extras, False)
+    return pdfObj
+    
 
 #analagous usage but directoryPath is path to directory folder rather than file
 def createPDFList(directoryPath):
     pdfObjects = []
-    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
     for filename in os.listdir(directoryPath):
         print "operating on file " + filename + "..."
-        dlist, flist, extras = getLineIndexFromFile(directoryPath+filename)
-        pdfObj = getSinglePDFObj(dlist, flist, snl, extras, False)
+        pdfObj = getSinglePDFObj(directoryPath+filename)
         pdfObjects.append(pdfObj)
     return pdfObjects
 
@@ -1249,8 +1257,7 @@ def createPDFDict(directoryPath):
     pdfObjectsDictionary = {}
     snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
     for filename in os.listdir(directoryPath):
-        dlist, flist, extras = getLineIndexFromFile(directoryPath+filename)
-        pdfObj = getSinglePDFObj(dlist, flist, snl, extras, False)
+        pdfObj = getSinglePDFObj(directoryPath+filename)
         pdfObjectsDictionary[pdfObj['OCA']] = pdfObj
         print "operating on file " + filename + "...  keys: " + str(len(pdfObj.keys()))
     return pdfObjectsDictionary

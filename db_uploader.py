@@ -3,7 +3,7 @@ import datetime
 from odnc_police.models import * 
 
 
-pdfObjectList = doItAllMultipleTimes('/home/vaughn.hagerty/django/PoliceReportScraper/converted_xml_samples/')
+pdfObjectList = createPDFList('/home/vaughn.hagerty/django/PoliceReportScraper/converted_xml_samples/')
 
 
 for record in pdfObjectList:
