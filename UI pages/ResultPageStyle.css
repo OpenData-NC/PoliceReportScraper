@@ -46,6 +46,7 @@ h2{
 	padding-bottom:5px;
 }
 #filterArea a{
+	width: 25%;
 	text-align: center;
 	padding-top: 5px;
 }
