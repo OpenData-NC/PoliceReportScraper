@@ -18,8 +18,8 @@ $(document).ready(function() {
 		data: "<div class='createdfilter' id='sextodelete'><input type='radio' name='sex' value = 'M'>Male   <input type='radio' name='sex' value = 'F'>Female<button type=button id='deletesex'>-</butotn><br></div>"
 	}
 	var agency={
-		option: "<option value='Agency_Name'>Arresting Agency</option>",
-		data: "<div class='createdfilter' id='agencytodelete'><Select multiple name='agency'>"+
+		option: "<option value='agency'>Arresting Agency</option>",
+		data: "<div class='createdfilter' id='agencytodelete'><Select multiple name='Agency_Name'>"+
 					"<option value ='asheville'>Asheville</option>"+
 					"<option value ='buncombe'>Buncombe</option>"+
 					"<option value ='burke'>Burke</option>"+
