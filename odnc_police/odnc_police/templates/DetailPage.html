@@ -26,6 +26,7 @@
                 </table>
 
                 <table id='arrestinfo'>
+                {% if i.Arresting_Officer_Signature != 'NULL' %}<tr><td>Arresting Officer</td><td>{{i.Arresting_Officer_Signature}}</td></tr>{%endif%}
                 {% if i.If_Armed_Type_of_Weapon != 'NULL' %}<tr><td>Type of Weapon (if armed)</td><td>{{i.If_Armed_Type_of_Weapon}}</td></tr>{%endif%}
                 {% if i.Arrest_Type != 'NULL' %}<tr><td>Arrest Type</td><td>{{i.Arrest_Type}}</td></tr>{%endif%}
                 {% if i.Place_of_Arrest != 'NULL' %}<tr><td>Place of Arrest</td><td>{{i.Place_of_Arrest}}</td></tr>{%endif%}
@@ -48,7 +49,7 @@
                         <tr><td>Warrant Date</td><td>{{i.Charge2_Warrant_Date}}</td></tr>
                 {%endif%}
                 {% if i.Charge3 != 'NULL' %}
-                         <tr><td>Charge</td><td>{{i.Charge3}}</td></tr>
+                        <tr><td>Charge</td><td>{{i.Charge3}}</td></tr>
                         <tr><td>Charge Type</td><td>{{i.Charge3_Type}}</td></tr>
                         <tr><td>Counts</td><td>{{i.Charge3_Counts}}</td></tr>
                         <tr><td>DCI Code</td><td>{{i.Charge3_DCI_Code}}</td></tr>
@@ -56,6 +57,9 @@
                         <tr><td>Statute Number</td><td>{{i.Charge3_Statute_Number}}</td></tr>
                         <tr><td>Warrant Date</td><td>{{i.Charge3_Warrant_Date}}</td></tr>
                 {%endif%}
+                {% if i.Drug1_Suspected_Type != 'NULL' %}
+
+                {% endif %}
                 </table>
                 {% endfor %}
         </body>
