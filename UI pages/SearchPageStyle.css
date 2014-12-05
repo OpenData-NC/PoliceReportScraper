@@ -29,7 +29,7 @@ h2{
  * This CSS needs to be fixed but im honestly not sure how to do it.
  */
 #selectordiv{
-        width: 300px;
+        width: 295px;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -44,8 +44,9 @@ h2{
         padding-left: 5%;
 }
 .createdfilter{
-        width: 300px;
+        width: 295px;
         display:block;
         margin-right: auto;
         margin-left: auto;
+        padding-bottom: 10px;
 }
