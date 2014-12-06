@@ -285,6 +285,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
     unmatchedData = []
     
     if (state == "AGENCY_INFO"):
+        oriIndex = -1
+        dateArrIndex = -1
+
         while (len(flistNoChecks) > 0):
             #print flistNoChecks[0][2] + ' @ ' + str(flistNoChecks[0][0]) + ', ' + str(flistNoChecks[0][1]) + ' compared to '
             matchFound = False
@@ -297,6 +300,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                     if (flistNoChecks[0][2] == 'ORI' and len(dlistNoChecks[y][2]) > 20):
                         oriIndex = len(kvps)
                         flistNoChecks = removeFromFieldList(flistNoChecks, 'Date/Time Arrested')
+                    elif (flistNoChecks[0][2] == 'Date/Time Arrested'):
+                        dateArrIndex = len(kvps)
                     elif (flistNoChecks[0][2] == 'OCA'):
                         ocaIndex = len(kvps)
                         currentOCA = dlistNoChecks[y][2]
@@ -310,15 +315,26 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 flistNoChecks.pop(0)
             if (kvps[len(kvps)-1][0] == 'Fingerprint Card Check Digit # (CKN)'):
                 kvps[len(kvps)-1][0] = 'Fingerprint Card Number (CKN)' #to avoid # in key names
+            if (kvps[len(kvps)-1][0] == 'Date/Time Arrested' and dateArrIndex == -1):
+                dateArrIndex = len(kvps)-1
             #print "--------------------------------------------"
 
-        #fix a one-off technicality instance of weirdness in the forms we're dealing with
-        #where three separate fields are represented together; here they are separated.
-        #also move the OCA number, used to identify the form, to the top of kvps
-        temp = kvps[oriIndex]
-        kvps.append(['Date Arrested', temp[1][16:26]])
-        kvps.append(['Time Arrested', temp[1][28:33]])
-        kvps[oriIndex][1] = temp[1][:15]
+        #fix a one-off technicality instance of weirdness in some of the forms we're dealing with
+        #where three separate fields are represented together; here they are separated. In any
+        #case date and time arrested must be separated. Also move OCA to the top of kvps
+        if (oriIndex != -1):
+            temp = kvps[oriIndex]
+            kvps.append(['Date Arrested', temp[1][16:26]])
+            kvps.append(['Time Arrested', temp[1][28:33]])
+            kvps[oriIndex][1] = temp[1][:15]
+        elif (dateArrIndex != -1):
+            temp = kvps[dateArrIndex]
+            kvps.append(['Time Arrested', temp[1][12:17]])
+            kvps[dateArrIndex] = ['Date Arrested', temp[1][:10]]
+        else:
+            kvps[dateArrIndex] = ['Date Arrested', 'NULL']
+            kvps.append(['Time Arrested', 'NULL'])
+            
         temp = kvps[0]
         kvps[0] = kvps[ocaIndex]
         kvps[ocaIndex] = temp
