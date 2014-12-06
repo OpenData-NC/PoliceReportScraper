@@ -392,7 +392,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                     dataTracker[8] = (dlistNoChecks[newX][2], newX)
                 elif (dlistNoChecks[newX][1] > 788): #country of citizenship
                     dataTracker[7] = (dlistNoChecks[newX][2], newX)
-                elif (dlistNoChecks[newX][1] > 650 and dlistNoChecks[newX][1] < 760):
+                elif (dlistNoChecks[newX][1] > 649 and dlistNoChecks[newX][1] < 760):
                     dataTracker.append((dlistNoChecks[newX][2], newX))
                 
             
@@ -431,7 +431,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         while (len(flistNoChecks) > 0):
             matchFound = False
             for y in range(len(dlistNoChecks)):
-                if (abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 28
+                if (abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 26
                 and abs((flistNoChecks[0][0]+22) - dlistNoChecks[y][0]) < 10):
                     matchFound = True
                     kvps.append([flistNoChecks[0][2], dlistNoChecks[y][2]])
@@ -1301,6 +1301,7 @@ def printPDFDict(pdfDict):
     keyList = sorted(pdfDict.keys(), key=lambda item: sortByKey(item))
     for x in keyList:
         print x + " -- " + str(pdfDict[x])
+    print "\n=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*\n"
 
 
 #snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
