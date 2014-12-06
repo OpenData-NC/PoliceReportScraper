@@ -429,7 +429,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         while (len(flistNoChecks) > 0):
             matchFound = False
             for y in range(len(dlistNoChecks)):
-                if (abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 12
+                if (abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 28
                 and abs((flistNoChecks[0][0]+22) - dlistNoChecks[y][0]) < 10):
                     matchFound = True
                     kvps.append([flistNoChecks[0][2], dlistNoChecks[y][2]])
