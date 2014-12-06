@@ -2,6 +2,7 @@ import os #used to work on an entire directory of xml files
 import datetime
 
 currentOCA = ""
+seeChargesTrue = False
 
 #opens a file and reads its lines into a list, one item per line.
 def getFileLinesList(filepath):
@@ -204,9 +205,12 @@ def processLists(dlist, flist, sectionsToGrab, extraLines, verboseOpt):
     """Separates list items into chunks that are representative of sections of the pdf,
     and digests the report into a master list of key-value pairs, stored as a dictionary."""
     kvpsMaster = []
-
+    global currentOCA, seeChargesTrue
+    
     sdlist = qsort(dlist, 0)
     sflist = qsort(flist, 0)
+
+    seeChargesTrue = False
 
     for section in sectionsToGrab:
 
@@ -255,6 +259,9 @@ def processLists(dlist, flist, sectionsToGrab, extraLines, verboseOpt):
     for pair in kvpsMaster:
         pdfObj[pair[0]] = pair[1]
 
+    if (seeChargesTrue == True):
+        pdfObj['OCA'] = currentOCA
+
     if (verboseOpt):
         return pdfObj, sdlist, sflist
     else:
@@ -267,7 +274,7 @@ def processLists(dlist, flist, sectionsToGrab, extraLines, verboseOpt):
 
 def pairFieldandData(dlistChunk, flistChunk, state):
 
-    global currentOCA
+    global currentOCA, seeChargesTrue
 
     savedIndices = []
     checkmarkData = []
@@ -339,6 +346,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         kvps[0] = kvps[ocaIndex]
         kvps[ocaIndex] = temp
         ocaIndex = 0
+        if (kvps[0][1] == 'See Charges'):
+            seeChargesTrue = True
        
     elif (state == "ARRESTEE_INFO"):
 
@@ -474,12 +483,22 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                     else:
                         break
                 if (len(charge1) > 0):
+                    if (seeChargesTrue == True and charge1.find('OCA') != -1):
+                        ocaIndex = charge1.find('OCA')
+                        currentOCA = charge1[(ocaIndex+5):]
+                        charge1 = charge1[:ocaIndex]
                     charge1 = charge1[:-1] #remove trailing space
                     dataTracker[0] = charge1
                 if (len(charge2) > 0):
+                    if (seeChargesTrue == True and charge2.find('OCA') != -1):
+                        ocaIndex = charge2.find('OCA')
+                        charge2 = charge2[:ocaIndex]
                     charge2 = charge2[:-1]
                     dataTracker[1] = charge2
                 if (len(charge3) > 0):
+                    if (seeChargesTrue == True and charge3.find('OCA') != -1):
+                        ocaIndex = charge3.find('OCA')
+                        charge3 = charge3[:ocaIndex]
                     charge3 = charge3[:-1]
                     dataTracker[2] = charge3
                 kvps.append(["Charge1", dataTracker[0]])
