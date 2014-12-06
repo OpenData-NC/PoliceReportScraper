@@ -110,8 +110,8 @@ def result(request):
     #for k in querySetList:
     #    QuerySet = reduce(or_, querySetList)
     if(len(querySetList)>0):
-        querySetList.append(QuerySet)
         masterQuerySet = reduce(or_, querySetList)
+        masterQuerySet = reduce(and_, [masterQuerySet],QuerySet)
     else:
         masterQuerySet = QuerySet
 
