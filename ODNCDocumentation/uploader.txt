@@ -1,0 +1,10 @@
+.. _uploader:
+
+=====================
+PDF Uploader
+=====================
+
+uploader.sh takes 1 or more arguments.  If the first argument is a directory, it looks through it and
+finds all of the pdfs, otherwise it loops through all of the given arguments and picks out the pdfs from there.
+It then converts the pdfs to xml, and passes those to the scraper to get the fields as python objects.  
+Those objects are then used to construct a new record instance, which is then saved to the database.
