@@ -2,10 +2,12 @@ import os #used to work on an entire directory of xml files
 import datetime
 
 currentOCA = ""
-seeChargesTrue = False
+seeChargesTrue = False #some forms put the OCA number in the charges section for some reason
 
-#opens a file and reads its lines into a list, one item per line.
 def getFileLinesList(filepath):
+    """Simple function that takes a filepath to one of the converted .xml files and returns a list
+    of strings that are the lines of the file. Some modest filtering is done to remove lines with no
+    data, and anything beyond the first page is separated apart."""
     theFile = open(filepath)
     fileLines = theFile.readlines()
     theFile.close()
@@ -24,69 +26,18 @@ def getFileLinesList(filepath):
             break
     return listOfLines, extraLines
 
-def qsort(lineItemList, sortParameter):
-    """Modified Quicksort using list comprehensions"""
-    if len(lineItemList) == 0: 
-        return []
-    elif (sortParameter != 1):
-        if (len(lineItemList) == 1):
-            return lineItemList
-        else:
-            skipIndex = len(lineItemList)/2
-            pivot = lineItemList[skipIndex][0]
-            skippedItem = lineItemList.pop(skipIndex)
-            lesser = qsort([x for x in lineItemList if x[0] < pivot], 0)
-            greater = qsort([x for x in lineItemList if x[0] >= pivot], 0)
-            return lesser + [skippedItem] + greater
-    else: #sortParameter == 1 == sorting by left coord (above is top coord)
-        if (len(lineItemList) == 1):
-            return lineItemList
-        else:
-            skipIndex = len(lineItemList)/2
-            pivot = lineItemList[skipIndex][1]
-            skippedItem = lineItemList.pop(skipIndex)
-            lesser = qsort([x for x in lineItemList if x[1] < pivot], 1)
-            greater = qsort([x for x in lineItemList if x[1] >= pivot], 1)
-            return lesser + [skippedItem] + greater
 
-
-#helper function I wrote to easily extract data from a string.
-#'line' is the string to extract from, 'firstDelimiter' is a string that
-#identifies where to start looking, and 'secondDelimiter' is the char
-#(or string) that signifies the end of the text that will be extracted.
-#e.g. to extract '576' from 'top="33" left="576" blahblah':
-#line = 'top="33" left="576" blahblah'
-#firstDelim = 'left="'   (technically more than needed, but might as well make it readable)
-#secondDelim = '"'
-def getTextBetweenDelimiters(line, firstDelimiter, secondDelimiter):
-    beginIndex = line.find(firstDelimiter) + len(firstDelimiter)
-    if beginIndex == -1: #basic check
-        return -1
-    restOfLine = line[beginIndex:]
-    nextDelimiterIndex = restOfLine.find(secondDelimiter)
-    if nextDelimiterIndex == -1:
-        return line[beginIndex:] #shouldn't really happen
-    endIndex = beginIndex + nextDelimiterIndex
-    return line[beginIndex:endIndex]
-
-
-
-#This function goes through the list of lines read from the file and partially
-#parses the text of each line, saving info in either a field list or a data list.
-#The relevant information from each line is the numbers assigned to top and left,
-#as well as the actual text data represented in the line.
 def createLineIndex(listOfLines):
-    global extraLines
+    """Takes a list of strings representing file lines as input and strips the important data from each line.
+    The top and left coordinates from the xml tag are saved along with the actual text data between the tags.
+    Data items are thus three-item lists, whose 0 index holds the top coordinate, 1 index holds the left
+    coordinate, and 2 index holds the data. Data items are sorted into either a list of form data, or a list
+    of form field names, and these two lists are returned."""
     lineDataItemList = [] #to store text data and top/left coords in better structure
     lineFieldItemList = []
     
     for line in listOfLines:
         if ('</page>' in line):
-            startIndex = listOfLines.index(line)+1
-            temp = listOfLines[startIndex:]
-            for lineitem in temp:
-                if ('<text' in lineitem):
-                    extraLines.append(lineitem)
             break
         if ('<text' in line):
 
@@ -121,89 +72,35 @@ def createLineIndex(listOfLines):
 
     return lineDataItemList, lineFieldItemList
 
-def grabRelevantDataAndFields(dlist, flist, start, end):
-    tempDlist, tempFlist, savedIndices = [], [], []
 
-    for x in range(len(dlist)):
-        if (dlist[x][0] > start and dlist[x][0] < end):
-            tempDlist.append(dlist[x])
-            savedIndices.append(x)
-    savedIndices.reverse()
-    for x in savedIndices:
-        dlist.pop(x)
-    savedIndices = []
-    for y in range(len(flist)):
-        if (flist[y][0] > start and flist[y][0] < end):
-            tempFlist.append(flist[y])
-            savedIndices.append(y)
-    savedIndices.reverse()
-    for y in savedIndices:
-        flist.pop(y)
+#helper function I wrote to easily extract data from a string.
+#'line' is the string to extract from, 'firstDelimiter' is a string that
+#identifies where to start looking, and 'secondDelimiter' is the char
+#(or string) that signifies the end of the text that will be extracted.
+#e.g. to extract '576' from 'top="33" left="576" blahblah':
+#line = 'top="33" left="576" blahblah'
+#firstDelim = 'left="'   (technically more than needed, but might as well make it readable)
+#secondDelim = '"'
+def getTextBetweenDelimiters(line, firstDelimiter, secondDelimiter):
+    """A helper function which extracts the data from in between two specified strings.
+    Useful for getting text out of markup-language tags."""
+    beginIndex = line.find(firstDelimiter) + len(firstDelimiter)
+    if beginIndex == -1: #basic check
+        return -1
+    restOfLine = line[beginIndex:]
+    nextDelimiterIndex = restOfLine.find(secondDelimiter)
+    if nextDelimiterIndex == -1:
+        return line[beginIndex:] #shouldn't really happen
+    endIndex = beginIndex + nextDelimiterIndex
+    return line[beginIndex:endIndex]
 
-    return dlist, flist, tempDlist, tempFlist
 
 
-def markAppropriateFieldsNull(flist, section):
-    #this function is only called when ALL fields in a certain section have no data. In other cases empty fields
-    #are marked as NULL after all the data in the section has been matched, in pairFieldandData
-    kvps = []
-
-    if (section == "AGENCY_INFO"): #makes no sense and should never happen (no arresting agency info?)
-        print "Something Nonsensical Happened"
-    elif (section == "ARRESTEE_INFO"): #also makes no sense (no information on who was arrested?)
-        print "Something Nonsensical Happened"
-    elif (section == "ARREST_INFO"): #definitely makes no sense (no crime data?)
-        print "Something Nonsensical Happened"
-        #--> the first three sections must have some data in every case
-    elif (section == "VEH_INFO"):
-        flist = removeMultipleFromFieldList(flist, ['Vehicle', 'Left at Scene', 'Secured', 'Unsecure', 'Date/Time', '1.', 
-                                                    '2.', '3.', 'Released to other at owners request', 'Name of Other',
-                                                    'Impounded', 'Place of storage', 'Inventory on File?'])
-        kvps.append(['Vehicle Status', 'NULL'])
-        kvps.append(['Vehicle Status Datetime', 'NULL'])
-        for item in flist:
-            if (item[2] == 'Plate #/State'):
-                item[2] = 'Plate No./State'
-            kvps.append([item[2], 'NULL'])
-    elif (section == "BOND"):
-        kvps.append(["Datetime Confined", 'NULL'])
-        kvps.append(["Place Confined", 'NULL'])
-        kvps.append(["Committing Magistrate", 'NULL'])
-        kvps.append(["Bond Amount", 'NULL'])
-        kvps.append(["Type Bond", 'NULL'])
-        kvps.append(["Trial Date", 'NULL'])
-        kvps.append(["Court of Trial", 'NULL'])
-        kvps.append(["City of Court", 'NULL'])
-        kvps.append(["Assisting Officer Name/ID", 'NULL'])
-        kvps.append(["Released By (Name/Dept/ID)", 'NULL'])
-        kvps.append(["Datetime Released", 'NULL']) 
-    elif (section == "DRUGS"):
-        txt = ["Drug1", "Drug2"]
-        for t in txt:
-            kvps.append([(t + " Suspected Type"), 'NULL'])
-            kvps.append([(t + " DCI"), 'NULL'])
-            kvps.append([(t + " Status"), 'NULL'])
-            kvps.append([(t + " Quantity"), 'NULL'])
-            kvps.append([(t + " Activities"), 'NULL'])
-    elif (section == "COMP"):
-        flist = removeMultipleFromFieldList(flist, ['Complainant', 'Victim', 'Name:', 'Address', 'Phone:'])
-        kvps.append(['Comp', 'NULL'])
-        kvps.append(['Comp Name', 'NULL'])
-        kvps.append(['Comp Address', 'NULL'])
-        kvps.append(['Comp Phone', 'NULL'])
-    elif (section == "NARRATIVE"):
-        #don't think this is possible either but just in case
-        kvps.append(['Narrative', 'NULL'])
-    elif (section == "STATUS"): #also definitely not possible (no arresting officer info?)
-        print "Something Nonsensical Happened"
-
-    return kvps
-
-    
-
-def processLists(dlist, flist, sectionsToGrab, extraLines, verboseOpt):
-    """Separates list items into chunks that are representative of sections of the pdf,
-    and digests the report into a master list of key-value pairs, stored as a dictionary."""
+def processLists(dlist, flist, sectionsToGrab, extraLines):
+    """Takes as input the two data item lists from createLineIndex(), as well as a hard-coded list of strings
+    that serve as the readable state of a state machine. The state machine keeps track of which section of the
+    pdf is currently being scraped, because different strategies are necessary or efficient for each one.
+    Eventually the two data item lists are digested into a master list of key-value pairs, returned as a dictionary."""
     kvpsMaster = []
     global currentOCA, seeChargesTrue
     
@@ -255,25 +152,130 @@ def processLists(dlist, flist, sectionsToGrab, extraLines, verboseOpt):
 ##    kvpsMaster = [item for item in kvpsMaster if item[1] != "NULL"]
 ##    kvpsMaster.extend(nullfields)
 
-    pdfObj = {}
+    pdfObj = {} #create and populate the dictionary representing the pdf report
     for pair in kvpsMaster:
         pdfObj[pair[0]] = pair[1]
 
-    if (seeChargesTrue == True):
+    if (seeChargesTrue == True): #fix the 'See Charges' in the OCA box on some forms
         pdfObj['OCA'] = currentOCA
 
-    if (verboseOpt):
-        return pdfObj, sdlist, sflist
-    else:
-        return pdfObj
+    return pdfObj
+
+
+def qsort(lineItemList, sortParameter):
+    """A modified version of Quicksort using list comprehensions and tailored to the data item lists
+    created by createLineIndex(). sortParameter is 1 to sort by left coordinate, and anything else
+    to sort by top coordinate."""
+    if len(lineItemList) == 0: 
+        return []
+    elif (sortParameter != 1):
+        if (len(lineItemList) == 1):
+            return lineItemList
+        else:
+            skipIndex = len(lineItemList)/2
+            pivot = lineItemList[skipIndex][0]
+            skippedItem = lineItemList.pop(skipIndex)
+            lesser = qsort([x for x in lineItemList if x[0] < pivot], 0)
+            greater = qsort([x for x in lineItemList if x[0] >= pivot], 0)
+            return lesser + [skippedItem] + greater
+    else: #sortParameter == 1 == sorting by left coord (above is top coord)
+        if (len(lineItemList) == 1):
+            return lineItemList
+        else:
+            skipIndex = len(lineItemList)/2
+            pivot = lineItemList[skipIndex][1]
+            skippedItem = lineItemList.pop(skipIndex)
+            lesser = qsort([x for x in lineItemList if x[1] < pivot], 1)
+            greater = qsort([x for x in lineItemList if x[1] >= pivot], 1)
+            return lesser + [skippedItem] + greater
 
 
 
+def grabRelevantDataAndFields(dlist, flist, start, end):
+    """Helper function that uses hardcoded start and end coordinates that are passed in as parameters
+    to peel off chunks of the two data item lists, gradually moving down the pdf by section.
+    This allows for easier rule-based matching schemes than dealing with the whole pdf at once."""
+    tempDlist, tempFlist, savedIndices = [], [], []
 
+    for x in range(len(dlist)):
+        if (dlist[x][0] > start and dlist[x][0] < end):
+            tempDlist.append(dlist[x])
+            savedIndices.append(x)
+    savedIndices.reverse()
+    for x in savedIndices:
+        dlist.pop(x)
+    savedIndices = []
+    for y in range(len(flist)):
+        if (flist[y][0] > start and flist[y][0] < end):
+            tempFlist.append(flist[y])
+            savedIndices.append(y)
+    savedIndices.reverse()
+    for y in savedIndices:
+        flist.pop(y)
+
+    return dlist, flist, tempDlist, tempFlist
+
+
+def markAppropriateFieldsNull(flist, section):
+    """This function is only called when ALL fields in a certain section have no data. If so they are all marked as NULL here
+    to avoid unnecessary comparisons in the pairFieldandData() function. If not ALL fields are empty, individual empty fields
+    #are marked as NULL as the rest of the data in the section is matched, in pairFieldandData()."""
+    kvps = []
+
+    if (section == "AGENCY_INFO"): #makes no sense and should never happen (no arresting agency info?)
+        print "Something Nonsensical Happened - This form lacks critical data"
+    elif (section == "ARRESTEE_INFO"): #also makes no sense (no information on who was arrested?)
+        print "Something Nonsensical Happened - This form lacks critical data"
+    elif (section == "ARREST_INFO"): #definitely makes no sense (no crime data?)
+        print "Something Nonsensical Happened - This form lacks critical data"
+        #--> the first three sections must have some data in every case
+    elif (section == "VEH_INFO"):
+        flist = removeMultipleFromFieldList(flist, ['Vehicle', 'Left at Scene', 'Secured', 'Unsecure', 'Date/Time', '1.',
+                                                    '2.', '3.', 'Released to other at owners request', 'Name of Other',
+                                                    'Impounded', 'Place of storage', 'Inventory on File?'])
+        kvps.append(['Vehicle Status', 'NULL'])
+        kvps.append(['Vehicle Status Datetime', 'NULL'])
+        for item in flist:
+            if (item[2] == 'Plate #/State'):
+                item[2] = 'Plate No./State'
+            kvps.append([item[2], 'NULL'])
+    elif (section == "BOND"):
+        kvps.append(["Datetime Confined", 'NULL'])
+        kvps.append(["Place Confined", 'NULL'])
+        kvps.append(["Committing Magistrate", 'NULL'])
+        kvps.append(["Bond Amount", 'NULL'])
+        kvps.append(["Type Bond", 'NULL'])
+        kvps.append(["Trial Date", 'NULL'])
+        kvps.append(["Court of Trial", 'NULL'])
+        kvps.append(["City of Court", 'NULL'])
+        kvps.append(["Assisting Officer Name/ID", 'NULL'])
+        kvps.append(["Released By (Name/Dept/ID)", 'NULL'])
+        kvps.append(["Datetime Released", 'NULL']) 
+    elif (section == "DRUGS"):
+        txt = ["Drug1", "Drug2"]
+        for t in txt:
+            kvps.append([(t + " Suspected Type"), 'NULL'])
+            kvps.append([(t + " DCI"), 'NULL'])
+            kvps.append([(t + " Status"), 'NULL'])
+            kvps.append([(t + " Quantity"), 'NULL'])
+            kvps.append([(t + " Activities"), 'NULL'])
+    elif (section == "COMP"):
+        kvps.append(['Comp', 'NULL'])
+        kvps.append(['Comp Name', 'NULL'])
+        kvps.append(['Comp Address', 'NULL'])
+        kvps.append(['Comp Phone', 'NULL'])
+    elif (section == "NARRATIVE"):
+        kvps.append(['Narrative', 'NULL'])
+    elif (section == "STATUS"): #also definitely not possible (no arresting officer info?)
+        print "Something Nonsensical Happened - This form lacks critical data"
+
+    return kvps
 
 
 def pairFieldandData(dlistChunk, flistChunk, state):
-
+    """The main meaty data matching functions of the scraper; takes as input one pair of chunks from the two data-item lists
+    (representing a certain section of the pdf) and the state string identifying which section the chunks are from.
+    See the Documentation for more info on the matching algorithm."""
     global currentOCA, seeChargesTrue
 
     savedIndices = []
@@ -627,7 +629,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             kvps.append(["VIN", temp[19:]])
 
         unmatchedData = dlistNoChecks
-
+##        #a helpful debugging script
 ##        if (len(unmatchedData) > 0):
 ##            print "\n*****************************************\nSOME DATA WENT UNMATCHED FROM VEH INFO IN"
 ##            print currentOCA + ".xml"
@@ -690,8 +692,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                     'B': 'Burned', 'C': 'Counterfeit / Forged', 'F': 'Found'}
         count = 0
         yIncrement = 0
-
-        #746, 763
 
         dlistNoChecks.reverse()
         while (len(dlistNoChecks) > 0 and count < 2):
@@ -818,6 +818,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
 
 
 def removeFromFieldList(flist, field):
+    """Helper function that removes a certain field name from the data item list of fields."""
     for x in range(len(flist)):
         if (flist[x][2] == field):
             flist.pop(x)
@@ -825,11 +826,14 @@ def removeFromFieldList(flist, field):
     return flist
 
 def removeMultipleFromFieldList(flist, fieldsToRemove):
+    """Helper function that removes multiple fields from the data item list at once."""
     for field in fieldsToRemove:
         flist = removeFromFieldList(flist, field)
     return flist
 
 def pairCheckmarkData(chkData, flistChunk, state):
+    """One of the meaty data matching functions of the scraper, built to handle only the checkboxes present in any
+    particular section. See the Documentation for more info on the algorithm."""
     moe = 0 #margin of error; number of pixels by which something can be off its hardcoded position
     kvps = [] #key-value pairs
     dataTracker = [] #used to store the default and final values of checkmark kvps
@@ -1046,8 +1050,67 @@ def pairCheckmarkData(chkData, flistChunk, state):
 
     return flistChunk, kvps
 
-#used to custom sort the print output of one pdf object dictionary
+    
+#The next two functions are convenience functions I wrote so I wouldn't have
+#to repetitively enter parameters when calling the functions in IDLE.
+#Absolute file paths are more reliable.
+#
+#'filepath' is path to xml file
+##def getLineIndexFromFile(filepath):
+##    LOL, extras = getFileLinesList(filepath)
+##    dlist, flist = createLineIndex(LOL)
+##    return dlist, flist, extras
+##
+##def getSinglePDFObj(dlist, flist, sectionNameList, extraLines, verbose):
+##    return processLists(dlist, flist, sectionNameList, extraLines, verbose)
+
+def getSinglePDFObj(filepath):
+    """Takes as input the filepath to a converted .xml file and returns the python dictionary with the the key-value pairs from that report."""
+    listOfLines, extras = getFileLinesList(filepath)
+    dlist, flist = createLineIndex(listOfLines)
+    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
+    pdfObj = processLists(dlist, flist, snl, extras)
+    return pdfObj
+    
+
+#analagous usage but directoryPath is path to directory folder rather than file
+def createPDFList(directoryPath):
+    """Takes as input a directory containing multiple converted .xml files and returns a list of python dictionaries, each of which represents
+    one of the converted-.xml reports from the directory."""
+    pdfObjects = []
+    for filename in os.listdir(directoryPath):
+        print "operating on file " + filename + "..."
+        pdfObj = getSinglePDFObj(directoryPath+filename)
+        pdfObjects.append(pdfObj)
+    return pdfObjects
+
+def createPDFDict(directoryPath):
+    """Takes as input a directory containing multiple converted .xml files and returns a dictionary of python dictionaries. The keys to the larger,
+    all-encompassing dictionary are the OCA numbers from the reports whose dictionary representation is the value for that key."""
+    pdfObjectsDictionary = {}
+    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
+    for filename in os.listdir(directoryPath):
+        pdfObj = getSinglePDFObj(directoryPath+filename)
+        pdfObjectsDictionary[pdfObj['OCA']] = pdfObj
+        print "operating on file " + filename + "...  keys: " + str(len(pdfObj.keys()))
+    return pdfObjectsDictionary
+
+
+
+
+#snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
+#
+
+
+def printPDFDict(pdfDict):
+    """Prints a dictionary object representing one arrest report pdf in a readable form."""
+    keyList = sorted(pdfDict.keys(), key=lambda item: sortByKey(item))
+    for x in keyList:
+        print x + " -- " + str(pdfDict[x])
+    print "\n=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*\n"
+
 def sortByKey(key):
+    """This function is used to custom sort the dictionaries that are constructed by the scraper for convenience in printing."""
     if (key == 'OCA'):
         return 1
     elif (key == 'Agency Name'):
@@ -1260,71 +1323,12 @@ def sortByKey(key):
         return 105
     else:
         return 106
-    
-#The next two functions are convenience functions I wrote so I wouldn't have
-#to repetitively enter parameters when calling the functions in IDLE.
-#Absolute file paths are more reliable.
+
+
 #
-#'filepath' is path to xml file
-##def getLineIndexFromFile(filepath):
-##    LOL, extras = getFileLinesList(filepath)
-##    dlist, flist = createLineIndex(LOL)
-##    return dlist, flist, extras
-##
-##def getSinglePDFObj(dlist, flist, sectionNameList, extraLines, verbose):
-##    return processLists(dlist, flist, sectionNameList, extraLines, verbose)
-
-def getSinglePDFObj(filepath):
-    listOfLines, extras = getFileLinesList(filepath)
-    dlist, flist = createLineIndex(listOfLines)
-    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
-    pdfObj = processLists(dlist, flist, snl, extras, False)
-    return pdfObj
-    
-
-#analagous usage but directoryPath is path to directory folder rather than file
-def createPDFList(directoryPath):
-    pdfObjects = []
-    for filename in os.listdir(directoryPath):
-        print "operating on file " + filename + "..."
-        pdfObj = getSinglePDFObj(directoryPath+filename)
-        pdfObjects.append(pdfObj)
-    return pdfObjects
-
-def createPDFDict(directoryPath):
-    pdfObjectsDictionary = {}
-    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
-    for filename in os.listdir(directoryPath):
-        pdfObj = getSinglePDFObj(directoryPath+filename)
-        pdfObjectsDictionary[pdfObj['OCA']] = pdfObj
-        print "operating on file " + filename + "...  keys: " + str(len(pdfObj.keys()))
-    return pdfObjectsDictionary
-
-def printPDFDict(pdfDict):
-    keyList = sorted(pdfDict.keys(), key=lambda item: sortByKey(item))
-    for x in keyList:
-        print x + " -- " + str(pdfDict[x])
-    print "\n=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*\n"
-
-
-#snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
-#
-
-
-#if you set 'path' to wherever your directory of (already converted!) xml files
-#is located, the program should work by running this module and then entering the following commands:
-#
-#path = [your path here]
-#dlist, flist = getLineIndexFromFile(path)
-#sncl = [[130, 'AGENCY_INFO'], [350, 'ARRESTEE_INFO'], [502, 'ARREST-INFO']]
-#kvps = getKVPMasterList(dlist, flist, sncl)
-#for x in kvps:
-#    print x
-
-
-#this can be ignored, I use it bc of a file naming quirk that comes up when
-#I try to use the pdftohtml unix util in a loop that goes through a whole
-#directory. It would convert a pdf to 'example.pdf.xml', so I got rid of '.pdf'
 def renamingScript(prependpath):
+    """Can be ignored; this function was used because of a file naming quirk that was a result of the
+    syntax of the windows command for running the pdftohtml utility on a whole directory.
+    It would convert a pdf to 'example.pdf.xml', so this gets rid of '.pdf' for 'example.xml'"""
     for filename in os.listdir(prependpath):
         os.rename(prependpath+filename, prependpath+filename[:-8]+filename[-4:])
