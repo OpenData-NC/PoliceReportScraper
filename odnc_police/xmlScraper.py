@@ -320,6 +320,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 #print "No Match Found"
                 kvps.append([flistNoChecks[0][2], 'NULL'])
                 flistNoChecks.pop(0)
+                if (kvps[len(kvps)-1][0] == 'OCA'):
+                    ocaIndex = len(kvps)-1
             if (kvps[len(kvps)-1][0] == 'Fingerprint Card Check Digit # (CKN)'):
                 kvps[len(kvps)-1][0] = 'Fingerprint Card Number (CKN)' #to avoid # in key names
             if (kvps[len(kvps)-1][0] == 'Date/Time Arrested' and dateArrIndex == -1):
