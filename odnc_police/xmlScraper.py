@@ -353,17 +353,18 @@ def pairFieldandData(dlistChunk, flistChunk, state):
        
     elif (state == "ARRESTEE_INFO"):
 
-        #separate out common problem spots before moving on to general matching:
-        #occupation, place of birth, country of citizenship, nearest relative and employer info.
+        #separate out common problem spots before moving on to general matching. fields are problem
+        #spots if the data is offset in a weird way from the field tag 
+        #occupation, place of birth, country of citizenship, scars, nearest relative and employer info.
         #find and create unique keys for nearest relative phone and address and
         #employer's phone and address, which are simply 'Phone' and 'Address' on the form.
         flistNoChecks.pop() #easier to remove nearest relative name, phone and address this way
         flistNoChecks.pop() #they are always the last three on the list
         flistNoChecks.pop() #as for the line below, easier to remove both phone and add arrestee phone field back in later
-        flistNoChecks = removeMultipleFromFieldList(flistNoChecks, ['Place of Birth', 'Country of', 'Citizenship', 'Occupation', 'Employer\'s Name', 'Phone', 'Phone', 'Address'])
+        flistNoChecks = removeMultipleFromFieldList(flistNoChecks, ['Place of Birth', 'Country of', 'Citizenship', 'Occupation', 'Employer\'s Name', 'Phone', 'Scars, Marks, Tattoos', 'Phone', 'Address'])
         
         dataTracker = []
-        for x in range(9): #nine possible problem spot fields, plus extras if place of birth is more than just a state
+        for x in range(10): #ten possible problem spot fields, plus extras if place of birth is more than just a state
             dataTracker.append(('NULL', -1)) #-1 will become index of match
             
         for x in range(len(dlistNoChecks)):
@@ -376,22 +377,23 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 else: #address
                     dataTracker[1] = (dlistNoChecks[newX][2], newX)
             elif (dlistNoChecks[newX][0] > 242):
-                continue
+                if (dlistNoChecks[newX][1] < 390):
+                    dataTracker[4] = (dlistNoChecks[newX][2], newX)
             elif (dlistNoChecks[newX][0] > 210): #employer
                 if (dlistNoChecks[newX][1] < 420): #name
-                    dataTracker[4] = (dlistNoChecks[newX][2], newX)
-                elif (dlistNoChecks[newX][1] > 742): #phone
-                    dataTracker[6] = (dlistNoChecks[newX][2], newX)
-                else: #address
                     dataTracker[5] = (dlistNoChecks[newX][2], newX)
+                elif (dlistNoChecks[newX][1] > 742): #phone
+                    dataTracker[7] = (dlistNoChecks[newX][2], newX)
+                else: #address
+                    dataTracker[6] = (dlistNoChecks[newX][2], newX)
             elif (dlistNoChecks[newX][0] > 178):
                 if (dlistNoChecks[newX][1] > 500 and dlistNoChecks[newX][1] < 720):
                     dataTracker[3] = (dlistNoChecks[newX][2], newX) #occupation
             else: #topmost row of section
                 if (abs(dlistNoChecks[newX][1] - 765) < 6): #state of birth
-                    dataTracker[8] = (dlistNoChecks[newX][2], newX)
+                    dataTracker[9] = (dlistNoChecks[newX][2], newX)
                 elif (dlistNoChecks[newX][1] > 788): #country of citizenship
-                    dataTracker[7] = (dlistNoChecks[newX][2], newX)
+                    dataTracker[8] = (dlistNoChecks[newX][2], newX)
                 elif (dlistNoChecks[newX][1] > 649 and dlistNoChecks[newX][1] < 760):
                     dataTracker.append((dlistNoChecks[newX][2], newX))
                 
@@ -399,21 +401,22 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         kvps.append(["Nearest Relative Name", dataTracker[0][0]])
         kvps.append(["Nearest Relative Address", dataTracker[1][0]])
         kvps.append(["Nearest Relative Phone", dataTracker[2][0]])
-        kvps.append(["Employer Name", dataTracker[4][0]])
-        kvps.append(["Employer Address", dataTracker[5][0]])
-        kvps.append(["Employer Phone", dataTracker[6][0]])
         kvps.append(["Occupation", dataTracker[3][0]])
-        kvps.append(["Country of Citizenship", dataTracker[7][0]])
-        if (len(dataTracker) > 9):
+        kvps.append(["Scars, Marks, Tattoos", dataTracker[4][0]])
+        kvps.append(["Employer Name", dataTracker[5][0]])
+        kvps.append(["Employer Address", dataTracker[6][0]])
+        kvps.append(["Employer Phone", dataTracker[7][0]])
+        kvps.append(["Country of Citizenship", dataTracker[8][0]])
+        if (len(dataTracker) > 10):
             i = len(dataTracker)-1
             placeofbirth = ""
-            while (i > 7):
+            while (i > 8):
                 placeofbirth = placeofbirth + dataTracker[i][0] + " "
                 i = i-1
             placeofbirth = placeofbirth[:-1]
             kvps.append(["Place of Birth", placeofbirth])
         else:
-            kvps.append(["Place of Birth", dataTracker[8][0]])
+            kvps.append(["Place of Birth", dataTracker[9][0]])
             
         dataTracker = sorted(dataTracker, key=lambda item: item[1])
         dataTracker.reverse()
