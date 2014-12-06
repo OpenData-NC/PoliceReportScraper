@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>odnc_police.views</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="odnc_police-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="odnc_police-module.html">Package&nbsp;odnc_police</a> ::
+        Module&nbsp;views
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="odnc_police.views-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="odnc_police.views-module.html">Module odnc_police.views</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">shortcuts</tt> <tt class="py-keyword">import</tt> <tt class="py-name">render</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">http</tt> <tt class="py-keyword">import</tt> <tt class="py-name">HttpResponse</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">template</tt> <tt class="py-keyword">import</tt> <tt class="py-name">Context</tt><tt class="py-op">,</tt> <tt class="py-name">loader</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">db</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module odnc_police.models=odnc_police.models-module.html"><a title="odnc_police.models" class="py-name" href="#" onclick="return doclink('link-0', 'models', 'link-0');">models</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">Q</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name"><a title="odnc_police.models" class="py-name" href="#" onclick="return doclink('link-1', 'models', 'link-0');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class odnc_police.models.Arrest_test=odnc_police.models.Arrest_test-class.html,Class odnc_police.modelsNoLoss.Arrest_test=odnc_police.modelsNoLoss.Arrest_test-class.html"><a title="odnc_police.models.Arrest_test
+odnc_police.modelsNoLoss.Arrest_test" class="py-name" href="#" onclick="return doclink('link-2', 'Arrest_test', 'link-2');">Arrest_test</a></tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">itertools</tt> <tt class="py-keyword">import</tt> <tt class="py-name">chain</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">datetime</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">re</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="search"></a><div id="search-def"><a name="L12"></a><tt class="py-lineno"> 12</tt> <a class="py-toggle" href="#" id="search-toggle" onclick="return toggle('search');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="odnc_police.views-module.html#search">search</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="search-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="search-expanded"><a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">render</tt><tt class="py-op">(</tt><tt class="py-name">request</tt><tt class="py-op">,</tt> <tt class="py-string">'SearchPage.html'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="result"></a><div id="result-def"><a name="L15"></a><tt class="py-lineno"> 15</tt> <a class="py-toggle" href="#" id="result-toggle" onclick="return toggle('result');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="odnc_police.views-module.html#result">result</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="result-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="result-expanded"><a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">    <tt class="py-name">entry</tt><tt class="py-op">=</tt><tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">META</tt><tt class="py-op">[</tt><tt class="py-string">"QUERY_STRING"</tt><tt class="py-op">]</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">    <tt class="py-name">entry</tt><tt class="py-op">=</tt><tt class="py-name">entry</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">"%2B"</tt><tt class="py-op">,</tt><tt class="py-string">"+"</tt><tt class="py-op">)</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment">#entry_dict[i] = entry_dict[i].replace("%2B", " ")</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">    <tt class="py-name">entry_list</tt><tt class="py-op">=</tt><tt class="py-name">entry</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"&amp;"</tt><tt class="py-op">)</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">    <tt class="py-name">entry_dict</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">item</tt> <tt class="py-keyword">in</tt> <tt class="py-name">entry_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">item_split</tt><tt class="py-op">=</tt><tt class="py-name">item</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"="</tt><tt class="py-op">)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">item_split</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt class="py-name">item_split</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByName</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Name__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByAgencyName</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Agency_Name__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByCharge</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Charge1__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByRace</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Race__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByAddress</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Address__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByChargeCode</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Charge1_DCI_Code__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByArrestingOfficer</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Arresting_Officer_Signature__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByPlaceofArrest</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Place_of_Arrest__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterBySex</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Sex__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByAge</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">intFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt id="link-3" class="py-name" targets="Variable odnc_police.models.Arrest_test.Age=odnc_police.models.Arrest_test-class.html#Age"><a title="odnc_police.models.Arrest_test.Age" class="py-name" href="#" onclick="return doclink('link-3', 'Age', 'link-3');">Age</a></tt><tt class="py-op">=</tt><tt class="py-name">intFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByDateArrested</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">lowerBound</tt><tt class="py-op">,</tt> <tt class="py-param">upperBound</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Date_Arrested__range</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">lowerBound</tt><tt class="py-op">,</tt> <tt class="py-name">upperBound</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">    <tt class="py-keyword">def</tt> <tt class="py-def-name">filterBySearchbar</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">stringFilter</tt> <tt class="py-op">=</tt> <tt class="py-name">stringFilter</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">"+"</tt><tt class="py-op">,</tt> <tt class="py-string">" "</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Name__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Agency_Name__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Charge1__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Race__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Address__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Charge1_DCI_Code__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Arresting_Officer_Signature__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Place_of_Arrest__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt> <tt class="py-op">|</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Sex__icontains</tt><tt class="py-op">=</tt><tt class="py-name">stringFilter</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">    <tt class="py-name">agencyList</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">    <tt class="py-name">querySetList</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">    <tt class="py-name">firstDateString</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-name">secondDateString</tt> <tt class="py-op">=</tt> <tt class="py-string">''</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">    <tt class="py-name">firstDateReached</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-name">secondDateReached</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">    <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt id="link-4" class="py-name"><a title="odnc_police.models.Arrest_test
+odnc_police.modelsNoLoss.Arrest_test" class="py-name" href="#" onclick="return doclink('link-4', 'Arrest_test', 'link-2');">Arrest_test</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">.</tt><tt class="py-name">keys</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">"+"</tt><tt class="py-op">,</tt> <tt class="py-string">" "</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'searchbar'</tt><tt class="py-op">:</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt><tt class="py-op">(</tt><tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">''</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterBySearchbar</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt>                 </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'name'</tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByName</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'agency'</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">            <tt class="py-name">agencyList</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'charge'</tt><tt class="py-op">:</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByCharge</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'race'</tt><tt class="py-op">:</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByRace</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'address'</tt><tt class="py-op">:</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByAddress</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'offenseCode'</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByOffenseCode</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'officerinvolved'</tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByArrestingOfficer</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'sex'</tt><tt class="py-op">:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterBySex</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'age'</tt><tt class="py-op">:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">            <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByAge</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'from'</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">            <tt class="py-name">firstDateString</tt> <tt class="py-op">=</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-name">firstDateReached</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">i</tt> <tt class="py-op">==</tt> <tt class="py-string">'to'</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt class="py-name">secondDateString</tt> <tt class="py-op">=</tt> <tt class="py-name">entry_dict</tt><tt class="py-op">[</tt><tt class="py-name">i</tt><tt class="py-op">]</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-comment">#            firstDateString = entry_dict[i]</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-name">secondDateReached</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">firstDateReached</tt> <tt class="py-op">==</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">secondDateReached</tt> <tt class="py-op">==</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt>     </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-name">firstDate</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">date</tt><tt class="py-op">(</tt><tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">firstDateString</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-number">4</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">firstDateString</tt><tt class="py-op">[</tt><tt class="py-number">5</tt><tt class="py-op">:</tt><tt class="py-number">7</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">firstDateString</tt><tt class="py-op">[</tt><tt class="py-number">8</tt><tt class="py-op">:</tt><tt class="py-number">10</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                <tt class="py-name">secondDate</tt> <tt class="py-op">=</tt> <tt class="py-name">datetime</tt><tt class="py-op">.</tt><tt class="py-name">date</tt><tt class="py-op">(</tt><tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">secondDateString</tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-number">4</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">secondDateString</tt><tt class="py-op">[</tt><tt class="py-number">5</tt><tt class="py-op">:</tt><tt class="py-number">7</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">secondDateString</tt><tt class="py-op">[</tt><tt class="py-number">8</tt><tt class="py-op">:</tt><tt class="py-number">10</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">                <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByDateOccurred</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">firstDate</tt><tt class="py-op">,</tt> <tt class="py-name">secondDate</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">q_objects</tt> <tt class="py-op">=</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">entry</tt> <tt class="py-keyword">in</tt> <tt class="py-name">agencyList</tt><tt class="py-op">:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-name">q_objects</tt> <tt class="py-op">|=</tt> <tt class="py-name">Q</tt><tt class="py-op">(</tt><tt class="py-name">Agency_Name__icontains</tt><tt class="py-op">=</tt><tt class="py-name">entry</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">            <tt class="py-comment">#tempQuerySet = filterByAgencyName(QuerySet, entry)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-comment">#querySetList.append(tempQuerySet)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">q_objects</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"><tt class="py-comment">#    if agency1 != '':</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> <tt class="py-comment">#       if agency2 != '':</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">  <tt class="py-comment">#          if agency3 != '':</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">   <tt class="py-comment">#             QuerySet = QuerySet.filter(Q(agency__icontains=agency1) | Q(agency__icontains=agency2) | Q(agency__icontains=agency3))</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt class="py-comment">#        else:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">     <tt class="py-comment">#           QuerySet = QuerySet.filter(Q(agency__icontains=agency1) | Q(agency__icontains=agency2))</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">      <tt class="py-comment">#  else:</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">       <tt class="py-comment">#     QuerySet = QuerySet.filter(Q(agency__icontains=agency1))</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-name">outputList</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">j</tt> <tt class="py-keyword">in</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">:</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-comment">#for k in tempQuerySet:</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-name">outputList</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt class="py-name">j</tt><tt class="py-op">,</tt> <tt class="py-name">j</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Variable odnc_police.models.Arrest_test.OCA=odnc_police.models.Arrest_test-class.html#OCA,Variable odnc_police.modelsNoLoss.Arrest_test.OCA=odnc_police.modelsNoLoss.Arrest_test-class.html#OCA"><a title="odnc_police.models.Arrest_test.OCA
+odnc_police.modelsNoLoss.Arrest_test.OCA" class="py-name" href="#" onclick="return doclink('link-5', 'OCA', 'link-5');">OCA</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt class="py-name">context</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">'outputList'</tt><tt class="py-op">:</tt><tt class="py-name">outputList</tt><tt class="py-op">,</tt> <tt class="py-string">'QuerySet'</tt><tt class="py-op">:</tt><tt class="py-name">QuerySet</tt><tt class="py-op">}</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">render</tt><tt class="py-op">(</tt><tt class="py-name">request</tt><tt class="py-op">,</tt> <tt class="py-string">'ResultPage.html'</tt><tt class="py-op">,</tt> <tt class="py-name">context</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"> </tt>
+<a name="detail"></a><div id="detail-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="detail-toggle" onclick="return toggle('detail');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="odnc_police.views-module.html#detail">detail</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="detail-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="detail-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">      </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">     <tt class="py-name">OCARequest</tt><tt class="py-op">=</tt><tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">META</tt><tt class="py-op">[</tt><tt class="py-string">"QUERY_STRING"</tt><tt class="py-op">]</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">     <tt class="py-keyword">def</tt> <tt class="py-def-name">filterByOCA</tt><tt class="py-op">(</tt><tt class="py-param">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-param">intFilter</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">         <tt class="py-keyword">return</tt> <tt class="py-name">QuerySet</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt id="link-6" class="py-name"><a title="odnc_police.models.Arrest_test.OCA
+odnc_police.modelsNoLoss.Arrest_test.OCA" class="py-name" href="#" onclick="return doclink('link-6', 'OCA', 'link-5');">OCA</a></tt><tt class="py-op">=</tt><tt class="py-name">intFilter</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">     <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name"><a title="odnc_police.models.Arrest_test
+odnc_police.modelsNoLoss.Arrest_test" class="py-name" href="#" onclick="return doclink('link-7', 'Arrest_test', 'link-2');">Arrest_test</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">     <tt class="py-name">QuerySet</tt> <tt class="py-op">=</tt> <tt class="py-name">filterByOCA</tt><tt class="py-op">(</tt><tt class="py-name">QuerySet</tt><tt class="py-op">,</tt> <tt class="py-name">OCARequest</tt><tt class="py-op">)</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">      </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">     <tt class="py-name">context</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'QuerySet'</tt><tt class="py-op">:</tt><tt class="py-name">QuerySet</tt><tt class="py-op">}</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">     <tt class="py-keyword">return</tt> <tt class="py-name">render</tt><tt class="py-op">(</tt><tt class="py-name">request</tt><tt class="py-op">,</tt> <tt class="py-string">'DetailPage.html'</tt><tt class="py-op">,</tt> <tt class="py-name">context</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="odnc_police-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Dec  5 21:11:05 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
