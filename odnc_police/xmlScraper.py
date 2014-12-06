@@ -290,7 +290,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             matchFound = False
             for y in range(len(dlistNoChecks)):
                 #print dlistNoChecks[y][2] + ' @ ' + str(dlistNoChecks[y][0]) + ', ' + str(dlistNoChecks[y][1])
-                if ((abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 10)
+                if ((abs(flistNoChecks[0][1] - dlistNoChecks[y][1]) < 30)
                 and abs((flistNoChecks[0][0]+20) - dlistNoChecks[y][0]) < 10):
                     #print "Match Found"
                     matchFound = True
@@ -347,7 +347,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 elif (dlistNoChecks[newX][1] > 720): #phone
                     dataTracker[2] = (dlistNoChecks[newX][2], newX)
                 else: #address
-                    dataTrackers[1] = (dlistNoChecks[newX][2], newX)
+                    dataTracker[1] = (dlistNoChecks[newX][2], newX)
             elif (dlistNoChecks[newX][0] > 242):
                 continue
             elif (dlistNoChecks[newX][0] > 210): #employer
@@ -390,6 +390,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             
         dataTracker = sorted(dataTracker, key=lambda item: item[1])
         dataTracker.reverse()
+
         for x in range(len(dataTracker)):
             if (dataTracker[x][1] != -1):
                 dlistNoChecks.pop(dataTracker[x][1])
@@ -399,12 +400,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             if (flistNoChecks[x][0] > 210):
                 flistNoChecks.insert(x, [179, 458, "Arrestee Phone"])
                 break
-
-        for x in flistNoChecks:
-            print str(flistNoChecks.index(x)) + ". " + x[2] + " @ " + str(x[0]) + ", " + str(x[1])
-        print "------------------------------"
-        for y in dlistNoChecks:
-            print str(dlistNoChecks.index(y)) + ". " + y[2] + " @ " + str(y[0]) + ", " + str(y[1])
 
         while (len(flistNoChecks) > 0):
             matchFound = False
