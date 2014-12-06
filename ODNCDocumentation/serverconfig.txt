@@ -1,0 +1,15 @@
+.. _serverconfig:
+
+=====================
+Django and Apache Configuration
+=====================
+
+All of our django specific files are under the main project folder 'odnc_police/odnc_police/'
+this includes models.py, views.py, urls.py. Static files had to be handled by Apache specifically,
+so all of the javascript, images, etc are under /var/www and aliased by the Apache config.
+We also had to configure apache to point to our wsgi. using
+
+WSGIScriptAlias / /home/vaughn.hagerty/django/PoliceReportScraper/odnc_police/odnc_police/wsgi.py
+WSGIPythonPath /home/vaughn.hagerty/django/PoliceReportScraper/odnc_police
+
+in the apache config file.
