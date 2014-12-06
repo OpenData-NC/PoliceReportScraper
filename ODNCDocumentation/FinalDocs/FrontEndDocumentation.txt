@@ -1,0 +1,15 @@
+Front End Documentation:
+
+FilterHandler.JS:
+
+	Filterhandler is the largest peice of code for the frontend. The purpse of filterhandler is to provide the filter logic used for the Search and Result pages of the website. First, it provides a series of javascript objects, which represent options that are appended to the filter selector. The objects also include the divs that get appended to the filter area when the selection is made. The objects are based around model fields from the Database, while presenting the user with simple options as well as simple form fields that should not confuse them when they are making selections and queries.
+
+	The logic of filterhandler is as follows. When the page initially loads, the add filter button is activated, meaning you can click on it and add a filter. Once the user clicks on the add filter button, a selector appears, which presents the user with all of the available selection options. Until the user makes a selection from the option, the add filter button is disabled, this is so the user is not able to add a bunch of fields with no value, this would cause confusion when querying the database. When the user selects an option, that option is from the selector. This makes it so the user is not able to select the same value multiple times. Each field has a delete button. If the user hits deletes the button, the data will be removed and the option will be added back to the selector.
+
+SearchPage.Html, ResultPage.html, DetailPage.html
+
+	These are the main html pages that make up the views. Searchpage uses no template language and utilizes a simple form to submit data entered in the filter. The majority of searchpage is what can be dynamically added by filterhandler.js
+
+	Resultpage.html has filter section that scrolls with the user, as well as a table view that features all of the return rows from the user query. Values are selected, and the page creates a unique url based on the OCA number of the arrest.
+
+	From the oca, DetailPage.html is create. Detailpage has simple tables that expand upon and reveal all of the details from the arrest selected from result page.
