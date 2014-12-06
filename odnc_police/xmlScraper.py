@@ -294,7 +294,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 and abs((flistNoChecks[0][0]+20) - dlistNoChecks[y][0]) < 10):
                     #print "Match Found"
                     matchFound = True
-                    if (flistNoChecks[0][2] == 'ORI'):
+                    if (flistNoChecks[0][2] == 'ORI' and len(dlistNoChecks[y][2]) > 20):
                         oriIndex = len(kvps)
                         flistNoChecks = removeFromFieldList(flistNoChecks, 'Date/Time Arrested')
                     elif (flistNoChecks[0][2] == 'OCA'):
