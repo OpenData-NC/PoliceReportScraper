@@ -1,0 +1,17 @@
+This project was made by the ODNC Team in Fall 2014
+Team Members:
+Brian Bollerman
+Ben Parisi
+Austin Schneider
+Bo Warren
+
+This documentation assumes the reader is familiar with Django and Apache.
+The main components to focus on are:
+  1. The pdf scraper
+  2. models.py
+  3. urls.py/ views.py
+  4. The html pages and associated javascript/ css files
+
+The ODNC Web App works by scraping information from police report pdfs. This information is then entered into the Django database in a format specified by models.py. Then this information
+is connected to the front-facing webpage by views.py. Finally, the html pages and their javascript/css files specify how this information is viewed by the user, as well as pass user
+database queries through views.py.

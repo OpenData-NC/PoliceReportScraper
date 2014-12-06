@@ -39,9 +39,9 @@ fi
 
 echo "scraping converted pdfs and uploading to the database..."
 
-echo "execfile(\"./test.py $dir_to_upload\")" | python odnc_police/manage.py shell
-#echo "execfile(\"./t.py $dir_to_upload\")" | python odnc_police/manage.py shell
+echo "\"$dir_to_upload\""
+echo "execfile(\"./test.py\",\"$dir_to_upload\")\nprint \"ok\"" | python odnc_police/manage.py shell
 
-rm -r /tmp/pdfs_currently_being_uploaded
+#rm -r /tmp/pdfs_currently_being_uploaded
 
 echo "done"

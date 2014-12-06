@@ -17,7 +17,8 @@ def result(request):
 
     entry=request.META["QUERY_STRING"]
     entry=entry.replace("+"," ")
-    entry=entry.replace("%2B","")
+    #entry=entry.replace("%2B","+")
+#entry_dict[i] = entry_dict[i].replace("%2B", " ")
     entry_list=entry.split("&")
     entry_dict={}
     entry_dict['agency']=[]
@@ -107,13 +108,9 @@ def result(request):
             querySetList.append(temporaryQuerySet)
 
     outputList = []
-    #for k in querySetList:
-    #    QuerySet = reduce(or_, querySetList)
-    if(len(querySetList)>0):
-        querySetList.append(QuerySet)
-        masterQuerySet = reduce(or_, querySetList)
-    else:
-        masterQuerySet = QuerySet
+    for k in querySetList:
+        QuerySet = reduce(or_, querySetList)
+    masterQuerySet = reduce(or_, querySetList[1:], querySetList[0])
 
     context = {'outputList':outputList, 'QuerySet':masterQuerySet}
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, loader
 from models import Arrest_test
+from itertools import chain
 import datetime
 import os
 import re
@@ -128,44 +129,144 @@ def result(request):
     def filterByZip(QuerySet, intFilter):
         return QuerySet.filter(zip=intFilter)
 
-   # def filterSearchBar(QuerySet, stringFilter):
-    #    stringFilter.replace("+"," ")
-        
+    def filterBySearchbar(QuerySet, stringFilter):
+        searchbarList = []
+        stringFilter = stringFilter.replace("+", " ")
+        tempQuerySet1 = filterByName(QuerySet, stringFilter)
+	tempQuerySet2 = filterByAgency(QuerySet, stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(name__icontains=stringFilter)
+        searchbarList.extend(chain(tempQuerySet1, tempQuerySet2))
+        tempQuerySet1 = filterByRace(QuerySet, stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(name__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(charge__icontains=stringFilter)
+        tempQuerySet2 = filterByAddress(QuerySet, stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(name__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(charge__icontains=stringFilter)
+	tempQuerySet2 = tempQuerySet2.exclude(race__icontains=stringFilter)
+        searchbarList.extend(chain(tempQuerySet1, tempQuerySet2))
+	tempQuerySet1 = filterByOffenseCode(QuerySet, stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(name__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(charge__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(race__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(address__icontains=stringFilter)
+	tempQuerySet2 = filterByReportingOfficer(QuerySet, stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(name__icontains=stringFilter)     
+        tempQuerySet2 = tempQuerySet2.exclude(charge__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(race__icontains=stringFilter) 
+        tempQuerySet2 = tempQuerySet2.exclude(address__icontains=stringFilter)        
+	tempQuerySet2 = tempQuerySet2.exclude(offense_code__icontains=stringFilter)
+	searchbarList.extend(chain(tempQuerySet1, tempQuerySet2))
+        tempQuerySet1 = filterByStreetAddress(QuerySet, stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(name__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(charge__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(race__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(address__icontains=stringFilter)  
+        tempQuerySet1 = tempQuerySet1.exclude(offense_code__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(reporting_officer__icontains=stringFilter)
+	tempQuerySet2 = filterByCity(QuerySet, stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(name__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(charge__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(race__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(address__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(offense_code__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(reporting_officer__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(street_address__icontains=stringFilter)
+	searchbarList.extend(chain(tempQuerySet1, tempQuerySet2))
+       # tempQuerySet1 = filterByCounty(QuerySet, stringFilter)
+        tempQuerySet1 = filterByState(QuerySet, stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(name__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(charge__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(race__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(address__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(offense_code__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(reporting_officer__icontains=stringFilter)
+        tempQuerySet1 = tempQuerySet1.exclude(street_address__icontains=stringFilter)
+	tempQuerySet1 = tempQuerySet1.exclude(city__icontains=stringFilter)
+        tempQuerySet2 = filterBySex(QuerySet, stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(name__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(charge__icontains=stringFilter) 
+        tempQuerySet2 = tempQuerySet2.exclude(race__icontains=stringFilter)   
+        tempQuerySet2 = tempQuerySet2.exclude(address__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(offense_code__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(reporting_officer__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(street_address__icontains=stringFilter)
+        tempQuerySet2 = tempQuerySet2.exclude(city__icontains=stringFilter)
+	tempQuerySet2 = tempQuerySet2.exclude(state__icontains=stringFilter)        
+	searchbarList.extend(chain(tempQuerySet1, tempQuerySet2))
+        #outputList = []
+        return searchbarList
+
+    searchbarList = []
+    filterList = []
     outputList = []
+    searchbarQueried = False
+    filterQueried = False
     for i in entry_dict.keys():
-        #if i == 'searchbar':
-        #    QuerySet = filterSearchBar(QuerySet, entry_dict[i])
+        if i == 'searchbar':
+            if(entry_dict[i] != ''):
+                searchbarQueried = True
+                searchbarList = filterBySearchbar(QuerySet, entry_dict[i])                
         if i == 'name':
             QuerySet = filterByName(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'agency':
-            QuerySet = filterByAgency(QuerySet, entry_dict[i])            
+            QuerySet = filterByAgency(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'charge':
             QuerySet = filterByCharge(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'race':
             QuerySet = filterByRace(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'address':
             QuerySet = filterByAddress(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'offenseCode':
             QuerySet = filterByOffenseCode(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'officerinvolved':
             QuerySet = filterByReportingOfficer(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'streetaddress':
             QuerySet = filterByStreetAddress(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'city':
             QuerySet = filterByCity(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'county':
             QuerySet = filterByCounty(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'state':
             QuerySet = filterByState(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'sex':
             QuerySet = filterBySex(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'zip':
             QuerySet = filterByZip(QuerySet, entry_dict[i])
+            filterQueried = True
         if i == 'age':
             QuerySet = filterByAge(QuerySet, entry_dict[i])
+            filterQueried = True
 
-    for j in QuerySet:
-        outputList.append(j)
+    if filterQueried == True:
+        for j in QuerySet:
+            filterList.append(j)
+
+    if searchbarQueried == True:
+        if filterQueried == True:
+            for x in searchbarList:
+                for y in filterList:
+                    if x == y:
+                        outputList.append(x)
+        if filterQueried == False:
+            outputList = searchbarList
+
+    if searchbarQueried == False:
+        if filterQueried == True:
+            outputList = filterList
+        if filterQueried == False:
+            outputList.append('No entries')
 
     context = {'outputList': outputList}
     return render(request, 'ResultPage.html', context)

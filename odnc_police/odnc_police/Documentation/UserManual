@@ -1,0 +1,20 @@
+The Open Data NC web app allows users to access information from the ODNC database of Arrest police reports. It does this through the use of the search bar and filters which the user can add.
+
+The home page of the web app is the Arrest Search page.
+Inexperienced users can simply enter a search term into the search bar and click Submit. This will search the database for any police reports where the search term is found in any of the
+fields of the report. NOTE: The search will not return police reports that contain information that is "close to" or "similar" to the information entered into the search bar. 
+Returned entries in this database will be viewable in a table on the Results page. For a detailed look at information contained in the report for each entry in the
+table, click on the More Details link. This will bring up the Details view with information contained about the individual and the circumstances surrounding their arrest.
+
+Experienced users can add specific filters on the Arrest Search page which search specific fields on the arrest reports for a specific term. These filters are added by clicking on the "Add
+Filter" button. These filters are mostly self-explanatory. They will search only that specific field in the arrest reports that matches the filter. Some filters, like Sex and Race, allow 
+the user to choose from a specific set of options. Age requires a number to be input to work. Officer Involved, Name of person involved, and Charge all take text input (numbers can be
+entered as well). Date Range of Arrest requires that that two dates be entered in the format mm/dd/yyyy. The database will search for Arrest reports where the date of arrest is between
+the two dates entered.  If the user mouses over the input field, they can use the two small arrows that appear to increase and decrease the numbers in the fields. The user can also  click 
+the large arrow that appears to open a calendar widget which can be used to select a date. In the Arresting Agency filter, the user can select one agency by clicking on the agency name,
+or multiple agencies by holding ctrl and clicking the names of multiple agencies. Any arrest reports filed with any of those agencies will be added to the search results.
+The user can add as many filters as they need to, but can not add multiple filters of the same type. A filter can be removed by clicking the - (minus) button next to each filter.
+
+After the search results are returned on the Results page, the user can add more filters to narrow the search results by clicking on the "add filter" button in the "Update Filters" sidebar.
+The same filters are available as on the previous page(although the search bar is not). Keep in mind that it is not possible to take away filters from this page, only to add filters to 
+narrow the search results. Once a filter is entered, click on the "Submit" button to update the filters and search results.
