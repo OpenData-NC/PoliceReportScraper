@@ -79,7 +79,7 @@ def createLineIndex(listOfLines):
 #(or string) that signifies the end of the text that will be extracted.
 #e.g. to extract '576' from 'top="33" left="576" blahblah':
 #line = 'top="33" left="576" blahblah'
-#firstDelim = 'left="'   (technically more than needed, but might as well make it readable)
+#firstDelim = 'left="'
 #secondDelim = '"'
 def getTextBetweenDelimiters(line, firstDelimiter, secondDelimiter):
     """A helper function which extracts the data from in between two specified strings.
