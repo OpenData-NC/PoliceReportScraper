@@ -8,7 +8,7 @@ rm -r /tmp/pdfs_currently_being_uploaded > /dev/null 2>&1
 mkdir /tmp/pdfs_currently_being_uploaded
 
 convert(){
-	filename=`echo "$1"|cut -f1 -d'.'|awk -F'/' '{print $(NF)}'`
+	filename=`echo "$1"|awk -F'.' '{print $(NF-1)}'|awk -F'/' '{print $(NF)}'`
 	echo "converting $filename.pdf please wait..."
 
 	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="/tmp/pdfs_currently_being_uploaded/$filename.pdf" -c .setpdfwrite -f "$1"
@@ -40,8 +40,7 @@ fi
 echo "scraping converted pdfs and uploading to the database..."
 
 echo "\"$dir_to_upload\""
-echo "execfile(\"./test.py\",\"$dir_to_upload\")\nprint \"ok\"" | python odnc_police/manage.py shell
+echo "execfile(\"./test2.py\",\"$dir_to_upload\")\nprint \"ok\"" | python odnc_police/manage.py shell
 
-#rm -r /tmp/pdfs_currently_being_uploaded
 
 echo "done"

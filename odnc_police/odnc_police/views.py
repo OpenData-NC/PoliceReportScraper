@@ -17,7 +17,7 @@ def result(request):
 
     entry=request.META["QUERY_STRING"]
     entry=entry.replace("+"," ")
-    entry=entry.replace("%2B","")
+    entry=entry.replace("%2B"," ")
     entry_list=entry.split("&")
     entry_dict={}
     entry_dict['agency']=[]
@@ -100,7 +100,7 @@ def result(request):
             if secondDateReached == True:    
                 firstDate = datetime.date(int(firstDateString[:4]), int(firstDateString[5:7]), int(firstDateString[8:10]))
                 secondDate = datetime.date(int(secondDateString[:4]), int(secondDateString[5:7]), int(secondDateString[8:10]))
-                QuerySet = filterByDateOccurred(QuerySet, firstDate, secondDate)
+                QuerySet = filterByDateArrested(QuerySet, firstDate, secondDate)
 	
         for a in agencyList:
             temporaryQuerySet = QuerySet.filter(Agency_Name__icontains=a)

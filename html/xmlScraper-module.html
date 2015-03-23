@@ -75,7 +75,9 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="getFileLinesList"></a><span class="summary-sig-name">getFileLinesList</span>(<span class="summary-sig-arg">filepath</span>)</span></td>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#getFileLinesList" class="summary-sig-name">getFileLinesList</a>(<span class="summary-sig-arg">filepath</span>)</span><br />
+      Simple function that takes a filepath to one of the converted .xml files and returns a list
+of strings that are the lines of the file.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#getFileLinesList">source&nbsp;code</a></span>
             
@@ -91,43 +93,8 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="qsort"></a><span class="summary-sig-name">qsort</span>(<span class="summary-sig-arg">lineItemList</span>,
-        <span class="summary-sig-arg">sortParameter</span>)</span><br />
-      Modified Quicksort using list comprehensions</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="xmlScraper-pysrc.html#qsort">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="getTextBetweenDelimiters"></a><span class="summary-sig-name">getTextBetweenDelimiters</span>(<span class="summary-sig-arg">line</span>,
-        <span class="summary-sig-arg">firstDelimiter</span>,
-        <span class="summary-sig-arg">secondDelimiter</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="xmlScraper-pysrc.html#getTextBetweenDelimiters">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="createLineIndex"></a><span class="summary-sig-name">createLineIndex</span>(<span class="summary-sig-arg">listOfLines</span>)</span></td>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#createLineIndex" class="summary-sig-name">createLineIndex</a>(<span class="summary-sig-arg">listOfLines</span>)</span><br />
+      Takes a list of strings representing file lines as input and strips the important data from each line.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#createLineIndex">source&nbsp;code</a></span>
             
@@ -143,12 +110,12 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="grabRelevantDataAndFields"></a><span class="summary-sig-name">grabRelevantDataAndFields</span>(<span class="summary-sig-arg">dlist</span>,
-        <span class="summary-sig-arg">flist</span>,
-        <span class="summary-sig-arg">start</span>,
-        <span class="summary-sig-arg">end</span>)</span></td>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#getTextBetweenDelimiters" class="summary-sig-name">getTextBetweenDelimiters</a>(<span class="summary-sig-arg">line</span>,
+        <span class="summary-sig-arg">firstDelimiter</span>,
+        <span class="summary-sig-arg">secondDelimiter</span>)</span><br />
+      A helper function which extracts the data from in between two specified strings.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="xmlScraper-pysrc.html#grabRelevantDataAndFields">source&nbsp;code</a></span>
+            <span class="codelink"><a href="xmlScraper-pysrc.html#getTextBetweenDelimiters">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -162,30 +129,12 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="markAppropriateFieldsNull"></a><span class="summary-sig-name">markAppropriateFieldsNull</span>(<span class="summary-sig-arg">flist</span>,
-        <span class="summary-sig-arg">section</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="xmlScraper-pysrc.html#markAppropriateFieldsNull">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="processLists"></a><span class="summary-sig-name">processLists</span>(<span class="summary-sig-arg">dlist</span>,
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#processLists" class="summary-sig-name">processLists</a>(<span class="summary-sig-arg">dlist</span>,
         <span class="summary-sig-arg">flist</span>,
         <span class="summary-sig-arg">sectionsToGrab</span>,
-        <span class="summary-sig-arg">extraLines</span>,
-        <span class="summary-sig-arg">verboseOpt</span>)</span><br />
-      Separates list items into chunks that are representative of sections of the pdf,
-and digests the report into a master list of key-value pairs, stored as a dictionary.</td>
+        <span class="summary-sig-arg">extraLines</span>)</span><br />
+      Takes as input the two data item lists from createLineIndex(), as well as a hard-coded list of strings
+that serve as the readable state of a state machine.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#processLists">source&nbsp;code</a></span>
             
@@ -201,9 +150,69 @@ and digests the report into a master list of key-value pairs, stored as a dictio
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="pairFieldandData"></a><span class="summary-sig-name">pairFieldandData</span>(<span class="summary-sig-arg">dlistChunk</span>,
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#qsort" class="summary-sig-name">qsort</a>(<span class="summary-sig-arg">lineItemList</span>,
+        <span class="summary-sig-arg">sortParameter</span>)</span><br />
+      A modified version of Quicksort using list comprehensions and tailored to the data item lists
+created by createLineIndex().</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="xmlScraper-pysrc.html#qsort">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#grabRelevantDataAndFields" class="summary-sig-name">grabRelevantDataAndFields</a>(<span class="summary-sig-arg">dlist</span>,
+        <span class="summary-sig-arg">flist</span>,
+        <span class="summary-sig-arg">start</span>,
+        <span class="summary-sig-arg">end</span>)</span><br />
+      Helper function that uses hardcoded start and end coordinates that are passed in as parameters
+to peel off chunks of the two data item lists, gradually moving down the pdf by section.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="xmlScraper-pysrc.html#grabRelevantDataAndFields">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#markAppropriateFieldsNull" class="summary-sig-name">markAppropriateFieldsNull</a>(<span class="summary-sig-arg">flist</span>,
+        <span class="summary-sig-arg">section</span>)</span><br />
+      This function is only called when ALL fields in a certain section have no data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="xmlScraper-pysrc.html#markAppropriateFieldsNull">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#pairFieldandData" class="summary-sig-name">pairFieldandData</a>(<span class="summary-sig-arg">dlistChunk</span>,
         <span class="summary-sig-arg">flistChunk</span>,
-        <span class="summary-sig-arg">state</span>)</span></td>
+        <span class="summary-sig-arg">state</span>)</span><br />
+      The main meaty data matching functions of the scraper; takes as input one pair of chunks from the two data-item lists
+(representing a certain section of the pdf) and the state string identifying which section the chunks are from.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#pairFieldandData">source&nbsp;code</a></span>
             
@@ -220,7 +229,8 @@ and digests the report into a master list of key-value pairs, stored as a dictio
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="removeFromFieldList"></a><span class="summary-sig-name">removeFromFieldList</span>(<span class="summary-sig-arg">flist</span>,
-        <span class="summary-sig-arg">field</span>)</span></td>
+        <span class="summary-sig-arg">field</span>)</span><br />
+      Helper function that removes a certain field name from the data item list of fields.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#removeFromFieldList">source&nbsp;code</a></span>
             
@@ -237,7 +247,8 @@ and digests the report into a master list of key-value pairs, stored as a dictio
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="removeMultipleFromFieldList"></a><span class="summary-sig-name">removeMultipleFromFieldList</span>(<span class="summary-sig-arg">flist</span>,
-        <span class="summary-sig-arg">fieldsToRemove</span>)</span></td>
+        <span class="summary-sig-arg">fieldsToRemove</span>)</span><br />
+      Helper function that removes multiple fields from the data item list at once.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#removeMultipleFromFieldList">source&nbsp;code</a></span>
             
@@ -253,9 +264,11 @@ and digests the report into a master list of key-value pairs, stored as a dictio
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="pairCheckmarkData"></a><span class="summary-sig-name">pairCheckmarkData</span>(<span class="summary-sig-arg">chkData</span>,
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#pairCheckmarkData" class="summary-sig-name">pairCheckmarkData</a>(<span class="summary-sig-arg">chkData</span>,
         <span class="summary-sig-arg">flistChunk</span>,
-        <span class="summary-sig-arg">state</span>)</span></td>
+        <span class="summary-sig-arg">state</span>)</span><br />
+      One of the meaty data matching functions of the scraper, built to handle only the checkboxes present in any
+particular section.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#pairCheckmarkData">source&nbsp;code</a></span>
             
@@ -271,23 +284,8 @@ and digests the report into a master list of key-value pairs, stored as a dictio
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="sortByKey"></a><span class="summary-sig-name">sortByKey</span>(<span class="summary-sig-arg">key</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="xmlScraper-pysrc.html#sortByKey">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="getSinglePDFObj"></a><span class="summary-sig-name">getSinglePDFObj</span>(<span class="summary-sig-arg">filepath</span>)</span></td>
+          <td><span class="summary-sig"><a name="getSinglePDFObj"></a><span class="summary-sig-name">getSinglePDFObj</span>(<span class="summary-sig-arg">filepath</span>)</span><br />
+      Takes as input the filepath to a converted .xml file and returns the python dictionary with the the key-value pairs from that report.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#getSinglePDFObj">source&nbsp;code</a></span>
             
@@ -303,7 +301,9 @@ and digests the report into a master list of key-value pairs, stored as a dictio
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="createPDFList"></a><span class="summary-sig-name">createPDFList</span>(<span class="summary-sig-arg">directoryPath</span>)</span></td>
+          <td><span class="summary-sig"><a name="createPDFList"></a><span class="summary-sig-name">createPDFList</span>(<span class="summary-sig-arg">directoryPath</span>)</span><br />
+      Takes as input a directory containing multiple converted .xml files and returns a list of python dictionaries, each of which represents
+one of the converted-.xml reports from the directory.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#createPDFList">source&nbsp;code</a></span>
             
@@ -319,7 +319,8 @@ and digests the report into a master list of key-value pairs, stored as a dictio
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="createPDFDict"></a><span class="summary-sig-name">createPDFDict</span>(<span class="summary-sig-arg">directoryPath</span>)</span></td>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#createPDFDict" class="summary-sig-name">createPDFDict</a>(<span class="summary-sig-arg">directoryPath</span>)</span><br />
+      Takes as input a directory containing multiple converted .xml files and returns a dictionary of python dictionaries.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#createPDFDict">source&nbsp;code</a></span>
             
@@ -335,7 +336,8 @@ and digests the report into a master list of key-value pairs, stored as a dictio
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="printPDFDict"></a><span class="summary-sig-name">printPDFDict</span>(<span class="summary-sig-arg">pdfDict</span>)</span></td>
+          <td><span class="summary-sig"><a name="printPDFDict"></a><span class="summary-sig-name">printPDFDict</span>(<span class="summary-sig-arg">pdfDict</span>)</span><br />
+      Prints a dictionary object representing one arrest report pdf in a readable form.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#printPDFDict">source&nbsp;code</a></span>
             
@@ -351,7 +353,26 @@ and digests the report into a master list of key-value pairs, stored as a dictio
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="renamingScript"></a><span class="summary-sig-name">renamingScript</span>(<span class="summary-sig-arg">prependpath</span>)</span></td>
+          <td><span class="summary-sig"><a name="sortByKey"></a><span class="summary-sig-name">sortByKey</span>(<span class="summary-sig-arg">key</span>)</span><br />
+      This function is used to custom sort the dictionaries that are constructed by the scraper for convenience in printing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="xmlScraper-pysrc.html#sortByKey">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="xmlScraper-module.html#renamingScript" class="summary-sig-name">renamingScript</a>(<span class="summary-sig-arg">prependpath</span>)</span><br />
+      Can be ignored; this function was used because of a file naming quirk that was a result of the
+syntax of the windows command for running the pdftohtml utility on a whole directory.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="xmlScraper-pysrc.html#renamingScript">source&nbsp;code</a></span>
             
@@ -386,7 +407,311 @@ and digests the report into a master list of key-value pairs, stored as a dictio
         <a name="currentOCA"></a><span class="summary-name">currentOCA</span> = <code title="&quot;&quot;">&quot;&quot;</code>
     </td>
   </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="seeChargesTrue"></a><span class="summary-name">seeChargesTrue</span> = <code title="False">False</code>
+    </td>
+  </tr>
 </table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="getFileLinesList"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getFileLinesList</span>(<span class="sig-arg">filepath</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#getFileLinesList">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Simple function that takes a filepath to one of the converted .xml files and returns a list
+of strings that are the lines of the file. Some modest filtering is done to remove lines with no
+data, and anything beyond the first page is separated apart.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="createLineIndex"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createLineIndex</span>(<span class="sig-arg">listOfLines</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#createLineIndex">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Takes a list of strings representing file lines as input and strips the important data from each line.
+The top and left coordinates from the xml tag are saved along with the actual text data between the tags.
+Data items are thus three-item lists, whose 0 index holds the top coordinate, 1 index holds the left
+coordinate, and 2 index holds the data. Data items are sorted into either a list of form data, or a list
+of form field names, and these two lists are returned.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getTextBetweenDelimiters"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getTextBetweenDelimiters</span>(<span class="sig-arg">line</span>,
+        <span class="sig-arg">firstDelimiter</span>,
+        <span class="sig-arg">secondDelimiter</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#getTextBetweenDelimiters">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+A helper function which extracts the data from in between two specified strings.
+Useful for getting text out of markup-language tags.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="processLists"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">processLists</span>(<span class="sig-arg">dlist</span>,
+        <span class="sig-arg">flist</span>,
+        <span class="sig-arg">sectionsToGrab</span>,
+        <span class="sig-arg">extraLines</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#processLists">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Takes as input the two data item lists from createLineIndex(), as well as a hard-coded list of strings
+that serve as the readable state of a state machine. The state machine keeps track of which section of the
+pdf is currently being scraped, because different strategies are necessary or efficient for each one.
+Eventually the two data item lists are digested into a master list of key-value pairs, returned as a dictionary.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="qsort"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">qsort</span>(<span class="sig-arg">lineItemList</span>,
+        <span class="sig-arg">sortParameter</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#qsort">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+A modified version of Quicksort using list comprehensions and tailored to the data item lists
+created by createLineIndex(). sortParameter is 1 to sort by left coordinate, and anything else
+to sort by top coordinate.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="grabRelevantDataAndFields"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">grabRelevantDataAndFields</span>(<span class="sig-arg">dlist</span>,
+        <span class="sig-arg">flist</span>,
+        <span class="sig-arg">start</span>,
+        <span class="sig-arg">end</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#grabRelevantDataAndFields">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Helper function that uses hardcoded start and end coordinates that are passed in as parameters
+to peel off chunks of the two data item lists, gradually moving down the pdf by section.
+This allows for easier rule-based matching schemes than dealing with the whole pdf at once.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="markAppropriateFieldsNull"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">markAppropriateFieldsNull</span>(<span class="sig-arg">flist</span>,
+        <span class="sig-arg">section</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#markAppropriateFieldsNull">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+This function is only called when ALL fields in a certain section have no data. If so they are all marked as NULL here
+to avoid unnecessary comparisons in the pairFieldandData() function. If not ALL fields are empty, individual empty fields
+#are marked as NULL as the rest of the data in the section is matched, in pairFieldandData().
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="pairFieldandData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">pairFieldandData</span>(<span class="sig-arg">dlistChunk</span>,
+        <span class="sig-arg">flistChunk</span>,
+        <span class="sig-arg">state</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#pairFieldandData">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+The main meaty data matching functions of the scraper; takes as input one pair of chunks from the two data-item lists
+(representing a certain section of the pdf) and the state string identifying which section the chunks are from.
+See the Documentation for more info on the matching algorithm.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="pairCheckmarkData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">pairCheckmarkData</span>(<span class="sig-arg">chkData</span>,
+        <span class="sig-arg">flistChunk</span>,
+        <span class="sig-arg">state</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#pairCheckmarkData">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+One of the meaty data matching functions of the scraper, built to handle only the checkboxes present in any
+particular section. See the Documentation for more info on the algorithm.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="createPDFDict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">createPDFDict</span>(<span class="sig-arg">directoryPath</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#createPDFDict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Takes as input a directory containing multiple converted .xml files and returns a dictionary of python dictionaries. The keys to the larger,
+all-encompassing dictionary are the OCA numbers from the reports whose dictionary representation is the value for that key.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="renamingScript"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">renamingScript</span>(<span class="sig-arg">prependpath</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="xmlScraper-pysrc.html#renamingScript">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Can be ignored; this function was used because of a file naming quirk that was a result of the
+syntax of the windows command for running the pdftohtml utility on a whole directory.
+It would convert a pdf to 'example.pdf.xml', so this gets rid of '.pdf' for 'example.xml'
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -410,7 +735,7 @@ and digests the report into a master list of key-value pairs, stored as a dictio
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Dec  5 21:24:42 2014
+    Generated by Epydoc 3.0.1 on Sat Dec  6 07:51:16 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

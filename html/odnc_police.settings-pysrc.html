@@ -180,39 +180,38 @@
 <a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">    <tt class="py-comment"># 'django.contrib.admin',</tt> </tt>
 <a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-comment"># Uncomment the next line to enable admin documentation:</tt> </tt>
 <a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">    <tt class="py-comment"># 'django.contrib.admindocs',</tt> </tt>
-<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">    <tt class="py-string">'police_searcher'</tt><tt class="py-op">,</tt> </tt>
-<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">    <tt class="py-string">'odnc_police'</tt><tt class="py-op">,</tt> </tt>
-<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
-<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
-<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-comment"># A sample logging configuration. The only tangible logging</tt> </tt>
-<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-comment"># performed by this configuration is to send an email to</tt> </tt>
-<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-comment"># the site admins on every HTTP 500 error when DEBUG=False.</tt> </tt>
-<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-comment"># See http://docs.djangoproject.com/en/dev/topics/logging for</tt> </tt>
-<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt class="py-comment"># more details on how to customize your logging configuration.</tt> </tt>
-<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"><tt id="link-27" class="py-name" targets="Variable odnc_police.settings.LOGGING=odnc_police.settings-module.html#LOGGING"><a title="odnc_police.settings.LOGGING" class="py-name" href="#" onclick="return doclink('link-27', 'LOGGING', 'link-27');">LOGGING</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
-<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-string">'version'</tt><tt class="py-op">:</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> </tt>
-<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-string">'disable_existing_loggers'</tt><tt class="py-op">:</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> </tt>
-<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-string">'filters'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
-<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-string">'require_debug_false'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
-<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">            <tt class="py-string">'()'</tt><tt class="py-op">:</tt> <tt class="py-string">'django.utils.log.RequireDebugFalse'</tt> </tt>
-<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">        <tt class="py-op">}</tt> </tt>
-<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">    <tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
-<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">    <tt class="py-string">'handlers'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
-<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-string">'mail_admins'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
-<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">            <tt class="py-string">'level'</tt><tt class="py-op">:</tt> <tt class="py-string">'ERROR'</tt><tt class="py-op">,</tt> </tt>
-<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-string">'filters'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'require_debug_false'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
-<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">            <tt class="py-string">'class'</tt><tt class="py-op">:</tt> <tt class="py-string">'django.utils.log.AdminEmailHandler'</tt> </tt>
-<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-op">}</tt> </tt>
-<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">    <tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
-<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">    <tt class="py-string">'loggers'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
-<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-string">'django.request'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
-<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">            <tt class="py-string">'handlers'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'mail_admins'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
-<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">            <tt class="py-string">'level'</tt><tt class="py-op">:</tt> <tt class="py-string">'ERROR'</tt><tt class="py-op">,</tt> </tt>
-<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">            <tt class="py-string">'propagate'</tt><tt class="py-op">:</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> </tt>
-<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
-<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">    <tt class="py-op">}</tt> </tt>
-<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-op">}</tt> </tt>
-<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">    <tt class="py-string">'odnc_police'</tt><tt class="py-op">,</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-comment"># A sample logging configuration. The only tangible logging</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-comment"># performed by this configuration is to send an email to</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-comment"># the site admins on every HTTP 500 error when DEBUG=False.</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-comment"># See http://docs.djangoproject.com/en/dev/topics/logging for</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-comment"># more details on how to customize your logging configuration.</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"><tt id="link-27" class="py-name" targets="Variable odnc_police.settings.LOGGING=odnc_police.settings-module.html#LOGGING"><a title="odnc_police.settings.LOGGING" class="py-name" href="#" onclick="return doclink('link-27', 'LOGGING', 'link-27');">LOGGING</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">    <tt class="py-string">'version'</tt><tt class="py-op">:</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-string">'disable_existing_loggers'</tt><tt class="py-op">:</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">    <tt class="py-string">'filters'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-string">'require_debug_false'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">            <tt class="py-string">'()'</tt><tt class="py-op">:</tt> <tt class="py-string">'django.utils.log.RequireDebugFalse'</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-op">}</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">    <tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">    <tt class="py-string">'handlers'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-string">'mail_admins'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">            <tt class="py-string">'level'</tt><tt class="py-op">:</tt> <tt class="py-string">'ERROR'</tt><tt class="py-op">,</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">            <tt class="py-string">'filters'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'require_debug_false'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">            <tt class="py-string">'class'</tt><tt class="py-op">:</tt> <tt class="py-string">'django.utils.log.AdminEmailHandler'</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-op">}</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">    <tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">    <tt class="py-string">'loggers'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt class="py-string">'django.request'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">            <tt class="py-string">'handlers'</tt><tt class="py-op">:</tt> <tt class="py-op">[</tt><tt class="py-string">'mail_admins'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">            <tt class="py-string">'level'</tt><tt class="py-op">:</tt> <tt class="py-string">'ERROR'</tt><tt class="py-op">,</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">            <tt class="py-string">'propagate'</tt><tt class="py-op">:</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-op">}</tt><tt class="py-op">,</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">    <tt class="py-op">}</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-op">}</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -242,7 +241,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Dec  5 21:24:42 2014
+    Generated by Epydoc 3.0.1 on Sat Dec  6 07:51:16 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
