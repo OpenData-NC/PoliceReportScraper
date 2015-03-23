@@ -1,84 +1,81 @@
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.db.models import Q
 from models import Arrest_test
 from itertools import chain
+from operator import and_, or_
 import datetime
 import os
 import re
-
-def djangotest(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
-
-def usermanual(request):
-    full_path = os.path.realpath(__file__)
-    file_path = '%s/usermanual' % os.path.dirname(full_path) 
-    with open(file_path) as file:
-	html = file.readlines()
-    return HttpResponse(html)    
 
 def search(request):
     return render(request, 'SearchPage.html')
 
 def result(request):
 
-    entry = request.META["QUERY_STRING"]
-    entry_list = entry.split("&")
-    entry_dict = {}
+    entry=request.META["QUERY_STRING"]
+    entry=entry.replace("+"," ")
+    #entry=entry.replace("%2B","+")
+#entry_dict[i] = entry_dict[i].replace("%2B", " ")
+    entry_list=entry.split("&")
+    entry_dict={}
+    entry_dict['agency']=[]
     for item in entry_list:
-	item_split = item.split("=")
-	entry_dict[item_split[0]] = item_split[1]
-    entry = entry_dict['searchbar']
-
-    QuerySet = Arrest_test.objects.all()
+	item_split=item.split("=")
+	if(item_split[0]=="agency"):
+		entry_dict[item_split[0]].append(item_split[1])
+	else:
+		entry_dict[item_split[0]]=item_split[1]
 
     def filterByName(QuerySet, stringFilter):
-        return QuerySet.filter(name__icontains=stringFilter)
-    def filterByAgency(QuerySet, stringFilter):
-        return QuerySet.filter(agency__icontains=stringFilter)
+        return QuerySet.filter(Name__icontains=stringFilter)
+    def filterByAgencyName(QuerySet, stringFilter):
+        return QuerySet.filter(Agency_Name__icontains=stringFilter)
     def filterByCharge(QuerySet, stringFilter):
-        return QuerySet.filter(charge__icontains=stringFilter)
+        return QuerySet.filter(Charge1__icontains=stringFilter)
     def filterByRace(QuerySet, stringFilter):
-        return QuerySet.filter(race__icontains=stringFilter)
+        return QuerySet.filter(Race__icontains=stringFilter)
     def filterByAddress(QuerySet, stringFilter):
-        return QuerySet.filter(address__icontains=stringFilter)
-    def filterByOffenseCode(QuerySet, stringFilter):
-        return QuerySet.filter(offense_code__icontains=stringFilter)
-    def filterByReportingOfficer(QuerySet, stringFilter):
-        return QuerySet.filter(reporting_officer__icontains=stringFilter)
-    def filterByStreetAddress(QuerySet, stringFilter):
-        return QuerySet.filter(street_address__icontains=stringFilter)
-    def filterByCity(QuerySet, stringFilter):
-        return QuerySet.filter(city__icontains=stringFilter)
-    def filterByCounty(QuerySet, stringFilter):
-        return QuerySet.filter(county__icontains=stringFilter)
-    def filterByState(QuerySet, stringFilter):
-        return QuerySet.filter(state__icontains=stringFilter)
+        return QuerySet.filter(Address__icontains=stringFilter)
+    def filterByChargeCode(QuerySet, stringFilter):
+        return QuerySet.filter(Charge1_DCI_Code__icontains=stringFilter)
+    def filterByArrestingOfficer(QuerySet, stringFilter):
+        return QuerySet.filter(Arresting_Officer_Signature__icontains=stringFilter)
+    def filterByPlaceofArrest(QuerySet, stringFilter):
+        return QuerySet.filter(Place_of_Arrest__icontains=stringFilter)
     def filterBySex(QuerySet, stringFilter):
-        return QuerySet.filter(sex__icontains=stringFilter)
+        return QuerySet.filter(Sex__icontains=stringFilter)
 
     def filterByAge(QuerySet, intFilter):
-        return QuerySet.filter(age=intFilter)
-    def filterByZip(QuerySet, intFilter):
-        return QuerySet.filter(zip=intFilter)
+        return QuerySet.filter(Age=intFilter)
+
+    def filterByDateArrested(QuerySet, lowerBound, upperBound):
+        return QuerySet.filter(Date_Arrested__range=[lowerBound, upperBound])
 
     def filterBySearchbar(QuerySet, stringFilter):
         stringFilter = stringFilter.replace("+", " ")
-        QuerySet = QuerySet.filter(Q(name__icontains=stringFilter) | Q(agency__icontains=stringFilter) | Q(charge__icontains=stringFilter) | Q(race__icontains=stringFilter) | Q(address__icontains=stringFilter) | Q(offense_code__icontains=stringFilter) | Q(reporting_officer__icontains=stringFilter) | Q(street_address__icontains=stringFilter) | Q(city__icontains=stringFilter) | Q(state__icontains=stringFilter) | Q(sex__icontains=stringFilter))
+        QuerySet = QuerySet.filter(Q(Name__icontains=stringFilter) | Q(Agency_Name__icontains=stringFilter) | Q(Charge1__icontains=stringFilter) | Q(Race__icontains=stringFilter) | Q(Address__icontains=stringFilter) | Q(Charge1_DCI_Code__icontains=stringFilter) | Q(Arresting_Officer_Signature__icontains=stringFilter) | Q(Place_of_Arrest__icontains=stringFilter) | Q(Sex__icontains=stringFilter))
         return QuerySet
 
-    outputList = []
+    agencyList = []
+    querySetList = []
+    firstDateString = ''
+    secondDateString = ''
+    firstDateReached = False
+    secondDateReached = False
+    QuerySet = Arrest_test.objects.all()
+
     for i in entry_dict.keys():
+        #entry_dict[i] = entry_dict[i].replace("+", " ")
         if i == 'searchbar':
             if(entry_dict[i] != ''):
                 QuerySet = filterBySearchbar(QuerySet, entry_dict[i])                
         if i == 'name':
             QuerySet = filterByName(QuerySet, entry_dict[i])
         if i == 'agency':
-            QuerySet = filterByAgency(QuerySet, entry_dict[i])
+            agencyList=entry_dict[i]
         if i == 'charge':
             QuerySet = filterByCharge(QuerySet, entry_dict[i])
         if i == 'race':
@@ -88,28 +85,46 @@ def result(request):
         if i == 'offenseCode':
             QuerySet = filterByOffenseCode(QuerySet, entry_dict[i])
         if i == 'officerinvolved':
-            QuerySet = filterByReportingOfficer(QuerySet, entry_dict[i])
-        if i == 'streetaddress':
-            QuerySet = filterByStreetAddress(QuerySet, entry_dict[i])
-        if i == 'city':
-            QuerySet = filterByCity(QuerySet, entry_dict[i])
-        if i == 'county':
-            QuerySet = filterByCounty(QuerySet, entry_dict[i])
-        if i == 'state':
-            QuerySet = filterByState(QuerySet, entry_dict[i])
+            QuerySet = filterByArrestingOfficer(QuerySet, entry_dict[i])
         if i == 'sex':
             QuerySet = filterBySex(QuerySet, entry_dict[i])
-        if i == 'zip':
-            QuerySet = filterByZip(QuerySet, entry_dict[i])
         if i == 'age':
             QuerySet = filterByAge(QuerySet, entry_dict[i])
+        if i == 'from':
+            firstDateString = entry_dict[i]
+            firstDateReached = True
+        if i == 'to':
+            secondDateString = entry_dict[i]
+#            firstDateString = entry_dict[i]
+            secondDateReached = True
+        if firstDateReached == True:
+            if secondDateReached == True:    
+                firstDate = datetime.date(int(firstDateString[:4]), int(firstDateString[5:7]), int(firstDateString[8:10]))
+                secondDate = datetime.date(int(secondDateString[:4]), int(secondDateString[5:7]), int(secondDateString[8:10]))
+                QuerySet = filterByDateOccurred(QuerySet, firstDate, secondDate)
+	
+        for a in agencyList:
+            temporaryQuerySet = QuerySet.filter(Agency_Name__icontains=a)
+            querySetList.append(temporaryQuerySet)
 
-    for j in QuerySet:
-        outputList.append(j)
+    outputList = []
+    for k in querySetList:
+        QuerySet = reduce(or_, querySetList)
+    masterQuerySet = reduce(or_, querySetList[1:], querySetList[0])
 
-    context = {'outputList': outputList}
+    context = {'outputList':outputList, 'QuerySet':masterQuerySet}
+
     return render(request, 'ResultPage.html', context)
 
-#def detail(request):
-#    return render(request, RenderedResultString, '130.211.132.6/result')
+def detail(request):
+     
+     OCARequest=request.META["QUERY_STRING"]
+     def filterByOCA(QuerySet, intFilter):
+         return QuerySet.filter(OCA=intFilter)
+
+     QuerySet = Arrest_test.objects.all()
+     QuerySet = filterByOCA(QuerySet, OCARequest)
+     
+     context={'QuerySet':QuerySet}
+     return render(request, 'DetailPage.html', context)
 
