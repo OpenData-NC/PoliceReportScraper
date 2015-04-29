@@ -1067,10 +1067,13 @@ def pairCheckmarkData(chkData, flistChunk, state):
 def getSinglePDFObj(filepath):
     """Takes as input the filepath to a converted .xml file and returns the python dictionary with the the key-value pairs from that report."""
     listOfLines, extras = getFileLinesList(filepath)
-    dlist, flist = createLineIndex(listOfLines)
-    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
-    pdfObj = processLists(dlist, flist, snl, extras)
-    return pdfObj
+    if (len(listOfLines) > 10):
+        dlist, flist = createLineIndex(listOfLines)
+        snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
+        pdfObj = processLists(dlist, flist, snl, extras)
+        return pdfObj
+    else:
+        return "NULL" #something went wrong with ghostscript and/or conversion of pdf to xml file
     
 
 #analagous usage but directoryPath is path to directory folder rather than file
@@ -1081,7 +1084,8 @@ def createPDFList(directoryPath):
     for filename in os.listdir(directoryPath):
         print "operating on file " + filename + "..."
         pdfObj = getSinglePDFObj(directoryPath+filename)
-        pdfObjects.append(pdfObj)
+        if (pdfObj != "NULL"):
+            pdfObjects.append(pdfObj)
     return pdfObjects
 
 def createPDFDict(directoryPath):
@@ -1099,7 +1103,6 @@ def createPDFDict(directoryPath):
 
 
 #snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
-#
 
 
 def printPDFDict(pdfDict):
