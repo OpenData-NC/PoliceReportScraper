@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml>
+<page number="1" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="0" size="7" family="Times" color="#000000"/>
+	<fontspec id="1" size="7" family="Times" color="#000000"/>
+	<fontspec id="2" size="10" family="Times" color="#000000"/>
+	<fontspec id="3" size="8" family="Times" color="#000000"/>
+	<fontspec id="4" size="13" family="Times" color="#000000"/>
+	<fontspec id="5" size="14" family="Times" color="#000000"/>
+	<fontspec id="6" size="11" family="Times" color="#000000"/>
+	<fontspec id="7" size="10" family="Courier" color="#000000"/>
+	<fontspec id="8" size="11" family="Courier" color="#000000"/>
+<text top="262" left="863" width="16" height="9" font="0">Unk</text>
+<text top="262" left="826" width="12" height="9" font="0">No</text>
+<text top="262" left="785" width="16" height="9" font="0">Yes</text>
+<text top="571" left="721" width="71" height="9" font="0">Inventory on File?</text>
+<text top="394" left="343" width="12" height="9" font="0">Fel</text>
+<text top="407" left="343" width="19" height="9" font="0">Misd</text>
+<text top="58" left="74" width="57" height="9" font="0">Agency Name</text>
+<text top="58" left="403" width="16" height="9" font="0">ORI</text>
+<text top="58" left="689" width="20" height="9" font="0">OCA</text>
+<text top="58" left="526" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="387" left="74" width="42" height="9" font="0">Charge #1</text>
+<text top="426" left="400" width="29" height="9" font="0">Counts</text>
+<text top="540" left="74" width="30" height="9" font="0">Vehicle</text>
+<text top="542" left="155" width="53" height="9" font="0">Left at Scene</text>
+<text top="542" left="275" width="34" height="9" font="0">Secured</text>
+<text top="557" left="154" width="145" height="9" font="0">Released to other at owners request</text>
+<text top="557" left="355" width="59" height="9" font="0">Name of Other</text>
+<text top="542" left="355" width="39" height="9" font="0">Unsecure</text>
+<text top="571" left="155" width="45" height="9" font="0">Impounded</text>
+<text top="571" left="237" width="65" height="9" font="0">Place of storage</text>
+<text top="357" left="293" width="35" height="9" font="0">On-View</text>
+<text top="357" left="371" width="76" height="9" font="0">Criminal Summons</text>
+<text top="371" left="295" width="62" height="9" font="0">Order for Arrest</text>
+<text top="244" left="768" width="98" height="9" font="0">Consumed Drug/Alcohol</text>
+<text top="133" left="74" width="103" height="9" font="0">Name (Last, First, Middle)</text>
+<text top="183" left="748" width="36" height="9" font="0">Resident</text>
+<text top="198" left="748" width="55" height="9" font="0">Non-Resident</text>
+<text top="183" left="826" width="38" height="9" font="0">Unknown</text>
+<text top="133" left="623" width="16" height="9" font="0">Sex</text>
+<text top="179" left="458" width="26" height="9" font="0">Phone</text>
+<text top="213" left="769" width="26" height="9" font="0">Phone</text>
+<text top="179" left="74" width="66" height="9" font="0">Current Address</text>
+<text top="213" left="74" width="71" height="9" font="0">Employer's Name</text>
+<text top="505" left="74" width="19" height="9" font="0">VYR</text>
+<text top="505" left="129" width="22" height="9" font="0">Make</text>
+<text top="505" left="219" width="24" height="9" font="0">Model</text>
+<text top="505" left="309" width="20" height="9" font="0">Style</text>
+<text top="505" left="407" width="22" height="9" font="0">Color</text>
+<text top="505" left="469" width="51" height="9" font="0">Plate #/State</text>
+<text top="505" left="615" width="15" height="9" font="0">VIN</text>
+<text top="133" left="584" width="21" height="9" font="0">Race</text>
+<text top="133" left="481" width="27" height="9" font="0">D.O.B.</text>
+<text top="689" left="36" width="27" height="9" font="1"><b>Status</b></text>
+<text top="698" left="36" width="27" height="9" font="1"><b>Codes</b></text>
+<text top="693" left="76" width="555" height="9" font="0">L - Lost         S - Stolen         R - Recovered         D - Damaged         Z - Seized         B - Burned         C - Counterfeit / Forged         F - Found</text>
+<text top="720" left="81" width="15" height="9" font="0">DCI</text>
+<text top="720" left="115" width="25" height="9" font="0">Status</text>
+<text top="720" left="171" width="33" height="9" font="0">Quantity</text>
+<text top="720" left="241" width="57" height="9" font="0">Type Measure</text>
+<text top="720" left="413" width="65" height="9" font="0">Suspected Type</text>
+<text top="94" left="86" width="25" height="9" font="0">Taken</text>
+<text top="106" left="90" width="23" height="9" font="0">Prints</text>
+<text top="118" left="90" width="28" height="9" font="0">Photos</text>
+<text top="94" left="128" width="148" height="9" font="0">Fingerprint Card Check Digit # (CKN)</text>
+<text top="94" left="403" width="47" height="9" font="0">Arrest Tract</text>
+<text top="94" left="527" width="66" height="9" font="0">Residence Tract</text>
+<text top="94" left="674" width="58" height="9" font="0">Arrest Number</text>
+<text top="133" left="547" width="16" height="9" font="0">Age</text>
+<text top="133" left="694" width="53" height="9" font="0">Place of Birth</text>
+<text top="143" left="815" width="44" height="9" font="0">Citizenship</text>
+<text top="213" left="422" width="33" height="9" font="0">Address</text>
+<text top="179" left="605" width="46" height="9" font="0">Occupation</text>
+<text top="278" left="74" width="87" height="9" font="0">Scars, Marks, Tattoos</text>
+<text top="244" left="490" width="14" height="9" font="0">Hgt</text>
+<text top="244" left="543" width="16" height="9" font="0">Wgt</text>
+<text top="244" left="597" width="16" height="9" font="0">Hair</text>
+<text top="244" left="74" width="119" height="9" font="0">Also Known As (Alias Names)</text>
+<text top="244" left="656" width="20" height="9" font="0">Eyes</text>
+<text top="278" left="404" width="67" height="9" font="0">Social Security #</text>
+<text top="278" left="558" width="59" height="9" font="0">OLN and State</text>
+<text top="278" left="710" width="68" height="9" font="0">Misc. # and Type</text>
+<text top="244" left="712" width="41" height="9" font="0">Skin Tone</text>
+<text top="319" left="74" width="93" height="9" font="0">Nearest Relative Name</text>
+<text top="319" left="422" width="33" height="9" font="0">Address</text>
+<text top="319" left="741" width="26" height="9" font="0">Phone</text>
+<text top="352" left="533" width="59" height="9" font="0">Place of Arrest</text>
+<text top="426" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="426" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="426" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="426" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="387" left="400" width="29" height="9" font="0">Counts</text>
+<text top="387" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="387" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="387" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="387" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="466" left="400" width="29" height="9" font="0">Counts</text>
+<text top="466" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="466" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="466" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="466" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="426" left="74" width="42" height="9" font="0">Charge #2</text>
+<text top="466" left="74" width="42" height="9" font="0">Charge #3</text>
+<text top="542" left="125" width="8" height="9" font="0">1.</text>
+<text top="557" left="125" width="8" height="9" font="0">2.</text>
+<text top="571" left="125" width="8" height="9" font="0">3.</text>
+<text top="542" left="471" width="41" height="9" font="0">Date/Time</text>
+<text top="58" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="69" left="39" width="9" height="12" font="2"><b>G</b></text>
+<text top="80" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="92" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="103" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="114" left="40" width="8" height="12" font="2"><b>Y</b></text>
+<text top="712" left="675" width="154" height="9" font="0">Check up to 3 types of activity for each</text>
+<text top="729" left="611" width="34" height="9" font="0">Possess</text>
+<text top="729" left="665" width="16" height="9" font="0">Buy</text>
+<text top="729" left="698" width="18" height="9" font="0">Sale</text>
+<text top="729" left="733" width="17" height="9" font="0">Mfg.</text>
+<text top="729" left="772" width="37" height="9" font="0">Importing</text>
+<text top="729" left="831" width="40" height="9" font="0">Operating</text>
+<text top="191" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="214" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="203" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="238" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="263" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="227" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="250" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="275" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="69" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="80" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="92" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="103" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="133" left="818" width="41" height="9" font="0">Country of</text>
+<text top="215" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="227" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="238" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="249" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="352" left="74" width="105" height="9" font="0">If Armed, Type of Weapon</text>
+<text top="433" left="343" width="12" height="9" font="0">Fel</text>
+<text top="447" left="343" width="19" height="9" font="0">Misd</text>
+<text top="472" left="343" width="12" height="9" font="0">Fel</text>
+<text top="486" left="343" width="19" height="9" font="0">Misd</text>
+<text top="394" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="418" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="407" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="442" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="430" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="454" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="407" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="418" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="429" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="440" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="527" left="39" width="8" height="12" font="2"><b>V</b></text>
+<text top="551" left="40" width="9" height="12" font="2"><b>H</b></text>
+<text top="539" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="523" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="534" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="545" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="556" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="588" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="610" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="599" left="39" width="9" height="12" font="2"><b>O</b></text>
+<text top="622" left="40" width="7" height="12" font="2"><b>F</b></text>
+<text top="644" left="39" width="9" height="12" font="2"><b>N</b></text>
+<text top="633" left="41" width="3" height="12" font="2"><b>I</b></text>
+<text top="655" left="39" width="8" height="12" font="2"><b>E</b></text>
+<text top="667" left="39" width="9" height="12" font="2"><b>D</b></text>
+<text top="769" left="36" width="8" height="10" font="3"><b>D</b></text>
+<text top="791" left="36" width="8" height="10" font="3"><b>U</b></text>
+<text top="780" left="36" width="8" height="10" font="3"><b>R</b></text>
+<text top="814" left="36" width="7" height="10" font="3"><b>S</b></text>
+<text top="802" left="36" width="8" height="10" font="3"><b>G</b></text>
+<text top="786" left="47" width="8" height="10" font="3"><b>A</b></text>
+<text top="797" left="47" width="6" height="10" font="3"><b>T</b></text>
+<text top="765" left="57" width="8" height="10" font="3"><b>A</b></text>
+<text top="786" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="775" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="806" left="56" width="7" height="10" font="3"><b>S</b></text>
+<text top="796" left="56" width="7" height="10" font="3"><b>E</b></text>
+<text top="816" left="57" width="6" height="10" font="3"><b>T</b></text>
+<text top="897" left="117" width="51" height="9" font="0">Complainant</text>
+<text top="897" left="216" width="24" height="9" font="0">Victim</text>
+<text top="897" left="74" width="26" height="9" font="0">Name:</text>
+<text top="897" left="425" width="33" height="9" font="0">Address</text>
+<text top="897" left="749" width="29" height="9" font="0">Phone:</text>
+<text top="941" left="45" width="8" height="10" font="3"><b>N</b></text>
+<text top="961" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="951" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="981" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="1002" left="47" width="3" height="10" font="3"><b>I</b></text>
+<text top="971" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="991" left="46" width="6" height="10" font="3"><b>T</b></text>
+<text top="1022" left="45" width="7" height="10" font="3"><b>E</b></text>
+<text top="1012" left="45" width="7" height="10" font="3"><b>V</b></text>
+<text top="1039" left="74" width="125" height="9" font="0">Arresting Officer Signature/ID #</text>
+<text top="1039" left="386" width="84" height="9" font="0">Date/Time Submitted</text>
+<text top="1039" left="581" width="84" height="9" font="0">Supervisor Signature</text>
+<text top="1075" left="74" width="51" height="9" font="0">Case Status:</text>
+<text top="1089" left="92" width="46" height="9" font="0">Further Inv.</text>
+<text top="1102" left="161" width="28" height="9" font="0">Closed</text>
+<text top="1102" left="91" width="31" height="9" font="0">Inactive</text>
+<text top="1075" left="220" width="70" height="9" font="0">Case Disposition:</text>
+<text top="1089" left="238" width="174" height="9" font="0">Cleared By Arrest / No Supplement Needed</text>
+<text top="1102" left="237" width="96" height="9" font="0">Arrest / No Investigation</text>
+<text top="1075" left="477" width="75" height="9" font="0">Arrestee Signature</text>
+<text top="1119" left="848" width="38" height="9" font="0">Rev. 3/92</text>
+<text top="1119" left="76" width="39" height="9" font="0">DCI-608F</text>
+<text top="1040" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="1064" left="41" width="9" height="12" font="2"><b>A</b></text>
+<text top="1052" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1087" left="41" width="9" height="12" font="2"><b>U</b></text>
+<text top="1076" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1100" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="895" left="45" width="8" height="10" font="3"><b>C</b></text>
+<text top="915" left="45" width="9" height="10" font="3"><b>M</b></text>
+<text top="905" left="45" width="8" height="10" font="3"><b>O</b></text>
+<text top="925" left="45" width="7" height="10" font="3"><b>P</b></text>
+<text top="371" left="390" width="30" height="9" font="0">Citation</text>
+<text top="371" left="454" width="32" height="9" font="0">Warrant</text>
+<text top="587" left="74" width="80" height="9" font="0">Date/Time Confined</text>
+<text top="587" left="279" width="61" height="9" font="0">Place Confined</text>
+<text top="587" left="630" width="90" height="9" font="0">Committing Magistrate</text>
+<text top="616" left="74" width="44" height="9" font="0">Type Bond</text>
+<text top="629" left="101" width="64" height="9" font="0">Written Promise</text>
+<text top="642" left="101" width="34" height="9" font="0">Secured</text>
+<text top="629" left="192" width="44" height="9" font="0">Unsecured</text>
+<text top="642" left="161" width="35" height="9" font="0">No Bond</text>
+<text top="642" left="225" width="23" height="9" font="0">Other</text>
+<text top="616" left="277" width="55" height="9" font="0">Bond Amount</text>
+<text top="616" left="407" width="39" height="9" font="0">Trial Date</text>
+<text top="616" left="559" width="34" height="9" font="0">Court Of</text>
+<text top="616" left="719" width="15" height="9" font="0">City</text>
+<text top="658" left="74" width="110" height="9" font="0">Assisting Officer Name/ID #</text>
+<text top="658" left="416" width="152" height="9" font="0">Released By (Name/Department/ID #)</text>
+<text top="658" left="714" width="82" height="9" font="0">Date/Time Released</text>
+<text top="610" left="54" width="9" height="12" font="2"><b>B</b></text>
+<text top="633" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="622" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="644" left="54" width="9" height="12" font="2"><b>D</b></text>
+<text top="32" left="399" width="128" height="15" font="4"><b>ARREST REPORT</b></text>
+<text top="75" left="76" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="113" left="680" width="50" height="15" font="4"><b>107223</b></text>
+<text top="75" left="401" width="247" height="15" font="4"><b>0120100   B0003 09/14/2014  01:00</b></text>
+<text top="154" left="73" width="189" height="16" font="5"><b>LOPEZ, HENRY ANIBAL</b></text>
+<text top="155" left="457" width="68" height="13" font="6"><b>04/29/1993</b></text>
+<text top="156" left="544" width="17" height="15" font="4"><b>21</b></text>
+<text top="156" left="586" width="11" height="15" font="4"><b>H</b></text>
+<text top="156" left="621" width="12" height="15" font="4"><b>M</b></text>
+<text top="193" left="76" width="277" height="15" font="4"><b>107 Evans St, MORGANTON, NC 28655</b></text>
+<text top="113" left="407" width="33" height="15" font="4"><b>3200</b></text>
+<text top="113" left="532" width="33" height="15" font="4"><b>2400</b></text>
+<text top="75" left="696" width="75" height="15" font="4"><b>201406160</b></text>
+<text top="258" left="492" width="8" height="15" font="4"><b> '</b></text>
+<text top="258" left="546" width="8" height="15" font="4"><b>0</b></text>
+<text top="181" left="814" width="7" height="9" font="7"><b>X</b></text>
+<text top="260" left="774" width="7" height="9" font="7"><b>X</b></text>
+<text top="395" left="72" width="21" height="12" font="2"><b>Dwi</b></text>
+<text top="435" left="72" width="191" height="12" font="2"><b>Open Container After Consuming</b></text>
+<text top="474" left="72" width="125" height="12" font="2"><b>No Operators License</b></text>
+<text top="369" left="535" width="217" height="15" font="4"><b>499 HOGAN ST, MORGANTON</b></text>
+<text top="446" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="369" left="76" width="179" height="15" font="4"><b>NOT APPLICABLE/NONE</b></text>
+<text top="446" left="471" width="33" height="15" font="4"><b>2100</b></text>
+<text top="447" left="730" width="72" height="13" font="6"><b>20-138.7(A)</b></text>
+<text top="448" left="818" width="60" height="12" font="2"><b>09/14/2014</b></text>
+<text top="407" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="407" left="471" width="33" height="15" font="4"><b>2100</b></text>
+<text top="408" left="739" width="53" height="13" font="6"><b>20-138.1</b></text>
+<text top="409" left="818" width="60" height="12" font="2"><b>09/14/2014</b></text>
+<text top="485" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="485" left="471" width="33" height="15" font="4"><b>4010</b></text>
+<text top="486" left="743" width="46" height="13" font="6"><b>20-7(A)</b></text>
+<text top="486" left="818" width="60" height="12" font="2"><b>09/14/2014</b></text>
+<text top="354" left="280" width="7" height="9" font="7"><b>X</b></text>
+<text top="406" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="445" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="485" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="521" left="75" width="33" height="15" font="4"><b>2005</b></text>
+<text top="521" left="130" width="44" height="15" font="4"><b>HOND</b></text>
+<text top="521" left="219" width="40" height="15" font="4"><b>CIVIC</b></text>
+<text top="521" left="308" width="19" height="15" font="4"><b>2D</b></text>
+<text top="522" left="405" width="21" height="13" font="6"><b>SIL</b></text>
+<text top="521" left="468" width="303" height="15" font="4"><b>VCA3504    VA 2015 1HGEM22985L002202</b></text>
+<text top="633" left="559" width="46" height="13" font="6"><b>District</b></text>
+<text top="633" left="720" width="90" height="13" font="6"><b>MORGANTON</b></text>
+<text top="598" left="630" width="130" height="13" font="6"><b>DAVID WHITESIDES</b></text>
+<text top="598" left="281" width="121" height="13" font="6"><b>BURKE CATAWBA</b></text>
+<text top="598" left="77" width="125" height="13" font="6"><b>09/14/2014 03:58:00</b></text>
+<text top="634" left="408" width="106" height="13" font="6"><b>11/12/2014 09:00</b></text>
+<text top="634" left="333" width="60" height="13" font="6"><b>$1,000.00</b></text>
+<text top="538" left="520" width="97" height="12" font="2"><b>09/14/2014  00:00</b></text>
+<text top="570" left="142" width="7" height="9" font="7"><b>X</b></text>
+<text top="641" left="89" width="7" height="9" font="7"><b>X</b></text>
+<text top="670" left="74" width="88" height="13" font="6"><b>STORIE, C. D.</b></text>
+<text top="670" left="317" width="8" height="13" font="6"><b>2</b></text>
+<text top="1055" left="139" width="170" height="15" font="4"><b>CONNOR, E. W. (C7903)</b></text>
+<text top="1055" left="586" width="127" height="15" font="4"><b>BUCHANAN, J. B.</b></text>
+<text top="941" left="76" width="778" height="11" font="8"><b>On September 14, 2014 at 0100 hours, I was patrolling the area of E Fleming Dr when I observed a</b></text>
+<text top="956" left="76" width="769" height="11" font="8"><b>silver Honda Civic turning onto E Fleming Dr from Bethel St.  I observed the silver Honda Civic</b></text>
+<text top="971" left="76" width="794" height="11" font="8"><b>travel straight, across 5 full lanes of travel, onto E Fleming Dr.  The vehicle appeared not to be</b></text>
+<text top="987" left="76" width="761" height="11" font="8"><b>turning, but was vehicle made a sudden left turn before it struck the curb, barely missing the</b></text>
+<text top="1002" left="76" width="753" height="11" font="8"><b>curb by about 3 feet.  I was directly behind the vehicle when the vehicle traveled in the far</b></text>
+<text top="1056" left="416" width="122" height="15" font="4"><b>09/14/2014  18:05</b></text>
+<text top="1100" left="148" width="7" height="9" font="7"><b>X</b></text>
+<text top="1087" left="225" width="7" height="9" font="7"><b>X</b></text>
+<text top="1023" left="771" width="108" height="9" font="7"><b>** Continued **</b></text>
+</page>
+<page number="2" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="9" size="10" family="Times" color="#000000"/>
+	<fontspec id="10" size="13" family="Times" color="#000000"/>
+<text top="40" left="324" width="289" height="15" font="4"><b>ARREST REPORT  (Additional Narrative)</b></text>
+<text top="69" left="55" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="401" width="16" height="9" font="0">ORI</text>
+<text top="69" left="688" width="20" height="9" font="0">OCA</text>
+<text top="69" left="525" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="673" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="55" width="60" height="9" font="0">Arrestee Name</text>
+<text top="90" left="56" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="128" left="678" width="50" height="15" font="4"><b>107223</b></text>
+<text top="90" left="400" width="247" height="15" font="4"><b>0120100   B0003 09/14/2014  01:00</b></text>
+<text top="126" left="57" width="189" height="16" font="5"><b>LOPEZ, HENRY ANIBAL</b></text>
+<text top="90" left="694" width="75" height="15" font="4"><b>201406160</b></text>
+<text top="167" left="64" width="778" height="11" font="8"><b>right travel lane of E Fleming Dr.  I then started to initiate the traffic stop when the vehicle</b></text>
+<text top="182" left="64" width="794" height="11" font="8"><b>made a sudden right turn onto Hogan St.  The vehicle crossed over into the far left travel lane of</b></text>
+<text top="197" left="64" width="737" height="11" font="8"><b>Hogan St before making a sharp right turn to get back into the correct lane of travel.  The</b></text>
+<text top="213" left="64" width="737" height="11" font="8"><b>vehicle nearly struck the right curb on Hogan St, only missing the curb by approximately 12</b></text>
+<text top="228" left="64" width="778" height="11" font="8"><b>inches.  For fear of the vehicle wrecking and causing injury to itself or others, I turned on my</b></text>
+<text top="243" left="64" width="737" height="11" font="8"><b>red and blue emergency lights before I could complete calling in the tag to dispatch.  Upon</b></text>
+<text top="259" left="64" width="769" height="11" font="8"><b>turning my emergency lights on, the car did not come to a complete stop. The vehicle started to</b></text>
+<text top="274" left="64" width="721" height="11" font="8"><b>slow down, but continued to roll for approximately 5 full seconds before finally stopping</b></text>
+<text top="289" left="64" width="753" height="11" font="8"><b>completely.  The license plate was a Virginia issued tag that read VCA3504.  I approached the</b></text>
+<text top="305" left="64" width="745" height="11" font="8"><b>driver side of the vehicle and attempted to make contact with the driver of the silver Honda</b></text>
+<text top="320" left="64" width="794" height="11" font="8"><b>Civic, who had the window rolled up.  I tapped on the window and asked the driver to roll down the</b></text>
+<text top="335" left="64" width="737" height="11" font="8"><b>window.  The driver was delayed in responding, or even looking in my direction.  The driver</b></text>
+<text top="351" left="64" width="737" height="11" font="8"><b>rolled down the window, and I immediately detected an extremely strong odor of an alcoholic</b></text>
+<text top="366" left="64" width="794" height="11" font="8"><b>beverage.  I asked the driver if he had a drivers license, or another form of identification.  The</b></text>
+<text top="381" left="64" width="769" height="11" font="8"><b>driver was a Spanish speaking male, but could understand a little English.  The driver reported</b></text>
+<text top="397" left="64" width="769" height="11" font="8"><b>he did not have a driver`s license in this state or any other.  The driver had red glassy eyes,</b></text>
+<text top="412" left="64" width="794" height="11" font="8"><b>the driver`s speech was slurred, and the driver`s responses to questions were delayed.  The driver</b></text>
+<text top="427" left="64" width="769" height="11" font="8"><b>then attempted to retrieve his wallet.  The driver patted down all his pockets in the front and</b></text>
+<text top="443" left="64" width="786" height="11" font="8"><b>back of his person as if he did not remember if he had the wallet on him.  The driver reported he</b></text>
+<text top="458" left="64" width="786" height="11" font="8"><b>did not have a form of identification. I asked the driver if he was sure, and the driver then got</b></text>
+<text top="473" left="64" width="753" height="11" font="8"><b>his wallet out of his back pocket and handed me a bank card and an id card.  I identified the</b></text>
+<text top="489" left="64" width="794" height="11" font="8"><b>driver as Henry Annibal Mendez Lopez.  I asked the driver if he had anything to drink tonight, and</b></text>
+<text top="504" left="64" width="721" height="11" font="8"><b>he reported he had consumed 4 beers.  I asked the driver where he was coming from, and he</b></text>
+<text top="519" left="64" width="794" height="11" font="8"><b>reported La Rumba Club in Hickory, NC.  There were 3 other passengers in the vehicle.  I asked for</b></text>
+<text top="535" left="64" width="753" height="11" font="8"><b>the id`s of the other occupants, and they would not acknowledge my request.  I asked Lopez to</b></text>
+<text top="550" left="64" width="761" height="11" font="8"><b>turn off the vehicle, and place the keys on the dash.  Lopez went for the key and grabbed just</b></text>
+<text top="565" left="64" width="769" height="11" font="8"><b>short of it before finally making contact with it on the second attempt.  Lopez then placed the</b></text>
+<text top="581" left="64" width="769" height="11" font="8"><b>keys on the dash of the vehicle.  I asked Lopez if he would submit to a battery of standardized</b></text>
+<text top="596" left="64" width="786" height="11" font="8"><b>field sobriety tests, to make sure he was safe to be driving.  Lopez consented and I asked him to</b></text>
+<text top="611" left="64" width="769" height="11" font="8"><b>step to the front of my patrol vehicle.  As Lopez was exiting the vehicle, Lopez seemed to have</b></text>
+<text top="627" left="64" width="794" height="11" font="8"><b>trouble unbuckling his seat belt and was unsteady while standing up out of the silver Honda Civic.</b></text>
+<text top="642" left="64" width="769" height="11" font="8"><b>I assisted Lopez out of the vehicle by grabbing his right arm to assist him out.  Lopez started</b></text>
+<text top="658" left="64" width="753" height="11" font="8"><b>walking to the front of my patrol vehicle, Lopez stumbled on his feet, almost falling, before</b></text>
+<text top="673" left="64" width="761" height="11" font="8"><b>finally reaching my patrol vehicle.  PSO Storie then arrived as my backup officer.  PSO Storie</b></text>
+<text top="688" left="64" width="778" height="11" font="8"><b>administered a roadside PBT test which indicated a positive reading for the presence of alcohol.</b></text>
+<text top="704" left="64" width="753" height="11" font="8"><b>Lopez submitted to HGN, but when I asked Lopez to do the Walk and turn test, Lopez refused to</b></text>
+<text top="719" left="64" width="753" height="11" font="8"><b>perform any more tests. Based on Lopez`s driving, red glassy eyes, delayed responses, delayed</b></text>
+<text top="734" left="64" width="794" height="11" font="8"><b>motor skills, admission to consuming alcohol, unsteady balance, and the sfst that Lopez performed,</b></text>
+<text top="750" left="64" width="713" height="11" font="8"><b>I formed the opinion that Henry Lopez had consumed a sufficient quantity of an impairing</b></text>
+<text top="765" left="64" width="778" height="11" font="8"><b>substance such that his mental and physical faculties were appreciably impaired.  I placed Lopez</b></text>
+<text top="780" left="64" width="761" height="11" font="8"><b>under arrest for DWI.  I had dispatch call an interpreter to meet at Burke Catawba Confinement</b></text>
+<text top="796" left="64" width="769" height="11" font="8"><b>Facility to translate for the breath test.  PSO Storie and myself had all three passengers exit</b></text>
+<text top="811" left="64" width="753" height="11" font="8"><b>the vehicle.  PSO Storie searched the vehicle and located an open container of Bud Light Lime</b></text>
+<text top="826" left="64" width="786" height="11" font="8"><b>under the front driver`s side seat.  I had dispatch have next rotation towing company to come get</b></text>
+<text top="842" left="64" width="769" height="11" font="8"><b>the vehicle.  The other passengers of the silver Honda Civic indicated they would walk to their</b></text>
+<text top="857" left="64" width="737" height="11" font="8"><b>house from where the silver Honda Civic was stopped.  PSO Storie stood by the vehicle until</b></text>
+<text top="872" left="64" width="794" height="11" font="8"><b>Ramsey`s Towing company arrived while I transported Lopez to Burke Catawba for Breath Tests.  When</b></text>
+<text top="888" left="64" width="713" height="11" font="8"><b>I arrived at Burke Catawba, PSO Stotts was the chemical analyst and Reggie Moore was the</b></text>
+<text top="903" left="64" width="786" height="11" font="8"><b>interpreter.  PSO Stotts administered the Breath Tests. PSO Stotts advised me that Lopez`s breath</b></text>
+<text top="918" left="64" width="794" height="11" font="8"><b>returned a reading of .18 BAC.  I transported Lopez to the Burke County Magistrate`s Office, where</b></text>
+<text top="934" left="64" width="769" height="11" font="8"><b>his bond was set for $1000.00 secured bond for the DWI charge.  I issued Lopez citations for No</b></text>
+<text top="949" left="64" width="745" height="11" font="8"><b>Operators License, driving left of center, possession of an open container, and careless and</b></text>
+<text top="964" left="64" width="753" height="11" font="8"><b>reckless driving.  I transported Lopez back to Burke Catawba where he was released into their</b></text>
+<text top="980" left="64" width="65" height="11" font="8"><b>custody.</b></text>
+<text top="1116" left="45" width="187" height="12" font="9"><i>Arrest Report (Additional Narrative)</i></text>
+<text top="1114" left="827" width="48" height="14" font="10">Page 2</text>
+</page>
+<page number="3" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="11" size="10" family="Times" color="#000000"/>
+<text top="40" left="325" width="284" height="15" font="4"><b>ARREST REPORT  (Additional Charges)</b></text>
+<text top="69" left="43" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="408" width="16" height="9" font="0">ORI</text>
+<text top="69" left="695" width="20" height="9" font="0">OCA</text>
+<text top="69" left="532" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="679" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="43" width="60" height="9" font="0">Arrestee Name</text>
+<text top="173" left="41" width="39" height="12" font="11">Charge</text>
+<text top="173" left="397" width="38" height="12" font="11">Counts</text>
+<text top="173" left="462" width="53" height="12" font="11">DCI Code</text>
+<text top="173" left="532" width="105" height="12" font="11">Offense Jurisdiction</text>
+<text top="173" left="749" width="48" height="12" font="11">Statute #</text>
+<text top="173" left="826" width="58" height="12" font="11">Warr. Date</text>
+<text top="173" left="337" width="45" height="12" font="11">Fel/Misd</text>
+<text top="163" left="541" width="94" height="9" font="0">(if not arresting agency)</text>
+<text top="90" left="41" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="128" left="683" width="50" height="15" font="4"><b>107223</b></text>
+<text top="90" left="404" width="247" height="15" font="4"><b>0120100   B0003 09/14/2014  01:00</b></text>
+<text top="126" left="44" width="189" height="16" font="5"><b>LOPEZ, HENRY ANIBAL</b></text>
+<text top="90" left="698" width="75" height="15" font="4"><b>201406160</b></text>
+<text top="196" left="82" width="203" height="12" font="2"><b>Reckless Driving Wanton Disregard</b></text>
+<text top="194" left="392" width="8" height="15" font="4"><b>1</b></text>
+<text top="194" left="467" width="33" height="15" font="4"><b>4010</b></text>
+<text top="195" left="731" width="61" height="13" font="6"><b>20-140(A)</b></text>
+<text top="196" left="817" width="60" height="12" font="2"><b>09/14/2014</b></text>
+<text top="194" left="344" width="12" height="15" font="4"><b>M</b></text>
+<text top="198" left="61" width="12" height="13" font="6"><b>4)</b></text>
+<text top="237" left="82" width="80" height="12" font="2"><b>Left Of Center</b></text>
+<text top="235" left="392" width="8" height="15" font="4"><b>1</b></text>
+<text top="235" left="467" width="33" height="15" font="4"><b>4010</b></text>
+<text top="236" left="731" width="61" height="13" font="6"><b>20-150(D)</b></text>
+<text top="237" left="817" width="60" height="12" font="2"><b>09/14/2014</b></text>
+<text top="235" left="344" width="12" height="15" font="4"><b>M</b></text>
+<text top="238" left="61" width="12" height="13" font="6"><b>5)</b></text>
+<text top="1116" left="43" width="184" height="12" font="9"><i>Arrest Report (Additional Charges)</i></text>
+<text top="1114" left="832" width="48" height="14" font="10">Page 3</text>
+</page>
+</pdf2xml>

@@ -20,11 +20,14 @@ convert() {
 	#-c starts PostScript, .setpdfwrite sets beneficial parameters, -f ends -c
 
 	xmlpath=`echo "$2"|awk -F'/' '{ print $(NF-2) }'`
-	mkdir -p "/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/xml/$xmlpath/"
-	pdftohtml -xml "/tmp/pdfs_currently_being_uploaded/$filename.pdf" "/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/xml/$xmlpath/$filename.xml"
+	#gets the name of the dir containing the dir that contains the pdfs
+	#which should be the name of the police department/type of report
+	mkdir -p "/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/extra/$xmlpath/"
+	pdftohtml -xml "/tmp/pdfs_currently_being_uploaded/$filename.pdf" "/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/extra/$xmlpath/$filename.xml"
 	#converts the actual pdf to xml with the pdftohtml utility
 
 	rm "/tmp/pdfs_currently_being_uploaded/$filename.pdf"
+
 }
 
 #if $1 is a directory

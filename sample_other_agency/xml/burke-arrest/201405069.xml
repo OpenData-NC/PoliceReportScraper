@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml>
+<page number="1" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="0" size="7" family="Times" color="#000000"/>
+	<fontspec id="1" size="7" family="Times" color="#000000"/>
+	<fontspec id="2" size="10" family="Times" color="#000000"/>
+	<fontspec id="3" size="8" family="Times" color="#000000"/>
+	<fontspec id="4" size="13" family="Times" color="#000000"/>
+	<fontspec id="5" size="14" family="Times" color="#000000"/>
+	<fontspec id="6" size="11" family="Times" color="#000000"/>
+	<fontspec id="7" size="10" family="Courier" color="#000000"/>
+	<fontspec id="8" size="11" family="Courier" color="#000000"/>
+<text top="262" left="863" width="16" height="9" font="0">Unk</text>
+<text top="262" left="826" width="12" height="9" font="0">No</text>
+<text top="262" left="785" width="16" height="9" font="0">Yes</text>
+<text top="571" left="721" width="71" height="9" font="0">Inventory on File?</text>
+<text top="394" left="343" width="12" height="9" font="0">Fel</text>
+<text top="407" left="343" width="19" height="9" font="0">Misd</text>
+<text top="58" left="74" width="57" height="9" font="0">Agency Name</text>
+<text top="58" left="403" width="16" height="9" font="0">ORI</text>
+<text top="58" left="689" width="20" height="9" font="0">OCA</text>
+<text top="58" left="526" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="387" left="74" width="42" height="9" font="0">Charge #1</text>
+<text top="426" left="400" width="29" height="9" font="0">Counts</text>
+<text top="540" left="74" width="30" height="9" font="0">Vehicle</text>
+<text top="542" left="155" width="53" height="9" font="0">Left at Scene</text>
+<text top="542" left="275" width="34" height="9" font="0">Secured</text>
+<text top="557" left="154" width="145" height="9" font="0">Released to other at owners request</text>
+<text top="557" left="355" width="59" height="9" font="0">Name of Other</text>
+<text top="542" left="355" width="39" height="9" font="0">Unsecure</text>
+<text top="571" left="155" width="45" height="9" font="0">Impounded</text>
+<text top="571" left="237" width="65" height="9" font="0">Place of storage</text>
+<text top="357" left="293" width="35" height="9" font="0">On-View</text>
+<text top="357" left="371" width="76" height="9" font="0">Criminal Summons</text>
+<text top="371" left="295" width="62" height="9" font="0">Order for Arrest</text>
+<text top="244" left="768" width="98" height="9" font="0">Consumed Drug/Alcohol</text>
+<text top="133" left="74" width="103" height="9" font="0">Name (Last, First, Middle)</text>
+<text top="183" left="748" width="36" height="9" font="0">Resident</text>
+<text top="198" left="748" width="55" height="9" font="0">Non-Resident</text>
+<text top="183" left="826" width="38" height="9" font="0">Unknown</text>
+<text top="133" left="623" width="16" height="9" font="0">Sex</text>
+<text top="179" left="458" width="26" height="9" font="0">Phone</text>
+<text top="213" left="769" width="26" height="9" font="0">Phone</text>
+<text top="179" left="74" width="66" height="9" font="0">Current Address</text>
+<text top="213" left="74" width="71" height="9" font="0">Employer's Name</text>
+<text top="505" left="74" width="19" height="9" font="0">VYR</text>
+<text top="505" left="129" width="22" height="9" font="0">Make</text>
+<text top="505" left="219" width="24" height="9" font="0">Model</text>
+<text top="505" left="309" width="20" height="9" font="0">Style</text>
+<text top="505" left="407" width="22" height="9" font="0">Color</text>
+<text top="505" left="469" width="51" height="9" font="0">Plate #/State</text>
+<text top="505" left="615" width="15" height="9" font="0">VIN</text>
+<text top="133" left="584" width="21" height="9" font="0">Race</text>
+<text top="133" left="481" width="27" height="9" font="0">D.O.B.</text>
+<text top="689" left="36" width="27" height="9" font="1"><b>Status</b></text>
+<text top="698" left="36" width="27" height="9" font="1"><b>Codes</b></text>
+<text top="693" left="76" width="555" height="9" font="0">L - Lost         S - Stolen         R - Recovered         D - Damaged         Z - Seized         B - Burned         C - Counterfeit / Forged         F - Found</text>
+<text top="720" left="81" width="15" height="9" font="0">DCI</text>
+<text top="720" left="115" width="25" height="9" font="0">Status</text>
+<text top="720" left="171" width="33" height="9" font="0">Quantity</text>
+<text top="720" left="241" width="57" height="9" font="0">Type Measure</text>
+<text top="720" left="413" width="65" height="9" font="0">Suspected Type</text>
+<text top="94" left="86" width="25" height="9" font="0">Taken</text>
+<text top="106" left="90" width="23" height="9" font="0">Prints</text>
+<text top="118" left="90" width="28" height="9" font="0">Photos</text>
+<text top="94" left="128" width="148" height="9" font="0">Fingerprint Card Check Digit # (CKN)</text>
+<text top="94" left="403" width="47" height="9" font="0">Arrest Tract</text>
+<text top="94" left="527" width="66" height="9" font="0">Residence Tract</text>
+<text top="94" left="674" width="58" height="9" font="0">Arrest Number</text>
+<text top="133" left="547" width="16" height="9" font="0">Age</text>
+<text top="133" left="694" width="53" height="9" font="0">Place of Birth</text>
+<text top="143" left="815" width="44" height="9" font="0">Citizenship</text>
+<text top="213" left="422" width="33" height="9" font="0">Address</text>
+<text top="179" left="605" width="46" height="9" font="0">Occupation</text>
+<text top="278" left="74" width="87" height="9" font="0">Scars, Marks, Tattoos</text>
+<text top="244" left="490" width="14" height="9" font="0">Hgt</text>
+<text top="244" left="543" width="16" height="9" font="0">Wgt</text>
+<text top="244" left="597" width="16" height="9" font="0">Hair</text>
+<text top="244" left="74" width="119" height="9" font="0">Also Known As (Alias Names)</text>
+<text top="244" left="656" width="20" height="9" font="0">Eyes</text>
+<text top="278" left="404" width="67" height="9" font="0">Social Security #</text>
+<text top="278" left="558" width="59" height="9" font="0">OLN and State</text>
+<text top="278" left="710" width="68" height="9" font="0">Misc. # and Type</text>
+<text top="244" left="712" width="41" height="9" font="0">Skin Tone</text>
+<text top="319" left="74" width="93" height="9" font="0">Nearest Relative Name</text>
+<text top="319" left="422" width="33" height="9" font="0">Address</text>
+<text top="319" left="741" width="26" height="9" font="0">Phone</text>
+<text top="352" left="533" width="59" height="9" font="0">Place of Arrest</text>
+<text top="426" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="426" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="426" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="426" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="387" left="400" width="29" height="9" font="0">Counts</text>
+<text top="387" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="387" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="387" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="387" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="466" left="400" width="29" height="9" font="0">Counts</text>
+<text top="466" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="466" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="466" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="466" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="426" left="74" width="42" height="9" font="0">Charge #2</text>
+<text top="466" left="74" width="42" height="9" font="0">Charge #3</text>
+<text top="542" left="125" width="8" height="9" font="0">1.</text>
+<text top="557" left="125" width="8" height="9" font="0">2.</text>
+<text top="571" left="125" width="8" height="9" font="0">3.</text>
+<text top="542" left="471" width="41" height="9" font="0">Date/Time</text>
+<text top="58" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="69" left="39" width="9" height="12" font="2"><b>G</b></text>
+<text top="80" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="92" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="103" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="114" left="40" width="8" height="12" font="2"><b>Y</b></text>
+<text top="712" left="675" width="154" height="9" font="0">Check up to 3 types of activity for each</text>
+<text top="729" left="611" width="34" height="9" font="0">Possess</text>
+<text top="729" left="665" width="16" height="9" font="0">Buy</text>
+<text top="729" left="698" width="18" height="9" font="0">Sale</text>
+<text top="729" left="733" width="17" height="9" font="0">Mfg.</text>
+<text top="729" left="772" width="37" height="9" font="0">Importing</text>
+<text top="729" left="831" width="40" height="9" font="0">Operating</text>
+<text top="191" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="214" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="203" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="238" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="263" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="227" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="250" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="275" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="69" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="80" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="92" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="103" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="133" left="818" width="41" height="9" font="0">Country of</text>
+<text top="215" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="227" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="238" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="249" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="352" left="74" width="105" height="9" font="0">If Armed, Type of Weapon</text>
+<text top="433" left="343" width="12" height="9" font="0">Fel</text>
+<text top="447" left="343" width="19" height="9" font="0">Misd</text>
+<text top="472" left="343" width="12" height="9" font="0">Fel</text>
+<text top="486" left="343" width="19" height="9" font="0">Misd</text>
+<text top="394" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="418" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="407" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="442" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="430" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="454" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="407" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="418" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="429" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="440" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="527" left="39" width="8" height="12" font="2"><b>V</b></text>
+<text top="551" left="40" width="9" height="12" font="2"><b>H</b></text>
+<text top="539" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="523" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="534" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="545" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="556" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="588" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="610" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="599" left="39" width="9" height="12" font="2"><b>O</b></text>
+<text top="622" left="40" width="7" height="12" font="2"><b>F</b></text>
+<text top="644" left="39" width="9" height="12" font="2"><b>N</b></text>
+<text top="633" left="41" width="3" height="12" font="2"><b>I</b></text>
+<text top="655" left="39" width="8" height="12" font="2"><b>E</b></text>
+<text top="667" left="39" width="9" height="12" font="2"><b>D</b></text>
+<text top="769" left="36" width="8" height="10" font="3"><b>D</b></text>
+<text top="791" left="36" width="8" height="10" font="3"><b>U</b></text>
+<text top="780" left="36" width="8" height="10" font="3"><b>R</b></text>
+<text top="814" left="36" width="7" height="10" font="3"><b>S</b></text>
+<text top="802" left="36" width="8" height="10" font="3"><b>G</b></text>
+<text top="786" left="47" width="8" height="10" font="3"><b>A</b></text>
+<text top="797" left="47" width="6" height="10" font="3"><b>T</b></text>
+<text top="765" left="57" width="8" height="10" font="3"><b>A</b></text>
+<text top="786" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="775" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="806" left="56" width="7" height="10" font="3"><b>S</b></text>
+<text top="796" left="56" width="7" height="10" font="3"><b>E</b></text>
+<text top="816" left="57" width="6" height="10" font="3"><b>T</b></text>
+<text top="897" left="117" width="51" height="9" font="0">Complainant</text>
+<text top="897" left="216" width="24" height="9" font="0">Victim</text>
+<text top="897" left="74" width="26" height="9" font="0">Name:</text>
+<text top="897" left="425" width="33" height="9" font="0">Address</text>
+<text top="897" left="749" width="29" height="9" font="0">Phone:</text>
+<text top="941" left="45" width="8" height="10" font="3"><b>N</b></text>
+<text top="961" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="951" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="981" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="1002" left="47" width="3" height="10" font="3"><b>I</b></text>
+<text top="971" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="991" left="46" width="6" height="10" font="3"><b>T</b></text>
+<text top="1022" left="45" width="7" height="10" font="3"><b>E</b></text>
+<text top="1012" left="45" width="7" height="10" font="3"><b>V</b></text>
+<text top="1039" left="74" width="125" height="9" font="0">Arresting Officer Signature/ID #</text>
+<text top="1039" left="386" width="84" height="9" font="0">Date/Time Submitted</text>
+<text top="1039" left="581" width="84" height="9" font="0">Supervisor Signature</text>
+<text top="1075" left="74" width="51" height="9" font="0">Case Status:</text>
+<text top="1089" left="92" width="46" height="9" font="0">Further Inv.</text>
+<text top="1102" left="161" width="28" height="9" font="0">Closed</text>
+<text top="1102" left="91" width="31" height="9" font="0">Inactive</text>
+<text top="1075" left="220" width="70" height="9" font="0">Case Disposition:</text>
+<text top="1089" left="238" width="174" height="9" font="0">Cleared By Arrest / No Supplement Needed</text>
+<text top="1102" left="237" width="96" height="9" font="0">Arrest / No Investigation</text>
+<text top="1075" left="477" width="75" height="9" font="0">Arrestee Signature</text>
+<text top="1119" left="848" width="38" height="9" font="0">Rev. 3/92</text>
+<text top="1119" left="76" width="39" height="9" font="0">DCI-608F</text>
+<text top="1040" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="1064" left="41" width="9" height="12" font="2"><b>A</b></text>
+<text top="1052" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1087" left="41" width="9" height="12" font="2"><b>U</b></text>
+<text top="1076" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1100" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="895" left="45" width="8" height="10" font="3"><b>C</b></text>
+<text top="915" left="45" width="9" height="10" font="3"><b>M</b></text>
+<text top="905" left="45" width="8" height="10" font="3"><b>O</b></text>
+<text top="925" left="45" width="7" height="10" font="3"><b>P</b></text>
+<text top="371" left="390" width="30" height="9" font="0">Citation</text>
+<text top="371" left="454" width="32" height="9" font="0">Warrant</text>
+<text top="587" left="74" width="80" height="9" font="0">Date/Time Confined</text>
+<text top="587" left="279" width="61" height="9" font="0">Place Confined</text>
+<text top="587" left="630" width="90" height="9" font="0">Committing Magistrate</text>
+<text top="616" left="74" width="44" height="9" font="0">Type Bond</text>
+<text top="629" left="101" width="64" height="9" font="0">Written Promise</text>
+<text top="642" left="101" width="34" height="9" font="0">Secured</text>
+<text top="629" left="192" width="44" height="9" font="0">Unsecured</text>
+<text top="642" left="161" width="35" height="9" font="0">No Bond</text>
+<text top="642" left="225" width="23" height="9" font="0">Other</text>
+<text top="616" left="277" width="55" height="9" font="0">Bond Amount</text>
+<text top="616" left="407" width="39" height="9" font="0">Trial Date</text>
+<text top="616" left="559" width="34" height="9" font="0">Court Of</text>
+<text top="616" left="719" width="15" height="9" font="0">City</text>
+<text top="658" left="74" width="110" height="9" font="0">Assisting Officer Name/ID #</text>
+<text top="658" left="416" width="152" height="9" font="0">Released By (Name/Department/ID #)</text>
+<text top="658" left="714" width="82" height="9" font="0">Date/Time Released</text>
+<text top="610" left="54" width="9" height="12" font="2"><b>B</b></text>
+<text top="633" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="622" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="644" left="54" width="9" height="12" font="2"><b>D</b></text>
+<text top="32" left="399" width="128" height="15" font="4"><b>ARREST REPORT</b></text>
+<text top="75" left="76" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="113" left="680" width="50" height="15" font="4"><b>106080</b></text>
+<text top="75" left="401" width="247" height="15" font="4"><b>0120100   B0003 08/02/2014  01:01</b></text>
+<text top="154" left="73" width="274" height="16" font="5"><b>COPELAND, MICHAEL ELIZABETH</b></text>
+<text top="155" left="457" width="68" height="13" font="6"><b>04/01/1982</b></text>
+<text top="156" left="544" width="17" height="15" font="4"><b>32</b></text>
+<text top="156" left="584" width="14" height="15" font="4"><b>W</b></text>
+<text top="156" left="622" width="9" height="15" font="4"><b>F</b></text>
+<text top="193" left="76" width="327" height="15" font="4"><b>120 E Edgewood Dr, CHARLESTON, SC 29407</b></text>
+<text top="194" left="457" width="84" height="13" font="6"><b>843-530-7926</b></text>
+<text top="226" left="76" width="197" height="15" font="4"><b>HABITAT FOR HUMMANITY</b></text>
+<text top="193" left="627" width="69" height="15" font="4"><b>Volunteer</b></text>
+<text top="148" left="650" width="71" height="12" font="2"><b>BURKE CO.,</b></text>
+<text top="158" left="792" width="17" height="12" font="2"><b>US</b></text>
+<text top="113" left="407" width="33" height="15" font="4"><b>4700</b></text>
+<text top="113" left="532" width="33" height="15" font="4"><b>9999</b></text>
+<text top="75" left="696" width="75" height="15" font="4"><b>201405069</b></text>
+<text top="333" left="75" width="129" height="15" font="4"><b>COPELAND,FRED</b></text>
+<text top="258" left="481" width="29" height="15" font="4"><b>5'01</b></text>
+<text top="258" left="537" width="25" height="15" font="4"><b>125</b></text>
+<text top="258" left="587" width="33" height="15" font="4"><b>BRO</b></text>
+<text top="258" left="651" width="31" height="15" font="4"><b>BLU</b></text>
+<text top="258" left="715" width="35" height="15" font="4"><b>FAIR</b></text>
+<text top="118" left="79" width="7" height="9" font="7"><b>X</b></text>
+<text top="196" left="737" width="7" height="9" font="7"><b>X</b></text>
+<text top="260" left="774" width="7" height="9" font="7"><b>X</b></text>
+<text top="395" left="72" width="21" height="12" font="2"><b>Dwi</b></text>
+<text top="435" left="72" width="80" height="12" font="2"><b>Left Of Center</b></text>
+<text top="474" left="72" width="203" height="12" font="2"><b>Speeding - Too Fast For Conditions</b></text>
+<text top="369" left="535" width="332" height="15" font="4"><b>2239 S STERLING ST/BUSH DR, MORGANTON</b></text>
+<text top="446" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="369" left="76" width="179" height="15" font="4"><b>NOT APPLICABLE/NONE</b></text>
+<text top="446" left="471" width="33" height="15" font="4"><b>4010</b></text>
+<text top="447" left="735" width="61" height="13" font="6"><b>20-150(D)</b></text>
+<text top="448" left="818" width="60" height="12" font="2"><b>08/02/2014</b></text>
+<text top="407" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="407" left="471" width="33" height="15" font="4"><b>2100</b></text>
+<text top="408" left="739" width="53" height="13" font="6"><b>20-138.1</b></text>
+<text top="409" left="818" width="60" height="12" font="2"><b>08/02/2014</b></text>
+<text top="485" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="485" left="471" width="33" height="15" font="4"><b>4010</b></text>
+<text top="486" left="745" width="42" height="13" font="6"><b>20-141</b></text>
+<text top="486" left="818" width="60" height="12" font="2"><b>08/02/2014</b></text>
+<text top="354" left="280" width="7" height="9" font="7"><b>X</b></text>
+<text top="406" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="445" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="485" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="521" left="75" width="33" height="15" font="4"><b>2010</b></text>
+<text top="521" left="130" width="35" height="15" font="4"><b>GMC</b></text>
+<text top="521" left="219" width="56" height="15" font="4"><b>DENALI</b></text>
+<text top="521" left="308" width="21" height="15" font="4"><b>SU</b></text>
+<text top="522" left="405" width="28" height="13" font="6"><b>BLK</b></text>
+<text top="521" left="468" width="310" height="15" font="4"><b>P429123    SC 2014 1GKUCEEF6AR288921</b></text>
+<text top="633" left="559" width="46" height="13" font="6"><b>District</b></text>
+<text top="633" left="720" width="90" height="13" font="6"><b>MORGANTON</b></text>
+<text top="598" left="630" width="131" height="13" font="6"><b>DEBBIE CARSWELL</b></text>
+<text top="598" left="281" width="121" height="13" font="6"><b>BURKE CATAWBA</b></text>
+<text top="598" left="77" width="125" height="13" font="6"><b>08/02/2014 04:27:00</b></text>
+<text top="634" left="408" width="106" height="13" font="6"><b>09/03/2014 09:00</b></text>
+<text top="634" left="333" width="60" height="13" font="6"><b>$4,000.00</b></text>
+<text top="567" left="311" width="137" height="12" font="2"><b>JIMS SERVICE CENTER</b></text>
+<text top="567" left="799" width="8" height="12" font="2"><b>Y</b></text>
+<text top="538" left="520" width="97" height="12" font="2"><b>08/02/2014  00:00</b></text>
+<text top="570" left="142" width="7" height="9" font="7"><b>X</b></text>
+<text top="570" left="225" width="7" height="9" font="7"><b>X</b></text>
+<text top="641" left="89" width="7" height="9" font="7"><b>X</b></text>
+<text top="670" left="74" width="88" height="13" font="6"><b>STORIE, C. D.</b></text>
+<text top="670" left="317" width="8" height="13" font="6"><b>2</b></text>
+<text top="895" left="172" width="7" height="9" font="7"><b>X</b></text>
+<text top="1055" left="144" width="160" height="15" font="4"><b>BEAVER, J. P. (B1619)</b></text>
+<text top="1055" left="586" width="121" height="15" font="4"><b>WHISNANT, J. R.</b></text>
+<text top="941" left="76" width="794" height="11" font="8"><b>On August 2nd 2014 at 0101 hours, I arrested Michael Elizabeth Copeland. While reviewing my MDT in</b></text>
+<text top="956" left="76" width="778" height="11" font="8"><b>my patrol car, I saw that Burke County Sheriffs Office was out with Copeland at 5775 Hubert Lane</b></text>
+<text top="971" left="76" width="778" height="11" font="8"><b>for a disturbance. I read the notes on this call and saw that Burke County Dispatchers had added</b></text>
+<text top="987" left="76" width="130" height="11" font="8"><b>the following...</b></text>
+<text top="1056" left="416" width="122" height="15" font="4"><b>08/02/2014  19:15</b></text>
+<text top="1100" left="148" width="7" height="9" font="7"><b>X</b></text>
+<text top="1087" left="225" width="7" height="9" font="7"><b>X</b></text>
+<text top="1023" left="771" width="108" height="9" font="7"><b>** Continued **</b></text>
+<text top="155" left="763" width="17" height="12" font="2"><b>NC</b></text>
+</page>
+<page number="2" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="9" size="10" family="Times" color="#000000"/>
+	<fontspec id="10" size="13" family="Times" color="#000000"/>
+<text top="40" left="324" width="289" height="15" font="4"><b>ARREST REPORT  (Additional Narrative)</b></text>
+<text top="69" left="55" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="401" width="16" height="9" font="0">ORI</text>
+<text top="69" left="688" width="20" height="9" font="0">OCA</text>
+<text top="69" left="525" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="673" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="55" width="60" height="9" font="0">Arrestee Name</text>
+<text top="90" left="56" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="128" left="678" width="50" height="15" font="4"><b>106080</b></text>
+<text top="90" left="400" width="247" height="15" font="4"><b>0120100   B0003 08/02/2014  01:01</b></text>
+<text top="126" left="57" width="274" height="16" font="5"><b>COPELAND, MICHAEL ELIZABETH</b></text>
+<text top="90" left="694" width="75" height="15" font="4"><b>201405069</b></text>
+<text top="167" left="64" width="786" height="11" font="8"><b>&#34;IN A BLK YOUKON DENALI&#34;, &#34;SPEAKING WITH ROBERT MILLER NOW HE SAYING THAT MICHAEL COPELAND IS THE</b></text>
+<text top="182" left="64" width="753" height="11" font="8"><b>ONE CAUSING PROBLEMS&#34;, &#34;SAID THAT MICHAEL IS DEMANDING THE KEYS TO THE SISTERS HOUSE AND THEY</b></text>
+<text top="197" left="64" width="332" height="11" font="8"><b>COULD SMELL ALCHOL ON HER PRETTY STRONG&#34;.</b></text>
+<text top="228" left="64" width="753" height="11" font="8"><b>Burke County Dispatchers also added the tag number from the GMC into the notes of the call as</b></text>
+<text top="243" left="64" width="243" height="11" font="8"><b>South Carolina issued #P429123</b></text>
+<text top="274" left="64" width="794" height="11" font="8"><b>I sent BCSO Deputy, Clinton Patton, a message via MDT and he stated that Copeland was in the black</b></text>
+<text top="289" left="64" width="761" height="11" font="8"><b>GMC Denali and that she was not driving when he arrived on scene nor cleared the call and left</b></text>
+<text top="305" left="64" width="745" height="11" font="8"><b>the scene. I parked my patrol car on NC HWY 18 South (S Sterling Street) near Drexel Road. I</b></text>
+<text top="320" left="64" width="769" height="11" font="8"><b>checked Michael Copeland`s address on her driver`s license through DCI. The DCI search revealed</b></text>
+<text top="335" left="64" width="769" height="11" font="8"><b>that Copeland had not notified the DMV of her address change within 60 days of doing so. Due to</b></text>
+<text top="351" left="64" width="753" height="11" font="8"><b>having multiple encounters with Copeland in the past, I was aware of the fact that she was no</b></text>
+<text top="366" left="64" width="778" height="11" font="8"><b>longer living at the address on her driver`s license (223 1/2 West Park Drive, Morganton). I was</b></text>
+<text top="381" left="64" width="745" height="11" font="8"><b>also familiar with the fact that the house was unoccupied and under contract to be sold to a</b></text>
+<text top="397" left="64" width="348" height="11" font="8"><b>different individual that was not Copeland.</b></text>
+<text top="427" left="64" width="778" height="11" font="8"><b>I positioned my patrol car to where I could see on-coming traffic coming into the city. My radar</b></text>
+<text top="443" left="64" width="745" height="11" font="8"><b>was calibrated and tested for accuracy while sitting on the side of the road. I began to run</b></text>
+<text top="458" left="64" width="753" height="11" font="8"><b>stationary radar on Hwy 18 South when a black GMC Denali approached me traveling at 50 mph. I</b></text>
+<text top="473" left="64" width="778" height="11" font="8"><b>formed my opinion of the vehicles speed at 50 mph and confirmed it with my radar instrument. The</b></text>
+<text top="489" left="64" width="769" height="11" font="8"><b>area in which the GMC was traveling was a two (2) lane highway (one lane in each direction) and</b></text>
+<text top="504" left="64" width="786" height="11" font="8"><b>also consisted of multiple construction warnings on the right side of the roadway coming into the</b></text>
+<text top="519" left="64" width="794" height="11" font="8"><b>city along with very low light conditions (no street lights). The weather conditions at the time I</b></text>
+<text top="535" left="64" width="729" height="11" font="8"><b>saw the GMC were rain and patches of fog on the roadway. The weather on this date had been</b></text>
+<text top="550" left="64" width="786" height="11" font="8"><b>scattered rain storms through out the large majority of the day/night and I had observed areas of</b></text>
+<text top="565" left="64" width="761" height="11" font="8"><b>Hwy 18 South that had large puddles of water gathering in the roadway. This existing condition</b></text>
+<text top="581" left="64" width="769" height="11" font="8"><b>could lead to a vehicle hydroplaning if traveling at a speed such at what I clocked the GMC at.</b></text>
+<text top="596" left="64" width="778" height="11" font="8"><b>Hydroplaning is a situation that occurs when a vehicle`s tires lose traction on a wet road. This</b></text>
+<text top="611" left="64" width="786" height="11" font="8"><b>event can cause loss of control of a vehicle which may lead to minor to severe traffic accidents.</b></text>
+<text top="642" left="64" width="769" height="11" font="8"><b>Once the GMC passed me, I turned around and began to follow it. The GMC continued at this speed</b></text>
+<text top="657" left="64" width="753" height="11" font="8"><b>into the city limits of Morganton. There is a warning sign before Drexel Road that alerts the</b></text>
+<text top="673" left="64" width="761" height="11" font="8"><b>speed limit changes to 45 mph once inside the city limits. There is an additional posted speed</b></text>
+<text top="688" left="64" width="786" height="11" font="8"><b>limit sign for 45 mph at the city limits. I did not notice the GMC`s brake lights illuminate once</b></text>
+<text top="703" left="64" width="769" height="11" font="8"><b>traveling past the posted 45 mph zone all the way until the intersection of Interstate 40 and S</b></text>
+<text top="719" left="64" width="769" height="11" font="8"><b>Sterling Street. The roadway is at a grade in which the GMC was going down hill coming into the</b></text>
+<text top="734" left="64" width="786" height="11" font="8"><b>city which supported my opinion that the GMC was still traveling at a speed of 50 mph in a posted</b></text>
+<text top="750" left="64" width="786" height="11" font="8"><b>45 mph zone. Once passing under the Interstate 40 bridge, the GMC touched the solid double yellow</b></text>
+<text top="765" left="64" width="778" height="11" font="8"><b>line and then crossed over it while passing the off ramp. There were no vehicles on the off ramp</b></text>
+<text top="780" left="64" width="769" height="11" font="8"><b>at this time. The GMC then activated its right turn signal to alert that it was going to make a</b></text>
+<text top="796" left="64" width="753" height="11" font="8"><b>right turn onto Bush Drive. I noted that the registration plate of the GMC was South Carolina</b></text>
+<text top="811" left="64" width="486" height="11" font="8"><b>issued # P429123 and the brake lights were in working order.</b></text>
+<text top="842" left="64" width="745" height="11" font="8"><b>Based on the totality of circumstances involving Copeland and the GMC, it was at this time I</b></text>
+<text top="857" left="64" width="753" height="11" font="8"><b>decided to initiate a traffic stop on the GMC. I turned on my emergency equipment and the GMC</b></text>
+<text top="872" left="64" width="769" height="11" font="8"><b>stopped in the middle of the roadway on Bush Drive. There is a Mcdonalds PVA less that 200 feet</b></text>
+<text top="888" left="64" width="761" height="11" font="8"><b>from where the vehicle stopped. Bush drive is a public street at where Copeland stopped, not a</b></text>
+<text top="903" left="64" width="138" height="11" font="8"><b>private driveway.</b></text>
+<text top="934" left="64" width="761" height="11" font="8"><b>As I approached the driver of the vehicle, I noticed that it was a white female driver and she</b></text>
+<text top="949" left="64" width="778" height="11" font="8"><b>appeared to be very upset. I made contact with the driver and explained why I had stopped her. I</b></text>
+<text top="964" left="64" width="794" height="11" font="8"><b>noticed the driver`s eyes were bloodshot and glassy. The driver stated &#34;I`m so sorry, I`m so mad&#34;.</b></text>
+<text top="980" left="64" width="769" height="11" font="8"><b>I asked the driver for her name and she responded &#34;Michael Copeland&#34;. Copeland began to tell me</b></text>
+<text top="995" left="64" width="769" height="11" font="8"><b>she was on her way to see Magistrate Whitesides for an incident that happened out in the County</b></text>
+<text top="1010" left="64" width="786" height="11" font="8"><b>with her husband. Copeland was looking through her pocketbook for an unknown piece of paper, when</b></text>
+<text top="1026" left="64" width="794" height="11" font="8"><b>asked if she was trying to locate her drivers license, she stated no. I had not asked Copeland for</b></text>
+<text top="1041" left="64" width="786" height="11" font="8"><b>any documentation at this time. I observed at least 4 medicine bottles, 3 in Copeland`s purse and</b></text>
+<text top="1056" left="64" width="737" height="11" font="8"><b>1 in the floor board of the GMC. When asked what kind of medication it was, Copeland stated</b></text>
+<text top="1072" left="64" width="786" height="11" font="8"><b>Suboxone. According to drugs.com, &#34;Suboxone contains a combination of buprenorphine and naloxone.</b></text>
+<text top="1087" left="64" width="794" height="11" font="8"><b>Buprenorphine is an opioid medication. An opioid is sometimes called a narcotic.&#34; There was also a</b></text>
+<text top="1116" left="45" width="187" height="12" font="9"><i>Arrest Report (Additional Narrative)</i></text>
+<text top="1114" left="827" width="48" height="14" font="10">Page 2</text>
+</page>
+<page number="3" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="40" left="324" width="289" height="15" font="4"><b>ARREST REPORT  (Additional Narrative)</b></text>
+<text top="69" left="55" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="401" width="16" height="9" font="0">ORI</text>
+<text top="69" left="688" width="20" height="9" font="0">OCA</text>
+<text top="69" left="525" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="673" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="55" width="60" height="9" font="0">Arrestee Name</text>
+<text top="90" left="56" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="128" left="678" width="50" height="15" font="4"><b>106080</b></text>
+<text top="90" left="400" width="247" height="15" font="4"><b>0120100   B0003 08/02/2014  01:01</b></text>
+<text top="126" left="57" width="274" height="16" font="5"><b>COPELAND, MICHAEL ELIZABETH</b></text>
+<text top="90" left="694" width="75" height="15" font="4"><b>201405069</b></text>
+<text top="162" left="64" width="786" height="11" font="8"><b>bottles of Trazadone and Lexapro which are anti-depressants. A bottle of Ibuprofen was located in</b></text>
+<text top="178" left="64" width="786" height="11" font="8"><b>the floor board. Copeland began to open her door to look for her drivers license under the driver</b></text>
+<text top="193" left="64" width="786" height="11" font="8"><b>seat. As Copeland opened the door, I immediately detected an odor of an alcoholic beverage coming</b></text>
+<text top="208" left="64" width="778" height="11" font="8"><b>from inside the vehicle. I began to ask Copeland what the medications were used for. As Copeland</b></text>
+<text top="224" left="64" width="745" height="11" font="8"><b>explained these to me, I was able to determine the odor of the alcoholic beverage was coming</b></text>
+<text top="239" left="64" width="769" height="11" font="8"><b>directly from Copeland`s breath. I asked Copeland if there was ANY alcohol in the vehicle or if</b></text>
+<text top="254" left="64" width="769" height="11" font="8"><b>she had spilled some earlier and she stated no. When asked about where she was living, Copeland</b></text>
+<text top="270" left="64" width="794" height="11" font="8"><b>stated she was living with her father in Charleston for the past 4 months, but was also staying at</b></text>
+<text top="285" left="64" width="745" height="11" font="8"><b>the Hampton Inn on Bush Drive which is where she said she was heading. This contradicted her</b></text>
+<text top="300" left="64" width="737" height="11" font="8"><b>previous comment about going to see Magistrate Whitesides. When asked about why she had not</b></text>
+<text top="316" left="64" width="745" height="11" font="8"><b>changed her drivers license, Copeland said that South Carolina would not issue her a license</b></text>
+<text top="331" left="64" width="745" height="11" font="8"><b>without having a valid North Carolina license. This was also a contradiction from a previous</b></text>
+<text top="346" left="64" width="786" height="11" font="8"><b>statement due to Copeland`s license being active and not having any type of hold on them. I asked</b></text>
+<text top="362" left="64" width="753" height="11" font="8"><b>Copeland about this and she then recanted and stated &#34;no, i`m sure they are effective&#34;. After</b></text>
+<text top="377" left="64" width="737" height="11" font="8"><b>looking through multiple documents, Copeland was able to retrieve the vehicles registration</b></text>
+<text top="392" left="64" width="745" height="11" font="8"><b>paperwork and hand it to me. At this time I asked Copeland if she would mind to step out and</b></text>
+<text top="408" left="64" width="761" height="11" font="8"><b>perform some tests. Copeland acknowledged this and stepped out of the vehicle in a cooperative</b></text>
+<text top="423" left="64" width="57" height="11" font="8"><b>manner.</b></text>
+<text top="454" left="64" width="778" height="11" font="8"><b>I performed a battery of standardized field sobriety tests (SFSTs) on Copeland. The first (SFST)</b></text>
+<text top="469" left="64" width="769" height="11" font="8"><b>test I administered to Copeland was the Horizontal Gaze Nystagmus (HGN) test. During this test,</b></text>
+<text top="484" left="64" width="786" height="11" font="8"><b>Copeland had a lack of smooth pursuit in both eyes as well as distinct and sustained nystagmus at</b></text>
+<text top="500" left="64" width="251" height="11" font="8"><b>maximum deviation in both eyes.</b></text>
+<text top="530" left="64" width="769" height="11" font="8"><b>The second (SFST) test I administered to Copeland was the walk and turn test. During this test,</b></text>
+<text top="546" left="64" width="778" height="11" font="8"><b>Copeland started too soon after being told not to and preformed an improper turn using both feet</b></text>
+<text top="561" left="64" width="616" height="11" font="8"><b>to pivot on. Copeland also stepped off the line on step 3 (Second set of 9).</b></text>
+<text top="592" left="64" width="761" height="11" font="8"><b>The third (SFST) test I administered to Copeland was the one leg stand test. During this test,</b></text>
+<text top="607" left="64" width="786" height="11" font="8"><b>Copeland raised her right foot and used her arms to balance. Copeland also swayed while balancing</b></text>
+<text top="622" left="64" width="753" height="11" font="8"><b>and put her foot down twice during this test. During this test, Copeland lost her balance and</b></text>
+<text top="638" left="64" width="308" height="11" font="8"><b>pushed off my patrol car to regain it.</b></text>
+<text top="668" left="64" width="729" height="11" font="8"><b>I asked Copeland how much she had to drink. Copeland replied that she had only had Nyquil.</b></text>
+<text top="699" left="64" width="786" height="11" font="8"><b>I asked Copeland to perform the alphabet test starting at the letter &#34;G&#34; and ending on the letter</b></text>
+<text top="714" left="64" width="769" height="11" font="8"><b>&#34;R&#34;. Copeland was able to perform this test. I asked Copeland to perform the finger count test.</b></text>
+<text top="730" left="64" width="745" height="11" font="8"><b>Copeland was able to perform this test as well. These tests are not considered standardized.</b></text>
+<text top="760" left="64" width="794" height="11" font="8"><b>I asked Copeland to submit to a roadside portable breath test (PBT). Copeland consented and showed</b></text>
+<text top="776" left="64" width="413" height="11" font="8"><b>a positive reading for alcohol (.14BAC and .13BAC).</b></text>
+<text top="806" left="64" width="753" height="11" font="8"><b>While administering the SFST`s to Copeland, PSO Huffman and her K9 Partner Shrek performed an</b></text>
+<text top="822" left="64" width="794" height="11" font="8"><b>exterior sniff of Copeland`s vehicle. K9 Shrek alerted on the driver side door of the GMC. While I</b></text>
+<text top="837" left="64" width="786" height="11" font="8"><b>continued to administered the SFST`s to Copeland, PSO Huffman and PSO Storie performed a probable</b></text>
+<text top="852" left="64" width="737" height="11" font="8"><b>cause search of the GMC due to the K9 alert. Copeland stated there was a bottle of unopened</b></text>
+<text top="868" left="64" width="794" height="11" font="8"><b>Whiskey in one of the many bags in the rear of the vehicle. This was a discrepancy in the previous</b></text>
+<text top="883" left="64" width="778" height="11" font="8"><b>statement from Copeland who said there was NO alcohol in the vehicle. PSO Huffman and PSO Storie</b></text>
+<text top="898" left="64" width="340" height="11" font="8"><b>did not locate any alcohol in the vehicle.</b></text>
+<text top="929" left="64" width="769" height="11" font="8"><b>At this time based on the totality of the circumstances, I formed the opinion that Copeland had</b></text>
+<text top="944" left="64" width="729" height="11" font="8"><b>consumed a sufficient quantity of an impairing substance such that her mental and physical</b></text>
+<text top="960" left="64" width="737" height="11" font="8"><b>faculties were appreciably impaired. I transported Copeland to Burke Catawba for a chemical</b></text>
+<text top="975" left="64" width="761" height="11" font="8"><b>analysis of her breath. I read Copeland her breath test rights and asked her if she understood</b></text>
+<text top="990" left="64" width="745" height="11" font="8"><b>them. Copeland said yes and signed the test rights sheet. Copeland asked to make phone calls</b></text>
+<text top="1006" left="64" width="794" height="11" font="8"><b>during the observation phase. I retrieved Copeland`s cell phone with her contacts listed inside so</b></text>
+<text top="1021" left="64" width="786" height="11" font="8"><b>she could locate phone numbers of people to call to witness the testing procedures. Copeland made</b></text>
+<text top="1036" left="64" width="778" height="11" font="8"><b>3 phone calls on the phone in the Intoximeter room and Burke Catawba. One (1) to her father, and</b></text>
+<text top="1052" left="64" width="794" height="11" font="8"><b>two (2) to bondsman. I waited 31 minutes before beginning the testing procedures. At 0219 hours, I</b></text>
+<text top="1067" left="64" width="745" height="11" font="8"><b>requested Copeland to submit to a chemical analysis of her breath. Copeland consented to the</b></text>
+<text top="1082" left="64" width="316" height="11" font="8"><b>test. Copeland`s results were a .13BAC.</b></text>
+<text top="1114" left="827" width="48" height="14" font="10">Page 3</text>
+</page>
+<page number="4" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="40" left="324" width="289" height="15" font="4"><b>ARREST REPORT  (Additional Narrative)</b></text>
+<text top="69" left="55" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="401" width="16" height="9" font="0">ORI</text>
+<text top="69" left="688" width="20" height="9" font="0">OCA</text>
+<text top="69" left="525" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="673" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="55" width="60" height="9" font="0">Arrestee Name</text>
+<text top="90" left="56" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="128" left="678" width="50" height="15" font="4"><b>106080</b></text>
+<text top="90" left="400" width="247" height="15" font="4"><b>0120100   B0003 08/02/2014  01:01</b></text>
+<text top="126" left="57" width="274" height="16" font="5"><b>COPELAND, MICHAEL ELIZABETH</b></text>
+<text top="90" left="694" width="75" height="15" font="4"><b>201405069</b></text>
+<text top="162" left="64" width="753" height="11" font="8"><b>I transported Copeland to MDPS HQ to finish her citations for the offenses she committed on S</b></text>
+<text top="178" left="64" width="778" height="11" font="8"><b>Sterling Street. I transported Copeland to the Magistrates office where she was charged with the</b></text>
+<text top="193" left="64" width="81" height="11" font="8"><b>following:</b></text>
+<text top="224" left="64" width="194" height="11" font="8"><b>- Driving while Impaired</b></text>
+<text top="239" left="64" width="130" height="11" font="8"><b>- Left of Center</b></text>
+<text top="254" left="64" width="194" height="11" font="8"><b>- Exceeding a safe speed</b></text>
+<text top="270" left="64" width="332" height="11" font="8"><b>- Failure to notify DMV of address change</b></text>
+<text top="300" left="64" width="786" height="11" font="8"><b>Copeland received a $4,000 secured bond and a court date of 09/03/2014. I transported Copeland to</b></text>
+<text top="316" left="64" width="300" height="11" font="8"><b>Burke Catawba where she was confined.</b></text>
+<text top="1114" left="827" width="48" height="14" font="10">Page 4</text>
+</page>
+<page number="5" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="11" size="10" family="Times" color="#000000"/>
+<text top="40" left="325" width="284" height="15" font="4"><b>ARREST REPORT  (Additional Charges)</b></text>
+<text top="69" left="43" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="408" width="16" height="9" font="0">ORI</text>
+<text top="69" left="695" width="20" height="9" font="0">OCA</text>
+<text top="69" left="532" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="679" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="43" width="60" height="9" font="0">Arrestee Name</text>
+<text top="173" left="41" width="39" height="12" font="11">Charge</text>
+<text top="173" left="397" width="38" height="12" font="11">Counts</text>
+<text top="173" left="462" width="53" height="12" font="11">DCI Code</text>
+<text top="173" left="532" width="105" height="12" font="11">Offense Jurisdiction</text>
+<text top="173" left="749" width="48" height="12" font="11">Statute #</text>
+<text top="173" left="826" width="58" height="12" font="11">Warr. Date</text>
+<text top="173" left="337" width="45" height="12" font="11">Fel/Misd</text>
+<text top="163" left="541" width="94" height="9" font="0">(if not arresting agency)</text>
+<text top="90" left="41" width="263" height="15" font="4"><b>Morganton Department Public Safety</b></text>
+<text top="128" left="683" width="50" height="15" font="4"><b>106080</b></text>
+<text top="90" left="404" width="247" height="15" font="4"><b>0120100   B0003 08/02/2014  01:01</b></text>
+<text top="126" left="44" width="274" height="16" font="5"><b>COPELAND, MICHAEL ELIZABETH</b></text>
+<text top="90" left="698" width="75" height="15" font="4"><b>201405069</b></text>
+<text top="196" left="82" width="237" height="12" font="2"><b>License-fail To Change Address Or Notify</b></text>
+<text top="210" left="82" width="26" height="12" font="2"><b>Dmv</b></text>
+<text top="194" left="392" width="8" height="15" font="4"><b>1</b></text>
+<text top="194" left="467" width="33" height="15" font="4"><b>4010</b></text>
+<text top="195" left="731" width="38" height="13" font="6"><b>20-7.1</b></text>
+<text top="196" left="817" width="60" height="12" font="2"><b>08/02/2014</b></text>
+<text top="194" left="344" width="12" height="15" font="4"><b>M</b></text>
+<text top="198" left="61" width="12" height="13" font="6"><b>4)</b></text>
+<text top="1116" left="43" width="184" height="12" font="9"><i>Arrest Report (Additional Charges)</i></text>
+<text top="1114" left="832" width="48" height="14" font="10">Page 5</text>
+</page>
+</pdf2xml>

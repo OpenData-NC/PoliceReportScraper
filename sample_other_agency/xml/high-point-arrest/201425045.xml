@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml>
+<page number="1" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="0" size="7" family="Times" color="#000000"/>
+	<fontspec id="1" size="7" family="Times" color="#000000"/>
+	<fontspec id="2" size="10" family="Times" color="#000000"/>
+	<fontspec id="3" size="8" family="Times" color="#000000"/>
+	<fontspec id="4" size="13" family="Times" color="#000000"/>
+	<fontspec id="5" size="14" family="Times" color="#000000"/>
+	<fontspec id="6" size="11" family="Times" color="#000000"/>
+	<fontspec id="7" size="10" family="Courier" color="#000000"/>
+	<fontspec id="8" size="11" family="Courier" color="#000000"/>
+<text top="262" left="863" width="16" height="9" font="0">Unk</text>
+<text top="262" left="826" width="12" height="9" font="0">No</text>
+<text top="262" left="785" width="16" height="9" font="0">Yes</text>
+<text top="571" left="721" width="71" height="9" font="0">Inventory on File?</text>
+<text top="394" left="343" width="12" height="9" font="0">Fel</text>
+<text top="407" left="343" width="19" height="9" font="0">Misd</text>
+<text top="58" left="74" width="57" height="9" font="0">Agency Name</text>
+<text top="58" left="403" width="16" height="9" font="0">ORI</text>
+<text top="58" left="689" width="20" height="9" font="0">OCA</text>
+<text top="58" left="526" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="387" left="74" width="42" height="9" font="0">Charge #1</text>
+<text top="426" left="400" width="29" height="9" font="0">Counts</text>
+<text top="540" left="74" width="30" height="9" font="0">Vehicle</text>
+<text top="542" left="155" width="53" height="9" font="0">Left at Scene</text>
+<text top="542" left="275" width="34" height="9" font="0">Secured</text>
+<text top="557" left="154" width="145" height="9" font="0">Released to other at owners request</text>
+<text top="557" left="355" width="59" height="9" font="0">Name of Other</text>
+<text top="542" left="355" width="39" height="9" font="0">Unsecure</text>
+<text top="571" left="155" width="45" height="9" font="0">Impounded</text>
+<text top="571" left="237" width="65" height="9" font="0">Place of storage</text>
+<text top="357" left="293" width="35" height="9" font="0">On-View</text>
+<text top="357" left="371" width="76" height="9" font="0">Criminal Summons</text>
+<text top="371" left="295" width="62" height="9" font="0">Order for Arrest</text>
+<text top="244" left="768" width="98" height="9" font="0">Consumed Drug/Alcohol</text>
+<text top="133" left="74" width="103" height="9" font="0">Name (Last, First, Middle)</text>
+<text top="183" left="748" width="36" height="9" font="0">Resident</text>
+<text top="198" left="748" width="55" height="9" font="0">Non-Resident</text>
+<text top="183" left="826" width="38" height="9" font="0">Unknown</text>
+<text top="133" left="630" width="16" height="9" font="0">Sex</text>
+<text top="179" left="458" width="26" height="9" font="0">Phone</text>
+<text top="213" left="769" width="26" height="9" font="0">Phone</text>
+<text top="179" left="74" width="66" height="9" font="0">Current Address</text>
+<text top="213" left="74" width="71" height="9" font="0">Employer's Name</text>
+<text top="505" left="74" width="19" height="9" font="0">VYR</text>
+<text top="505" left="129" width="22" height="9" font="0">Make</text>
+<text top="505" left="219" width="24" height="9" font="0">Model</text>
+<text top="505" left="309" width="20" height="9" font="0">Style</text>
+<text top="505" left="407" width="22" height="9" font="0">Color</text>
+<text top="505" left="469" width="51" height="9" font="0">Plate #/State</text>
+<text top="505" left="615" width="15" height="9" font="0">VIN</text>
+<text top="133" left="588" width="21" height="9" font="0">Race</text>
+<text top="133" left="478" width="27" height="9" font="0">D.O.B.</text>
+<text top="689" left="36" width="27" height="9" font="1"><b>Status</b></text>
+<text top="698" left="36" width="27" height="9" font="1"><b>Codes</b></text>
+<text top="693" left="76" width="555" height="9" font="0">L - Lost         S - Stolen         R - Recovered         D - Damaged         Z - Seized         B - Burned         C - Counterfeit / Forged         F - Found</text>
+<text top="720" left="81" width="15" height="9" font="0">DCI</text>
+<text top="720" left="115" width="25" height="9" font="0">Status</text>
+<text top="720" left="171" width="33" height="9" font="0">Quantity</text>
+<text top="720" left="241" width="57" height="9" font="0">Type Measure</text>
+<text top="720" left="413" width="65" height="9" font="0">Suspected Type</text>
+<text top="94" left="86" width="25" height="9" font="0">Taken</text>
+<text top="106" left="90" width="23" height="9" font="0">Prints</text>
+<text top="118" left="90" width="28" height="9" font="0">Photos</text>
+<text top="94" left="128" width="148" height="9" font="0">Fingerprint Card Check Digit # (CKN)</text>
+<text top="94" left="403" width="47" height="9" font="0">Arrest Tract</text>
+<text top="94" left="527" width="66" height="9" font="0">Residence Tract</text>
+<text top="94" left="674" width="58" height="9" font="0">Arrest Number</text>
+<text top="133" left="548" width="16" height="9" font="0">Age</text>
+<text top="133" left="716" width="53" height="9" font="0">Place of Birth</text>
+<text top="143" left="810" width="44" height="9" font="0">Citizenship</text>
+<text top="213" left="422" width="33" height="9" font="0">Address</text>
+<text top="179" left="605" width="46" height="9" font="0">Occupation</text>
+<text top="278" left="74" width="87" height="9" font="0">Scars, Marks, Tattoos</text>
+<text top="244" left="490" width="14" height="9" font="0">Hgt</text>
+<text top="244" left="543" width="16" height="9" font="0">Wgt</text>
+<text top="244" left="597" width="16" height="9" font="0">Hair</text>
+<text top="244" left="74" width="119" height="9" font="0">Also Known As (Alias Names)</text>
+<text top="244" left="656" width="20" height="9" font="0">Eyes</text>
+<text top="278" left="404" width="67" height="9" font="0">Social Security #</text>
+<text top="278" left="558" width="59" height="9" font="0">OLN and State</text>
+<text top="278" left="710" width="68" height="9" font="0">Misc. # and Type</text>
+<text top="244" left="712" width="41" height="9" font="0">Skin Tone</text>
+<text top="319" left="74" width="93" height="9" font="0">Nearest Relative Name</text>
+<text top="319" left="422" width="33" height="9" font="0">Address</text>
+<text top="319" left="741" width="26" height="9" font="0">Phone</text>
+<text top="352" left="533" width="59" height="9" font="0">Place of Arrest</text>
+<text top="426" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="426" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="426" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="426" left="831" width="43" height="9" font="0">Warr. Date</text>
+<text top="387" left="400" width="29" height="9" font="0">Counts</text>
+<text top="387" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="387" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="387" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="387" left="831" width="43" height="9" font="0">Warr. Date</text>
+<text top="466" left="400" width="29" height="9" font="0">Counts</text>
+<text top="466" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="466" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="466" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="466" left="831" width="43" height="9" font="0">Warr. Date</text>
+<text top="426" left="74" width="42" height="9" font="0">Charge #2</text>
+<text top="466" left="74" width="42" height="9" font="0">Charge #3</text>
+<text top="542" left="125" width="8" height="9" font="0">1.</text>
+<text top="557" left="125" width="8" height="9" font="0">2.</text>
+<text top="571" left="125" width="8" height="9" font="0">3.</text>
+<text top="542" left="471" width="41" height="9" font="0">Date/Time</text>
+<text top="58" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="69" left="39" width="9" height="12" font="2"><b>G</b></text>
+<text top="80" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="92" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="103" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="114" left="40" width="8" height="12" font="2"><b>Y</b></text>
+<text top="712" left="675" width="154" height="9" font="0">Check up to 3 types of activity for each</text>
+<text top="729" left="611" width="34" height="9" font="0">Possess</text>
+<text top="729" left="665" width="16" height="9" font="0">Buy</text>
+<text top="729" left="698" width="18" height="9" font="0">Sale</text>
+<text top="729" left="733" width="17" height="9" font="0">Mfg.</text>
+<text top="729" left="772" width="37" height="9" font="0">Importing</text>
+<text top="729" left="833" width="40" height="9" font="0">Operating</text>
+<text top="191" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="214" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="203" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="238" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="263" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="227" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="250" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="275" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="69" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="80" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="92" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="103" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="133" left="812" width="41" height="9" font="0">Country of</text>
+<text top="215" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="227" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="238" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="249" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="352" left="74" width="105" height="9" font="0">If Armed, Type of Weapon</text>
+<text top="433" left="343" width="12" height="9" font="0">Fel</text>
+<text top="447" left="343" width="19" height="9" font="0">Misd</text>
+<text top="472" left="343" width="12" height="9" font="0">Fel</text>
+<text top="486" left="343" width="19" height="9" font="0">Misd</text>
+<text top="394" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="418" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="407" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="442" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="430" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="454" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="407" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="418" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="429" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="440" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="527" left="39" width="8" height="12" font="2"><b>V</b></text>
+<text top="551" left="40" width="9" height="12" font="2"><b>H</b></text>
+<text top="539" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="523" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="534" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="545" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="556" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="588" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="610" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="599" left="39" width="9" height="12" font="2"><b>O</b></text>
+<text top="622" left="40" width="7" height="12" font="2"><b>F</b></text>
+<text top="644" left="39" width="9" height="12" font="2"><b>N</b></text>
+<text top="633" left="41" width="3" height="12" font="2"><b>I</b></text>
+<text top="655" left="39" width="8" height="12" font="2"><b>E</b></text>
+<text top="667" left="39" width="9" height="12" font="2"><b>D</b></text>
+<text top="769" left="36" width="8" height="10" font="3"><b>D</b></text>
+<text top="791" left="36" width="8" height="10" font="3"><b>U</b></text>
+<text top="780" left="36" width="8" height="10" font="3"><b>R</b></text>
+<text top="814" left="36" width="7" height="10" font="3"><b>S</b></text>
+<text top="802" left="36" width="8" height="10" font="3"><b>G</b></text>
+<text top="786" left="47" width="8" height="10" font="3"><b>A</b></text>
+<text top="797" left="47" width="6" height="10" font="3"><b>T</b></text>
+<text top="765" left="57" width="8" height="10" font="3"><b>A</b></text>
+<text top="786" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="775" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="806" left="56" width="7" height="10" font="3"><b>S</b></text>
+<text top="796" left="56" width="7" height="10" font="3"><b>E</b></text>
+<text top="816" left="57" width="6" height="10" font="3"><b>T</b></text>
+<text top="897" left="117" width="51" height="9" font="0">Complainant</text>
+<text top="897" left="216" width="24" height="9" font="0">Victim</text>
+<text top="897" left="74" width="26" height="9" font="0">Name:</text>
+<text top="897" left="425" width="33" height="9" font="0">Address</text>
+<text top="897" left="749" width="29" height="9" font="0">Phone:</text>
+<text top="941" left="45" width="8" height="10" font="3"><b>N</b></text>
+<text top="961" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="951" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="981" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="1002" left="47" width="3" height="10" font="3"><b>I</b></text>
+<text top="971" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="991" left="46" width="6" height="10" font="3"><b>T</b></text>
+<text top="1022" left="45" width="7" height="10" font="3"><b>E</b></text>
+<text top="1012" left="45" width="7" height="10" font="3"><b>V</b></text>
+<text top="1039" left="74" width="125" height="9" font="0">Arresting Officer Signature/ID #</text>
+<text top="1039" left="386" width="84" height="9" font="0">Date/Time Submitted</text>
+<text top="1039" left="581" width="84" height="9" font="0">Supervisor Signature</text>
+<text top="1075" left="74" width="51" height="9" font="0">Case Status:</text>
+<text top="1089" left="92" width="46" height="9" font="0">Further Inv.</text>
+<text top="1102" left="161" width="28" height="9" font="0">Closed</text>
+<text top="1102" left="91" width="31" height="9" font="0">Inactive</text>
+<text top="1075" left="220" width="70" height="9" font="0">Case Disposition:</text>
+<text top="1089" left="238" width="174" height="9" font="0">Cleared By Arrest / No Supplement Needed</text>
+<text top="1102" left="237" width="96" height="9" font="0">Arrest / No Investigation</text>
+<text top="1075" left="477" width="75" height="9" font="0">Arrestee Signature</text>
+<text top="1119" left="848" width="38" height="9" font="0">Rev. 3/92</text>
+<text top="1119" left="76" width="39" height="9" font="0">DCI-608F</text>
+<text top="1040" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="1064" left="41" width="9" height="12" font="2"><b>A</b></text>
+<text top="1052" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1087" left="41" width="9" height="12" font="2"><b>U</b></text>
+<text top="1076" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1100" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="895" left="45" width="8" height="10" font="3"><b>C</b></text>
+<text top="915" left="45" width="9" height="10" font="3"><b>M</b></text>
+<text top="905" left="45" width="8" height="10" font="3"><b>O</b></text>
+<text top="925" left="45" width="7" height="10" font="3"><b>P</b></text>
+<text top="371" left="390" width="30" height="9" font="0">Citation</text>
+<text top="371" left="454" width="32" height="9" font="0">Warrant</text>
+<text top="587" left="74" width="80" height="9" font="0">Date/Time Confined</text>
+<text top="587" left="279" width="61" height="9" font="0">Place Confined</text>
+<text top="587" left="630" width="90" height="9" font="0">Committing Magistrate</text>
+<text top="616" left="74" width="44" height="9" font="0">Type Bond</text>
+<text top="629" left="101" width="64" height="9" font="0">Written Promise</text>
+<text top="642" left="101" width="34" height="9" font="0">Secured</text>
+<text top="629" left="192" width="44" height="9" font="0">Unsecured</text>
+<text top="642" left="161" width="35" height="9" font="0">No Bond</text>
+<text top="642" left="225" width="23" height="9" font="0">Other</text>
+<text top="619" left="277" width="55" height="9" font="0">Bond Amount</text>
+<text top="619" left="407" width="39" height="9" font="0">Trial Date</text>
+<text top="619" left="559" width="34" height="9" font="0">Court Of</text>
+<text top="619" left="719" width="15" height="9" font="0">City</text>
+<text top="658" left="74" width="110" height="9" font="0">Assisting Officer Name/ID #</text>
+<text top="658" left="416" width="152" height="9" font="0">Released By (Name/Department/ID #)</text>
+<text top="658" left="714" width="82" height="9" font="0">Date/Time Released</text>
+<text top="610" left="54" width="9" height="12" font="2"><b>B</b></text>
+<text top="633" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="622" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="644" left="54" width="9" height="12" font="2"><b>D</b></text>
+<text top="32" left="399" width="128" height="15" font="4"><b>ARREST REPORT</b></text>
+<text top="75" left="76" width="211" height="15" font="4"><b>High Point Police Department</b></text>
+<text top="113" left="680" width="58" height="15" font="4"><b>2691058</b></text>
+<text top="75" left="401" width="247" height="15" font="4"><b>0410300   H0001 08/22/2014  01:23</b></text>
+<text top="154" left="73" width="211" height="16" font="5"><b>ROTHERMEL, SUSAN KAY</b></text>
+<text top="156" left="545" width="17" height="15" font="4"><b>54</b></text>
+<text top="156" left="588" width="14" height="15" font="4"><b>W</b></text>
+<text top="156" left="628" width="9" height="15" font="4"><b>F</b></text>
+<text top="193" left="76" width="296" height="15" font="4"><b>217 Brookview Ci, HIGH POINT, NC 27260</b></text>
+<text top="194" left="457" width="84" height="13" font="6"><b>336-454-2581</b></text>
+<text top="158" left="792" width="17" height="12" font="2"><b>US</b></text>
+<text top="113" left="532" width="17" height="15" font="4"><b>99</b></text>
+<text top="75" left="696" width="75" height="15" font="4"><b>201425045</b></text>
+<text top="258" left="76" width="138" height="15" font="4"><b>ROTHERMEL,  SUE</b></text>
+<text top="258" left="481" width="29" height="15" font="4"><b>5'05</b></text>
+<text top="258" left="546" width="8" height="15" font="4"><b>0</b></text>
+<text top="258" left="587" width="33" height="15" font="4"><b>BRO</b></text>
+<text top="258" left="652" width="31" height="15" font="4"><b>HAZ</b></text>
+<text top="196" left="737" width="7" height="9" font="7"><b>X</b></text>
+<text top="260" left="774" width="7" height="9" font="7"><b>X</b></text>
+<text top="395" left="72" width="221" height="12" font="2"><b>Drive After Having Consume Sufficient</b></text>
+<text top="409" left="72" width="69" height="12" font="2"><b>Amt/alcohol</b></text>
+<text top="435" left="72" width="172" height="12" font="2"><b>Hit And Run Property Damage</b></text>
+<text top="369" left="535" width="345" height="15" font="4"><b>1189 GORDON ST/FIVE POINTS PL, HIGH POINT</b></text>
+<text top="446" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="369" left="76" width="179" height="15" font="4"><b>NOT APPLICABLE/NONE</b></text>
+<text top="446" left="471" width="33" height="15" font="4"><b>4010</b></text>
+<text top="447" left="735" width="61" height="13" font="6"><b>20-166(C)</b></text>
+<text top="448" left="818" width="60" height="12" font="2"><b>08/21/2014</b></text>
+<text top="407" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="407" left="471" width="33" height="15" font="4"><b>2100</b></text>
+<text top="408" left="731" width="70" height="13" font="6"><b>20-138.1(2)</b></text>
+<text top="409" left="818" width="60" height="12" font="2"><b>08/22/2014</b></text>
+<text top="354" left="280" width="7" height="9" font="7"><b>X</b></text>
+<text top="406" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="445" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="521" left="75" width="33" height="15" font="4"><b>2001</b></text>
+<text top="521" left="130" width="42" height="15" font="4"><b>SUBA</b></text>
+<text top="521" left="219" width="113" height="15" font="4"><b>FORESTER SW</b></text>
+<text top="522" left="405" width="30" height="13" font="6"><b>GRN</b></text>
+<text top="521" left="468" width="296" height="15" font="4"><b>20294586   NC 2014 JF1SF63511H709594</b></text>
+<text top="633" left="559" width="103" height="13" font="6"><b>Guilford County</b></text>
+<text top="633" left="720" width="79" height="13" font="6"><b>HIGH POINT</b></text>
+<text top="598" left="630" width="68" height="13" font="6"><b>KOKAJKO</b></text>
+<text top="634" left="408" width="106" height="13" font="6"><b>09/19/2014 08:30</b></text>
+<text top="634" left="359" width="34" height="13" font="6"><b>$0.00</b></text>
+<text top="567" left="311" width="127" height="12" font="2"><b>JERRY LEES TOWING</b></text>
+<text top="567" left="799" width="8" height="12" font="2"><b>Y</b></text>
+<text top="538" left="520" width="97" height="12" font="2"><b>08/22/2014  00:00</b></text>
+<text top="553" left="770" width="33" height="12" font="2"><b>ALOT</b></text>
+<text top="570" left="225" width="7" height="9" font="7"><b>X</b></text>
+<text top="626" left="89" width="7" height="9" font="7"><b>X</b></text>
+<text top="671" left="417" width="80" height="12" font="2"><b>KNIGHT, R. A.</b></text>
+<text top="670" left="317" width="8" height="13" font="6"><b>0</b></text>
+<text top="670" left="734" width="125" height="13" font="6"><b>08/22/2014 01:33:27</b></text>
+<text top="1055" left="142" width="164" height="15" font="4"><b>KNIGHT, R. A. (366032)</b></text>
+<text top="1055" left="586" width="92" height="15" font="4"><b>GREEN, T. L.</b></text>
+<text top="941" left="76" width="203" height="11" font="8"><b>2014-25045 and 2014-25049</b></text>
+<text top="971" left="76" width="794" height="11" font="8"><b>On August 21, 2014 around 8:44 PM I was dispatched to 1116 Gordon St. on a report of a hit-and-run</b></text>
+<text top="987" left="76" width="737" height="11" font="8"><b>traffic accident that occurred at fire Station 7. I arrived on scene and located members of</b></text>
+<text top="1002" left="76" width="745" height="11" font="8"><b>Station 7 standing around a Piedmont natural gas line that had a gas meter attached that was</b></text>
+<text top="1056" left="416" width="122" height="15" font="4"><b>08/22/2014  01:23</b></text>
+<text top="1100" left="148" width="7" height="9" font="7"><b>X</b></text>
+<text top="1087" left="225" width="7" height="9" font="7"><b>X</b></text>
+<text top="1023" left="771" width="108" height="9" font="7"><b>** Continued **</b></text>
+</page>
+<page number="2" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="9" size="10" family="Times" color="#000000"/>
+	<fontspec id="10" size="13" family="Times" color="#000000"/>
+<text top="40" left="324" width="289" height="15" font="4"><b>ARREST REPORT  (Additional Narrative)</b></text>
+<text top="69" left="55" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="401" width="16" height="9" font="0">ORI</text>
+<text top="69" left="688" width="20" height="9" font="0">OCA</text>
+<text top="69" left="525" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="673" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="55" width="60" height="9" font="0">Arrestee Name</text>
+<text top="90" left="56" width="211" height="15" font="4"><b>High Point Police Department</b></text>
+<text top="128" left="678" width="58" height="15" font="4"><b>2691058</b></text>
+<text top="90" left="400" width="247" height="15" font="4"><b>0410300   H0001 08/22/2014  01:23</b></text>
+<text top="126" left="57" width="211" height="16" font="5"><b>ROTHERMEL, SUSAN KAY</b></text>
+<text top="90" left="694" width="75" height="15" font="4"><b>201425045</b></text>
+<text top="167" left="64" width="769" height="11" font="8"><b>broken. I parked my marked patrol car in the driveway of fire Station 7 and observed fresh tire</b></text>
+<text top="182" left="64" width="786" height="11" font="8"><b>marks driving through the front yard of the fire station coming off Gordon traveling south into a</b></text>
+<text top="197" left="64" width="737" height="11" font="8"><b>pine tree on the South boundary line. The tire tracks showed that the vehicle backed up and</b></text>
+<text top="213" left="64" width="794" height="11" font="8"><b>proceeded to pull off back onto Gordon clipping the Piedmont natural gas line as it did, resulting</b></text>
+<text top="228" left="64" width="316" height="11" font="8"><b>in approximately $1000 worth of damage.</b></text>
+<text top="259" left="64" width="753" height="11" font="8"><b>I initiated my paperwork documenting the scene and remained in the driveway of fire station 7</b></text>
+<text top="274" left="64" width="778" height="11" font="8"><b>located at 1116 Gordon St. While working on my report, I heard a crashing sound and looked South</b></text>
+<text top="289" left="64" width="753" height="11" font="8"><b>from my location observing a green Subaru Forrester traveling North on Gordon Street onto the</b></text>
+<text top="305" left="64" width="794" height="11" font="8"><b>shoulder of the road striking a non-breakaway Street sign. The vehicle continued North exiting the</b></text>
+<text top="320" left="64" width="786" height="11" font="8"><b>roadway nearly striking my marked patrol car, missing by inches, then proceeding North striking a</b></text>
+<text top="335" left="64" width="761" height="11" font="8"><b>2nd non-breakaway Street sign before coming to rest in a ditch on the east side of Five Points</b></text>
+<text top="351" left="64" width="761" height="11" font="8"><b>Pl. hundred yards north of fire station 7. I initiated contact with the driver to check on her</b></text>
+<text top="366" left="64" width="794" height="11" font="8"><b>welfare and located a white female in the driver seat and no other passengers in the vehicle. As I</b></text>
+<text top="381" left="64" width="786" height="11" font="8"><b>approached and spoke with the driver I noticed a distinct odor of an alcoholic beverage emanating</b></text>
+<text top="397" left="64" width="275" height="11" font="8"><b>from the driver`s body and breath.</b></text>
+<text top="427" left="64" width="794" height="11" font="8"><b>The driver identified herself as Susan K Rothermel, and stated that she had just left her house in</b></text>
+<text top="443" left="64" width="786" height="11" font="8"><b>Jamestown, went to the store, and now was returning home. Rothermel related that she traveled the</b></text>
+<text top="458" left="64" width="778" height="11" font="8"><b>route to and from the store and was unaware of what had just occurred. I informed Rothermel that</b></text>
+<text top="473" left="64" width="794" height="11" font="8"><b>she had struck 2 Non-breakaway Street signs went through an embankment and ending up in the ditch.</b></text>
+<text top="489" left="64" width="761" height="11" font="8"><b>Rothermel appeared disorientated and I continued to smell the strong odor of alcohol emanating</b></text>
+<text top="504" left="64" width="786" height="11" font="8"><b>from her body and breath. I contacted communications advised them of the 2nd traffic accident and</b></text>
+<text top="519" left="64" width="794" height="11" font="8"><b>requested EMS to respond to check Rothermel for injuries. EMS responded to the scene and Rothermel</b></text>
+<text top="535" left="64" width="607" height="11" font="8"><b>signed a waiver stating that she was fine and needed no medical assistance.</b></text>
+<text top="565" left="64" width="656" height="11" font="8"><b>After EMS examined Rothermel I initiated my driving while impaired investigation.</b></text>
+<text top="596" left="64" width="753" height="11" font="8"><b>While speaking to Rothermel she was observed to have a moderate odor of an alcoholic beverage</b></text>
+<text top="611" left="64" width="429" height="11" font="8"><b>coming from her. Rothermel was also observed to have:</b></text>
+<text top="627" left="64" width="235" height="11" font="8"><b>- Trouble exiting her vehicle</b></text>
+<text top="642" left="64" width="243" height="11" font="8"><b>- Slow and lethargic movements</b></text>
+<text top="657" left="64" width="786" height="11" font="8"><b>- The need for support to maintain her balance when asked, Rothermel agreed to submit to a series</b></text>
+<text top="673" left="64" width="194" height="11" font="8"><b>of field sobriety tests.</b></text>
+<text top="704" left="64" width="243" height="11" font="8"><b>Horizontal Gaze Nystagmus Test</b></text>
+<text top="719" left="64" width="769" height="11" font="8"><b>Prior to beginning the test it was determined Rothermel was wearing contacts. Rothermel` s eyes</b></text>
+<text top="734" left="64" width="786" height="11" font="8"><b>were checked and her eyes displayed equal tracking and her pupils were equal sizes. Rothermel was</b></text>
+<text top="750" left="64" width="794" height="11" font="8"><b>instructed to following the stimulus with her eyes only, keeping her head still. After stating she</b></text>
+<text top="765" left="64" width="470" height="11" font="8"><b>understood the instructions Rothermel attempted this test.</b></text>
+<text top="780" left="64" width="697" height="11" font="8"><b>After attempting the test it was determined that Rothermel could not perform the test.</b></text>
+<text top="811" left="64" width="680" height="11" font="8"><b>While attempting the Horizontal Gaze Nystagmus test, it was observed that Rothermel:</b></text>
+<text top="826" left="64" width="470" height="11" font="8"><b>- Had difficulty following and responding to instructions.</b></text>
+<text top="842" left="64" width="413" height="11" font="8"><b>- Moved her head from side to side during the test.</b></text>
+<text top="857" left="64" width="194" height="11" font="8"><b>- Swayed while standing.</b></text>
+<text top="872" left="64" width="656" height="11" font="8"><b>- The instructions for the test had to be repeated before Rothermel would respond</b></text>
+<text top="903" left="64" width="146" height="11" font="8"><b>Walk and Turn Test</b></text>
+<text top="918" left="64" width="753" height="11" font="8"><b>Prior to attempting this test, Rothermel indicated she did not have any medical problems that</b></text>
+<text top="934" left="64" width="778" height="11" font="8"><b>would have prevented her from performing the test. Rothermel was instructed to put her left foot</b></text>
+<text top="949" left="64" width="761" height="11" font="8"><b>on the line and her right foot in front of it with her right heel touching the toe of her left</b></text>
+<text top="964" left="64" width="737" height="11" font="8"><b>foot. She was instructed to stand in this manner with her hands to his sides until the test</b></text>
+<text top="980" left="64" width="778" height="11" font="8"><b>instructions were completed and the test demonstrated. Rothermel was instructed not to begin the</b></text>
+<text top="995" left="64" width="769" height="11" font="8"><b>test until told to start. She was instructed to take nine steps along the line in a heel-to-toe</b></text>
+<text top="1010" left="64" width="786" height="11" font="8"><b>manner. After the ninth step she was to stop and turn around keeping her lead foot on the ground,</b></text>
+<text top="1026" left="64" width="761" height="11" font="8"><b>taking several small steps with the other foot to turn around. After turning around she was to</b></text>
+<text top="1041" left="64" width="778" height="11" font="8"><b>take nine steps in a heel-to-toe manner back along the line, in the direction she had come from.</b></text>
+<text top="1056" left="64" width="786" height="11" font="8"><b>Rothermel was further instructed to watch her feet at all times while walking, keep her arms down</b></text>
+<text top="1072" left="64" width="794" height="11" font="8"><b>to his side, and to count her steps out loud. After the test was demonstrated Rothermel stated she</b></text>
+<text top="1087" left="64" width="526" height="11" font="8"><b>understood the instructions and was instructed to begin the test.</b></text>
+<text top="1116" left="45" width="187" height="11" font="9"><i>Arrest Report (Additional Narrative)</i></text>
+<text top="1114" left="827" width="48" height="14" font="10">Page 2</text>
+</page>
+<page number="3" position="absolute" top="0" left="0" height="1188" width="918">
+<text top="40" left="324" width="289" height="15" font="4"><b>ARREST REPORT  (Additional Narrative)</b></text>
+<text top="69" left="55" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="401" width="16" height="9" font="0">ORI</text>
+<text top="69" left="688" width="20" height="9" font="0">OCA</text>
+<text top="69" left="525" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="673" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="55" width="60" height="9" font="0">Arrestee Name</text>
+<text top="90" left="56" width="211" height="15" font="4"><b>High Point Police Department</b></text>
+<text top="128" left="678" width="58" height="15" font="4"><b>2691058</b></text>
+<text top="90" left="400" width="247" height="15" font="4"><b>0410300   H0001 08/22/2014  01:23</b></text>
+<text top="126" left="57" width="211" height="16" font="5"><b>ROTHERMEL, SUSAN KAY</b></text>
+<text top="90" left="694" width="75" height="15" font="4"><b>201425045</b></text>
+<text top="162" left="64" width="697" height="11" font="8"><b>After attempting the test it was determined that Rothermel could not perform the test.</b></text>
+<text top="193" left="64" width="146" height="11" font="8"><b>One Leg Stand Test</b></text>
+<text top="208" left="64" width="753" height="11" font="8"><b>Prior to attempting this test, Rothermel indicated she did not have any medical problems that</b></text>
+<text top="224" left="64" width="753" height="11" font="8"><b>would have prevented her from performing the test. Rothermel was instructed to stand with her</b></text>
+<text top="239" left="64" width="786" height="11" font="8"><b>heels together and hands down to her sides while the instructions were given and during the test.</b></text>
+<text top="254" left="64" width="769" height="11" font="8"><b>Rothermel was instructed not to begin the test until she was instructed to start, and after the</b></text>
+<text top="270" left="64" width="786" height="11" font="8"><b>test had been demonstrated. When instructed to start, she was to raise the foot of her choice off</b></text>
+<text top="285" left="64" width="753" height="11" font="8"><b>the ground approximately 6 inches. While her leg was raised she was to keep her leg straight,</b></text>
+<text top="300" left="64" width="794" height="11" font="8"><b>watch her raised foot, and to count out loud by thousands (one thousand one, one thousand two, one</b></text>
+<text top="316" left="64" width="778" height="11" font="8"><b>thousand three...) and to continue the test until told to stop (30 seconds). After this test was</b></text>
+<text top="331" left="64" width="729" height="11" font="8"><b>demonstrated and indicating she understood the instructions Rothermel attempted this test.</b></text>
+<text top="362" left="64" width="697" height="11" font="8"><b>After attempting the test it was determined that Rothermel could not perform the test.</b></text>
+<text top="392" left="64" width="794" height="11" font="8"><b>Based on my observations I advised Rothermel that she was under arrest for driving while impaired,</b></text>
+<text top="408" left="64" width="761" height="11" font="8"><b>I introduced her to Officer Stephen Finn who had her give two-breath samples on an Alco Sensor</b></text>
+<text top="423" left="64" width="737" height="11" font="8"><b>after she stated she had no alcohol to drink the Alco Sensor  showed a positive reading for</b></text>
+<text top="438" left="64" width="786" height="11" font="8"><b>alcohol. I transported Rothermel to the High Point Police Department where she was administered a</b></text>
+<text top="454" left="64" width="559" height="11" font="8"><b>breathalyzer test by Officer T. Mills which had a BAC reading of .16.</b></text>
+<text top="484" left="64" width="737" height="11" font="8"><b>While investigating the traffic accident I observed fresh damage to the left rear corner of</b></text>
+<text top="500" left="64" width="786" height="11" font="8"><b>Rothermel` s vehicle. Crime lab came out and photograph the scene, took measurements and compared</b></text>
+<text top="515" left="64" width="778" height="11" font="8"><b>the damage located on the left rear corner panel to the Piedmont natural gas line and determined</b></text>
+<text top="530" left="64" width="778" height="11" font="8"><b>that this vehicle was the hit-and-run vehicle. See supplemental report by crime lab technician D</b></text>
+<text top="546" left="64" width="65" height="11" font="8"><b>Parrott.</b></text>
+<text top="576" left="64" width="745" height="11" font="8"><b>Rothermel was charged with driving while impaired and misdemeanor hit-and-run. Rothermel was</b></text>
+<text top="592" left="64" width="332" height="11" font="8"><b>released into the custody of her husband.</b></text>
+<text top="1114" left="827" width="48" height="14" font="10">Page 3</text>
+</page>
+</pdf2xml>

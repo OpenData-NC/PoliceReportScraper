@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml>
+<page number="1" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="0" size="7" family="Times" color="#000000"/>
+	<fontspec id="1" size="7" family="Times" color="#000000"/>
+	<fontspec id="2" size="10" family="Times" color="#000000"/>
+	<fontspec id="3" size="8" family="Times" color="#000000"/>
+	<fontspec id="4" size="13" family="Times" color="#000000"/>
+	<fontspec id="5" size="14" family="Times" color="#000000"/>
+	<fontspec id="6" size="11" family="Times" color="#000000"/>
+	<fontspec id="7" size="10" family="Courier" color="#000000"/>
+	<fontspec id="8" size="11" family="Courier" color="#000000"/>
+<text top="262" left="863" width="16" height="9" font="0">Unk</text>
+<text top="262" left="826" width="12" height="9" font="0">No</text>
+<text top="262" left="785" width="16" height="9" font="0">Yes</text>
+<text top="571" left="721" width="71" height="9" font="0">Inventory on File?</text>
+<text top="394" left="343" width="12" height="9" font="0">Fel</text>
+<text top="407" left="343" width="19" height="9" font="0">Misd</text>
+<text top="58" left="74" width="57" height="9" font="0">Agency Name</text>
+<text top="58" left="403" width="16" height="9" font="0">ORI</text>
+<text top="58" left="689" width="20" height="9" font="0">OCA</text>
+<text top="58" left="526" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="387" left="74" width="42" height="9" font="0">Charge #1</text>
+<text top="426" left="400" width="29" height="9" font="0">Counts</text>
+<text top="540" left="74" width="30" height="9" font="0">Vehicle</text>
+<text top="542" left="155" width="53" height="9" font="0">Left at Scene</text>
+<text top="542" left="275" width="34" height="9" font="0">Secured</text>
+<text top="557" left="154" width="145" height="9" font="0">Released to other at owners request</text>
+<text top="557" left="355" width="59" height="9" font="0">Name of Other</text>
+<text top="542" left="355" width="39" height="9" font="0">Unsecure</text>
+<text top="571" left="155" width="45" height="9" font="0">Impounded</text>
+<text top="571" left="237" width="65" height="9" font="0">Place of storage</text>
+<text top="357" left="293" width="35" height="9" font="0">On-View</text>
+<text top="357" left="371" width="76" height="9" font="0">Criminal Summons</text>
+<text top="371" left="295" width="62" height="9" font="0">Order for Arrest</text>
+<text top="244" left="768" width="98" height="9" font="0">Consumed Drug/Alcohol</text>
+<text top="133" left="74" width="103" height="9" font="0">Name (Last, First, Middle)</text>
+<text top="183" left="748" width="36" height="9" font="0">Resident</text>
+<text top="198" left="748" width="55" height="9" font="0">Non-Resident</text>
+<text top="183" left="826" width="38" height="9" font="0">Unknown</text>
+<text top="133" left="623" width="16" height="9" font="0">Sex</text>
+<text top="179" left="458" width="26" height="9" font="0">Phone</text>
+<text top="213" left="769" width="26" height="9" font="0">Phone</text>
+<text top="179" left="74" width="66" height="9" font="0">Current Address</text>
+<text top="213" left="74" width="71" height="9" font="0">Employer's Name</text>
+<text top="505" left="74" width="19" height="9" font="0">VYR</text>
+<text top="505" left="129" width="22" height="9" font="0">Make</text>
+<text top="505" left="219" width="24" height="9" font="0">Model</text>
+<text top="505" left="309" width="20" height="9" font="0">Style</text>
+<text top="505" left="407" width="22" height="9" font="0">Color</text>
+<text top="505" left="469" width="51" height="9" font="0">Plate #/State</text>
+<text top="505" left="615" width="15" height="9" font="0">VIN</text>
+<text top="133" left="584" width="21" height="9" font="0">Race</text>
+<text top="133" left="481" width="27" height="9" font="0">D.O.B.</text>
+<text top="689" left="36" width="27" height="9" font="1"><b>Status</b></text>
+<text top="698" left="36" width="27" height="9" font="1"><b>Codes</b></text>
+<text top="693" left="76" width="555" height="9" font="0">L - Lost         S - Stolen         R - Recovered         D - Damaged         Z - Seized         B - Burned         C - Counterfeit / Forged         F - Found</text>
+<text top="720" left="81" width="15" height="9" font="0">DCI</text>
+<text top="720" left="115" width="25" height="9" font="0">Status</text>
+<text top="720" left="171" width="33" height="9" font="0">Quantity</text>
+<text top="720" left="241" width="57" height="9" font="0">Type Measure</text>
+<text top="720" left="413" width="65" height="9" font="0">Suspected Type</text>
+<text top="94" left="86" width="25" height="9" font="0">Taken</text>
+<text top="106" left="90" width="23" height="9" font="0">Prints</text>
+<text top="118" left="90" width="28" height="9" font="0">Photos</text>
+<text top="94" left="128" width="148" height="9" font="0">Fingerprint Card Check Digit # (CKN)</text>
+<text top="94" left="403" width="47" height="9" font="0">Arrest Tract</text>
+<text top="94" left="527" width="66" height="9" font="0">Residence Tract</text>
+<text top="94" left="674" width="58" height="9" font="0">Arrest Number</text>
+<text top="133" left="547" width="16" height="9" font="0">Age</text>
+<text top="133" left="694" width="53" height="9" font="0">Place of Birth</text>
+<text top="143" left="815" width="44" height="9" font="0">Citizenship</text>
+<text top="213" left="422" width="33" height="9" font="0">Address</text>
+<text top="179" left="605" width="46" height="9" font="0">Occupation</text>
+<text top="278" left="74" width="87" height="9" font="0">Scars, Marks, Tattoos</text>
+<text top="244" left="490" width="14" height="9" font="0">Hgt</text>
+<text top="244" left="543" width="16" height="9" font="0">Wgt</text>
+<text top="244" left="597" width="16" height="9" font="0">Hair</text>
+<text top="244" left="74" width="119" height="9" font="0">Also Known As (Alias Names)</text>
+<text top="244" left="656" width="20" height="9" font="0">Eyes</text>
+<text top="278" left="404" width="67" height="9" font="0">Social Security #</text>
+<text top="278" left="558" width="59" height="9" font="0">OLN and State</text>
+<text top="278" left="710" width="68" height="9" font="0">Misc. # and Type</text>
+<text top="244" left="712" width="41" height="9" font="0">Skin Tone</text>
+<text top="319" left="74" width="93" height="9" font="0">Nearest Relative Name</text>
+<text top="319" left="422" width="33" height="9" font="0">Address</text>
+<text top="319" left="741" width="26" height="9" font="0">Phone</text>
+<text top="352" left="533" width="59" height="9" font="0">Place of Arrest</text>
+<text top="426" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="426" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="426" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="426" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="387" left="400" width="29" height="9" font="0">Counts</text>
+<text top="387" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="387" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="387" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="387" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="466" left="400" width="29" height="9" font="0">Counts</text>
+<text top="466" left="472" width="39" height="9" font="0">DCI Code</text>
+<text top="466" left="539" width="176" height="9" font="0">Offense Jurisdiction (if not arresting agency)</text>
+<text top="466" left="754" width="36" height="9" font="0">Statute #</text>
+<text top="466" left="829" width="43" height="9" font="0">Warr. Date</text>
+<text top="426" left="74" width="42" height="9" font="0">Charge #2</text>
+<text top="466" left="74" width="42" height="9" font="0">Charge #3</text>
+<text top="542" left="125" width="8" height="9" font="0">1.</text>
+<text top="557" left="125" width="8" height="9" font="0">2.</text>
+<text top="571" left="125" width="8" height="9" font="0">3.</text>
+<text top="542" left="471" width="41" height="9" font="0">Date/Time</text>
+<text top="58" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="69" left="39" width="9" height="12" font="2"><b>G</b></text>
+<text top="80" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="92" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="103" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="114" left="40" width="8" height="12" font="2"><b>Y</b></text>
+<text top="712" left="675" width="154" height="9" font="0">Check up to 3 types of activity for each</text>
+<text top="729" left="611" width="34" height="9" font="0">Possess</text>
+<text top="729" left="665" width="16" height="9" font="0">Buy</text>
+<text top="729" left="698" width="18" height="9" font="0">Sale</text>
+<text top="729" left="733" width="17" height="9" font="0">Mfg.</text>
+<text top="729" left="772" width="37" height="9" font="0">Importing</text>
+<text top="729" left="831" width="40" height="9" font="0">Operating</text>
+<text top="191" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="214" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="203" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="238" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="263" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="227" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="250" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="275" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="69" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="80" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="92" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="103" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="133" left="818" width="41" height="9" font="0">Country of</text>
+<text top="215" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="227" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="238" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="249" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="352" left="74" width="105" height="9" font="0">If Armed, Type of Weapon</text>
+<text top="433" left="343" width="12" height="9" font="0">Fel</text>
+<text top="447" left="343" width="19" height="9" font="0">Misd</text>
+<text top="472" left="343" width="12" height="9" font="0">Fel</text>
+<text top="486" left="343" width="19" height="9" font="0">Misd</text>
+<text top="394" left="39" width="9" height="12" font="2"><b>A</b></text>
+<text top="418" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="407" left="40" width="9" height="12" font="2"><b>R</b></text>
+<text top="442" left="40" width="8" height="12" font="2"><b>S</b></text>
+<text top="430" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="454" left="40" width="7" height="12" font="2"><b>T</b></text>
+<text top="407" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="418" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="429" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="440" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="527" left="39" width="8" height="12" font="2"><b>V</b></text>
+<text top="551" left="40" width="9" height="12" font="2"><b>H</b></text>
+<text top="539" left="40" width="8" height="12" font="2"><b>E</b></text>
+<text top="523" left="56" width="3" height="12" font="2"><b>I</b></text>
+<text top="534" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="545" left="54" width="7" height="12" font="2"><b>F</b></text>
+<text top="556" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="588" left="39" width="9" height="12" font="2"><b>C</b></text>
+<text top="610" left="40" width="9" height="12" font="2"><b>N</b></text>
+<text top="599" left="39" width="9" height="12" font="2"><b>O</b></text>
+<text top="622" left="40" width="7" height="12" font="2"><b>F</b></text>
+<text top="644" left="39" width="9" height="12" font="2"><b>N</b></text>
+<text top="633" left="41" width="3" height="12" font="2"><b>I</b></text>
+<text top="655" left="39" width="8" height="12" font="2"><b>E</b></text>
+<text top="667" left="39" width="9" height="12" font="2"><b>D</b></text>
+<text top="769" left="36" width="8" height="10" font="3"><b>D</b></text>
+<text top="791" left="36" width="8" height="10" font="3"><b>U</b></text>
+<text top="780" left="36" width="8" height="10" font="3"><b>R</b></text>
+<text top="814" left="36" width="7" height="10" font="3"><b>S</b></text>
+<text top="802" left="36" width="8" height="10" font="3"><b>G</b></text>
+<text top="786" left="47" width="8" height="10" font="3"><b>A</b></text>
+<text top="797" left="47" width="6" height="10" font="3"><b>T</b></text>
+<text top="765" left="57" width="8" height="10" font="3"><b>A</b></text>
+<text top="786" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="775" left="56" width="8" height="10" font="3"><b>R</b></text>
+<text top="806" left="56" width="7" height="10" font="3"><b>S</b></text>
+<text top="796" left="56" width="7" height="10" font="3"><b>E</b></text>
+<text top="816" left="57" width="6" height="10" font="3"><b>T</b></text>
+<text top="897" left="117" width="51" height="9" font="0">Complainant</text>
+<text top="897" left="216" width="24" height="9" font="0">Victim</text>
+<text top="897" left="74" width="26" height="9" font="0">Name:</text>
+<text top="897" left="425" width="33" height="9" font="0">Address</text>
+<text top="897" left="749" width="29" height="9" font="0">Phone:</text>
+<text top="941" left="45" width="8" height="10" font="3"><b>N</b></text>
+<text top="961" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="951" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="981" left="46" width="8" height="10" font="3"><b>A</b></text>
+<text top="1002" left="47" width="3" height="10" font="3"><b>I</b></text>
+<text top="971" left="45" width="8" height="10" font="3"><b>R</b></text>
+<text top="991" left="46" width="6" height="10" font="3"><b>T</b></text>
+<text top="1022" left="45" width="7" height="10" font="3"><b>E</b></text>
+<text top="1012" left="45" width="7" height="10" font="3"><b>V</b></text>
+<text top="1039" left="74" width="125" height="9" font="0">Arresting Officer Signature/ID #</text>
+<text top="1039" left="386" width="84" height="9" font="0">Date/Time Submitted</text>
+<text top="1039" left="581" width="84" height="9" font="0">Supervisor Signature</text>
+<text top="1075" left="74" width="51" height="9" font="0">Case Status:</text>
+<text top="1089" left="92" width="46" height="9" font="0">Further Inv.</text>
+<text top="1102" left="161" width="28" height="9" font="0">Closed</text>
+<text top="1102" left="91" width="31" height="9" font="0">Inactive</text>
+<text top="1075" left="220" width="70" height="9" font="0">Case Disposition:</text>
+<text top="1089" left="238" width="174" height="9" font="0">Cleared By Arrest / No Supplement Needed</text>
+<text top="1102" left="237" width="96" height="9" font="0">Arrest / No Investigation</text>
+<text top="1075" left="477" width="75" height="9" font="0">Arrestee Signature</text>
+<text top="1119" left="848" width="38" height="9" font="0">Rev. 3/92</text>
+<text top="1119" left="76" width="39" height="9" font="0">DCI-608F</text>
+<text top="1040" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="1064" left="41" width="9" height="12" font="2"><b>A</b></text>
+<text top="1052" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1087" left="41" width="9" height="12" font="2"><b>U</b></text>
+<text top="1076" left="42" width="7" height="12" font="2"><b>T</b></text>
+<text top="1100" left="42" width="8" height="12" font="2"><b>S</b></text>
+<text top="895" left="45" width="8" height="10" font="3"><b>C</b></text>
+<text top="915" left="45" width="9" height="10" font="3"><b>M</b></text>
+<text top="905" left="45" width="8" height="10" font="3"><b>O</b></text>
+<text top="925" left="45" width="7" height="10" font="3"><b>P</b></text>
+<text top="371" left="390" width="30" height="9" font="0">Citation</text>
+<text top="371" left="454" width="32" height="9" font="0">Warrant</text>
+<text top="587" left="74" width="80" height="9" font="0">Date/Time Confined</text>
+<text top="587" left="279" width="61" height="9" font="0">Place Confined</text>
+<text top="587" left="630" width="90" height="9" font="0">Committing Magistrate</text>
+<text top="616" left="74" width="44" height="9" font="0">Type Bond</text>
+<text top="629" left="101" width="64" height="9" font="0">Written Promise</text>
+<text top="642" left="101" width="34" height="9" font="0">Secured</text>
+<text top="629" left="192" width="44" height="9" font="0">Unsecured</text>
+<text top="642" left="161" width="35" height="9" font="0">No Bond</text>
+<text top="642" left="225" width="23" height="9" font="0">Other</text>
+<text top="616" left="277" width="55" height="9" font="0">Bond Amount</text>
+<text top="616" left="407" width="39" height="9" font="0">Trial Date</text>
+<text top="616" left="559" width="34" height="9" font="0">Court Of</text>
+<text top="616" left="719" width="15" height="9" font="0">City</text>
+<text top="658" left="74" width="110" height="9" font="0">Assisting Officer Name/ID #</text>
+<text top="658" left="416" width="152" height="9" font="0">Released By (Name/Department/ID #)</text>
+<text top="658" left="714" width="82" height="9" font="0">Date/Time Released</text>
+<text top="610" left="54" width="9" height="12" font="2"><b>B</b></text>
+<text top="633" left="54" width="9" height="12" font="2"><b>N</b></text>
+<text top="622" left="53" width="9" height="12" font="2"><b>O</b></text>
+<text top="644" left="54" width="9" height="12" font="2"><b>D</b></text>
+<text top="32" left="399" width="128" height="15" font="4"><b>ARREST REPORT</b></text>
+<text top="75" left="76" width="263" height="15" font="4"><b>BURKE COUNTY SHERIFF`S OFFICE</b></text>
+<text top="113" left="680" width="50" height="15" font="4"><b>107274</b></text>
+<text top="75" left="429" width="58" height="15" font="4"><b>0120000</b></text>
+<text top="75" left="526" width="122" height="15" font="4"><b>09/16/2014  23:10</b></text>
+<text top="154" left="73" width="254" height="16" font="5"><b>HILDEBRAN, PAYTON PHILLIPS</b></text>
+<text top="155" left="457" width="68" height="13" font="6"><b>08/17/1991</b></text>
+<text top="156" left="544" width="17" height="15" font="4"><b>23</b></text>
+<text top="156" left="584" width="14" height="15" font="4"><b>W</b></text>
+<text top="156" left="621" width="12" height="15" font="4"><b>M</b></text>
+<text top="193" left="76" width="348" height="15" font="4"><b>8206 Payton Ln, CONNELLY SPRINGS, NC 28612</b></text>
+<text top="194" left="457" width="84" height="13" font="6"><b>828-397-5541</b></text>
+<text top="226" left="76" width="152" height="15" font="4"><b>EAST COAST PIPING</b></text>
+<text top="193" left="634" width="56" height="15" font="4"><b>Laborer</b></text>
+<text top="148" left="650" width="46" height="12" font="2"><b>BURKE,</b></text>
+<text top="158" left="792" width="17" height="12" font="2"><b>US</b></text>
+<text top="113" left="131" width="68" height="15" font="4"><b>XQ1936M</b></text>
+<text top="113" left="407" width="32" height="15" font="4"><b>OUT</b></text>
+<text top="113" left="532" width="9" height="15" font="4"><b>L</b></text>
+<text top="75" left="696" width="75" height="15" font="4"><b>201403783</b></text>
+<text top="333" left="740" width="84" height="13" font="6"><b>828-310-9445</b></text>
+<text top="333" left="452" width="245" height="15" font="4"><b>5350 LT3 WILKIES GROVE CH RD,</b></text>
+<text top="226" left="501" width="177" height="15" font="4"><b>OWENS MOUNTAIN AVE</b></text>
+<text top="333" left="75" width="122" height="15" font="4"><b>YODER,SHARON</b></text>
+<text top="258" left="481" width="29" height="15" font="4"><b>5'06</b></text>
+<text top="258" left="537" width="25" height="15" font="4"><b>175</b></text>
+<text top="258" left="588" width="31" height="15" font="4"><b>BLK</b></text>
+<text top="258" left="650" width="33" height="15" font="4"><b>BRO</b></text>
+<text top="258" left="715" width="35" height="15" font="4"><b>FAIR</b></text>
+<text top="106" left="79" width="7" height="9" font="7"><b>X</b></text>
+<text top="118" left="79" width="7" height="9" font="7"><b>X</b></text>
+<text top="181" left="737" width="7" height="9" font="7"><b>X</b></text>
+<text top="260" left="774" width="7" height="9" font="7"><b>X</b></text>
+<text top="227" left="767" width="84" height="13" font="6"><b>828-310-6638</b></text>
+<text top="395" left="72" width="117" height="12" font="2"><b>Mv Theft-automobile</b></text>
+<text top="435" left="72" width="110" height="12" font="2"><b>Poss Stolen Goods</b></text>
+<text top="474" left="72" width="143" height="12" font="2"><b>Trespass-second Degree</b></text>
+<text top="369" left="535" width="206" height="15" font="4"><b>3105 1ST AVE SW, HICKORY</b></text>
+<text top="446" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="369" left="76" width="179" height="15" font="4"><b>NOT APPLICABLE/NONE</b></text>
+<text top="446" left="471" width="33" height="15" font="4"><b>1330</b></text>
+<text top="447" left="743" width="46" height="13" font="6"><b>14-71.1</b></text>
+<text top="448" left="818" width="60" height="12" font="2"><b>09/15/2014</b></text>
+<text top="407" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="407" left="471" width="33" height="15" font="4"><b>0710</b></text>
+<text top="408" left="737" width="58" height="13" font="6"><b>14-72(A))</b></text>
+<text top="409" left="818" width="60" height="12" font="2"><b>09/15/2014</b></text>
+<text top="485" left="389" width="8" height="15" font="4"><b>1</b></text>
+<text top="485" left="471" width="33" height="15" font="4"><b>2670</b></text>
+<text top="486" left="735" width="61" height="13" font="6"><b>14-159.13</b></text>
+<text top="486" left="818" width="60" height="12" font="2"><b>09/10/2014</b></text>
+<text top="392" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="432" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="485" left="328" width="7" height="9" font="7"><b>X</b></text>
+<text top="370" left="440" width="7" height="9" font="7"><b>X</b></text>
+<text top="633" left="559" width="46" height="13" font="6"><b>District</b></text>
+<text top="633" left="720" width="90" height="13" font="6"><b>MORGANTON</b></text>
+<text top="598" left="630" width="126" height="13" font="6"><b>ERIC DUCKWORTH</b></text>
+<text top="598" left="281" width="154" height="13" font="6"><b>BURKE CATAWBA JAIL</b></text>
+<text top="598" left="77" width="125" height="13" font="6"><b>09/17/2014 00:45:00</b></text>
+<text top="634" left="408" width="106" height="13" font="6"><b>09/17/2014 09:00</b></text>
+<text top="634" left="325" width="68" height="13" font="6"><b>$21,000.00</b></text>
+<text top="641" left="89" width="7" height="9" font="7"><b>X</b></text>
+<text top="670" left="317" width="8" height="13" font="6"><b>0</b></text>
+<text top="895" left="172" width="7" height="9" font="7"><b>X</b></text>
+<text top="1055" left="145" width="158" height="15" font="4"><b>ASHLEY, J. E. (A1349)</b></text>
+<text top="1055" left="586" width="121" height="15" font="4"><b>MCKINNEY, D. T.</b></text>
+<text top="941" left="76" width="737" height="11" font="8"><b>On the above date and time I took custody of Payton Hildebran from Long View Police Officer</b></text>
+<text top="956" left="76" width="778" height="11" font="8"><b>Rector. I transported Hildebran to the Magistrate Office and served him with the warrants listed</b></text>
+<text top="971" left="76" width="786" height="11" font="8"><b>above. I advised Hildebran of his charges and court dates.  Magistrate Duckworth issued Hildebran</b></text>
+<text top="987" left="76" width="778" height="11" font="8"><b>a secure bond of $21,000.00 for both warrants. Magistrate Duckworth did advised Hildebran of the</b></text>
+<text top="1002" left="76" width="737" height="11" font="8"><b>set bond. I then transported Hildebran to Burke Catawba Jail where he was booked in for the</b></text>
+<text top="1056" left="416" width="122" height="15" font="4"><b>09/16/2014  23:10</b></text>
+<text top="1100" left="148" width="7" height="9" font="7"><b>X</b></text>
+<text top="1100" left="225" width="7" height="9" font="7"><b>X</b></text>
+<text top="1023" left="771" width="108" height="9" font="7"><b>** Continued **</b></text>
+<text top="155" left="763" width="17" height="12" font="2"><b>NC</b></text>
+</page>
+<page number="2" position="absolute" top="0" left="0" height="1188" width="918">
+	<fontspec id="9" size="10" family="Times" color="#000000"/>
+	<fontspec id="10" size="13" family="Times" color="#000000"/>
+<text top="40" left="324" width="289" height="15" font="4"><b>ARREST REPORT  (Additional Narrative)</b></text>
+<text top="69" left="55" width="57" height="9" font="0">Agency Name</text>
+<text top="69" left="401" width="16" height="9" font="0">ORI</text>
+<text top="69" left="688" width="20" height="9" font="0">OCA</text>
+<text top="69" left="525" width="78" height="9" font="0">Date/Time Arrested</text>
+<text top="109" left="673" width="58" height="9" font="0">Arrest Number</text>
+<text top="109" left="55" width="60" height="9" font="0">Arrestee Name</text>
+<text top="90" left="56" width="263" height="15" font="4"><b>BURKE COUNTY SHERIFF`S OFFICE</b></text>
+<text top="128" left="678" width="50" height="15" font="4"><b>107274</b></text>
+<text top="90" left="428" width="58" height="15" font="4"><b>0120000</b></text>
+<text top="90" left="525" width="122" height="15" font="4"><b>09/16/2014  23:10</b></text>
+<text top="126" left="57" width="254" height="16" font="5"><b>HILDEBRAN, PAYTON PHILLIPS</b></text>
+<text top="90" left="694" width="75" height="15" font="4"><b>201403783</b></text>
+<text top="167" left="64" width="778" height="11" font="8"><b>charges. Once Hildebran was booked in I then finger printed Hildebran for the felony charges and</b></text>
+<text top="182" left="64" width="794" height="11" font="8"><b>then turn him over to the staff of Burke Catawba Jail where he is awaiting to make bond. Hildebran</b></text>
+<text top="197" left="64" width="745" height="11" font="8"><b>also has a second court date for the trespassing charge which is on October 1st 2014 at 0900</b></text>
+<text top="213" left="64" width="49" height="11" font="8"><b>hours.</b></text>
+<text top="1116" left="45" width="187" height="11" font="9"><i>Arrest Report (Additional Narrative)</i></text>
+<text top="1114" left="827" width="48" height="14" font="10">Page 2</text>
+</page>
+</pdf2xml>
