@@ -19,11 +19,8 @@ convert() {
 	#-dBATCH tells it to quit at the end, -s selects output device + file,
 	#-c starts PostScript, .setpdfwrite sets beneficial parameters, -f ends -c
 
-	xmlpath=`echo "$2"|awk -F'/' '{ print $(NF-2) }'`
-	#gets the name of the dir containing the dir that contains the pdfs
-	#which should be the name of the police department/type of report
-	mkdir -p "/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/extra/$xmlpath/"
-	pdftohtml -xml "/tmp/pdfs_currently_being_uploaded/$filename.pdf" "/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/extra/$xmlpath/$filename.xml"
+	xmlpath=`echo "$2"|awk -F'/' 'BEGIN { ORS="/" } { for (i=1; i<NF; i++) print $i }'`
+	pdftohtml -xml "/tmp/pdfs_currently_being_uploaded/$filename.pdf" "${xmlpath}xml/$filename.xml"
 	#converts the actual pdf to xml with the pdftohtml utility
 
 	rm "/tmp/pdfs_currently_being_uploaded/$filename.pdf"
@@ -32,23 +29,24 @@ convert() {
 
 #if $1 is a directory
 if [ -d "$1" ]; then
+	mkdir -p "${1}xml/"
 	#upload all the pdfs in the dir
 	for pdf in $1/*.pdf ; do
 		convert "$pdf" "$1"
 	done
-
+	echo "done"
 else
-	#go thru args, finding pdfs
-	for arg in $@ ; do
-		filename=`echo "$arg" | grep -i ".pdf$"`
-		if [ "$filename" != "" ] ; then
-			convert "$filename"
-		fi
-	done
-
+	echo "Please specify a directory as the argument."
 fi
 
-echo "done"
+#go thru args, finding pdfs
+#	for arg in $@ ; do
+#		filename=`echo "$arg" | grep -i ".pdf$"`
+#		if [ "$filename" != "" ] ; then
+#			convert "$filename"
+#		fi
+#	done
+
 
 #echo "scraping converted pdfs and uploading to the database..."
 

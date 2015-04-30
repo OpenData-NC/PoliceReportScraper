@@ -4,7 +4,7 @@ import traceback
 import sys
 from odnc_police.models import *
 
-pdfObjectList = createPDFList('/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/xml/')
+pdfObjectList = createPDFList('/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/Wake-Forest/Arrest/xml/')
 
 for record in pdfObjectList:        
 	try:
