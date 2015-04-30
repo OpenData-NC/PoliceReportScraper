@@ -689,7 +689,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         
     elif (state == "DRUGS"):
         statuses = {'L': 'Lost', 'S':  'Stolen', 'R': 'Recovered', 'D': 'Damaged', 'Z': 'Seized',
-                    'B': 'Burned', 'C': 'Counterfeit / Forged', 'F': 'Found'}
+                    'B': 'Burned', 'C': 'Counterfeit / Forged', 'F': 'Found', 'EVID': 'Evidence'}
         count = 0
         yIncrement = 0
 
