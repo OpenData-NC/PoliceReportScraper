@@ -4,7 +4,20 @@ import traceback
 import sys
 from odnc_police.models import *
 
-pdfObjectList = createPDFList('/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/Wake-Forest/Arrest/xml/')
+
+def getInput():
+	pdfDir = raw_input('Enter the path after sample_other_agency: ')
+	return pdfDir
+
+
+pdfDir = getInput()
+dirPath = '/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/' + str(pdfDir)
+while (not(os.path.exists(dirPath))):
+	pdfDir = raw_input('Directory location invalid; please re-enter path: ')
+	dirPath = '/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/' + str(pdfDir)
+
+
+pdfObjectList = createPDFList(dirPath)
 
 for record in pdfObjectList:        
 	try:
@@ -19,7 +32,6 @@ for record in pdfObjectList:
         	dt_trial = record['Trial Date']
                 dt_sub = record['Date Submitted']
                 tm_sub = record['Time Submitted']
-        
         
                 if (dt_arr == 'NULL' or dt_arr is None):
         		dt_arr = None
