@@ -450,6 +450,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 kvps[len(kvps)-1][0] = 'Social Security' #to avoid # in key names
             elif (kvps[len(kvps)-1][0] == 'Misc. # and Type'):
                 kvps[len(kvps)-1][0] = 'Misc. Number and Type' #to avoid # in key names
+            elif (kvps[len(kvps)-1][0] == 'Wgt'):
+                kvps[len(kvps)-1][1] = int(kvps[len(kvps)-1][1])
                 
                     
     elif (state == "ARREST_INFO"):
@@ -512,6 +514,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 kvps.append(["Charge2", dataTracker[1]])
                 kvps.append(["Charge3", dataTracker[2]])
             elif (flistNoChecks[x][1] > 370 and flistNoChecks[x][1] < 450): #counts column
+                dataTracker = [-7, -7, -7]
                 for d in dlistNoChecks:
                     if (d[1] < 450):
                         if (d[1] > 370):
@@ -523,10 +526,11 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                                 dataTracker[1] = d[2]
                     else:
                         break
-                kvps.append(["Charge1 Counts", dataTracker[0]])
-                kvps.append(["Charge2 Counts", dataTracker[1]])
-                kvps.append(["Charge3 Counts", dataTracker[2]])
+                kvps.append(["Charge1 Counts", int(dataTracker[0])])
+                kvps.append(["Charge2 Counts", int(dataTracker[1])])
+                kvps.append(["Charge3 Counts", int(dataTracker[2])])
             elif (flistNoChecks[x][1] > 450 and flistNoChecks[x][1] < 530): #dci code column
+                dataTracker = [-999, -999, -999]
                 for d in dlistNoChecks:
                     if (d[1] < 530):
                         if (d[1] > 450):
@@ -538,9 +542,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                                 dataTracker[1] = d[2]
                     else:
                         break
-                kvps.append(["Charge1 DCI Code", dataTracker[0]])
-                kvps.append(["Charge2 DCI Code", dataTracker[1]])
-                kvps.append(["Charge3 DCI Code", dataTracker[2]])
+                kvps.append(["Charge1 DCI Code", int(dataTracker[0])])
+                kvps.append(["Charge2 DCI Code", int(dataTracker[1])])
+                kvps.append(["Charge3 DCI Code", int(dataTracker[2])])
             elif (flistNoChecks[x][1] > 530 and flistNoChecks[x][1] < 715): #offense jurisdiction
                 for d in dlistNoChecks:
                     if (d[1] < 715):
@@ -617,6 +621,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 flistNoChecks.pop(0)
             if (kvps[len(kvps)-1][0] == 'Plate #/State'):
                 kvps[len(kvps)-1][0] = 'Plate No./State' #to avoid # in key names
+            if (kvps[len(kvps)-1][0] == 'VYR'):
+                kvps[len(kvps)-1][1] = int(kvps[len(kvps)-1][1])
 
         for leftovers in dlistNoChecks:
             if ((leftovers[2].find('/') + leftovers[2].find(':')) > 0):
@@ -746,7 +752,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                         else:
                             dataTracker[4] = dataTracker[4] + ", Operating"
             kvps.append([("Drug"+str(count)+" Suspected Type"), dataTracker[0]])
-            kvps.append([("Drug"+str(count)+" DCI"), dataTracker[1]])
+            kvps.append([("Drug"+str(count)+" DCI"), int(dataTracker[1])])
             kvps.append([("Drug"+str(count)+" Status"), dataTracker[2]])
             kvps.append([("Drug"+str(count)+" Quantity"), dataTracker[3]])
             kvps.append([("Drug"+str(count)+" Activities"), dataTracker[4]])
@@ -755,7 +761,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             count = 2
             dataTracker = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL']
             kvps.append([("Drug"+str(count)+" Suspected Type"), dataTracker[0]])
-            kvps.append([("Drug"+str(count)+" DCI"), dataTracker[1]])
+            kvps.append([("Drug"+str(count)+" DCI"), int(dataTracker[1])])
             kvps.append([("Drug"+str(count)+" Status"), dataTracker[2]])
             kvps.append([("Drug"+str(count)+" Quantity"), dataTracker[3]])
             kvps.append([("Drug"+str(count)+" Activities"), dataTracker[4]])
