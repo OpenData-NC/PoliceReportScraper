@@ -1,7 +1,5 @@
 from django.db import models
 
-#keep the _test for now, we don't want to override the tables 
-#already in the db
 class Arrest(models.Model):
 	'''
 	Defines the format of the database. Things like OCA, Agency Name, and Date Arrested are the columns of the database

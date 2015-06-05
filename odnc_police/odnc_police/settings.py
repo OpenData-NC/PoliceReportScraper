@@ -4,7 +4,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Ben Parisi', 'bparisi@live.unc.edu'),
 )
 
 MANAGERS = ADMINS
@@ -70,8 +70,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/vaughn.hagerty/django/PoliceReportScraper/odnc_police/odnc_police/static/",
-    "/var/www/static/"
+    "/home/vaughn.hagerty/django/PoliceReportScraper/odnc_police/odnc_police/static/"
 )
 
 # List of finder classes that know how to find static files in
@@ -111,6 +110,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    'home/vaughn.hagerty/django/PoliceReportScraper/odnc_police/odnc_police/templates',
 )
 
 INSTALLED_APPS = (
@@ -121,9 +121,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
     'odnc_police',
 )
 
@@ -132,6 +132,7 @@ INSTALLED_APPS = (
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -155,3 +156,4 @@ LOGGING = {
         },
     }
 }
+"""

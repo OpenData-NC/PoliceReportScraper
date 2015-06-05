@@ -3,12 +3,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, loader
 from django.db.models import Q
-from models import Arrest_test
+from models import Arrest
 from itertools import chain
 from operator import and_, or_
 import datetime
 import os
 import re
+
+def hello(request):
+    return HttpResponse("Hello World the last time")
 
 def search(request):
     return render(request, 'SearchPage.html')
