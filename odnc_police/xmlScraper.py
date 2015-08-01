@@ -139,7 +139,7 @@ def processLists(dlist, flist, sectionsToGrab, extraLines):
 
         if (expectedMatch):
             if (len(tempDlist) == 0):
-                listOfMatchedValues = markAppropriateFieldsNull(tempFlist, section)
+                listOfMatchedValues = markAppropriateFieldsNull(section)
                 kvpsMaster.extend(listOfMatchedValues)
             else:
                 listOfMatchedValues = pairFieldandData(tempDlist, tempFlist, section)
@@ -216,10 +216,10 @@ def grabRelevantDataAndFields(dlist, flist, start, end):
     return dlist, flist, tempDlist, tempFlist
 
 
-def markAppropriateFieldsNull(flist, section):
+def markAppropriateFieldsNull(section):
     """This function is only called when ALL fields in a certain section have no data. If so they are all marked as NULL here
     to avoid unnecessary comparisons in the pairFieldandData() function. If not ALL fields are empty, individual empty fields
-    #are marked as NULL as the rest of the data in the section is matched, in pairFieldandData()."""
+    are marked as NULL as the rest of the data in the section is matched, in pairFieldandData()."""
     kvps = []
 
     if (section == "AGENCY_INFO"): #makes no sense and should never happen (no arresting agency info?)
@@ -230,15 +230,15 @@ def markAppropriateFieldsNull(flist, section):
         print "Something Nonsensical Happened - This form lacks critical data"
         #--> the first three sections must have some data in every case
     elif (section == "VEH_INFO"):
-        flist = removeMultipleFromFieldList(flist, ['Vehicle', 'Left at Scene', 'Secured', 'Unsecure', 'Date/Time', '1.',
-                                                    '2.', '3.', 'Released to other at owners request', 'Name of Other',
-                                                    'Impounded', 'Place of storage', 'Inventory on File?'])
+        kvps.append(['VYR', 'NULL'])
+        kvps.append(['Make', 'NULL'])
+        kvps.append(['Model', 'NULL'])
+        kvps.append(['Style', 'NULL'])
+        kvps.append(['Color', 'NULL'])
+        kvps.append(['Plate No./State', 'NULL'])
+        kvps.append(['VIN', 'NULL'])
         kvps.append(['Vehicle Status', 'NULL'])
         kvps.append(['Vehicle Status Datetime', 'NULL'])
-        for item in flist:
-            if (item[2] == 'Plate #/State'):
-                item[2] = 'Plate No./State'
-            kvps.append([item[2], 'NULL'])
     elif (section == "BOND"):
         kvps.append(["Datetime Confined", 'NULL'])
         kvps.append(["Place Confined", 'NULL'])
@@ -271,13 +271,27 @@ def markAppropriateFieldsNull(flist, section):
 
     return kvps
 
+#
+# *===============================================================*
+# ||$||||||||||||||||^^^^^^^^^^^^^^^^^^^^^^^||||||||||||||||||||$||
+# |****************************************************************
+# | * * * * * * * PAIR FIELD AND DATA SCROLL MARKER * * * * * * * *
+# |**** Just a way to spot the function as I scroll quickly by ****
+# |
+# |
+# | !
+# |
+# |_______________________________________________________________|
+# *================================================================
+#
+
 
 def pairFieldandData(dlistChunk, flistChunk, state):
-    """The main meaty data matching functions of the scraper; takes as input one pair of chunks from the two data-item lists
-    (representing a certain section of the pdf) and the state string identifying which section the chunks are from.
-    See the Documentation for more info on the matching algorithm."""
+    """The major of the two main data matching functions of the scraper; takes as input one pair of chunks (representing a certain section of the pdf)
+    from the overall dlist and flist and the state string identifying which section the chunks are from."""
     global currentOCA, seeChargesTrue
 
+    #strip the checkmark data and pass it on to pairCheckmarkData
     savedIndices = []
     checkmarkData = []
     for x in range(len(dlistChunk)):
@@ -292,12 +306,14 @@ def pairFieldandData(dlistChunk, flistChunk, state):
     flistNoChecks, kvps = pairCheckmarkData(checkmarkData, flistChunk, state)
 
     unmatchedData = []
+
+    #begin text data if-else ladder for section 'state machine'
     
     if (state == "AGENCY_INFO"):
         oriIndex = -1
         dateArrIndex = -1
 
-        while (len(flistNoChecks) > 0):
+        while (len(flistNoChecks) > 0): #uncomment the next few comments for debugging
             #print flistNoChecks[0][2] + ' @ ' + str(flistNoChecks[0][0]) + ', ' + str(flistNoChecks[0][1]) + ' compared to '
             matchFound = False
             for y in range(len(dlistNoChecks)):
@@ -822,24 +838,26 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 
     return kvps
 
-
-def removeFromFieldList(flist, field):
-    """Helper function that removes a certain field name from the data item list of fields."""
-    for x in range(len(flist)):
-        if (flist[x][2] == field):
-            flist.pop(x)
-            break
-    return flist
-
-def removeMultipleFromFieldList(flist, fieldsToRemove):
-    """Helper function that removes multiple fields from the data item list at once."""
-    for field in fieldsToRemove:
-        flist = removeFromFieldList(flist, field)
-    return flist
+#
+# *===============================================================*
+# ||$||||||||||||||||^^^^^^^^^^^^^^^^^^^^^^^||||||||||||||||||||$||
+# |****************************************************************
+# | * * * * * * * PAIR CHECKMARK DATA SCROLL MARKER * * * * * * * *
+# |**** Just a way to spot the function as I scroll quickly by ****
+# |
+# |
+# |
+# |
+# | !
+# |
+# |
+# |
+# |_______________________________________________________________|
+# *================================================================
+#
 
 def pairCheckmarkData(chkData, flistChunk, state):
-    """One of the meaty data matching functions of the scraper, built to handle only the checkboxes present in any
-    particular section. See the Documentation for more info on the algorithm."""
+    """The minor of the two main data matching function of the scraper, built to handle only the checkboxes from a particular section."""
     moe = 0 #margin of error; number of pixels by which something can be off its hardcoded position
     kvps = [] #key-value pairs
     dataTracker = [] #used to store the default and final values of checkmark kvps
@@ -1056,6 +1074,21 @@ def pairCheckmarkData(chkData, flistChunk, state):
 
     return flistChunk, kvps
 
+
+def removeFromFieldList(flist, field):
+    """Helper function that removes a certain field name from the list of field items."""
+    for x in range(len(flist)):
+        if (flist[x][2] == field):
+            flist.pop(x)
+            break
+    return flist
+
+def removeMultipleFromFieldList(flist, fieldsToRemove):
+    """Helper function that removes multiple fields from the list of field items."""
+    for field in fieldsToRemove:
+        flist = removeFromFieldList(flist, field)
+    return flist
+
     
 #The next two functions are convenience functions I wrote so I wouldn't have
 #to repetitively enter parameters when calling the functions in IDLE.
@@ -1092,17 +1125,22 @@ def createPDFList(directoryPath):
         pdfObj = getSinglePDFObj(directoryPath+filename)
         if (pdfObj != "NULL"):
             pdfObjects.append(pdfObj)
+        else:
+            print "--->Error with ghostscript or the pdf2xml conversion of this file"
     return pdfObjects
 
 def createPDFDict(directoryPath):
     """Takes as input a directory containing multiple converted .xml files and returns a dictionary of python dictionaries. The keys to the larger,
     all-encompassing dictionary are the OCA numbers from the reports whose dictionary representation is the value for that key."""
     pdfObjectsDictionary = {}
-    snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
     for filename in os.listdir(directoryPath):
+        print "operating on file " + filename + "..."
         pdfObj = getSinglePDFObj(directoryPath+filename)
-        pdfObjectsDictionary[pdfObj['OCA']] = pdfObj
-        print "operating on file " + filename + "...  keys: " + str(len(pdfObj.keys()))
+        if (pdfObj != "NULL"):
+            pdfObjectsDictionary[pdfObj['OCA']] = pdfObj
+            print "keys: " + str(len(pdfObj.keys()))
+        else:
+            print "--->Error with ghostscript or the pdf2xml conversion of this file"
     return pdfObjectsDictionary
 
 
@@ -1119,7 +1157,8 @@ def printPDFDict(pdfDict):
     print "\n=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*\n"
 
 def sortByKey(key):
-    """This function is used to custom sort the dictionaries that are constructed by the scraper for convenience in printing."""
+    """This function is used to custom sort the dictionaries that are constructed by the scraper for convenience in printing.
+    It is used by the lambda function in printPDFDict, which is the function to call to actually view the sorted output."""
     if (key == 'OCA'):
         return 1
     elif (key == 'Agency Name'):
@@ -1332,12 +1371,3 @@ def sortByKey(key):
         return 105
     else:
         return 106
-
-
-#
-def renamingScript(prependpath):
-    """Can be ignored; this function was used because of a file naming quirk that was a result of the
-    syntax of the windows command for running the pdftohtml utility on a whole directory.
-    It would convert a pdf to 'example.pdf.xml', so this gets rid of '.pdf' for 'example.xml'"""
-    for filename in os.listdir(prependpath):
-        os.rename(prependpath+filename, prependpath+filename[:-8]+filename[-4:])
