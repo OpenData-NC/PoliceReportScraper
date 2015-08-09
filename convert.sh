@@ -4,6 +4,8 @@ rm -r /tmp/pdfs_currently_being_uploaded > /dev/null 2>&1
 #> /dev/null 2>&1 redirects all output to a black hole
 mkdir /tmp/pdfs_currently_being_uploaded
 
+echo "temporary directory created at /tmp/pdfs_currently_being_uploaded..."
+
 convert() {
 	filename=`echo "$1"|awk -F'.' '{print $(NF-1)}'|awk -F'/' '{print $(NF)}'`
 	#backtick^ (`) used to set var equal to output of a command
@@ -19,8 +21,10 @@ convert() {
 	#-dBATCH tells it to quit at the end, -s selects output device + file,
 	#-c starts PostScript, .setpdfwrite sets beneficial parameters, -f ends -c
 
-	xmlpath=`echo "$2"|awk -F'/' 'BEGIN { ORS="/" } { for (i=1; i<NF; i++) print $i }'`
-	pdftohtml -xml "/tmp/pdfs_currently_being_uploaded/$filename.pdf" "${xmlpath}xml/$filename.xml"
+	#below line was used when convert() may get either single file or directory as input; it strips the ultimate filename out of the absolute path
+	#xmlpath=`echo "$2"|awk -F'/' 'BEGIN { ORS="/" } { for (i=1; i<NF; i++) print $i }'`
+
+	pdftohtml -xml "/tmp/pdfs_currently_being_uploaded/$filename.pdf" "${2}xml/$filename.xml"
 	#converts the actual pdf to xml with the pdftohtml utility
 
 	rm "/tmp/pdfs_currently_being_uploaded/$filename.pdf"
