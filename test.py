@@ -5,23 +5,37 @@ import sys
 from odnc_police.models import *
 
 
-def getInput():
-	pdfDir = raw_input('Enter the path after sample_other_agency: ')
-	return pdfDir
+#def getInput():
+#	pdfDir = raw_input('Enter the path after xmls/: ')
+#	return pdfDir
 
+#pdfDir = getInput()
 
-pdfDir = getInput()
-dirPath = '/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/' + str(pdfDir)
-while (not(os.path.exists(dirPath))):
-	pdfDir = raw_input('Directory location invalid; please re-enter path: ')
-	dirPath = '/home/vaughn.hagerty/django/PoliceReportScraper/sample_other_agency/' + str(pdfDir)
+#dirPath = '/mnt/pd1/xmls/' + str(pdfDir)
+#while (not(os.path.exists(dirPath))):
+#	pdfDir = raw_input('Directory location invalid; please re-enter the path: ')
+#	dirPath = '/mnt/pd1/xmls/' + str(pdfDir)
 
+print "working..."
 
-pdfObjectList = createPDFList(dirPath)
+logfile = open("/mnt/pd1/xmls/logs/ashevilleinitialscrapelog.txt", "a+")
+
+print >>logfile, "Beginning scrape of Asheville xmls (up-to-date through mid-August 2015) at " + str(datetime.datetime.now())
+
+dirPath = '/mnt/pd1/xmls/asheville-police-department/Arrest/'
+
+print >>logfile, "Begin creation of pdf objects: \n"
+
+pdfObjectList = createPDFList(dirPath, logfile)
+
+print >>logfile, "pdfObjectList created. There are " + str(len(pdfObjectList)) + " objects in the list."
+print >>logfile, "Begin saving records to the database: \n"
+
+errCount = 0
 
 for record in pdfObjectList:        
 	try:
-                print "doing record with OCA " + record['OCA'] + "..."
+                print >>logfile, "attempting to save record with OCA " + record['OCA'] + "..."
         
                 dt_arr = record['Date Arrested']
                 tm_arr = record['Time Arrested']
@@ -70,7 +84,7 @@ for record in pdfObjectList:
         	else:
         		dttm_rel = datetime.datetime(int(dttm_rel[6:10]), int(dttm_rel[:2]), int(dttm_rel[3:5]), int(dttm_rel[11:13]), int(dttm_rel[14:16]))
         	
-        	a = Arrest_test(OCA = record['OCA'],
+        	a = Arrest(OCA = record['OCA'],
         			Agency_Name = record['Agency Name'],
         			ORI = record['ORI'],
         			Date_Arrested = dt_arr,
@@ -190,7 +204,14 @@ for record in pdfObjectList:
         
         	)
                 a.save()
-                print "successfully saved record to DB"
+                print >>logfile, "successfully saved record to DB"
 	except:
-    		print "Error uploading this record to DB"
-    		print traceback.format_exc() #sys.exc_info()
+    		print >>logfile, "Error uploading this record to DB, traceback:"
+    		print >>logfile, traceback.format_exc() #sys.exc_info()
+		errCount = errCount + 1
+
+print >>logfile, "Done saving to database. There were " + str(errCount) + " excepted records."
+print >>logfile, "\nFinished attempted scrape of " + str(len(pdfObjectList)) + " Asheville xmls at " + str(datetime.datetime.now())
+logfile.close()
+
+print "done"

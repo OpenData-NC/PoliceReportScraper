@@ -3,6 +3,7 @@ import datetime
 
 currentOCA = ""
 seeChargesTrue = False #some forms put the OCA number in the charges section for some reason
+logfile = None
 
 def getFileLinesList(filepath):
     """Simple function that takes a filepath to one of the converted .xml files and returns a list
@@ -220,14 +221,16 @@ def markAppropriateFieldsNull(section):
     """This function is only called when ALL fields in a certain section have no data. If so they are all marked as NULL here
     to avoid unnecessary comparisons in the pairFieldandData() function. If not ALL fields are empty, individual empty fields
     are marked as NULL as the rest of the data in the section is matched, in pairFieldandData()."""
+    global logfile
+
     kvps = []
 
     if (section == "AGENCY_INFO"): #makes no sense and should never happen (no arresting agency info?)
-        print "Something Nonsensical Happened - This form lacks critical data"
+        print >>logfile, "Something Nonsensical Happened - This form lacks critical data"
     elif (section == "ARRESTEE_INFO"): #also makes no sense (no information on who was arrested?)
-        print "Something Nonsensical Happened - This form lacks critical data"
+        print >>logfile, "Something Nonsensical Happened - This form lacks critical data"
     elif (section == "ARREST_INFO"): #definitely makes no sense (no crime data?)
-        print "Something Nonsensical Happened - This form lacks critical data"
+        print >>logfile, "Something Nonsensical Happened - This form lacks critical data"
         #--> the first three sections must have some data in every case
     elif (section == "VEH_INFO"):
         kvps.append(['VYR', 'NULL'])
@@ -267,7 +270,7 @@ def markAppropriateFieldsNull(section):
     elif (section == "NARRATIVE"):
         kvps.append(['Narrative', 'NULL'])
     elif (section == "STATUS"): #also definitely not possible (no arresting officer info?)
-        print "Something Nonsensical Happened - This form lacks critical data"
+        print >>logfile, "Something Nonsensical Happened - This form lacks critical data"
 
     return kvps
 
@@ -289,7 +292,7 @@ def markAppropriateFieldsNull(section):
 def pairFieldandData(dlistChunk, flistChunk, state):
     """The major of the two main data matching functions of the scraper; takes as input one pair of chunks (representing a certain section of the pdf)
     from the overall dlist and flist and the state string identifying which section the chunks are from."""
-    global currentOCA, seeChargesTrue
+    global currentOCA, seeChargesTrue, logfile
 
     #strip the checkmark data and pass it on to pairCheckmarkData
     savedIndices = []
@@ -607,7 +610,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 kvps.append(["Charge2 Warrant Date", dataTracker[1]])
                 kvps.append(["Charge3 Warrant Date", dataTracker[2]])
             else:
-                print "*****The field " + f[2] + " in the charges section of " + currentOCA + " remains*****"
+                print >>logfile, "*****The field " + f[2] + " in the charges section of " + currentOCA + " remains*****"
             x=x+3
 
         flistNoChecks = removeMultipleFromFieldList(flistNoChecks, ['Charge #1', 'Charge #2', 'Charge #3', 'Counts', 'Counts', 'Counts',
@@ -651,14 +654,14 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             kvps.append(["VIN", temp[19:]])
 
         unmatchedData = dlistNoChecks
-##        #a helpful debugging script
-##        if (len(unmatchedData) > 0):
-##            print "\n*****************************************\nSOME DATA WENT UNMATCHED FROM VEH INFO IN"
-##            print currentOCA + ".xml"
-##            print "*****************************************"
-##            for u in unmatchedData:
-##                print u
-##            print "*****************************************\n"
+        #a helpful debugging script
+        if (len(unmatchedData) > 0):
+            print >>logfile, "\n*****************************************\nSOME DATA WENT UNMATCHED FROM VEH INFO IN"
+            print >>logfile, currentOCA + ".xml"
+            print >>logfile, "*****************************************"
+            for u in unmatchedData:
+                print >>logfile, u
+            print >>logfile, "*****************************************\n"
 
         
 
@@ -863,7 +866,7 @@ def pairCheckmarkData(chkData, flistChunk, state):
     dataTracker = [] #used to store the default and final values of checkmark kvps
     error = "***** A checkmark exists but could not be properly matched @ "
     
-    global currentOCA
+    global currentOCA, logfile
     
     if (state == "AGENCY_INFO"):
         moe = 6
@@ -875,9 +878,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[0] - 118) < moe):
                     dataTracker[1] = True
                 else: #something went wrong; there are checks but not in the right place
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             else: #same here... etc.
-                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
         kvps.append(["Prints Taken", dataTracker[0]])
         kvps.append(["Photos Taken", dataTracker[1]])
@@ -893,12 +896,12 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[1] - 815) < moe):
                     dataTracker[0] = 'Unknown'
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             elif (abs(x[0] - 196) < moe):
                 if (abs(x[1] - 735) < moe):
                     dataTracker[0] = 'Non-Resident'
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA         
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA         
             elif (abs(x[0] - 262) < moe):
                 if (abs(x[1] - 775) < moe):
                     dataTracker[1] = 'Yes'
@@ -907,9 +910,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[1] - 851) < moe):
                     dataTracker[1] = 'Unknown'
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             else:
-                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
         kvps.append(["Residency Status", dataTracker[0]])
         kvps.append(["Consumed Drug/Alcohol", dataTracker[1]])
@@ -928,7 +931,7 @@ def pairCheckmarkData(chkData, flistChunk, state):
                     elif (abs(x[1] - 356) < moe):
                         dataTracker[0] = 'Criminal Summons'
                     else:
-                        print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                        print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
                 elif (abs(x[0] - 370) < moe):
                     if (abs(x[1] - 278) < moe):
                         dataTracker[0] = 'Order for Arrest'
@@ -937,9 +940,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                     elif (abs(x[1] - 444) < moe):
                         dataTracker[0] = 'Warrant'
                     else:
-                        print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                        print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             else:
                 moe = 6
                 if (abs(x[1] - 328) < moe):
@@ -957,9 +960,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                     elif (abs(x[0] - 486) < moe):
                         dataTracker[3] = 'Misdemeanor'
                     else:
-                        print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                        print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
         kvps.append(["Arrest Type", dataTracker[0]])
         kvps.append(["Charge1 Type", dataTracker[1]])
@@ -1000,7 +1003,7 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[1] - 177) < moe):
                     dataTracker = "Unsecured"
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             elif (abs(x[0] - 642) < moe):
                 if (abs(x[1] - 86) < moe):
                     dataTracker = "Secured"
@@ -1009,9 +1012,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[1] - 212) < moe):
                     dataTracker = "Other"
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             else:
-                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
 
         kvps.append(["Type Bond", dataTracker])
         flistChunk = removeMultipleFromFieldList(flistChunk, ['Type Bond', 'Written Promise', 'Unsecured', 'Secured', 'No Bond', 'Other'])
@@ -1031,9 +1034,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[1] - 244) < moe):
                     dataTracker = "Victim"
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             else:
-                print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
                 
         kvps.append(["Comp", dataTracker])
         flistChunk = removeMultipleFromFieldList(flistChunk, ['Complainant', 'Victim'])
@@ -1051,7 +1054,7 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[1] - 220) < moe):
                     dataTracker[1] = "Cleared By Arrest/No Supplement Needed"
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             elif (abs(x[0] - 1101) < moe):
                 if (abs(x[1] - 75) < moe):
                     dataTracker[0] = "Inactive"
@@ -1060,9 +1063,9 @@ def pairCheckmarkData(chkData, flistChunk, state):
                 elif (abs(x[1] - 220) < moe):
                     dataTracker[1] = "Arrest/No Investigation"
                 else:
-                    print error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
+                    print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             else:
-                print error + str(x[0]) + ", " + str(x[1]) + " *****  " + currentOCA
+                print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****  " + currentOCA
 
         kvps.append(["Case Status", dataTracker[0]])
         kvps.append(["Case Disposition", dataTracker[1]])
@@ -1116,17 +1119,19 @@ def getSinglePDFObj(filepath):
     
 
 #analagous usage but directoryPath is path to directory folder rather than file
-def createPDFList(directoryPath):
+def createPDFList(directoryPath, logFileObj):
     """Takes as input a directory containing multiple converted .xml files and returns a list of python dictionaries, each of which represents
     one of the converted-.xml reports from the directory."""
+    global logfile
     pdfObjects = []
+    logfile = logFileObj
     for filename in os.listdir(directoryPath):
-        print "operating on file " + filename + "..."
+        print >>logFileObj, "operating on file " + filename + "..."
         pdfObj = getSinglePDFObj(directoryPath+filename)
         if (pdfObj != "NULL"):
             pdfObjects.append(pdfObj)
         else:
-            print "--->Error with ghostscript or the pdf2xml conversion of this file"
+            print >>logfile, "--->Error with ghostscript or the pdf2xml conversion of this file"
     return pdfObjects
 
 def createPDFDict(directoryPath):

@@ -1,7 +1,12 @@
 #!/bin/sh
 
+echo "\nworking...\n"
+echo "For output on the conversion of specific files see the log file created at /mnt/pd1/xmls/logs/log[DATE]-[TIME]\n"
+
+#name of the temp directory
 TEMP_DIR=`echo "pdfs_being_converted"`
 
+#directory constants
 PDFS_DIR=`echo "/mnt/pd1/pdfs"`
 XMLS_DIR=`echo "/mnt/pd1/xmls"`
 LOGS_DIR=`echo "/mnt/pd1/xmls/logs"`
@@ -13,6 +18,7 @@ rm -r /tmp/$TEMP_DIR > /dev/null 2>&1
 #> /dev/null 2>&1 redirects all output to a black hole
 mkdir /tmp/$TEMP_DIR
 
+#create file path to log file
 date=`date +%m%d%y`
 tm=`date +%H%M%S`
 logID=`echo "log${date}-${tm}.txt"`
@@ -20,12 +26,12 @@ log=`echo "${LOGS_DIR}/$logID"`
 
 echo "temporary directory created at /tmp/${TEMP_DIR}...\n" >> "$log"
 
-
+#function used to copy pdfs to /tmp/ and convert them to xml using pdf2html -xml
 convert() {
+	#get just the filename with no absolute path and no type extension
 	filename=`echo "$1"|awk -F'.' '{print $(NF-1)}'|awk -F'/' '{print $(NF)}'`
-	#backtick^ (`) used to set var equal to output of a command
-	#with awk, -F is input field separator and NF is var w/ num fields
-	#this line stores the name of the file that was used as a cmd line arg of this script into the filename variable, w/out the type extension
+	#with awk, -F is input field separator and NF is a variable holding the number of fields
+	#$1 is the first positional parameter called with this function
 
 	echo "attempting to convert ${filename}.xml ..." >> "$log"
 
@@ -44,9 +50,10 @@ convert() {
 }
 
 
+count=$((0))
+
 #upload all the pdfs from each police department, one of {Arrest, Incident, Accident} (only getting Arrest for now)
 for deptDir in `ls $PDFS_DIR` ; do
-	count=$((0))
 
 	#form absolute path
 	fullDir=`echo "/mnt/pd1/pdfs/${deptDir}/Arrest/"`
@@ -54,7 +61,7 @@ for deptDir in `ls $PDFS_DIR` ; do
 	#if the dept contains an Arrest subdir...
 	if [ -d "$fullDir" ]; then
 		echo "\n=======================" >> "$log"
-		echo "Converting pdfs in $fullDir ..." >> "$log"
+		echo "Converting pdfs in $fullDir ...\n" >> "$log"
 
 		#form the absolute path to the subdir for Arrest xml files and make it if necessary
 		xmlDir=`echo "/mnt/pd1/xmls/${deptDir}/Arrest/"`
@@ -62,14 +69,17 @@ for deptDir in `ls $PDFS_DIR` ; do
 
 		#try converting each pdf in the pdfs Arrest subdir, passing the xml subdir path where the conversion will be saved
 		for pdf in $fullDir/*.pdf ; do
-			#convert "$pdf" "$xmlDir"
+			convert "$pdf" "$xmlDir"
 			count=$((count + 1))
-			test $((count)) -eq $((20)) && echo "did 20" >> "$log" && break
+			#test $((count)) -eq $((20)) && echo "did 20" >> "$log" && break
 			#above line is another form of an if statement
 		done
 		echo "Done converting pdfs in $fullDir\n=======================" >> "$log"
 	fi
 done
+
+date=`date +%c`
+echo "\n\nFinished attempted conversion of $count files on $date" >> "$log"
 
 #go thru args, finding pdfs
 #	for arg in $@ ; do
@@ -82,5 +92,4 @@ done
 
 #echo "scraping converted pdfs and uploading to the database..."
 
-#echo "\"$dir_to_upload\""
-#echo "execfile(\"./test.py\",\"$dir_to_upload\")\nprint \"ok\"" | python odnc_police/manage.py shell
+#echo "execfile(\"./test.py\",\"$dir_to_upload\")" | python odnc_police/manage.py shell
