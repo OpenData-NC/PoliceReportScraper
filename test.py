@@ -210,7 +210,9 @@ for record in pdfObjectList:
                 print >>logfile, "successfully saved record to DB"
 	except:
     		print >>logfile, "Error uploading this record to DB, traceback:"
-    		print >>logfile, traceback.format_exc() #sys.exc_info()
+    		#print >>logfile, traceback.format_exc() #sys.exc_info()
+		for a in record.keys():
+			print >>logfile, a + " -- " + str(record[a])
 		errCount = errCount + 1
 
 print >>logfile, "Done saving to database. There were " + str(errCount) + " excepted records."
