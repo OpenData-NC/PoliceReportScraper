@@ -374,9 +374,9 @@ def pairFieldandData(dlistChunk, flistChunk, state):
        
     elif (state == "ARRESTEE_INFO"):
 
-        #separate out common problem spots before moving on to general matching. fields are problem
-        #spots if the data is offset in a weird way from the field tag 
-        #occupation, place of birth, country of citizenship, scars, nearest relative and employer info.
+        #separate out common problem spots before moving on to general matching.
+        #fields are problem spots if the data is offset in a weird way from the field tag.
+        #occupation, place of birth, country of citizenship, scars, nearest relative and employer info are examples.
         #find and create unique keys for nearest relative phone and address and
         #employer's phone and address, which are simply 'Phone' and 'Address' on the form.
         flistNoChecks.pop() #easier to remove nearest relative name, phone and address this way
@@ -470,7 +470,8 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             elif (kvps[len(kvps)-1][0] == 'Misc. # and Type'):
                 kvps[len(kvps)-1][0] = 'Misc. Number and Type' #to avoid # in key names
             elif (kvps[len(kvps)-1][0] == 'Wgt'):
-                kvps[len(kvps)-1][1] = int(kvps[len(kvps)-1][1])
+                if (kvps[len(kvps)-1][1] != 'NULL'):
+                    kvps[len(kvps)-1][1] = int(kvps[len(kvps)-1][1])
                 
                     
     elif (state == "ARREST_INFO"):
@@ -640,8 +641,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 flistNoChecks.pop(0)
             if (kvps[len(kvps)-1][0] == 'Plate #/State'):
                 kvps[len(kvps)-1][0] = 'Plate No./State' #to avoid # in key names
-            if (kvps[len(kvps)-1][0] == 'VYR'):
-                kvps[len(kvps)-1][1] = int(kvps[len(kvps)-1][1])
 
         for leftovers in dlistNoChecks:
             if ((leftovers[2].find('/') + leftovers[2].find(':')) > 0):
@@ -729,7 +728,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 if (lastIndex == -1):
                     break
             yIncrement = yIncrement + 17
-            dataTracker = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL']
+            dataTracker = ['NULL', -999, 'NULL', 'NULL', 'NULL']
             drugDataChunk = qsort(drugDataChunk, 1)
             for d in drugDataChunk:
                 if (d[1] < 100):
@@ -778,7 +777,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
 
         if (count == 1):
             count = 2
-            dataTracker = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL']
+            dataTracker = ['NULL', -999, 'NULL', 'NULL', 'NULL']
             kvps.append([("Drug"+str(count)+" Suspected Type"), dataTracker[0]])
             kvps.append([("Drug"+str(count)+" DCI"), int(dataTracker[1])])
             kvps.append([("Drug"+str(count)+" Status"), dataTracker[2]])
@@ -870,13 +869,13 @@ def pairCheckmarkData(chkData, flistChunk, state):
     
     if (state == "AGENCY_INFO"):
         moe = 6
-        dataTracker = [False, False]
+        dataTracker = ['No', 'No']
         for x in chkData:
             if (abs(x[1] - 79) < moe):
                 if (abs(x[0] - 106) < moe):
-                    dataTracker[0] = True
+                    dataTracker[0] = 'Yes'
                 elif (abs(x[0] - 118) < moe):
-                    dataTracker[1] = True
+                    dataTracker[1] = 'Yes'
                 else: #something went wrong; there are checks but not in the right place
                     print >>logfile, error + str(x[0]) + ", " + str(x[1]) + " *****" + currentOCA
             else: #same here... etc.
