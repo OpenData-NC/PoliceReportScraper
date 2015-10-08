@@ -1,7 +1,7 @@
 from xmlScraper import *
 import datetime
 import traceback
-import sys
+import sys, os
 from odnc_police.models import *
 
 
@@ -18,11 +18,27 @@ from odnc_police.models import *
 
 print "working..."
 
-logfile = open("/mnt/pd1/xmls/logs/ashevilleinitialscrapelog.txt", "a+")
+dirItems = []
+for dir in os.listdir('/mnt/pd1/xmls/'):
+	if (dir != 'logs'):
+		dirItem = []
+		fullDirPath = '/mnt/pd1/xmls/' + dir + '/Arrest/'
+		logPath = '/mnt/pd1/xmls/logs/' + dir + '-scrapelog.txt'
+		dirItem.append(fullDirPath)
+		dirItem.append(logPath)
+		dirItem.append(dir)
+		dirItems.append(dirItem)	
 
-print >>logfile, "Beginning scrape of Asheville xmls (up-to-date through mid-August 2015) at " + str(datetime.datetime.now())
+for item in dirItems:
+	print item[2]
 
-dirPath = '/mnt/pd1/xmls/asheville-police-department/Arrest/'
+sys.exit()
+
+logfile = open("/mnt/pd1/xmls/logs/buncombescrapelog.txt", "a+")
+
+print >>logfile, "Beginning scrape of Buncombe County xmls (up-to-date through mid-August 2015) at " + str(datetime.datetime.now())
+
+dirPath = '/mnt/pd1/xmls/buncombe-county-sheriffs-office/Arrest/'
 
 print >>logfile, "Begin creation of pdf objects: \n"
 
@@ -112,7 +128,7 @@ for record in pdfObjectList:
         			Employer_Phone = record['Employer Phone'],
         			Also_Known_As = record['Also Known As (Alias Names)'],
         			Hgt = record['Hgt'],
-        			Wgt = -1,
+        			Wgt = record['Wgt'],
         			Hair = record['Hair'],
         			Eyes = record['Eyes'],
         			Skin_Tone = record['Skin Tone'],
@@ -130,24 +146,22 @@ for record in pdfObjectList:
         			Place_of_Arrest = record['Place of Arrest'],
         			Charge1 = record['Charge1'],
         			Charge1_Type = record['Charge1 Type'],
-        			#Charge1_Counts = record['Charge1 Counts'],
-        			#Charge1_DCI_Code = record['Charge1 DCI Code'],
-				Charge1_Counts = -1,
-				Charge1_DCI_Code = -1,
+        			Charge1_Counts = record['Charge1 Counts'],
+        			Charge1_DCI_Code = record['Charge1 DCI Code'],
         			Charge1_Offense_Jurisdiction = record['Charge1 Offense Jurisdiction'],
         			Charge1_Statute_Number = record['Charge1 Statute Number'],
         			Charge1_Warrant_Date = record['Charge1 Warrant Date'],
         			Charge2 = record['Charge2'],
         			Charge2_Type = record['Charge2 Type'],
-        			Charge2_Counts = -1,
-        			Charge2_DCI_Code = -1,
+        			Charge2_Counts = record['Charge1 Counts'],
+        			Charge2_DCI_Code = record['Charge1 DCI Code'],
         			Charge2_Offense_Jurisdiction = record['Charge2 Offense Jurisdiction'],
         			Charge2_Statute_Number = record['Charge2 Statute Number'],
         			Charge2_Warrant_Date = record['Charge2 Warrant Date'],
         			Charge3 = record['Charge3'],
         			Charge3_Type = record['Charge3 Type'],
-        			Charge3_Counts = -1,
-        			Charge3_DCI_Code = -1,
+        			Charge3_Counts = record['Charge3 Counts'],
+        			Charge3_DCI_Code = record['Charge3 DCI Code'],
         			Charge3_Offense_Jurisdiction = record['Charge3 Offense Jurisdiction'],
         			Charge3_Statute_Number = record['Charge3 Statute Number'],
         			Charge3_Warrant_Date = record['Charge3 Warrant Date'],
@@ -175,13 +189,12 @@ for record in pdfObjectList:
         			Datetime_Released = dttm_rel,
         
         			Drug1_Suspected_Type = record['Drug1 Suspected Type'],
-        			#Drug1_DCI = record['Drug1 DCI'],
-				Drug1_DCI = -1,
+        			Drug1_DCI = record['Drug1 DCI'],
         			Drug1_Status = record['Drug1 Status'],
         			Drug1_Quantity = record['Drug1 Quantity'],
         			Drug1_Activities = record['Drug1 Activities'],
         			Drug2_Suspected_Type = record['Drug2 Suspected Type'],
-        			Drug2_DCI = -1,
+        			Drug2_DCI = record['Drug2 DCI'],
         			Drug2_Status = record['Drug2 Status'],
         			Drug2_Quantity = record['Drug2 Quantity'],
         			Drug2_Activities = record['Drug2 Activities'],
@@ -210,13 +223,16 @@ for record in pdfObjectList:
                 print >>logfile, "successfully saved record to DB"
 	except:
     		print >>logfile, "Error uploading this record to DB, traceback:"
-    		#print >>logfile, traceback.format_exc() #sys.exc_info()
-		for a in record.keys():
-			print >>logfile, a + " -- " + str(record[a])
+    		print >>logfile, traceback.format_exc() #sys.exc_info()
+		#for a in record.keys():
+		#	print >>logfile, a + " -- " + str(record[a])
 		errCount = errCount + 1
 
 print >>logfile, "Done saving to database. There were " + str(errCount) + " excepted records."
-print >>logfile, "\nFinished attempted scrape of " + str(len(pdfObjectList)) + " Asheville xmls at " + str(datetime.datetime.now())
+print >>logfile, "\nFinished attempted scrape of " + str(len(pdfObjectList)) + " Buncombe County xmls at " + str(datetime.datetime.now())
+print >>logfile, "\n\n\n--------------------\n\n"
 logfile.close()
 
-print "done"
+print "Done saving to database. There were " + str(errCount) + " excepted records."
+print "\nFinished attempted scrape of " + str(len(pdfObjectList)) + " Buncombe County xmls at " + str(datetime.datetime.now())
+ 
