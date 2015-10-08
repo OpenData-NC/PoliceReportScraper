@@ -258,7 +258,7 @@ def markAppropriateFieldsNull(section):
         txt = ["Drug1", "Drug2"]
         for t in txt:
             kvps.append([(t + " Suspected Type"), 'NULL'])
-            kvps.append([(t + " DCI"), 'NULL'])
+            kvps.append([(t + " DCI"), -999])
             kvps.append([(t + " Status"), 'NULL'])
             kvps.append([(t + " Quantity"), 'NULL'])
             kvps.append([(t + " Activities"), 'NULL'])
@@ -718,6 +718,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
         yIncrement = 0
 
         dlistNoChecks.reverse()
+        print "it did work"
         while (len(dlistNoChecks) > 0 and count < 2):
             count = count + 1
             drugDataChunk = []
