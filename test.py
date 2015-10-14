@@ -240,4 +240,4 @@ for dirItem in dirItems:
         print "Done saving to database. There were " + str(errCount) + " excepted records."
         print "Finished attempted scrape of " + str(len(pdfObjectList)) +  " " + dirItem[2] + " xmls at " + str(datetime.datetime.now()) + "\n"
 
-print "The total file count was " + str(len(totalCount)) + ". There were a total of " + str(totalErrCount) + " excepted records."
+print "The total file count was " + str(totalCount) + ". There were a total of " + str(totalErrCount) + " excepted records."

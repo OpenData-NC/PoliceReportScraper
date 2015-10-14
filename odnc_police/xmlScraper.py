@@ -113,7 +113,7 @@ def processLists(dlist, flist, sectionsToGrab, extraLines):
     for section in sectionsToGrab:
 
         expectedMatch = True
-        print "For section " + section + ", "
+        #print "For section " + section + ", "
         if (section == "AGENCY_INFO"):
             sdlist, sflist, tempDlist, tempFlist = grabRelevantDataAndFields(sdlist, sflist, 0, 130)
         elif (section == "ARRESTEE_INFO"):
@@ -140,7 +140,7 @@ def processLists(dlist, flist, sectionsToGrab, extraLines):
         #if no data was found in a certain section, all appropriate fields are marked NULL
 
         if (expectedMatch):
-            #THIS is actually where the INLV status code problem is coming up
+            #good idea to use len=0 as condition? investigate
             if (len(tempDlist) == 0):
                 listOfMatchedValues = markAppropriateFieldsNull(section)
                 kvpsMaster.extend(listOfMatchedValues)
@@ -729,7 +729,6 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             count = count + 1
             drugDataChunk = []
             lastIndex = len(dlistNoChecks) - 1
-            #probably the INLV problem is right here (grabs anything less than 750 with no greater than)
             while (dlistNoChecks[lastIndex][0] < (750 + yIncrement)):
                 drugDataChunk.append(dlistNoChecks.pop())
                 lastIndex = lastIndex - 1
@@ -742,7 +741,10 @@ def pairFieldandData(dlistChunk, flistChunk, state):
                 if (d[1] < 100):
                     dataTracker[1] = d[2]
                 elif (d[1] < 140):
-                    dataTracker[2] = statuses[d[2]]
+                    if (d[2] in statuses):
+                        dataTracker[2] = statuses[d[2]]
+                    else: 
+                        dataTracker[2] = d[2]
                 elif (d[1] < 225):
                     dataTracker[3] = d[2]
                 elif (d[1] < 300):
