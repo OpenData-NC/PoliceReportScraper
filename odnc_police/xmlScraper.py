@@ -113,6 +113,7 @@ def processLists(dlist, flist, sectionsToGrab, extraLines):
     for section in sectionsToGrab:
 
         expectedMatch = True
+        print "For section " + section + ", "
         if (section == "AGENCY_INFO"):
             sdlist, sflist, tempDlist, tempFlist = grabRelevantDataAndFields(sdlist, sflist, 0, 130)
         elif (section == "ARRESTEE_INFO"):
@@ -139,6 +140,7 @@ def processLists(dlist, flist, sectionsToGrab, extraLines):
         #if no data was found in a certain section, all appropriate fields are marked NULL
 
         if (expectedMatch):
+            #THIS is actually where the INLV status code problem is coming up
             if (len(tempDlist) == 0):
                 listOfMatchedValues = markAppropriateFieldsNull(section)
                 kvpsMaster.extend(listOfMatchedValues)
@@ -213,6 +215,15 @@ def grabRelevantDataAndFields(dlist, flist, start, end):
     savedIndices.reverse()
     for y in savedIndices:
         flist.pop(y)
+
+##    print "\nGrab Relevant Data and Fields returned the following in the temp lists: "
+##    print "tempDlist:"
+##    for item in tempDlist:
+##        print item[2] + " @ " + str(item[0]) + ", " + str(item[1])
+##    print "tempFlist:"
+##    for item in tempFlist:
+##        print item[2] + " @ " + str(item[0]) + ", " + str(item[1])
+##    print "----------------------------------\n"
 
     return dlist, flist, tempDlist, tempFlist
 
