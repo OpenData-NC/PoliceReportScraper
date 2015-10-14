@@ -20,14 +20,15 @@ print "working..."
 
 dirItems = []
 for direc in os.listdir('/mnt/pd1/xmls/'):
-	if (direc != 'logs'):
+	if (direc != 'scrape-logs' and direc != 'convert-logs'):
 		dirItem = []
 		fullDirPath = '/mnt/pd1/xmls/' + direc + '/Arrest/'
-		logPath = '/mnt/pd1/xmls/logs/' + direc + '-scrapelog.txt'
-		dirItem.append(fullDirPath)
-		dirItem.append(logPath)
-		dirItem.append(direc)
-		dirItems.append(dirItem)	
+		logPath = '/mnt/pd1/xmls/scrape-logs/' + direc + '-scrapelog.txt'
+		if (os.path.exists(fullDirPath)):
+			dirItem.append(fullDirPath)
+			dirItem.append(logPath)
+			dirItem.append(direc)
+			dirItems.append(dirItem)	
 
 totalErrCount = 0
 totalCount = 0
@@ -229,7 +230,7 @@ for dirItem in dirItems:
                         errCount = errCount + 1
 
         print >>logfile, "Done saving to database. There were " + str(errCount) + " excepted records."
-        print >>logfile, "\nFinished attempted scrape of " + str(len(pdfObjectList)) + dirItem[2] + " xmls at " + str(datetime.datetime.now())
+        print >>logfile, "\nFinished attempted scrape of " + str(len(pdfObjectList)) + " " + dirItem[2] + " xmls at " + str(datetime.datetime.now())
         print >>logfile, "\n\n\n--------------------\n\n"
         logfile.close()
 
@@ -237,6 +238,6 @@ for dirItem in dirItems:
         totalCount = totalCount + len(pdfObjectList)
 
         print "Done saving to database. There were " + str(errCount) + " excepted records."
-        print "Finished attempted scrape of " + str(len(pdfObjectList)) + dirItem[2] + " xmls at " + str(datetime.datetime.now()) + "\n"
+        print "Finished attempted scrape of " + str(len(pdfObjectList)) +  " " + dirItem[2] + " xmls at " + str(datetime.datetime.now()) + "\n"
 
 print "The total file count was " + str(len(totalCount)) + ". There were a total of " + str(totalErrCount) + " excepted records."

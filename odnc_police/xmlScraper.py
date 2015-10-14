@@ -718,6 +718,7 @@ def pairFieldandData(dlistChunk, flistChunk, state):
             count = count + 1
             drugDataChunk = []
             lastIndex = len(dlistNoChecks) - 1
+            #probably the INLV problem is right here (grabs anything less than 750 with no greater than)
             while (dlistNoChecks[lastIndex][0] < (750 + yIncrement)):
                 drugDataChunk.append(dlistNoChecks.pop())
                 lastIndex = lastIndex - 1
