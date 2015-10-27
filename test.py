@@ -215,7 +215,7 @@ for dirItem in dirItems:
                                         Case_Disposition = record['Case Disposition'],
                                         Arrestee_Signature = record['Arrestee Signature'],
                 
-                                        pdf = 'path/to/pdf.lnk',
+                                        pdf = record['Path To PDF'],
                                         city = "thecity",
                                         state = 'NC'
                 
