@@ -1122,7 +1122,7 @@ def getSinglePDFObj(filepath):
         dlist, flist = createLineIndex(listOfLines)
         snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
         pdfObj = processLists(dlist, flist, snl, extras)
-        pdfObj['Path to PDF'] = filepath
+        pdfObj['Path To PDF'] = filepath
         return pdfObj
     else:
         return "NULL" #something went wrong with ghostscript and/or conversion of pdf to xml file
@@ -1384,5 +1384,7 @@ def sortByKey(key):
         return 104
     elif (key == 'Arrestee Signature'):
         return 105
-    else:
+    elif (key == 'Path To PDF'):
         return 106
+    else:
+        return 107
