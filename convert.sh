@@ -56,7 +56,7 @@ count=$((0))
 for deptDir in `ls $PDFS_DIR` ; do
 
 	#form absolute path
-	fullDir=`echo "/mnt/pd1/pdfs/${deptDir}/Arrest/"`
+	fullDir=`echo "${PDFS_DIR}/${deptDir}/Arrest/"`
 
 	#if the dept contains an Arrest subdir...
 	if [ -d "$fullDir" ]; then
@@ -64,7 +64,7 @@ for deptDir in `ls $PDFS_DIR` ; do
 		echo "Converting pdfs in $fullDir ...\n" >> "$log"
 
 		#form the absolute path to the subdir for Arrest xml files and make it if necessary
-		xmlDir=`echo "/mnt/pd1/xmls/${deptDir}/Arrest/"`
+		xmlDir=`echo "${XMLS_DIR}/${deptDir}/Arrest/"`
 		mkdir -p $xmlDir
 
 		#try converting each pdf in the pdfs Arrest subdir, passing the xml subdir path where the conversion will be saved
