@@ -1,0 +1,485 @@
+
+*=========================================================*
+| xmlScraper Documentation
+|
+*=========================================================*
+
+This program was written by Ben Parisi in 2014/2015.
+It was written using Python 2.7.8.
+
+Documentation Contents
+
+1. Program Intention and Purpose
+2. Overview of the Algorithm
+    2a. Five Major Steps
+    2b. The test.py program
+3. Individual Function Descriptions
+    3a. Outline of Function Flow
+    3b. List of Functions
+    3c. Function Descriptions
+4. How xmlScraper fits in with Django
+
+Throughout this documentation, the phrase "the scraper"
+will be used to refer to this program.
+
+*---------------------------------------------------------
+*=========================================================
+
+
+
+*=========================================================
+| 1. Program Intention and Purpose
+*=========================================================
+
+This program is intended to interact with and parse .xml files of various police reports that are stored and accessible electronically. The reports are originally stored as .pdf files, and the scraper is designed to work assuming that it is working on the .xml conversions of those .pdf files, which have been converted using the free unix utility pdf2html, run with the -xml flag active. This conversion is expected to occur outside the scope of the program, and thus, the proper and expected input for the scraper is a directory of .xml files. 
+
+The purpose of this program is to extract the inaccessible but largely text-based data from the pdf files and store that data in a database. Keeping it in a database is simpler, more easily accessible, and allows for sorting, searching, querying, etc. of the dataset. From a perspective of accessibility, a pdf file acts as a house for data with entirely opaque windows, hiding the information it contains. It is encoded such that only a pdf-viewer program can display it, enforcing a holistic nature on its data. Basically you have to look at it as an image, which is the same as having a piece of paper in your hand. There are advantages to this, but it is not at all useful for, say, combing through a large volume of reports and looking for the one that features a 6'2" Czech man with a tattoo of an axe on his right arm.
+
+With that in mind, the purpose of the scraper is to take a holistic report and read the raw data from it in the form of key-value pairs (Height: 6'2", Gender: Male, etc.) that can then be accessed directly. In doing so we do not lose the grouping of data that a report provides, since each report has a unique identifier that we can use to tag the set of key-value pairs that it generated. The size of the set is dependent on the number of fields in the report, and it should be uniform across all sets that have come from one type of report. To return to the simile above, the scraper does not break down the whole house around the opaque window and allow the data to scatter, but simply makes the windows transparent such that for any piece of data we can see directly what its value is and at the same time what house it is contained in. With the data in this form, we can easily do things like pull up every report of an instance of larceny over the last 6 months, or search for a certain name or place and find the reports (if any) associated with it.
+
+The middleman step of the pdf-to-xml file conversion may not be strictly necessary to achieve this purpose, but given the available technology at the time of this program's creation, a pre-conversion was deemed expedient and not too costly. The structure of the resulting xml files allows for the algorithm used by the scraper to locate certain items in expected locations, as well as to classify a piece of data as a key or a value, since values always appear between bold tags and keys do not (this appears to be a quirk of the pdf reports). These expectations about the xml files are important to note because their utilization means that the scraper is not very friendly with any random xml file you throw at it; it is designed with reports in mind that have specific expected formatting and should not be considered to flexibly apply to other kinds of reports. The specifics relied on by the scraper arise from the formatting of a standard police form for an arrest or incident (from the size or positioning of the fields on those forms). In the course of development, these forms (within one category, i.e. all arrest forms) were found to be consistent enough across all counties and departments they were obtained from to allow such a strategy to succeed. The scraper has not yet been tested on any forms from outside the initial state from which data was supplied -- North Carolina -- but if the formatting and uploading of reports from elsewhere are consistent with the originals that were used during program development, the scraper should in large part continue to work on those reports without issue.
+
+To sum up briefly, we begin with a repository of pdf reports that are formatted to the expected standard of police arrest or incident reports; these reports are then converted from .pdf to .xml using the free unix utility pdf2html, run with the -xml flag active. The path to the directory containing the resulting .xml files is then supplied to this program, the scraper. The scraper proceeds to utilize outside knowledge about the structure of those xml files (in the form of hard-coded coordinates, relative math, etc. all investigated manually) to parse and extract the raw data from them, one at a time, storing everything it can find from all the files in the supplied directory into a database. This database is accessible through some front end, achieving the original goal of increased transparency and ease of use of the reports. Rather than the giant hassle of clicking back and forth one at a time through a long list of unintelligible pdf report names and browsing around an image of each report with an eye for a small piece of specific text data, the end user can simply search for the data they want and be told which pdfs match their query. This functionality can be easily extended to utilize filters for different ranges or selections in order to highlight trends or find patterns. Having the raw data accessible makes the information more powerful.
+
+*---------------------------------------------------------
+*=========================================================
+
+
+*=========================================================
+| 2. Overview of the Algorithm
+*=========================================================
+
+What follows is an overview of the algorithm used by the scraper to extract the raw data from a pdf-converted-to-xml police report file or directory of such files.
+
+2a. Five Major Steps
+
+There are five major steps of the current algorithm:
+
+    (Step I) ----- Read a single xml file in and store each line of the file as a single string item in a list (the "GetFileLinesList" step).
+
+    (Step II) ---- Go through the file lines list and separate it into two lists, one list for the keys or Field-Items, and one list for the values or Data-Items (the "ProcessLists" step).
+
+    (Step III) --- Sort both the list of Field-Items and the list of Data-Items by the Y Coordinate of the items in each list (the "QSort" step).
+
+    (Step IV) ---- Start matching Data-Items to Field-Items to create key-value pairs: move down the form in sections, grouping Data-Items and Field-Items however is most efficient but generally by either a shifting window of y coordinates or as necessary based on the matching tactics that will be used for that section. Within a section, match until the group of Data-Items is exhausted, then fill out the constantly growing list of key-value pairs by pairing the rest of the Field-Items from that section with a value of NULL, or something more appropriate if it can be inferred. Continue in this manner until the list of key-value pairs reaches its proper and maximum length, therefore representing the totality of one report (the "Matching" step).
+
+    (Step V) ----- Turn the list of key-value pairs into a dictionary so that a value can be accessed by knowing the key; return the dictionary if the program was supplied a single xml file; or more likely, add the dictionary to a growing list of dictionaries if the program was supplied a directory of xml files. In fact, this growing list may instead itself be a dictionary, so that one of the inner dictionaries representing one specific report can be accessed by, say, the identification number of the report rather than a list index. Return the list or dictionary when the scraper has run through the entire supplied directory (the "Return" step).
+
+Note that the scraper only returns the data structure that is the result of its execution, and does not by itself involve any database. This is because the project that the scraper was originally designed within was/is making use of the Django framework for creating a database-driven web application. Section 4 of this documentation delves into this further, but in a nutshell there is another group of python files elsewhere on the same server that the scraper is running on, which contain the specifications for the database fields and provide the infrastructure for creating a web application around that database if one were desired. The unification of this outside database specification and the key-value pair data structure returned by the scraper takes place via one last python file, separate from both the scraper and the group of Django files. For now, this file is simply called test.
+
+*---------------------------------------------------------
+
+2b. The test.py program
+
+Running the 'test' program is essentially the user interface of the scraper for now. When executed, test.py asks for input in the form of a path to a directory containing the proper xml files. It then passes that path-to-directory to the scraper, which runs on that directory and returns the list of dictionaries of key-value pairs that represent the entirety of the reports from that directory. test.py then goes through that overall list containing each report as one dictionary and attempts to save each one to the database, one at a time. This is done by, for each report, creating a new instance of the class that defines the database field specification (from Django), whose attributes (values for the database fields) are obtained by using the keys of the dictionary from the scraper to call the appropriate value for that class attribute/database field. Once all the values have been assigned from the scraper's dictionary to the database model class, test.py attempts to save that new database record to the database. Once in the database, the record and thus the report that it represents should be seamlessly integrated into any existing search/sort/query functionality.
+
+A review of the life cycle of one pdf report may be helpful at this point:
+
+--The report begins by being uploaded to our server as a standard pdf police report, available from the public servers.
+--The report is converted from a pdf file to an xml file
+--The report is read and parsed as an xml file by the scraper
+--The scraper lifts all the relevant text data from the xml file, sorting and matching until the same data that was in the report at the beginning is represented anew as a dictionary of key-value pairs
+--The dictionary containing the information from the report is read and assigned to one record in our database (by the test program, which also ran the scraper)
+--Once in the database, the report is fully integrated and accessible from the front end, and is searchable, etc. The database record is an authentic representation of the original pdf document.
+
+There are numerous other notes about the above steps, or things which may not be immediately clear, such as where any coordinates are coming from, or what exactly is meant by Field-Item or Data-Item. These will be better addressed in the next section, where individual functions are explained.
+
+*---------------------------------------------------------
+*=========================================================
+
+
+*=========================================================
+| 3. Individual Function Descriptions
+*=========================================================
+
+3a. Outline of Function Flow
+
+getFileLinesList (returns listOfLines) -->
+createLineIndex (returns dlist, flist) -->
+processLists ~\~> qsort (sortedDList, sortedFList) --> 
+processLists ~\~> grabRelevantDataAndFields (tempDList, tempFList) --> 
+processLists ~\~> markAppropriateFieldsNull ~OR~ pairFieldandData (kvps) -->
+processLists ~\~> grabRelevantDataAndFields (tempDList, tempFList) --> 
+processLists ~\~> markAppropriateFieldsNull ~OR~ pairFieldandData (kvps) -->
+processLists etc. until completion (pdfObj)
+
+Notation note: the slashed arrow  ~\~> means the next call is from from inside the previous function, and items in parentheses are notable results returned by the associated function.
+
+processLists goes to pairFieldAndData unless there is no data at all for a given section, in which case All Fields are marked Null (Appropriately).
+The cycle of grabRelevantDataAndFields to create tempD and tempF lists that are then paired or marked null proceeds according to a list of sectionsToGrab, a parameter of processLists.
+The expected section names are outlined in the if-else ladder within processLists, and the list containing those names and supplied to processLists is constructed in getSinglePDFObj.
+The section names are used both to specify what parts of the pdf will be put into the temp lists and to indicate the section to pairFieldandData so it can apply the appropriate matching strategy.
+
+pairCheckmarkData is the secondary matching function and is called from inside pairFieldandData, the primary matching function.
+
+removeFromFieldList, removeMultipleFromFieldList, getTextBetweenDelimiters and sortByKey are all helper functions that make minor repetitive tasks more convenient.
+
+getSinglePDFObj, createPDFList and createPDFDict are the functions that put everything together and are called by something externally to produce the result.
+
+printPDFDict is a convenience function. Convenience-oriented functions have white space before their roman numeral in the list below.
+
+*---------------------------------------------------------
+
+3b. List of Functions
+
+(I) getFileLinesList
+(II) createLineIndex
+    (III) getTextBetweenDelimiters
+
+(IV) processLists
+(V) qsort
+(VI) grabRelevantDataAndFields
+    (VII) markAppropriateFieldsNull
+
+(VIII) pairFieldandData
+(IX) pairCheckmarkData
+    (X) removeFromFieldList
+    (XI) removeMultipleFromFieldList
+
+(XII) getSinglePDFObj
+(XIII) createPDFList
+(XIV) createPDFDict
+    (XV) printPDFDict
+    (XVI) sortByKey
+
+*---------------------------------------------------------
+
+
+3c. Function Descriptions
+
+
+Function Description Key:
+
+__________________________________________________________
+
+(#) functionName (parameter1, parameter2...) --> [Notable Return Products]
+__________________________________________________________
+
+"Brief summary of function intention and purpose"
+
+parameter1 - Description
+parameter2 - Description
+...
+----
+Notable Return Product 1 - Description
+Notable Return Product 2 - Description
+...
+
+
+    Further Notes:
+
+__________________________________________________________
+
+
+Function Descriptions:
+
+__________________________________________________________
+
+(I) getFileLinesList (filepath) --> [listOfLines]
+__________________________________________________________
+
+"Simple function that takes a filepath of one of the converted .xml files and returns a list of strings that are the lines of the file. Some modest filtering is done to remove lines with no data, and anything beyond the first page is separated apart."
+
+filepath - an absolute filepath to an individual .xml file. For the rest of the scraper to work the xml file must be the expected xml conversion of the proper type of police report pdf file. 
+----
+listOfLines - a list in which each element is a single text line from the xml file indicated by filepath. 
+
+
+    Further Notes: Some modest filtering happens here in that only lines from the xml file which appear between <text> tags are added to listOfLines. In addition, for now the scraper only looks at the first page of the supplied file. A substantial portion of the reports are only one page long; extra pages generally arise from a list of charges that is too long, or a narrative that is too long. These extra pages are formatted differently but may contain some of the same field labels and even repetitive data, as the arrestee's name and address, etc. may be listed again, and all of that is confusing for the scraper. For now the extra lines of the xml file beyond page one are simply stashed away in a separate list called extraLines, which can be utilized later in development.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(II) createLineIndex (listOfLines) --> [lineDataItemList, lineFieldItemList]
+__________________________________________________________
+
+"Takes a list of strings representing file lines as input and strips the important data from each line. The top and left coordinates from the xml tag are saved along with the actual text data between the tags. Data items are thus three-item lists, whose 0 index holds the top coordinate, 1 index holds the left coordinate, and 2 index holds the data. Data items are sorted into either a list of form data, or a list of form field names, and these two lists are returned."
+
+listOfLines - the return product of getFileLinesList, a list of the text-tagged lines from the first page of the converted-to-xml report.
+----
+lineDataItemList - A list of those lines from the overall list which represent the DATA from the report, stored in a single list item that combines the value with the top and left coordinates from the xml file.
+lineFieldItemList - A list of those lines from the overall list which represent FIELD NAMES (also referred to as the "keys" in "key-value pair") from the report combined with their top and left coordinates.
+
+
+    Further Notes: A typical entry in the lineFieldItemList might be something like [133, 548, "Age"], where 133 is the top coordinate and 548 is the left coordinate. 0 is the top of the page for the top coorindate, and the left of the page for the left coordinate. A typical entry in the lineDataItemList could be [156, 545, "27"]. To the human eye, these two entries from each list seem to be paired, as they are similarly lined up by left coordinate, and the apparent value of 27 is offset by a reasonable amount from the apparent key of Age. This is close to the logic the scraper will use later to match the two, but at this point the scraper has not associated them with each other at all and there is no way of knowing in advance exactly where in lineDataItemList the entry [156, 545, "27"] might appear, because there is a variable amount of data on each report. Although we will end up with the same amount of key-value pairs in the end, this is only after the existing data has been examined and everything else has been marked NULL. The result is that the lineDataItemList entries that contain real data do not come up in predictable indices of the list at this point in the process. Additionally, be sure to keep clear in your head the difference between the value of an entry in the lineFieldItemList, and the "value" in a key-value pair. The former is the text string that names the field, in this case "Age". In the latter, the field name of "Age" has been linked with its value on the report, "27", creating the key-value pair {Age: 27}. Once this is established "value" refers to 27, the piece of data which has arisen from the lineDataItemList, and Age is referred to as the key.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(III) getTextBetweenDelimiters (line, firstDelimiter, secondDelimiter) --> [textBetweenDelimiters]
+__________________________________________________________
+
+"A helper function which extracts the data from in between two specified strings. Useful for getting text out of markup-language tags."
+
+line - a full unaltered line from the xml file.
+firstDelimiter - the string that is a marker for just before the beginning of the text that should be extracted from the line.
+secondDelimiter - the string that is a marker for immediately after the text that should be extracted from the line.
+----
+textBetweenDelimiters - the text that has been extracted, to be returned by the function.
+
+
+    Further Notes: For example, to extract '343' from the line --> "<text top="407" left="343" width="19" height="9" font="0">Misd</text>" simply call this function with that line as the value for line, a value for firstDelimiter of 'left="', and a value for secondDelimiter of '"'. These are not the only acceptable values; it is sufficient to supply any pattern for either delimiter that will uniquely determine a location in the line from which to extract text.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(IV) processLists (dlist, flist, sectionsToGrab) --> [pdfObj]
+__________________________________________________________
+
+"Takes as input the two data item lists from createLineIndex(), as well as a hard-coded list of strings that serve as the readable state of a state machine. The state machine keeps track of which section of the 
+pdf is currently being scraped, because different strategies are necessary or efficient for each one. Eventually the two data item lists are digested into a master list of key-value pairs, returned as a dictionary."
+
+dlist - list of data items; this function should be called with the full dlist from the entire report.
+flist - list of field items; "       "       "    "   "      "  the full flist from the entire report.
+sectionsToGrab - hard-coded list of strings indicating names of sections of the report that will be parsed; used for creating temp lists and the scraping strategy "state machine" (this is the parameter referred to in section 3a, the Outline of Function Flow).
+----
+pdfObj - a dictionary of the key-value pairs taken from the pdf; a value is accessed by calling pdfObj['Key'], where the Key is the string name of the field from the report that contains the desired value.
+
+
+    Further Notes: There are three other data structures that are important in this function that are not a parameter nor a return value. Two are the result of the next function in this list, qsort. ProcessLists expects to run on a dlist and flist that are sorted by their y coordinate, so that extracting temp lists occurs from the top down as the scraper progresses. To that end there should be calls to qsort that produce sorted dlist and flist (sdlist and sflist) near the beginning of this function. The third is the kvpsMaster list, which holds all the data as the report is scraped section by section until it is turned into a dictionary at the very end. The kvpsMaster list is a list of two-item lists, each of which is a future key-value pair of the dictionary.
+        Other than that the function operates rather simply, most of the time just passing the action on to pairFieldandData. If there is confusion over what values should be in the sectionsToGrab list, it should be the values that are present in the if-else ladder within this function; those names are created by the programmer, not necessarily represented on or taken from the report, although in the case of Arrest Reports they follow the section names. To reiterate, the names in sectionsToGrab are only used in a meta context programmatically, so that the program knows where it is and what to do, which is why I refer to them as forming a "state machine", although I haven't checked if it technically qualifies as one. Each name indicates a range of y-coordinates, within which every field and data piece is pulled out to the temp lists by grabRelevantDataAndFields (in the first part of this function); each name is also passed on to pairFieldandData (in the second part of this function) where it will be used to choose an appropriate value-to-key matching strategy for that section via another if-else ladder.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(V) qsort (lineItemList, sortParameter) --> [sortedLineItemList]
+__________________________________________________________
+
+"A modified version of Quicksort using list comprehensions and tailored to the data item lists created by createLineIndex(). sortParameter is 1 to sort by left coordinate, and anything else to sort by top coordinate."
+
+lineItemList - a list of either data items or field items as used in this program; each item of the list should have the y (top) coord at the 0 index, the x (left) coord at the 1 index, and the value at 2.
+sortParameter - should be either 1 or 0; technically, a 1 indicates a sort by the x coordinate, and anything else indicates a sort by the y coordinate, but the y-sort is only ever called internally with a 0.
+----
+sortedLineItemList - not really a visible return value if you're looking at the qsort function visually, but the way the algorithm works, the sorted version of the list input as a parameter is the final return.
+
+
+    Further Notes: If you are unfamiliar with quicksort, the basic algorithm used here is as follows: (i) select a PIVOT point from the lineItemList; in this case, the value in the middle of the list is used, len(lineItemList)/2. The value selected by this will have every other value compared to it to determine sorted placement; this value itself is never compared, and thus it is saved in the skippedItem variable, to be placed in its proper place at the end (though it is never compared, its proper place is assured since everything else is sorted relative to it). (ii) SPLIT the lineItemList into two lists, lesser and greater, based on their value relative to the PIVOT. This is done using list comprehensions in the python implementation. (iii) These two operations are repeated recursively on the two resulting lists, picking pivots and sorting the rest of the values until each list is only one item long, at which point the recursion ends and the function "zooms back out", combining all the lists into one sorted one. 
+
+__________________________________________________________
+
+__________________________________________________________
+
+(VI) grabRelevantDataAndFields (dlist, flist, start, end) --> [dlist, flist, tempDlist, tempFlist]
+__________________________________________________________
+
+"Helper function that uses hardcoded start and end coordinates that are passed in as parameters to peel off chunks of the two data item lists, gradually moving down the pdf by section. This allows for easier rule-based matching schemes than dealing with the whole pdf at once."
+
+dlist - the list of data items as it currently stands. The first time this function is called, it will be the whole list, and subsequent times will contain a shrinking portion of the original.
+flist - the list of field items as it currently stands. The first time this function is called, it will be the whole list, and subsequent times will contain a shrinking portion of the original.
+start - the lesser of the two y coordinates that specify the section that is to be selected here (and thus which data and fields are relevant).
+end -  the greater of the two y coordinates that specify the section that is to be selected here.
+----
+dlist - the same dlist that was input, minus the items moved to the tempDlist.
+flist - the same flist that was input, minus the items moved to the tempFlist.
+tempDlist - the temporary list that contains the relevant data for the section, waiting to be matched. 
+tempFlist - the temporary list that contains the relevant fields for the section, waiting to be matched.
+
+
+    Further Notes: A data or field item is found to be relevant if its y (top) coordinate is in between start and end. If so, the index of the matching item in the data or field list is noted and the item is copied to the appropriate temp list. Once an entire list has been checked and the appropriate entries copied over, those entries are popped out of the non-temp list because one way or another they will be addressed on this pass. You must wait until the entire list has been checked to pop, because doing so changes the indexing of the list. 
+
+__________________________________________________________
+
+__________________________________________________________
+
+(VII) markAppropriateFieldsNull (section) --> [kvps]
+__________________________________________________________
+
+"This function is only called when ALL fields in a certain section have no data. If so they are all marked as NULL here to avoid unnecessary comparisons in the PairFieldandData() function. If not ALL fields are empty, individual empty fields are marked as NULL as the rest of the data in the section is matched, in pairFieldandData()."
+
+section - the section in which there is no data; the same section that has just been checked in the first part of the processLists function by grabRelevantDataAndFields.
+----
+kvps - the key-values pairs that will be returned for this section (all of the values are NULL).
+
+
+    Further Notes: For arrest reports, there are five sections of the report which could perhaps conceivably be left completely blank, and possibly one or more of these are always filled out, but I haven't checked the whole corpus of documents. They are: vehicle information, drugs, bond, comp, and narrative. Of these, the first two are reliably blank much of the time when no drugs or vehicles are involved. The last three are included as a possibility because I don't know the exact nature of any requirements on the information they contain. The bond amount, or at least the magistrate, will probably be in Bond, so it shouldn't really be blank; similarly the narrative I've seen as only one short sentence before but it should have SOMETHING in there. Comp usually has at least the complainant/victim checkbox filled out, if nothing else. As for the other sections, they simply spit out an error message, because you can't have an arrest report without at least the information of who was arrested, what crime they were arrested for, and what agency and officer arrested them. 
+
+__________________________________________________________
+
+__________________________________________________________
+
+(VIII) pairFieldandData (dlistChunk, flistChunk, state) --> [kvps]
+__________________________________________________________
+
+"The major of the two main data matching functions of the scraper; takes as input one pair of chunks (representing a certain section of the pdf) from the overall dlist and flist and the state string identifying which section the chunks are from."
+
+dlistChunk - a portion of the overall list of all DATA from the report; the portion is based on the section and obtained by grabRelevantDataAndFields
+flistChunk - a portion of the overall list of all FIELDS from the report; the portion is based... "    "     "      "     "         "
+state - the section of the pdf that is being represented in the above chunks; used to determine a matching strategy and thus what the program will do next, hence the term 'state'
+----
+kvps - a list of two-item lists, each of which will later be a key-value pair in the dictionary representing the report. 
+
+
+    Further Notes: the list of kvps returned here is a subset of the kvpsMaster list, which will be extended by the list here after it is returned. The first thing this function does is go through the dlistChunk and isolate the data which (could be/probably is) checkmark data, and pass those on to pairCheckmarkData. I say could be/probably is because the function views anything that has just an 'X' as the data as a checkmark (this is how the checkmarks are represented in the xml file; the 'X' character plus its coordinates mark the location of a selected checkbox on the form) -- for the most part this works as intended, but theoretically there could be an actual solitary 'X' somewhere in text that isn't a checkbox marker. Although this is unlikely, if it did happen it would be interpreted incorrectly. We'll cross that bridge when we come to it. After filtering out the checkmark data and handing that off to pairCheckmarkData, this function begins a matching strategy with the remaining dlist and flist, choosing according to the state parameter, which is the name of a section. The nuts and bolts of each matching strategy will be added to this documentation in the near future. For now, suffice it to say that the general strategy is to locate fields and data that are close to one another by subtracting their coordinates and looking for the difference to be inside a certain margin of error; additionally, some sections are matched by proceeding along a certain axis (horizontal or vertical) because they are formatted consistently and predictably. 
+
+__________________________________________________________
+
+__________________________________________________________
+
+(IX) pairCheckmarkData (chkData, flistChunk, state) --> [flistChunk, kvps]
+__________________________________________________________
+
+"The minor of the two main data matching function of the scraper, built to handle only the checkboxes from a particular section."
+
+chkData - the data-items containing just an 'X' as their value, taken from the dlistChunk that was passed in to pairFieldandData.
+flistChunk - the flistChunk that was passed in to pairFieldandData
+state - the section of the pdf that is being represented by the chunks currently being examined; used to determine the appropriate matching strategy.
+----
+flistChunk - the same flistChunk passed in to the function, without all the possible fields related to checkboxes.
+kvps - a list of two-item lists, each of which will later be a key-value pair in the dictionary, and each arising from a checkbox on the report.
+
+
+    Further Notes: 
+
+__________________________________________________________
+
+__________________________________________________________
+
+(X) removeFromFieldList (flist, field) --> [flist]
+__________________________________________________________
+
+"Helper function that removes a certain field name from the list of field items."
+
+flist - the field list containing the field to be removed.
+field - the field to be removed.
+----
+flist - the field list to be returned, after the field has been removed.
+
+
+    Further Notes: none
+
+__________________________________________________________
+
+__________________________________________________________
+
+(XI) removeMultipleFromFieldList flist, fieldsToRemove) --> [flist]
+__________________________________________________________
+
+"Helper function that removes multiple fields from the list of field items."
+
+flist - the field list containing the fields to be removed.
+fieldsToRemove - a list of fields to be removed
+----
+flist - the field list to be returned, after the fields have been removed.
+
+
+    Further Notes: calls the singular function removeFromFieldList in a loop.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(XII) getSinglePDFObj (filepath) --> [pdfObj]
+__________________________________________________________
+
+"Takes as input the filepath to a converted .xml file and returns the python dictionary with the the key-value pairs from that report."
+
+filepath - absolute filepath to an arrest report pdf-converted-to-xml-file (by the free unix utility pdf2html, run with the -xml flag active).
+----
+pdfObj - the python dictionary with key-value pairs that form a representation of all of the data from (the first page of) one arrest report
+~OR~ "NULL"
+
+
+    Further Notes: This function aggregates together getFilesLinesList, createLineIndex, and processLists. It also contains the declaration of the list of section names that is passed in to processLists, telling it which sections to scrape. Currently arrest reports are broken down into 9 sections in total. If something went wrong with conversion of a PDF file to the expected xml, this function notices by examining the listOfLines obtained from getFileLinesList. Finally, this function also obtains the extra lines of any pdf reports that were longer than one page (stored in a variable). Currently these lines are not used, although they are passed in to processLists, where they would be used once that's implemented.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(XIII) createPDFList (directoryPath) --> [pdfObjects]
+__________________________________________________________
+
+"Takes as input a directory containing multiple converted .xml files and returns a list of python dictionaries, each of which represents one of the converted-.xml reports from the directory."
+
+directoryPath - absolute path to a directory of arrest report pdf-converted-to-xml files.
+----
+pdfObjects - a list of all the python dictionaries representing reports obtained by running the scraper on each file in the directory.
+
+
+    Further Notes: Passes the absolute filepath of each file in the supplied directory to getSinglePDFObj and stores the resulting dictionary in a list. Spits out an error if getSinglePDFObj returned NULL.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(XIV) createPDFDict (directoryPath) --> [pdfObjectsDictionary]
+__________________________________________________________
+
+"Takes as input a directory containing multiple converted .xml files and returns a dictionary of python dictionaries. The keys to the larger, all-encompassing dictionary are the OCA 
+numbers from the reports whose dictionary representation is the value for that key."
+
+directoryPath - Description
+----
+pdfObjectsDictionary - a dictionary of all the python dictionaries representing reports obtained by running the scraper on each file in the direcotory.
+
+
+    Further Notes: Passes the absolute filepath of each file in the supplied directory to getSinglePDFObj and stores the resulting dictionary in a dictionary, under the key that is the OCA number (id number) of that file/report. Spits out an error if getSinglePDFObj returned NULL.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(XV) printPDFDict (pdfDict) --> [[none]]
+__________________________________________________________
+
+"Prints a dictionary object representing one arrest report pdf in a readable form."
+
+pdfDict - the dictionary to be printed.
+----
+(prints output rather than returning anything).
+
+
+    Further Notes: This function makes uses of python's sorted() function and the ability of the 'key' parameter of this function to supply a function that will determine the sort order. In this case that function is the below sortByKey function. For the sort function to work correctly, the dictionary must have the expected keys from scraping a report.
+
+__________________________________________________________
+
+__________________________________________________________
+
+(XVI) sortByKey (key) --> [[none]]
+__________________________________________________________
+
+"""This function is used to custom sort the dictionaries that are constructed by the scraper for convenience in printing. It is used by the lambda function in printPDFDict, which is the function to call to actually view the sorted output."""
+
+key - the key that is to be assigned a sort order; this parameter has to do with the way the lambda function from printPDFDict sorts things. 
+----
+(the function technically returns ints that tell the lambda function calling it the sort order, but for virtually all intents and purposes this function returns nothing externally useful).
+
+
+    Further Notes: This function should not be called other than inside printPDFDict and is not intended to stand on its own. Sort is hand-coded based on practical groupings.
+
+__________________________________________________________
+
+
+*---------------------------------------------------------
+*=========================================================
+
+
+*=========================================================
+| 4. How xmlScraper fits in with Django
+*=========================================================
+
+Section 2 briefly touched on how the scraper does not itself directly involve any database but only returns the data structure -- the dictionary of key-value pairs -- that is the result of its execution. In fact it is the test.py program that actually attempts to save data to the database, and it does so by creating a new instance of the database model class with the appropriate attribute values. This database model class, whose attributes follow exactly the keys set out by the dictionary data structure, is the scraper's most direct tie to the Django framework associated with the database. There are four core files that make up this framework:
+
+models.py
+urls.py
+views.py
+settings.py
+
+Of these, as has been said, models.py deals with the database schema, while views.py handles the proper 'type' of web page to display and urls.py directs url queries to the appropriate view. The html code that describes the look and feel of the web pages in the project is contained within a 'templates' folder located somewhere in the project directory, and is also referenced from views.py. Often the exact contents of the 'type' of web page referred to by views.py will be determined by a query to the database, with the information that is displayed changing based on the input or selection of the user, who desires some filter. Finally, the settings.py file ties the code together in various ways (for example, this is where the specific database software being used is specified, and where the directories containing static files are listed, etc.).
+
+For more information on these four files and on the Django framework in general, the following pages will be useful:
+
+docs.djangoproject .com /en/1.8/intro (especially the first three pages of the 'Writing your first Django app' tutorial)
+docs.djangoproject .com /en/1.8/ref/settings/
+docs.djangoproject .com /en/1.8/topics/db/queries/
+
+That being said, much of this is irrelevant to the scraper. As far as the scraper is concerned, the only important thing coming from django is the easy api that it provides for using python code to create database tables and create and save individual records to those tables. And in fact, the scraper itself does not make use of those possibilities at all, but rather it is the test.py program which is responsible for finding the reports (via user input or hard-coded directories), running the scraper on those reports, creating a new instance of the (django-derived) model class with attribute values that are the results of running the scraper, and finally saving the information now stored in that instance of the model class as a new record in the database. 
+
+Thus, the short answer to the question, "How does xmlScraper.py fit in with the Django framework?" is, "The test.py program ties the two together, saving data obtained by the scraper and stored in an instance of a subclass of models.py to the database."
+
+The web-facing side of Django, mostly represented in urls.py, views.py, and the templates folder, is largely irrelevant for this functionality, but its existence does mean that a Django-backed front end could one day be an easily extensible way of accessing the data.
+
+~FIN~
