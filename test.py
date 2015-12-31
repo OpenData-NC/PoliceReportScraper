@@ -11,33 +11,34 @@ from odnc_police.models import *
 
 #pdfDir = getInput()
 
-#dirPath = '/mnt/pd1/xmls/' + str(pdfDir)
+#dirPath = '/mnt/pd2/xmls/' + str(pdfDir)
 #while (not(os.path.exists(dirPath))):
 #	pdfDir = raw_input('Directory location invalid; please re-enter the path: ')
-#	dirPath = '/mnt/pd1/xmls/' + str(pdfDir)
+#	dirPath = '/mnt/pd2/xmls/' + str(pdfDir)
 
 print "working..."
 
 dirItems = []
-for direc in os.listdir('/mnt/pd1/xmls/'):
-	if (direc != 'scrape-logs' and direc != 'convert-logs'):
+for direc in os.listdir('/mnt/pd2/xmls/'):
 		dirItem = []
-		fullDirPath = '/mnt/pd1/xmls/' + direc + '/Arrest/'
-		logPath = '/mnt/pd1/xmls/scrape-logs/' + direc + '-scrapelog.txt'
+		fullDirPath = '/mnt/pd2/xmls/' + direc + '/Arrest/'
 		if (os.path.exists(fullDirPath)):
 			dirItem.append(fullDirPath)
-			dirItem.append(logPath)
 			dirItem.append(direc)
 			dirItems.append(dirItem)	
 
 totalErrCount = 0
 totalCount = 0
 
-for dirItem in dirItems:
+logtitle = "/mnt/pd2/django/PoliceReportScraper/Data-Scrape-Log-" + str(datetime.datetime.now())[:10] + "-" + str(datetime.datetime.now())[11:13] + str(datetime.datetime.now())[14:16] + ".txt"
+logfile = open(logtitle, "a+")
 
-        logfile = open(dirItem[1], "a+")
+dirItems.sort()
+dirItemsSegment = dirItems[:2]
 
-        print >>logfile, "Beginning scrape of " + dirItem[2] + " xmls (up-to-date through mid-August 2015) at " + str(datetime.datetime.now())
+for dirItem in dirItemsSegment:
+
+        print >>logfile, "Beginning scrape of " + dirItem[1] + " xmls at " + str(datetime.datetime.now())
 
         dirPath = dirItem[0]
 
@@ -216,7 +217,6 @@ for dirItem in dirItems:
                                         Arrestee_Signature = record['Arrestee Signature'],
                 
                                         pdf = record['Path To PDF'],
-                                        city = "thecity",
                                         state = 'NC'
                 
                         )
@@ -225,19 +225,21 @@ for dirItem in dirItems:
                 except:
                         print >>logfile, "Error uploading this record to DB, traceback:"
                         print >>logfile, traceback.format_exc() #sys.exc_info()
+                        #for output of the key value pairs in the erring file:
                         #for a in record.keys():
                         #	print >>logfile, a + " -- " + str(record[a])
                         errCount = errCount + 1
 
         print >>logfile, "Done saving to database. There were " + str(errCount) + " excepted records."
-        print >>logfile, "\nFinished attempted scrape of " + str(len(pdfObjectList)) + " " + dirItem[2] + " xmls at " + str(datetime.datetime.now())
+        print >>logfile, "\nFinished attempted scrape of " + str(len(pdfObjectList)) + " " + dirItem[1] + " xmls at " + str(datetime.datetime.now())
         print >>logfile, "\n\n\n--------------------\n\n"
-        logfile.close()
 
         totalErrCount = totalErrCount + errCount
         totalCount = totalCount + len(pdfObjectList)
 
         print "Done saving to database. There were " + str(errCount) + " excepted records."
-        print "Finished attempted scrape of " + str(len(pdfObjectList)) +  " " + dirItem[2] + " xmls at " + str(datetime.datetime.now()) + "\n"
+        print "Finished attempted scrape of " + str(len(pdfObjectList)) +  " " + dirItem[1] + " xmls at " + str(datetime.datetime.now()) + "\n"
 
 print "The total file count was " + str(totalCount) + ". There were a total of " + str(totalErrCount) + " excepted records."
+print >>logfile, "The total file count was " + str(totalCount) + ". There were a total of " + str(totalErrCount) + " excepted records."
+logfile.close()

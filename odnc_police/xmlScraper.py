@@ -19,12 +19,16 @@ def getFileLinesList(filepath):
         if ('<text' in line):
             listOfLines.append(line)
         elif ('</page>' in line):
+            #get the index of the next line
             startIndex = fileLines.index(line)+1
+            #...and store only text-tagged lines in extraLines? (maybe everything instead?)
             temp = fileLines[startIndex:]
             for lineitem in temp:
                 if ('<text' in lineitem):
                     extraLines.append(lineitem)
             break
+            #TODO: inspect the real formatting of extra lines/pages
+        
     return listOfLines, extraLines
 
 
@@ -1120,6 +1124,7 @@ def getSinglePDFObj(filepath):
     listOfLines, extras = getFileLinesList(filepath)
     if (len(listOfLines) > 10):
         dlist, flist = createLineIndex(listOfLines)
+        #the strings in this list indicate which sections should be scraped. They should all be included except possibly when debugging.
         snl = ["AGENCY_INFO", "ARRESTEE_INFO", "ARREST_INFO", "VEH_INFO", "BOND", "DRUGS", "COMP", "NARRATIVE", "STATUS"]
         pdfObj = processLists(dlist, flist, snl, extras)
         pdfObj['Path To PDF'] = filepath
@@ -1136,12 +1141,15 @@ def createPDFList(directoryPath, logFileObj):
     pdfObjects = []
     logfile = logFileObj
     for filename in os.listdir(directoryPath):
-        print >>logFileObj, "operating on file " + filename + "..."
+        print >>logfile, "operating on file " + filename + "..."
         pdfObj = getSinglePDFObj(directoryPath+filename)
+
+        #TODO: this if statement plus the one in getSinglePDFObj are the only form of error-checking here
         if (pdfObj != "NULL"):
             pdfObjects.append(pdfObj)
         else:
             print >>logfile, "--->Error with ghostscript or the pdf2xml conversion of this file"
+            
     return pdfObjects
 
 def createPDFDict(directoryPath):
